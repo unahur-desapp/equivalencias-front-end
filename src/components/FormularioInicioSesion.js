@@ -1,4 +1,7 @@
 import React from 'react';
+import Boton from '../elements/Boton';
+import Titulo from '../elements/TitulosInicioSesion';
+import ForgotPass from '../elements/ForgotPass';
 
 const FormularioInicioSesion = () => {
   const onSubmit = (e) => {};
@@ -6,8 +9,8 @@ const FormularioInicioSesion = () => {
   return (
     <div className="main-inicio-sesion">
       <div className="titulo-bienvenida">
-        <h2>¡Bienvenido/a!</h2>
-        <h3>Iniciar sesión</h3>
+        <Titulo>¡Bienvenido/a!</Titulo>
+        <Titulo inicio>Iniciar sesión</Titulo>
       </div>
 
       <div className="formulario-inicio-sesion">
@@ -22,11 +25,13 @@ const FormularioInicioSesion = () => {
           </div>
 
           <div className="olvidaste-password">
-            <p>¿Olvidaste tu contraseña?</p>
+            <ForgotPass>¿Olvidaste tu contraseña?</ForgotPass>
           </div>
 
           <div>
-            <button type="submit">Ingresar</button>
+            <Boton largo type="submit">
+              Ingresar
+            </Boton>
           </div>
         </form>
       </div>

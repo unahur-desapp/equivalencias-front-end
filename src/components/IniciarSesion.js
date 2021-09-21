@@ -1,6 +1,7 @@
 import React from 'react';
 import FormularioInicioSesion from './FormularioInicioSesion';
 import Registro from './Registro';
+import SideRegistro from '../elements/SideRegistro';
 
 const IniciarSesion = () => {
   const onClick = (e) => {
@@ -9,12 +10,12 @@ const IniciarSesion = () => {
 
   return (
     <div className="tarjeta-inicio-sesion">
-      <div className="sidebar-registro">
+      <SideRegistro className="sidebar-registro">
         <div className="centrar-sidebar-registro">
           <h1 className="titulo-principal">Trámites de Equivalencias</h1>
           <button onClick={onClick}>Registrarse</button>
         </div>
-      </div>
+      </SideRegistro>
 
       <FormularioInicioSesion />
     </div>
