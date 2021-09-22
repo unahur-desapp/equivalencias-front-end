@@ -1,40 +1,37 @@
 import styled, { css } from 'styled-components';
 
 const Boton = styled.button`
+  width: 200px;
+  height: 45px;
   background: #009673;
   color: #fff;
   display: inline-block;
-  padding: 20px;
+  padding: 15px 20px;
   border: none;
   border-radius: 10px;
+  font-size: 16px;
   font-weight: bold;
-  font-family: Roboto;
   cursor: pointer;
   transition: 0.3s ease all;
-  width: ${(props) => (props.largo ? '20%' : 'auto')};
-
-  &:hover {
-    background: #44a559;
-    color: #fff;
-  }
+  /*width: ${(props) => (props.largo ? '20%' : 'auto')};*/
 
   ${(props) =>
-    props.negro &&
+    props.hover &&
     css`
-      background: #000;
-      color: #fff;
+      &:hover {
+        background: #008f6d;
+        color: #fff;
+      }
     `}
 
   ${(props) =>
-    props.marginTop &&
+    props.border &&
     css`
-      margin-top: 10px;
-    `}
+      border: 1px solid #fff;
 
-    ${(props) =>
-    props.marginRight &&
-    css`
-      margin-right: 10px;
+      &:hover {
+        box-shadow: 0px 0px 4px 0.1px rgba(0, 0, 0, 0.7);
+      }
     `}
 `;
 

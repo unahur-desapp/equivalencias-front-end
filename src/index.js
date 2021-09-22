@@ -8,7 +8,7 @@ const App = () => {
   const [login, cambiarEstadoLogin] = useState(false);
 
   return (
-    <div className="contenedor">
+    <>
       {login ? (
         <>
           <UsuarioMisFormularios />
@@ -18,7 +18,7 @@ const App = () => {
           <IniciarSesion />
         </>
       )}
-    </div>
+    </>
   );
 };
 

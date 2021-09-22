@@ -1,27 +1,40 @@
 import React from 'react';
 import Boton from '../elements/Boton';
-import Titulo from '../elements/TitulosInicioSesion';
+//import Titulo from '../elements/Titulos';
 import ForgotPass from '../elements/ForgotPass';
+import TituloBienvenida from '../elements/TituloBienvenida';
+import Formulario from '../elements/Formulario';
+import ContenedorInputs from '../elements/ContenedorInputs';
+import Input from '../elements/Input';
 
 const FormularioInicioSesion = () => {
   const onSubmit = (e) => {};
 
   return (
-    <div className="main-inicio-sesion">
-      <div className="titulo-bienvenida">
-        <Titulo>¡Bienvenido/a!</Titulo>
-        <Titulo inicio>Iniciar sesión</Titulo>
-      </div>
+    <>
+      <TituloBienvenida>
+        <h2 style={{ fontSize: 44, color: '#009673', marginBottom: 50 }}>
+          ¡Bienvenido/a!
+        </h2>
+        <h3 style={{ fontSize: 30, color: '#009673' }}>Iniciar sesión</h3>
+      </TituloBienvenida>
 
-      <div className="formulario-inicio-sesion">
+      <Formulario>
         <form action="" onSubmit={onSubmit}>
           <div>
-            <div className="input-inicio-sesion-email">
-              <input type="text" placeholder="Email" />
-            </div>
-            <div className="input-inicio-sesion-password">
-              <input type="password" placeholder="Contraseña" />
-            </div>
+            {/*<div className="input-inicio-sesion-email">
+							<input type="text" placeholder="DNI" />
+						</div>
+						<div className="input-inicio-sesion-password">
+							<input type="password" placeholder="Contraseña" />
+						</div>*/}
+            <ContenedorInputs>
+              <Input type="text" placeholder="DNI" className="" />
+            </ContenedorInputs>
+
+            <ContenedorInputs>
+              <Input type="password" placeholder="Contraseña" />
+            </ContenedorInputs>
           </div>
 
           <div className="olvidaste-password">
@@ -34,8 +47,8 @@ const FormularioInicioSesion = () => {
             </Boton>
           </div>
         </form>
-      </div>
-    </div>
+      </Formulario>
+    </>
   );
 };
 
