@@ -1,15 +1,15 @@
-import React from 'react';
-import Boton from '../elements/Boton';
+import React from "react";
+import Boton from "../elements/Boton";
 //import Titulo from '../elements/Titulos';
-import OlvidastePasswordLink from '../elements/OlvidastePasswordLink';
-import TituloBienvenida from '../elements/TituloBienvenida';
-import Formulario from '../elements/Formulario';
-import ContenedorInputs from '../elements/ContenedorInputs';
-import Input from '../elements/Input';
-import Titulosh2 from '../elements/Titulosh2';
-import OlvidastePassword from '../elements/OlvidastePassword';
-import ContenedorBoton from '../elements/ContenedorBoton';
-import LineaSeparacion from '../elements/LineaSeparacion';
+import OlvidastePasswordLink from "../elements/OlvidastePasswordLink";
+import TituloBienvenida from "../elements/TituloBienvenida";
+import Formulario from "../elements/Formulario";
+import ContenedorInputs from "../elements/ContenedorInputs";
+import Input from "../elements/Input";
+import Titulosh2 from "../elements/Titulosh2";
+import OlvidastePassword from "../elements/OlvidastePassword";
+import ContenedorBoton from "../elements/ContenedorBoton";
+import LineaSeparacion from "../elements/LineaSeparacion";
 
 const FormularioInicioSesion = () => {
   const onSubmit = (e) => {};
@@ -25,7 +25,7 @@ const FormularioInicioSesion = () => {
         <form
           action=""
           onSubmit={onSubmit}
-          style={{ height: '100%', textAlign: 'center' }}
+          style={{ height: "100%", textAlign: "center" }}
         >
           <div>
             {/*<div className="input-inicio-sesion-email">

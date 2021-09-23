@@ -1,11 +1,11 @@
-import React from 'react';
-import FormularioInicioSesion from './FormularioInicioSesion';
-import Registro from './Registro';
-import SideRegistro from '../elements/SideRegistro';
-import TarjetaLogin from '../elements/TarjetaLogin';
-import FormularioMain from '.././elements/FormularioMain';
-import Titulosh1 from '../elements/Titulosh1';
-import Boton from '../elements/Boton';
+import React from "react";
+import FormularioInicioSesion from "./FormularioInicioSesion";
+import Registro from "./Registro";
+import SideRegistro from "../elements/SideRegistro";
+import TarjetaLogin from "../elements/TarjetaLogin";
+import FormularioMain from ".././elements/FormularioMain";
+import Titulosh1 from "../elements/Titulosh1";
+import Boton from "../elements/Boton";
 
 const IniciarSesion = () => {
   const onClick = (e) => {
