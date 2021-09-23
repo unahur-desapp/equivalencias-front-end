@@ -5,21 +5,21 @@ import UsuarioMisFormularios from "./components/UsuarioMisFormularios";
 import "./index.css";
 
 const App = () => {
-  const [login, cambiarEstadoLogin] = useState(false);
+	const [login, cambiarEstadoLogin] = useState(false);
 
-  return (
-    <>
-      {login ? (
-        <>
-          <UsuarioMisFormularios />
-        </>
-      ) : (
-        <>
-          <IniciarSesion />
-        </>
-      )}
-    </>
-  );
+	return (
+		<>
+			{login ? (
+				<>
+					<UsuarioMisFormularios />
+				</>
+			) : (
+				<>
+					<IniciarSesion />
+				</>
+			)}
+		</>
+	);
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
