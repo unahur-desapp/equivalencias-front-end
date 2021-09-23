@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 const ContenedorInputs = styled.div`
-  padding: 6px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  margin: 0 auto;
+  padding: 6px 0;
+  display: inline-block;
+  text-align: center;
 `;
 
 export default ContenedorInputs;

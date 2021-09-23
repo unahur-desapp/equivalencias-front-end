@@ -4,7 +4,7 @@ import Registro from './Registro';
 import SideRegistro from '../elements/SideRegistro';
 import TarjetaLogin from '../elements/TarjetaLogin';
 import FormularioMain from '.././elements/FormularioMain';
-import Titulos from '../elements/Titulos';
+import Titulosh1 from '../elements/Titulosh1';
 import Boton from '../elements/Boton';
 
 const IniciarSesion = () => {
@@ -15,10 +15,10 @@ const IniciarSesion = () => {
   return (
     <TarjetaLogin>
       <SideRegistro>
-        <Titulos centrar blanco>
+        <Titulosh1 centrar blanco tituloGrande>
           Trámites de Equivalencias
-        </Titulos>
-        <Boton border hover onClick={onClick}>
+        </Titulosh1>
+        <Boton border onClick={onClick}>
           Registrarse
         </Boton>
       </SideRegistro>

@@ -1,11 +1,15 @@
 import React from 'react';
 import Boton from '../elements/Boton';
 //import Titulo from '../elements/Titulos';
-import ForgotPass from '../elements/ForgotPass';
+import OlvidastePasswordLink from '../elements/OlvidastePasswordLink';
 import TituloBienvenida from '../elements/TituloBienvenida';
 import Formulario from '../elements/Formulario';
 import ContenedorInputs from '../elements/ContenedorInputs';
 import Input from '../elements/Input';
+import Titulosh2 from '../elements/Titulosh2';
+import OlvidastePassword from '../elements/OlvidastePassword';
+import ContenedorBoton from '../elements/ContenedorBoton';
+import LineaSeparacion from '../elements/LineaSeparacion';
 
 const FormularioInicioSesion = () => {
   const onSubmit = (e) => {};
@@ -13,14 +17,16 @@ const FormularioInicioSesion = () => {
   return (
     <>
       <TituloBienvenida>
-        <h2 style={{ fontSize: 44, color: '#009673', marginBottom: 50 }}>
-          ¡Bienvenido/a!
-        </h2>
-        <h3 style={{ fontSize: 30, color: '#009673' }}>Iniciar sesión</h3>
+        <Titulosh2 tituloh2Grande>¡Bienvenido/a!</Titulosh2>
+        <Titulosh2 tituloh2Chico>Iniciar sesión</Titulosh2>
       </TituloBienvenida>
 
       <Formulario>
-        <form action="" onSubmit={onSubmit}>
+        <form
+          action=""
+          onSubmit={onSubmit}
+          style={{ height: '100%', textAlign: 'center' }}
+        >
           <div>
             {/*<div className="input-inicio-sesion-email">
 							<input type="text" placeholder="DNI" />
@@ -37,15 +43,17 @@ const FormularioInicioSesion = () => {
             </ContenedorInputs>
           </div>
 
-          <div className="olvidaste-password">
-            <ForgotPass>¿Olvidaste tu contraseña?</ForgotPass>
-          </div>
+          <OlvidastePassword>
+            <OlvidastePasswordLink href="https://www.google.com.ar">
+              ¿Olvidaste tu contraseña?
+            </OlvidastePasswordLink>
+          </OlvidastePassword>
 
-          <div>
-            <Boton largo type="submit">
-              Ingresar
-            </Boton>
-          </div>
+          <LineaSeparacion></LineaSeparacion>
+
+          <ContenedorBoton>
+            <Boton type="submit">Ingresar</Boton>
+          </ContenedorBoton>
         </form>
       </Formulario>
     </>

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 const FormularioMain = styled.div`
-  width: 75%;
-  max-width: 75%;
+  width: 65%;
+  max-width: 65%;
+  height: 100%;
   padding: 50px 0px;
   border-radius: 20px;
   background: #fff;

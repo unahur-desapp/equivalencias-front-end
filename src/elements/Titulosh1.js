@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const Titulos = styled.h1`
+const Titulosh1 = styled.h1`
   color: #000;
   font-weight: medium;
 
@@ -15,6 +15,12 @@ const Titulos = styled.h1`
     css`
       color: #fff;
     `}
+
+	${(props) =>
+    props.tituloGrande &&
+    css`
+      font-size: 2.3em;
+    `}
 `;
 
-export default Titulos;
+export default Titulosh1;
