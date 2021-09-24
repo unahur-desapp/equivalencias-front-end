@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 const Boton = styled.button`
   width: 200px;
@@ -13,10 +13,10 @@ const Boton = styled.button`
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s ease all;
-  /*width: ${(props) => (props.largo ? "20%" : "auto")};*/
+  /*width: ${(props) => (props.largo ? '20%' : 'auto')};*/
 
   &:hover {
-    background: #008f6d;
+    background: #007a5e;
     color: #fff;
   }
 
