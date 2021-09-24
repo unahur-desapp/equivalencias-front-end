@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ContenedorBoton = styled.div`
   margin-top: 22px;

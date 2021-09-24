@@ -13,7 +13,7 @@ const Boton = styled.button`
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s ease all;
-  /*width: ${(props) => (props.largo ? '20%' : 'auto')};*/
+  //width: ${(props) => (props.largo ? '20%' : 'auto')};
 
   &:hover {
     background: #007a5e;
