@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import IniciarSesion from './components/IniciarSesion';
-import UsuarioMisFormularios from './components/UsuarioMisFormularios';
-import './index.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import IniciarSesion from "./components/IniciarSesion";
+import UsuarioMisFormularios from "./components/UsuarioMisFormularios";
+import "./index.css";
 
 const App = () => {
-  const [login, cambiarEstadoLogin] = useState(false);
+	const [login, cambiarEstadoLogin] = useState(false);
 
-  return (
-    <div className="contenedor">
-      {login ? (
-        <>
-          <UsuarioMisFormularios />
-        </>
-      ) : (
-        <>
-          <IniciarSesion />
-        </>
-      )}
-    </div>
-  );
+	return (
+		<>
+			{login ? (
+				<>
+					<UsuarioMisFormularios />
+				</>
+			) : (
+				<>
+					<IniciarSesion />
+				</>
+			)}
+		</>
+	);
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));

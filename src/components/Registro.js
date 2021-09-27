@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Registro = () => {
-  return <></>;
+	return <></>;
 };
 
 export default Registro;

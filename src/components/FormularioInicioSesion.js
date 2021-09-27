@@ -1,42 +1,92 @@
 import React from 'react';
 import Boton from '../elements/Boton';
-import Titulo from '../elements/TitulosInicioSesion';
-import ForgotPass from '../elements/ForgotPass';
+//import Titulo from '../elements/Titulos';
+import OlvidastePasswordLink from '../elements/OlvidastePasswordLink';
+import TituloBienvenida from '../elements/TituloBienvenida';
+import Formulario from '../elements/Formulario';
+import ContenedorInputs from '../elements/ContenedorInputs';
+import Input from '../elements/Input';
+import Titulosh2 from '../elements/Titulosh2';
+import OlvidastePassword from '../elements/OlvidastePassword';
+import ContenedorBoton from '../elements/ContenedorBoton';
+import LineaSeparacion from '../elements/LineaSeparacion';
+import TextField from '@mui/material/TextField';
 
 const FormularioInicioSesion = () => {
-  const onSubmit = (e) => {};
+    const onSubmit = (e) => {};
 
-  return (
-    <div className="main-inicio-sesion">
-      <div className="titulo-bienvenida">
-        <Titulo>¡Bienvenido/a!</Titulo>
-        <Titulo inicio>Iniciar sesión</Titulo>
-      </div>
+    return (
+        <>
+            <TituloBienvenida>
+                <Titulosh2 tituloh2Grande>¡Bienvenido/a!</Titulosh2>
+                <Titulosh2 tituloh2Chico>Iniciar sesión</Titulosh2>
+            </TituloBienvenida>
 
-      <div className="formulario-inicio-sesion">
-        <form action="" onSubmit={onSubmit}>
-          <div>
-            <div className="input-inicio-sesion-email">
-              <input type="text" placeholder="Email" />
-            </div>
-            <div className="input-inicio-sesion-password">
-              <input type="password" placeholder="Contraseña" />
-            </div>
-          </div>
+            <Formulario>
+                <form
+                    action=""
+                    onSubmit={onSubmit}
+                    style={{ height: '100%', textAlign: 'center' }}
+                >
+                    <div>
+                        {/*<div className="input-inicio-sesion-email">
+							<input type="text" placeholder="DNI" />
+						</div>
+						<div className="input-inicio-sesion-password">
+							<input type="password" placeholder="Contraseña" />
+						</div>*/}
 
-          <div className="olvidaste-password">
-            <ForgotPass>¿Olvidaste tu contraseña?</ForgotPass>
-          </div>
+                        <ContenedorInputs>
+                            <TextField
+                                sx={{
+                                    width: 400,
+                                    height: 54
+                                }}
+                                id="outlined-basic"
+                                label="DNI"
+                                variant="outlined"
+                            />
+                        </ContenedorInputs>
 
-          <div>
-            <Boton largo type="submit">
-              Ingresar
-            </Boton>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
+                        <ContenedorInputs>
+                            <TextField
+                                sx={{
+                                    width: 400,
+                                    height: 54
+                                }}
+                                id="outlined-basic"
+                                label="Contraseña"
+                                variant="outlined"
+                                margin="normal"
+                            />
+                        </ContenedorInputs>
+
+                        {/*
+						<ContenedorInputs>
+							<Input type="text" placeholder="DNI" className="" />
+						</ContenedorInputs>
+						
+						<ContenedorInputs>
+							<Input type="password" placeholder="Contraseña" />
+						</ContenedorInputs>
+						*/}
+                    </div>
+
+                    <OlvidastePassword>
+                        <OlvidastePasswordLink href="https://www.google.com.ar">
+                            ¿Olvidaste tu contraseña?
+                        </OlvidastePasswordLink>
+                    </OlvidastePassword>
+
+                    <LineaSeparacion></LineaSeparacion>
+
+                    <ContenedorBoton>
+                        <Boton type="submit">Ingresar</Boton>
+                    </ContenedorBoton>
+                </form>
+            </Formulario>
+        </>
+    );
 };
 
 export default FormularioInicioSesion;

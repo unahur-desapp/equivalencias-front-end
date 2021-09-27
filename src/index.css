@@ -1,27 +1,36 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
 }
 
 body {
-  font-size: 16px;
-  font-family: Roboto;
-  background-color: #122c34;
+    height: 100%;
+    font-size: 16px;
+    font-family: Roboto;
+    background-color: #122c34;
 }
 
 #root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/*
 .contenedor {
-  width: 70%;
-  max-width: 80%;
-  padding: 40px;
-  margin: 40px;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-  background-color: #ffffff;
+	margin: auto;
+	width: 70%;
+	max-width: 70%;
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+	background-color: #ffffff;
+
 }
+*/
