@@ -5,12 +5,12 @@ import OlvidastePasswordLink from '../elements/OlvidastePasswordLink';
 import TituloBienvenida from '../elements/TituloBienvenida';
 import Formulario from '../elements/Formulario';
 import ContenedorInputs from '../elements/ContenedorInputs';
-import Input from '../elements/Input';
 import Titulosh2 from '../elements/Titulosh2';
 import OlvidastePassword from '../elements/OlvidastePassword';
 import ContenedorBoton from '../elements/ContenedorBoton';
 import LineaSeparacion from '../elements/LineaSeparacion';
-import TextField from '@mui/material/TextField';
+import InputMUI from '../elements/InputMUI';
+import BotonMUI from '../elements/BotonMUI';
 
 const FormularioInicioSesion = () => {
     const onSubmit = (e) => {};
@@ -37,11 +37,8 @@ const FormularioInicioSesion = () => {
 						</div>*/}
 
                         <ContenedorInputs>
-                            <TextField
-                                sx={{
-                                    width: 400,
-                                    height: 54
-                                }}
+                            <InputMUI
+                                type="text"
                                 id="outlined-basic"
                                 label="DNI"
                                 variant="outlined"
@@ -49,11 +46,8 @@ const FormularioInicioSesion = () => {
                         </ContenedorInputs>
 
                         <ContenedorInputs>
-                            <TextField
-                                sx={{
-                                    width: 400,
-                                    height: 54
-                                }}
+                            <InputMUI
+                                type="password"
                                 id="outlined-basic"
                                 label="Contraseña"
                                 variant="outlined"
@@ -81,7 +75,10 @@ const FormularioInicioSesion = () => {
                     <LineaSeparacion></LineaSeparacion>
 
                     <ContenedorBoton>
-                        <Boton type="submit">Ingresar</Boton>
+                        {/* <Boton type="submit">Ingresar</Boton> */}
+                        <BotonMUI variant="contained" disableElevation>
+                            Ingresar
+                        </BotonMUI>
                     </ContenedorBoton>
                 </form>
             </Formulario>

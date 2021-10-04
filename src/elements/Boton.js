@@ -8,9 +8,9 @@ const Boton = styled.button`
     display: inline-block;
     padding: 15px 20px;
     border: none;
-    border-radius: 10px;
+    border-radius: 4px;
     font-size: 1em;
-    font-weight: bold;
+    font-weight: 400;
     cursor: pointer;
     transition: 0.3s ease all;
     //width: ${(props) => (props.largo ? '20%' : 'auto')};
