@@ -8,4 +8,11 @@ const InputMUI = styled(TextField)`
     height: 54px;
 `;
 
-export default InputMUI;
+const ContenedorInputs = styled.div`
+    margin: 0 auto;
+    padding: 6px 0;
+    display: inline-block;
+    text-align: center;
+`;
+
+export { InputMUI, ContenedorInputs };

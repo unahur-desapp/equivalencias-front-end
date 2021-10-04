@@ -11,4 +11,10 @@ const BotonMUI = styled(Button)`
     }
 `;
 
-export default BotonMUI;
+const ContenedorBoton = styled.div`
+    margin-top: 22px;
+    border-radius: 20px;
+    background-color: #fff;
+`;
+
+export { BotonMUI, ContenedorBoton };

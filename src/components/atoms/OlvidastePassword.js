@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+const OlvidastePassword = styled.div`
+    margin-top: 16px;
+    border-radius: 20px;
+    background: #fff;
+    text-align: center;
+`;
+
 const OlvidastePasswordLink = styled.a`
     color: #009673;
     font-weight: light;
@@ -11,4 +18,4 @@ const OlvidastePasswordLink = styled.a`
     }
 `;
 
-export default OlvidastePasswordLink;
+export { OlvidastePassword, OlvidastePasswordLink };
