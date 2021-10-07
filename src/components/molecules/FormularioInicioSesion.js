@@ -1,13 +1,13 @@
 import React from 'react';
-import { TituloBienvenida, Titulosh2 } from '../atoms/Titulos';
-import Formulario from '../../elements/Formulario';
+import { TituloBienvenida, Titulosh2 } from '../atoms/Title/Titulos';
 import {
     OlvidastePassword,
     OlvidastePasswordLink
 } from '../atoms/OlvidastePassword';
 import LineaSeparacion from '../atoms/LineaSeparacion';
-import { InputMUI, ContenedorInputs } from '../atoms/InputMUI';
-import { BotonMUI, ContenedorBoton } from '../atoms/Boton/BotonMUI';
+import { InputMUI, ContenedorInputs } from '../atoms/Input/InputMUI';
+import { BotonMUI, ContenedorBoton } from '../atoms/Button/BotonMUI';
+import styled from 'styled-components';
 
 const FormularioInicioSesion = () => {
     const onSubmit = (e) => {};
@@ -64,5 +64,12 @@ const FormularioInicioSesion = () => {
         </>
     );
 };
+
+const Formulario = styled.div`
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    margin-top: 40px;
+`;
 
 export default FormularioInicioSesion;
