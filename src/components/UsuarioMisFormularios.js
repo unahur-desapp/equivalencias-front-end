@@ -1,7 +1,14 @@
-import React from "react";
+import React from 'react';
+import { BotonMUI, ContenedorBoton } from './atoms/Button/BotonMUI';
 
 const UsuarioMisFormularios = () => {
-	return <></>;
+    return (
+        <>
+            <ContenedorBoton>
+                <BotonMUI />
+            </ContenedorBoton>
+        </>
+    );
 };
 
 export default UsuarioMisFormularios;

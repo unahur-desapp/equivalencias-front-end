@@ -9,11 +9,18 @@ const BotonMUI = styled(Button)`
     & .MuiButton-root {
         text-transform: none;
     }
+
+    ${(props) =>
+        props.buttonHeaderForm &&
+        css`
+        width: 170px
+        height: 45px
+        
+    `}
 `;
 
 const ContenedorBoton = styled.div`
     margin-top: 22px;
-    border-radius: 20px;
     background-color: #fff;
 `;
 
