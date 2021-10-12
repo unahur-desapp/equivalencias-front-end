@@ -1,20 +1,34 @@
-import styled, { css } from 'styled-components';
-import { Button } from '@mui/material';
+import { Button, createTheme, darken, styled } from '@mui/material';
 
+/*
 const BotonMUI = styled(Button)`
     width: 200px;
     height: 45px;
     text-transform: none;
 
-    & .MuiButton-root {
-        text-transform: none;
+    ${props => props.buttonHeaderForm && css`
+        width: 170px;
+        height: 45px;
+    `}
+`;
+*/
+
+const buttonTheme = createTheme({
+    palette: {
+        primary: {
+            main: '#8ab4f8'
+        }
     }
-`;
+});
 
-const ContenedorBoton = styled.div`
-    margin-top: 22px;
-    border-radius: 20px;
-    background-color: #fff;
-`;
+const BotonMUI = styled(Button)(
+    ({ theme }) => `
+    color: ${theme.palette.primary.main};
 
-export { BotonMUI, ContenedorBoton };
+    :hover {
+        color: ${darken(theme.palette.primary.main, 0.8)};
+    }
+`
+);
+
+export { BotonMUI, buttonTheme };

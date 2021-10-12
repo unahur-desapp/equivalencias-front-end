@@ -6,8 +6,9 @@ import {
 } from '../atoms/OlvidastePassword';
 import LineaSeparacion from '../atoms/LineaSeparacion';
 import { InputMUI, ContenedorInputs } from '../atoms/Input/InputMUI';
-import { BotonMUI, ContenedorBoton } from '../atoms/Button/BotonMUI';
+import { BotonMUI } from '../atoms/Button/BotonMUI';
 import styled from 'styled-components';
+import { Grid } from '@mui/material';
 
 const FormularioInicioSesion = () => {
     const onSubmit = (e) => {};
@@ -54,11 +55,11 @@ const FormularioInicioSesion = () => {
 
                     <LineaSeparacion></LineaSeparacion>
 
-                    <ContenedorBoton>
+                    <Grid>
                         <BotonMUI variant="contained" disableElevation>
                             Ingresar
                         </BotonMUI>
-                    </ContenedorBoton>
+                    </Grid>
                 </form>
             </Formulario>
         </>
