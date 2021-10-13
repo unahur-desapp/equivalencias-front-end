@@ -11,7 +11,8 @@ const App = () => {
     const [login, cambiarEstadoLogin] = useState(false);
 
     return (
-        <ThemeProvider theme={buttonTheme}>
+        /*<ThemeProvider theme={buttonTheme}>*/
+        <>
             {login ? (
                 <>
                     <UsuarioMisFormularios />
@@ -22,7 +23,8 @@ const App = () => {
                     <GridPrueba />
                 </>
             )}
-        </ThemeProvider>
+        </>
+        /*<ThemeProvider/>*/
     );
 };
 
