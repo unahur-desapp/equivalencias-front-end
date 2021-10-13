@@ -24,10 +24,6 @@ const buttonTheme = createTheme({
 const BotonMUI = styled(Button)(
     ({ theme }) => `
     color: ${theme.palette.primary.main};
-
-    :hover {
-        color: ${darken(theme.palette.primary.main, 0.8)};
-    }
 `
 );
 
