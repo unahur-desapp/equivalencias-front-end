@@ -33,18 +33,4 @@ const BotonMUI = styled(Button)`
         `}
 `;
 
-/*
-const buttonTheme = createTheme({
-    palette: {
-        primary: {
-            main: '#8ab4f8'
-        }
-    }
-});
-
-const BotonMUI = styled(Button)(({ theme }) => `
-    color: ${theme.palette.primary.main};
-`
-);
-*/
 export { BotonMUI };

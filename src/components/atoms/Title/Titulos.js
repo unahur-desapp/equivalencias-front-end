@@ -1,6 +1,7 @@
+import { Grid, Typography } from '@mui/material';
 import styled, { css } from 'styled-components';
 
-const TituloBienvenida = styled.div`
+const TituloBienvenida = styled(Grid)`
     width: 100%;
     max-width: 100%;
     display: flex;
@@ -9,7 +10,7 @@ const TituloBienvenida = styled.div`
     align-items: center;
 `;
 
-const Titulosh1 = styled.h1`
+const Titulosh1 = styled(Typography)`
     color: #000;
     font-weight: medium;
 
@@ -32,7 +33,7 @@ const Titulosh1 = styled.h1`
         `}
 `;
 
-const Titulosh2 = styled.h2`
+const Titulosh2 = styled(Typography)`
     color: #009673;
 
     ${(props) =>

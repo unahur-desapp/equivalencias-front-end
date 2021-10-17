@@ -1,6 +1,6 @@
-import { styled } from '@mui/material';
+import { Grid, styled } from '@mui/material';
 
-const TarjetaLogin = styled.div`
+const TarjetaLogin = styled(Grid)`
     margin: 0 auto;
     width: 960px;
     max-width: 960px;
@@ -9,9 +9,10 @@ const TarjetaLogin = styled.div`
     box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.7);
     background-color: #fff;
     display: flex;
+    align-self: center;
 `;
 
-const FormularioMain = styled.div`
+const FormularioMain = styled(Grid)`
     width: 65%;
     max-width: 65%;
     height: 100%;
@@ -23,4 +24,11 @@ const FormularioMain = styled.div`
     align-items: center;
 `;
 
-export { TarjetaLogin, FormularioMain };
+const FatherContainer = styled(Grid)`
+    height: 100%;
+    display: flex;
+    position: fixed;
+    width: 100%;
+`;
+
+export { TarjetaLogin, FormularioMain, FatherContainer };

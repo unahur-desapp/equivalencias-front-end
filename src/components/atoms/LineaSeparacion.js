@@ -1,6 +1,7 @@
+import { Grid } from '@mui/material';
 import styled from 'styled-components';
 
-const LineaSeparacion = styled.div`
+const LineaSeparacion = styled(Grid)`
     align-items: center;
     border-bottom: 1px solid #dadde1;
     display: flex;

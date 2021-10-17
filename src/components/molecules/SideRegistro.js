@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import Registro from '../Registro';
 import { Titulosh1 } from '../atoms/Title/Titulos';
 import { BotonMUI } from '../atoms/Button/BotonMUI';
+import { Grid } from '@mui/material';
 
-const SideRegistro = styled.div`
+const SideRegistro = styled(Grid)`
     background: #009673;
     width: 35%;
     max-width: 35%;

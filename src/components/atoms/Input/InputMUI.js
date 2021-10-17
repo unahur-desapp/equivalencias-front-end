@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TextField } from '@mui/material';
+import { Grid, TextField } from '@mui/material';
 
 const InputMUI = styled(TextField)`
     outline: 1px;
@@ -8,7 +8,7 @@ const InputMUI = styled(TextField)`
     height: 54px;
 `;
 
-const ContenedorInputs = styled.div`
+const ContenedorInputs = styled(Grid)`
     margin: 0 auto;
     padding: 6px 0;
     display: inline-block;
