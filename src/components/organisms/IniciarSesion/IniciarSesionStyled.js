@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 const TarjetaLogin = styled.div`
     margin: 0 auto;

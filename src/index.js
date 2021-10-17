@@ -8,7 +8,7 @@ import { GridPrueba } from './GridPrueba';
 import './index.css';
 
 const App = () => {
-    const [login, cambiarEstadoLogin] = useState(false);
+    const [login, cambiarEstadoLogin] = useState(true);
 
     return (
         /*<ThemeProvider theme={buttonTheme}>*/
@@ -19,8 +19,8 @@ const App = () => {
                 </>
             ) : (
                 <>
-                    {/*<IniciarSesion />*/}
-                    <GridPrueba />
+                    <IniciarSesion />
+                    {/* <GridPrueba /> */}
                 </>
             )}
         </>
