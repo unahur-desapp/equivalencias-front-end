@@ -10,7 +10,7 @@ const TituloBienvenida = styled(Grid)`
     align-items: center;
 `;
 
-const Titulosh1 = styled(Typography)`
+const Titulos = styled(Typography)`
     color: #000;
     font-weight: medium;
 
@@ -31,23 +31,30 @@ const Titulosh1 = styled(Typography)`
         css`
             font-size: 2.3em;
         `}
-`;
-
-const Titulosh2 = styled(Typography)`
-    color: #009673;
 
     ${(props) =>
-        props.tituloh2Grande &&
+        props.tituloBold &&
         css`
-            font-size: 2.5em;
-            margin-bottom: 40px;
+            font-weight: bold;
         `}
 
     ${(props) =>
-        props.tituloh2Chico &&
+        props.tituloChico &&
         css`
             font-size: 1.875em;
         `}
+
+    ${(props) =>
+        props.tituloLight &&
+        css`
+            font-weight: lighter;
+        `}
+
+    ${(props) =>
+        props.tituloMarginBotton &&
+        css`
+            margin-bottom: 30px;
+        `}
 `;
 
-export { TituloBienvenida, Titulosh1, Titulosh2 };
+export { TituloBienvenida, Titulos };

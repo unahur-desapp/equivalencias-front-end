@@ -12,23 +12,12 @@ const TarjetaLogin = styled(Grid)`
     align-self: center;
 `;
 
-const FormularioMain = styled(Grid)`
-    width: 65%;
-    max-width: 65%;
-    height: 100%;
-    padding: 50px 0px;
-    border-radius: 20px;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
 const FatherContainer = styled(Grid)`
     height: 100%;
     display: flex;
     position: fixed;
     width: 100%;
+    background-color: #122c34;
 `;
 
-export { TarjetaLogin, FormularioMain, FatherContainer };
+export { TarjetaLogin, FatherContainer };

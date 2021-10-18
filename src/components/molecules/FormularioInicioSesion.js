@@ -1,5 +1,5 @@
 import React from 'react';
-import { TituloBienvenida, Titulosh2 } from '../atoms/Title/Titulos';
+import { TituloBienvenida, Titulos } from '../atoms/Title/Titulos';
 import {
     OlvidastePassword,
     OlvidastePasswordLink
@@ -14,10 +14,14 @@ const FormularioInicioSesion = () => {
     const onSubmit = (e) => {};
 
     return (
-        <>
+        <FormularioMain>
             <TituloBienvenida>
-                <Titulosh2 tituloh2Grande>¡Bienvenido/a!</Titulosh2>
-                <Titulosh2 tituloh2Chico>Iniciar sesión</Titulosh2>
+                <Titulos tituloGrande tituloMarginBotton component="h2">
+                    ¡Bienvenido/a!
+                </Titulos>
+                <Titulos tituloChico tituloLight component="h2">
+                    Iniciar sesión
+                </Titulos>
             </TituloBienvenida>
 
             <Formulario>
@@ -56,15 +60,31 @@ const FormularioInicioSesion = () => {
                     <LineaSeparacion></LineaSeparacion>
 
                     <Grid>
-                        <BotonMUI variant="contained" disableElevation>
+                        <BotonMUI
+                            variant="contained"
+                            buttonContained
+                            disableElevation
+                        >
                             Ingresar
                         </BotonMUI>
                     </Grid>
                 </form>
             </Formulario>
-        </>
+        </FormularioMain>
     );
 };
+
+const FormularioMain = styled(Grid)`
+    width: 65%;
+    max-width: 65%;
+    height: 100%;
+    padding: 50px 0px;
+    border-radius: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 
 const Formulario = styled(Grid)`
     width: 100%;
@@ -73,4 +93,4 @@ const Formulario = styled(Grid)`
     margin-top: 40px;
 `;
 
-export default FormularioInicioSesion;
+export { FormularioMain, FormularioInicioSesion };

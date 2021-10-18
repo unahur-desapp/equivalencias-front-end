@@ -19,8 +19,8 @@ const App = () => {
                 </>
             ) : (
                 <>
-                    <IniciarSesion />
-                    {/* <GridPrueba /> */}
+                    {/* <IniciarSesion /> */}
+                    <GridPrueba />
                 </>
             )}
         </>

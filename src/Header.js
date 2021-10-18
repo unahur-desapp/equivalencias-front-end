@@ -1,4 +1,11 @@
-import { AppBar, Toolbar, Button, ThemeProvider, Grid } from '@mui/material';
+import {
+    AppBar,
+    Toolbar,
+    Button,
+    ThemeProvider,
+    Grid,
+    Avatar
+} from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { AccessAlarm } from '@mui/icons-material';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
@@ -10,16 +17,34 @@ const Header = () => {
             <Toolbar color="#122C34">
                 <Grid sm={1} />
 
-                <Grid container spacing={5}>
+                <Grid container sm={10} justifyContent="space-between">
                     <Grid item>
-                        <BotonMUI variant="contained" buttonContained>
+                        <BotonMUI
+                            buttonContainedHeader
+                            variant="contained"
+                            sx={{ marginRight: '40px' }}
+                        >
                             Mis equivalencias
+                        </BotonMUI>
+
+                        <BotonMUI variant="outlined" buttonOutlined>
+                            Perfil
                         </BotonMUI>
                     </Grid>
 
-                    <Grid item>
-                        <BotonMUI variant="outlined" buttonOutlined>
-                            Perfil
+                    <Grid
+                        item
+                        justifyContent={'flex-end'}
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <Avatar sx={{ bgcolor: '#FF7F11' }}>H</Avatar>
+
+                        <BotonMUI
+                            buttonContained
+                            variant="contained"
+                            sx={{ marginLeft: '40px' }}
+                        >
+                            Cerrar sesión
                         </BotonMUI>
                     </Grid>
                 </Grid>
