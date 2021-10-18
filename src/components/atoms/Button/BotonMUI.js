@@ -14,9 +14,7 @@ const BotonMUI = styled(Button)`
             height: 45px;
             background-color: #009673;
 
-            &:hover {
-                background-color: #007a5e;
-            }
+            &: hover;
         `}
 
     ${(props) =>

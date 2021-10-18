@@ -13,34 +13,51 @@ const GridPrueba = () => {
                 <Header />
             </Grid>
 
-            <Grid item container sx={{ padding: '60px 0px' }}>
-                <Grid item xs={0} sm={2} />
+            <Grid
+                item
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                sx={{ padding: '60px 0px' }}
+            >
                 <GridTop
                     item
+                    container
                     xs={12}
                     sm={8}
-                    container
                     direction="row"
                     justifyContent="space-between"
                     alignItems="center"
                 >
                     <Grid item>
                         <Titulos component="h2" tituloGrande>
-                            Equivalencias
+                            Formulario
                         </Titulos>
                     </Grid>
 
                     <Grid item>
-                        <BotonMUI
-                            buttonContainedSmall
-                            variant="outlined"
-                            startIcon={<AddIcon />}
-                        >
-                            Crear
+                        <BotonMUI buttonContainedSmall variant="outlined">
+                            Enviar
                         </BotonMUI>
                     </Grid>
                 </GridTop>
-                <Grid item xs={0} sm={2} />
+
+                <GridTop
+                    item
+                    container
+                    xs={12}
+                    sm={8}
+                    direction="row"
+                    sx={{
+                        height: '370px',
+                        margin: '50px',
+                        paddingTop: '25px',
+                        paddingBottom: '25px'
+                    }}
+                >
+                    Formulario
+                </GridTop>
             </Grid>
         </Grid>
     );
