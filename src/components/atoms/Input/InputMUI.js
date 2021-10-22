@@ -15,4 +15,10 @@ const ContenedorInputs = styled(Grid)`
     text-align: center;
 `;
 
-export { InputMUI, ContenedorInputs };
+const StandardInput = styled(TextField)`
+    outline: 0px;
+    border: 0;
+    width: 300px;
+`;
+
+export { InputMUI, ContenedorInputs, StandardInput };

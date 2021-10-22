@@ -15,9 +15,9 @@ const Header = () => {
     return (
         <AppBar position="static" sx={{ bgcolor: '#122C34' }}>
             <Toolbar color="#122C34">
-                <Grid sm={1} />
+                <Grid sm={1.5} />
 
-                <Grid container sm={10} justifyContent="space-between">
+                <Grid container sm={9} justifyContent="space-between">
                     <Grid item>
                         <BotonMUI
                             buttonContainedHeader
@@ -41,6 +41,7 @@ const Header = () => {
 
                         <BotonMUI
                             buttonContained
+                            buttonLogOut
                             variant="contained"
                             sx={{ marginLeft: '40px' }}
                         >
@@ -49,7 +50,7 @@ const Header = () => {
                     </Grid>
                 </Grid>
 
-                <Grid sm={1} />
+                <Grid sm={1.5} />
             </Toolbar>
         </AppBar>
     );

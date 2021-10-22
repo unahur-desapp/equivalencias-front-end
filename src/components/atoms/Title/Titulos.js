@@ -55,6 +55,12 @@ const Titulos = styled(Typography)`
         css`
             margin-bottom: 30px;
         `}
+
+    ${(props) =>
+        props.tituloLabel &&
+        css`
+            font-size: 1.3em;
+        `}
 `;
 
 export { TituloBienvenida, Titulos };

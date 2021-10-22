@@ -4,6 +4,7 @@ import { Header } from './Header';
 import { GridTop } from './GridTop';
 import { Titulos } from './components/atoms/Title/Titulos';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
+import { CreateForm } from './CreateForm';
 import React from 'react';
 
 const GridPrueba = () => {
@@ -25,7 +26,7 @@ const GridPrueba = () => {
                     item
                     container
                     xs={12}
-                    sm={8}
+                    sm={7}
                     direction="row"
                     justifyContent="space-between"
                     alignItems="center"
@@ -47,16 +48,16 @@ const GridPrueba = () => {
                     item
                     container
                     xs={12}
-                    sm={8}
-                    direction="row"
+                    sm={7}
                     sx={{
-                        height: '370px',
-                        margin: '50px',
-                        paddingTop: '25px',
-                        paddingBottom: '25px'
+                        height: '450px',
+                        marginTop: '50px',
+                        padding: '0px'
+                        /*paddingTop: '25px',
+                        paddingBottom: '25px'*/
                     }}
                 >
-                    Formulario
+                    <CreateForm />
                 </GridTop>
             </Grid>
         </Grid>

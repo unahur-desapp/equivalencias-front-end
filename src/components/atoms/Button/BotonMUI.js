@@ -14,7 +14,9 @@ const BotonMUI = styled(Button)`
             height: 45px;
             background-color: #009673;
 
-            &: hover;
+            &:hover {
+                background-color: #007a5e;
+            }
         `}
 
     ${(props) =>
@@ -52,6 +54,16 @@ const BotonMUI = styled(Button)`
 
             &:hover {
                 background-color: #007a5e;
+            }
+        `}
+
+    ${(props) =>
+        props.buttonLogOut &&
+        css`
+            background-color: rgba(239, 83, 80, 0.9);
+
+            &:hover {
+                background-color: rgba(236, 53, 50, 0.9);
             }
         `}
 `;

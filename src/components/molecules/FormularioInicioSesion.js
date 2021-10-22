@@ -7,8 +7,8 @@ import {
 import LineaSeparacion from '../atoms/LineaSeparacion';
 import { InputMUI, ContenedorInputs } from '../atoms/Input/InputMUI';
 import { BotonMUI } from '../atoms/Button/BotonMUI';
-import styled from 'styled-components';
-import { Grid } from '@mui/material';
+import { Grid, styled } from '@mui/material';
+import { Formulario } from '../atoms/Formulario/Formulario';
 
 const FormularioInicioSesion = () => {
     const onSubmit = (e) => {};
@@ -24,7 +24,7 @@ const FormularioInicioSesion = () => {
                 </Titulos>
             </TituloBienvenida>
 
-            <Formulario>
+            <Formulario sx={{ marginTop: '40px' }}>
                 <form
                     action=""
                     onSubmit={onSubmit}
@@ -84,13 +84,6 @@ const FormularioMain = styled(Grid)`
     display: flex;
     flex-direction: column;
     align-items: center;
-`;
-
-const Formulario = styled(Grid)`
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    margin-top: 40px;
 `;
 
 export { FormularioMain, FormularioInicioSesion };
