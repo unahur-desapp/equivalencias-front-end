@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { Grid, TextField } from '@mui/material';
+import { Grid, TextField, styled } from '@mui/material';
 
 const InputMUI = styled(TextField)`
     outline: 1px;
@@ -18,7 +17,16 @@ const ContenedorInputs = styled(Grid)`
 const StandardInput = styled(TextField)`
     outline: 0px;
     border: 0;
-    width: 300px;
+    width: 100%;
+    margin-top: 15px;
+    margin-right: 60px;
 `;
 
-export { InputMUI, ContenedorInputs, StandardInput };
+const OnlyInput = styled(TextField)`
+    outline: 0px;
+    border: 0;
+    width: 45%;
+    margin-top: 15px;
+`;
+
+export { OnlyInput, InputMUI, ContenedorInputs, StandardInput };

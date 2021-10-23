@@ -44,21 +44,7 @@ const GridPrueba = () => {
                     </Grid>
                 </GridTop>
 
-                <GridTop
-                    item
-                    container
-                    xs={12}
-                    sm={7}
-                    sx={{
-                        height: '450px',
-                        marginTop: '50px',
-                        padding: '0px'
-                        /*paddingTop: '25px',
-                        paddingBottom: '25px'*/
-                    }}
-                >
-                    <CreateForm />
-                </GridTop>
+                <CreateForm />
             </Grid>
         </Grid>
     );

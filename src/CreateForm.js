@@ -1,47 +1,75 @@
 import { Grid } from '@mui/material';
-import {
-    StandardInput,
-    ContenedorInputs
-} from './components/atoms/Input/InputMUI';
+import { OnlyInput } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
 import React from 'react';
-import { PaddingTwoTone } from '@mui/icons-material';
+import { GridTop } from './GridTop';
+import { MateriaUniOrigen } from './MateriaUniOrigen';
 
 const CreateForm = () => {
     return (
-        <Grid
+        <GridTop
             item
             container
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="center"
-            sm={12}
+            xs={12}
+            sm={7}
             sx={{
-                height: '150px',
-                bgcolor: '#FBFBFB',
-                borderBottom: '1px solid #DADCE0',
-                borderRadius: '10px',
-                padding: '0px 60px'
+                height: 'auto',
+                marginTop: '50px',
+                padding: '0px'
+                /*paddingTop: '25px',
+                paddingBottom: '25px'*/
             }}
         >
             <Grid
                 item
                 container
-                direction="column"
-                justifyContent="space-evenly"
-                alignItems="flex-start"
+                direction="row"
+                justifyContent="flex-start"
+                alignItems="center"
+                sm={12}
+                sx={{
+                    height: 'auto',
+                    bgcolor: '#FBFBFB',
+                    borderBottom: '1px solid #DADCE0',
+                    borderRadius: '10px',
+                    padding: '0px 60px'
+                }}
             >
-                <Titulos tituloLabel>
-                    Datos Universidad Nacional de Hurlingham
-                </Titulos>
-                <StandardInput
-                    required
-                    size="normal"
-                    label="Materia solicitada"
-                    variant="standard"
-                />
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    alignItems="flex-start"
+                    sx={{
+                        height: 'auto',
+                        margin: '20px 0px'
+                    }}
+                >
+                    <Titulos tituloLabel component="h2">
+                        Universidad Nacional de Hurlingham
+                    </Titulos>
+                </Grid>
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    alignItems="flex-start"
+                    sx={{
+                        height: 'auto',
+                        margin: '20px 0px'
+                    }}
+                >
+                    <OnlyInput
+                        required
+                        size="normal"
+                        label="Materia solicitada UNAHUR"
+                        variant="standard"
+                    />
+                </Grid>
             </Grid>
-        </Grid>
+
+            <MateriaUniOrigen />
+        </GridTop>
     );
 };
 
