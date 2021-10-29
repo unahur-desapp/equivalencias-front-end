@@ -1,5 +1,5 @@
-import { Grid, Typography } from '@mui/material';
-import styled, { css } from 'styled-components';
+import { Grid, Typography, styled } from '@mui/material';
+import { css } from '@mui/styled-engine';
 
 const TituloBienvenida = styled(Grid)`
     width: 100%;

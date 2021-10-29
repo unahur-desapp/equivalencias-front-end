@@ -25,8 +25,11 @@ const GridPrueba = () => {
                 <GridTop
                     item
                     container
-                    xs={12}
-                    sm={7}
+                    xs={11.5}
+                    md={7}
+                    sx={{
+                        padding: '0px 20px'
+                    }}
                     direction="row"
                     justifyContent="space-between"
                     alignItems="center"

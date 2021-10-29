@@ -1,23 +1,23 @@
 import { Grid } from '@mui/material';
-import { OnlyInput } from './components/atoms/Input/InputMUI';
+import { StandardInput } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
 import React from 'react';
 import { GridTop } from './GridTop';
-import { MateriaUniOrigen } from './MateriaUniOrigen';
+import { FormUniOrigen } from './FormUniOrigen';
 
 const CreateForm = () => {
     return (
         <GridTop
             item
             container
-            xs={12}
+            blanco
+            xs={11.5}
             sm={7}
+            marginTop={{
+                xs: '30px'
+            }}
             sx={{
-                height: 'auto',
-                marginTop: '50px',
-                padding: '0px'
-                /*paddingTop: '25px',
-                paddingBottom: '25px'*/
+                height: 'auto'
             }}
         >
             <Grid
@@ -27,12 +27,14 @@ const CreateForm = () => {
                 justifyContent="flex-start"
                 alignItems="center"
                 sm={12}
+                padding={{
+                    xs: '20px 30px',
+                    sm: '20px 60px'
+                }}
                 sx={{
                     height: 'auto',
-                    bgcolor: '#FBFBFB',
                     borderBottom: '1px solid #DADCE0',
-                    borderRadius: '10px',
-                    padding: '0px 60px'
+                    borderRadius: '10px 10px 0px 0px'
                 }}
             >
                 <Grid
@@ -40,10 +42,9 @@ const CreateForm = () => {
                     container
                     direction="column"
                     alignItems="flex-start"
-                    sx={{
-                        height: 'auto',
-                        margin: '20px 0px'
-                    }}
+                    /*sx={{
+                        height: 'auto'
+                    }}*/
                 >
                     <Titulos tituloLabel component="h2">
                         Universidad Nacional de Hurlingham
@@ -54,12 +55,17 @@ const CreateForm = () => {
                     container
                     direction="column"
                     alignItems="flex-start"
+                    md={12}
+                    lg={5.4}
                     sx={{
-                        height: 'auto',
-                        margin: '20px 0px'
+                        marginTop: '6px'
                     }}
+                    /*width={{md:"100%", lg:"45%"}}
+                    sx={{
+                        height: 'auto'
+                    }}*/
                 >
-                    <OnlyInput
+                    <StandardInput
                         required
                         size="normal"
                         label="Materia solicitada UNAHUR"
@@ -68,7 +74,7 @@ const CreateForm = () => {
                 </Grid>
             </Grid>
 
-            <MateriaUniOrigen />
+            <FormUniOrigen />
         </GridTop>
     );
 };

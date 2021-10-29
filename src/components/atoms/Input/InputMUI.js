@@ -19,14 +19,11 @@ const StandardInput = styled(TextField)`
     border: 0;
     width: 100%;
     margin-top: 15px;
-    margin-right: 60px;
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
 `;
 
-const OnlyInput = styled(TextField)`
-    outline: 0px;
-    border: 0;
-    width: 45%;
-    margin-top: 15px;
-`;
-
-export { OnlyInput, InputMUI, ContenedorInputs, StandardInput };
+export { InputMUI, ContenedorInputs, StandardInput };
