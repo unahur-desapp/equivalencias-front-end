@@ -10,7 +10,7 @@ import React from 'react';
 const GridPrueba = () => {
     return (
         <Grid container direction="column">
-            <Grid item container>
+            <Grid item container xs={12}>
                 <Header />
             </Grid>
 
@@ -20,7 +20,7 @@ const GridPrueba = () => {
                 direction="row"
                 justifyContent="center"
                 alignItems="center"
-                sx={{ padding: '60px 0px' }}
+                sx={{ padding: '40px 0px' }}
             >
                 <GridTop
                     item

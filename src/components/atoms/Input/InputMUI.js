@@ -1,4 +1,4 @@
-import { Grid, TextField, styled } from '@mui/material';
+import { Grid, TextField, Input, styled } from '@mui/material';
 
 const InputMUI = styled(TextField)`
     outline: 1px;
@@ -24,6 +24,23 @@ const StandardInput = styled(TextField)`
     input[type='number']::-webkit-outer-spin-button {
         -webkit-appearance: none;
     }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
 `;
 
-export { InputMUI, ContenedorInputs, StandardInput };
+const FileUploader = styled(Input) `
+    input[type=file]::file-selector-button {
+        display: none;
+        font-family: Roboto;
+        border: none;
+        padding: 5px;
+        width: 200px;
+        border-radius: 5px;
+        background-color: #F37D63;
+        color: #fff;
+    }
+`;
+
+export { InputMUI, ContenedorInputs, StandardInput, FileUploader };

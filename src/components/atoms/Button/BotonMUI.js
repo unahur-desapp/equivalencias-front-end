@@ -5,6 +5,7 @@ const BotonMUI = styled(Button)`
     width: 200px;
     height: 45px;
     text-transform: none;
+    border: none;
     color: #fff;
 
     ${(props) =>
@@ -24,7 +25,7 @@ const BotonMUI = styled(Button)`
         css`
             width: 170px;
             height: 45px;
-            border-color: #fff;
+            border: 1px solid #fff;
             color: #fff;
 
             &:hover {
@@ -64,6 +65,18 @@ const BotonMUI = styled(Button)`
 
             &:hover {
                 background-color: rgba(236, 53, 50, 0.9);
+            }
+        `}
+
+    ${(props) =>
+        props.buttonUpload &&
+        css`
+            background-color: #F37D63;
+            width: 120px;
+            height: 35px;
+
+            &:hover {
+                background-color: #f27154;
             }
         `}
 `;

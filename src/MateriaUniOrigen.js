@@ -8,14 +8,19 @@ const MateriaUniOrigen = () => {
             item
             container
             xs={12}
-            sx={{
-                marginTop: '6px'
-            }}
             direction="row"
             justifyContent="space-between"
             alignItems="flex-start"
         >
-            <Grid item container md={12} lg={5.8}>
+            <Grid
+                item
+                container
+                md={12}
+                lg={5.8}
+                sx={{
+                    marginTop: '6px'
+                }}
+            >
                 <StandardInput
                     required
                     size="normal"
@@ -24,7 +29,15 @@ const MateriaUniOrigen = () => {
                 />
             </Grid>
 
-            <Grid item container md={12} lg={5.8}>
+            <Grid
+                item
+                container
+                md={12}
+                lg={5.8}
+                sx={{
+                    marginTop: '6px'
+                }}
+            >
                 <StandardInput
                     required
                     size="normal"

@@ -12,7 +12,7 @@ const CreateForm = () => {
             container
             blanco
             xs={11.5}
-            sm={7}
+            md={7}
             marginTop={{
                 xs: '30px'
             }}
@@ -56,14 +56,10 @@ const CreateForm = () => {
                     direction="column"
                     alignItems="flex-start"
                     md={12}
-                    lg={5.4}
+                    lg={5.8}
                     sx={{
                         marginTop: '6px'
                     }}
-                    /*width={{md:"100%", lg:"45%"}}
-                    sx={{
-                        height: 'auto'
-                    }}*/
                 >
                     <StandardInput
                         required
