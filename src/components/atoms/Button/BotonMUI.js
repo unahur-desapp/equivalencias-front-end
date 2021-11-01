@@ -71,12 +71,24 @@ const BotonMUI = styled(Button)`
     ${(props) =>
         props.buttonUpload &&
         css`
-            background-color: #F37D63;
+            background-color: #f37d63;
             width: 120px;
             height: 35px;
 
             &:hover {
                 background-color: #f27154;
+            }
+        `}
+
+    ${(props) =>
+        props.buttonContainedAddMateria &&
+        css`
+            width: 150px;
+            height: 30px;
+            background-color: #009673;
+
+            &:hover {
+                background-color: #007a5e;
             }
         `}
 `;
