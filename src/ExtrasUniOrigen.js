@@ -175,7 +175,7 @@ const ExtrasUniOrigen = () => {
                 xs={12}
                 sx={{ borderTop: '1px solid #DADCE0', marginTop: '20px ' }}
             >
-                <BotonMUI buttonContainedAddMateria sx={{ marginTop: '10px' }}>
+                <BotonMUI buttonContainedAddMateria variant="outlined" sx={{ marginTop: '20px' }}>
                     {' '}
                     Agregar Materia
                 </BotonMUI>

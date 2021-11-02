@@ -6,6 +6,7 @@ import { Titulos } from './components/atoms/Title/Titulos';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import { CreateForm } from './CreateForm';
 import React from 'react';
+import { OuterFormButtons } from './OuterFormButtons';
 
 const GridPrueba = () => {
     return (
@@ -39,15 +40,11 @@ const GridPrueba = () => {
                             Formulario
                         </Titulos>
                     </Grid>
-
-                    <Grid item>
-                        <BotonMUI buttonContainedSmall variant="outlined">
-                            Enviar
-                        </BotonMUI>
-                    </Grid>
                 </GridTop>
 
                 <CreateForm />
+
+                <OuterFormButtons />
             </Grid>
         </Grid>
     );

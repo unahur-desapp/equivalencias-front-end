@@ -8,6 +8,10 @@ const BotonMUI = styled(Button)`
     border: none;
     color: #fff;
 
+    &:hover {
+        border: none;
+    }
+
     ${(props) =>
         props.buttonContained &&
         css`
@@ -30,7 +34,7 @@ const BotonMUI = styled(Button)`
 
             &:hover {
                 background-color: rgba(255, 255, 255, 0.1);
-                border-color: #fff;
+                border: 1px solid #fff;
             }
         `}
 
@@ -43,18 +47,6 @@ const BotonMUI = styled(Button)`
 
             &:hover {
                 background-color: rgba(26, 64, 76, 0.6);
-            }
-        `}
-
-    ${(props) =>
-        props.buttonContainedSmall &&
-        css`
-            width: 110px;
-            height: 40px;
-            background-color: #009673;
-
-            &:hover {
-                background-color: #007a5e;
             }
         `}
 
@@ -80,11 +72,49 @@ const BotonMUI = styled(Button)`
             }
         `}
 
-    ${(props) =>
+        ${(props) =>
         props.buttonContainedAddMateria &&
         css`
             width: 150px;
-            height: 30px;
+            height: 40px;
+            color: #009673;
+
+            &:hover {
+                background-color: rgba(0, 150, 115, 0.05);
+            }
+        `}
+
+        ${(props) =>
+        props.buttonContainedAddEq &&
+        css`
+            width: 180px;
+            height: 40px;
+            color: #009673;
+            border: 1px solid rgba(0, 150, 115, 0.4);
+
+            &:hover {
+                background-color: rgba(0, 150, 115, 0.05);
+                border: 1px solid rgba(0, 150, 115, 1);
+            }
+        `}
+
+        ${(props) =>
+        props.buttonContainedCancel &&
+        css`
+            width: 110px;
+            height: 40px;
+            color: #009673;
+
+            &:hover {
+                background-color: rgba(0, 150, 115, 0.1);
+            }
+        `}
+
+        ${(props) =>
+        props.buttonContainedSmall &&
+        css`
+            width: 110px;
+            height: 40px;
             background-color: #009673;
 
             &:hover {
