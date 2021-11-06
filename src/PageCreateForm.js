@@ -1,14 +1,12 @@
 import { Grid } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 import { Header } from './Header';
 import { GridTop } from './GridTop';
 import { Titulos } from './components/atoms/Title/Titulos';
-import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import { CreateForm } from './CreateForm';
 import React from 'react';
 import { OuterFormButtons } from './OuterFormButtons';
 
-const GridPrueba = () => {
+const PageCreateForm = () => {
     return (
         <Grid container direction="column">
             <Grid item container xs={12}>
@@ -50,4 +48,4 @@ const GridPrueba = () => {
     );
 };
 
-export { GridPrueba };
+export { PageCreateForm };

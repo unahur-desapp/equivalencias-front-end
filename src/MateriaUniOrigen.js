@@ -23,9 +23,9 @@ const MateriaUniOrigen = () => {
             >
                 <StandardInput
                     required
-                    size="normal"
+                    size="small"
                     label="Materia aprobada"
-                    variant="standard"
+                    variant="outlined"
                 />
             </Grid>
 
@@ -40,9 +40,9 @@ const MateriaUniOrigen = () => {
             >
                 <StandardInput
                     required
-                    size="normal"
+                    size="small"
                     label="Universidad de Origen"
-                    variant="standard"
+                    variant="outlined"
                 />
             </Grid>
         </Grid>

@@ -63,9 +63,9 @@ const CreateForm = () => {
                 >
                     <StandardInput
                         required
-                        size="normal"
+                        size="small"
                         label="Materia solicitada UNAHUR"
-                        variant="standard"
+                        variant="outlined"
                     />
                 </Grid>
             </Grid>

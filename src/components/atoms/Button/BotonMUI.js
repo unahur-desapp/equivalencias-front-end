@@ -64,8 +64,8 @@ const BotonMUI = styled(Button)`
         props.buttonUpload &&
         css`
             background-color: #f37d63;
-            width: 120px;
-            height: 35px;
+            width: 110px;
+            height: 30px;
 
             &:hover {
                 background-color: #f27154;

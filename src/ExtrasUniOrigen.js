@@ -30,15 +30,15 @@ const ExtrasUniOrigen = () => {
                 justifyContent="space-between"
                 alignItems="flex-start"
                 sx={{
-                    marginTop: '6px'
+                    marginTop: '10px'
                 }}
             >
                 <Grid item container xs={5.6}>
                     <StandardInput
                         required
-                        size="normal"
+                        size="small"
                         label="Año aprobación"
-                        variant="standard"
+                        variant="outlined"
                         type="number"
                     />
                 </Grid>
@@ -46,9 +46,9 @@ const ExtrasUniOrigen = () => {
                 <Grid item container xs={5.6}>
                     <StandardInput
                         required
-                        size="normal"
+                        size="small"
                         label="Carga horaria total"
-                        variant="standard"
+                        variant="outlined"
                         type="number"
                     />
                 </Grid>
@@ -63,15 +63,15 @@ const ExtrasUniOrigen = () => {
                 justifyContent="space-between"
                 alignItems="flex-start"
                 sx={{
-                    marginTop: '6px'
+                    marginTop: '10px'
                 }}
             >
                 <Grid item container xs={5.6}>
                     <StandardInput
                         required
-                        size="normal"
+                        size="small"
                         label="Nota aprobación"
-                        variant="standard"
+                        variant="outlined"
                         type="number"
                     />
                 </Grid>
@@ -82,7 +82,7 @@ const ExtrasUniOrigen = () => {
                     justifyContent="center"
                     alignItems="flex-end"
                     xs={5.6}
-                    marginTop="15px"
+                    marginTop="7px"
                 >
                     <FormControl component="fieldset">
                         <FormLabel component="legend" sx={{ fontSize: '14px' }}>
@@ -112,28 +112,22 @@ const ExtrasUniOrigen = () => {
             <Grid
                 item
                 container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
                 xs={12}
                 sx={{
-                    marginTop: '24px'
+                    marginTop: '16px'
                 }}
             >
                 <Grid
                     item
                     container
                     xs={12}
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
                 >
                     <Titulos
                         tituloLabel
                         variant="h3"
                         fontSize={{
-                            xs: '16px',
-                            sm: '18px'
+                            xs: '14px',
+                            sm: '16px'
                         }}
                     >
                         Adjuntar programa de la materia .pdf
@@ -144,9 +138,7 @@ const ExtrasUniOrigen = () => {
                     item
                     container
                     xs={12}
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
+                    sx={{marginTop: '16px'}}
                 >
                     <label htmlFor="contained-button-file">
                         <BotonMUI
@@ -177,7 +169,7 @@ const ExtrasUniOrigen = () => {
             >
                 <BotonMUI buttonContainedAddMateria variant="outlined" sx={{ marginTop: '20px' }}>
                     {' '}
-                    Agregar Materia
+                    Agregar materia
                 </BotonMUI>
             </Grid>
         </Grid>

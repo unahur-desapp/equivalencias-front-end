@@ -24,9 +24,9 @@ const OuterFormButtons = () => {
                 alignItems="center"
                 xs={6}
             >
-                <BotonMUI buttonContainedAddEq>
+                {/* <BotonMUI buttonContainedAddEq>
                     Agregar equivalencia
-                </BotonMUI>
+                </BotonMUI> */}
             </Grid>
 
             <Grid
