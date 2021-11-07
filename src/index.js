@@ -5,7 +5,7 @@ import IniciarSesion from './components/organisms/IniciarSesion/IniciarSesion';
 import UsuarioMisFormularios from './components/UsuarioMisFormularios';
 import { buttonTheme } from './components/atoms/Button/BotonMUI';
 import { PageCreateForm } from './PageCreateForm';
-import StickyHeadTable from './TableAlumno';
+import { PageMyForm } from './PageMyForm';
 import './index.css';
 
 const App = () => {
@@ -21,8 +21,8 @@ const App = () => {
             ) : (
                 <>
                     {/* <IniciarSesion /> */}
-                    <PageCreateForm />
-                    {/* <StickyHeadTable /> */}
+                    {/* <PageCreateForm /> */}
+                    <PageMyForm />
                 </>
             )}
         </>
