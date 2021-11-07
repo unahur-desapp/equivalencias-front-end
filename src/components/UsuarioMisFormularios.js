@@ -1,12 +1,13 @@
 import React from 'react';
-import { BotonMUI, ContenedorBoton } from './atoms/Button/BotonMUI';
+import { BotonMUI } from './atoms/Button/BotonMUI';
+import { Grid } from '@mui/material';
 
 const UsuarioMisFormularios = () => {
     return (
         <>
-            <ContenedorBoton>
-                <BotonMUI />
-            </ContenedorBoton>
+            <Grid>
+                <BotonMUI buttonHeaderForm></BotonMUI>
+            </Grid>
         </>
     );
 };

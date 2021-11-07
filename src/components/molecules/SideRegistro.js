@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import Registro from '../Registro';
-import { Titulosh1 } from '../atoms/Title/Titulos';
+import { Titulos } from '../atoms/Title/Titulos';
 import { BotonMUI } from '../atoms/Button/BotonMUI';
+import { Grid } from '@mui/material';
 
-const SideRegistro = styled.div`
+const SideRegistro = styled(Grid)`
     background: #009673;
     width: 35%;
     max-width: 35%;
@@ -22,11 +23,11 @@ const Register = () => {
 
     return (
         <SideRegistro>
-            <Titulosh1 centrar blanco tituloGrande>
+            <Titulos centrar blanco tituloGrande tituloBold component="h1">
                 Trámites de Equivalencias
-            </Titulosh1>
+            </Titulos>
 
-            <BotonMUI variant="outlined" onClick={onClick}>
+            <BotonMUI buttonOutlined variant="outlined" onClick={onClick}>
                 Registrarse
             </BotonMUI>
         </SideRegistro>

@@ -1,25 +1,30 @@
 import React from 'react';
-import { TituloBienvenida, Titulosh2 } from '../atoms/Title/Titulos';
+import { TituloBienvenida, Titulos } from '../atoms/Title/Titulos';
 import {
     OlvidastePassword,
     OlvidastePasswordLink
 } from '../atoms/OlvidastePassword';
 import LineaSeparacion from '../atoms/LineaSeparacion';
 import { InputMUI, ContenedorInputs } from '../atoms/Input/InputMUI';
-import { BotonMUI, ContenedorBoton } from '../atoms/Button/BotonMUI';
-import styled from 'styled-components';
+import { BotonMUI } from '../atoms/Button/BotonMUI';
+import { Grid, styled } from '@mui/material';
+import { Formulario } from '../atoms/Formulario/Formulario';
 
 const FormularioInicioSesion = () => {
     const onSubmit = (e) => {};
 
     return (
-        <>
+        <FormularioMain>
             <TituloBienvenida>
-                <Titulosh2 tituloh2Grande>¡Bienvenido/a!</Titulosh2>
-                <Titulosh2 tituloh2Chico>Iniciar sesión</Titulosh2>
+                <Titulos tituloGrande tituloMarginBotton component="h2">
+                    ¡Bienvenido/a!
+                </Titulos>
+                <Titulos tituloChico tituloLight component="h2">
+                    Iniciar sesión
+                </Titulos>
             </TituloBienvenida>
 
-            <Formulario>
+            <Formulario sx={{ marginTop: '40px' }}>
                 <form
                     action=""
                     onSubmit={onSubmit}
@@ -54,22 +59,31 @@ const FormularioInicioSesion = () => {
 
                     <LineaSeparacion></LineaSeparacion>
 
-                    <ContenedorBoton>
-                        <BotonMUI variant="contained" disableElevation>
+                    <Grid>
+                        <BotonMUI
+                            variant="contained"
+                            buttonContained
+                            disableElevation
+                        >
                             Ingresar
                         </BotonMUI>
-                    </ContenedorBoton>
+                    </Grid>
                 </form>
             </Formulario>
-        </>
+        </FormularioMain>
     );
 };
 
-const Formulario = styled.div`
-    width: 100%;
-    max-width: 100%;
+const FormularioMain = styled(Grid)`
+    width: 65%;
+    max-width: 65%;
     height: 100%;
-    margin-top: 40px;
+    padding: 50px 0px;
+    border-radius: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
-export default FormularioInicioSesion;
+export { FormularioMain, FormularioInicioSesion };

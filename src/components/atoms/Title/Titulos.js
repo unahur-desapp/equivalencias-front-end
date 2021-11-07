@@ -1,6 +1,7 @@
-import styled, { css } from 'styled-components';
+import { Grid, Typography, styled } from '@mui/material';
+import { css } from '@mui/styled-engine';
 
-const TituloBienvenida = styled.div`
+const TituloBienvenida = styled(Grid)`
     width: 100%;
     max-width: 100%;
     display: flex;
@@ -9,7 +10,7 @@ const TituloBienvenida = styled.div`
     align-items: center;
 `;
 
-const Titulosh1 = styled.h1`
+const Titulos = styled(Typography)`
     color: #000;
     font-weight: medium;
 
@@ -30,23 +31,36 @@ const Titulosh1 = styled.h1`
         css`
             font-size: 2.3em;
         `}
-`;
-
-const Titulosh2 = styled.h2`
-    color: #009673;
 
     ${(props) =>
-        props.tituloh2Grande &&
+        props.tituloBold &&
         css`
-            font-size: 2.5em;
-            margin-bottom: 40px;
+            font-weight: bold;
         `}
 
     ${(props) =>
-        props.tituloh2Chico &&
+        props.tituloChico &&
         css`
             font-size: 1.875em;
         `}
+
+    ${(props) =>
+        props.tituloLight &&
+        css`
+            font-weight: lighter;
+        `}
+
+    ${(props) =>
+        props.tituloMarginBotton &&
+        css`
+            margin-bottom: 30px;
+        `}
+
+    ${(props) =>
+        props.tituloLabel &&
+        css`
+            font-size: 1.3em;
+        `}
 `;
 
-export { TituloBienvenida, Titulosh1, Titulosh2 };
+export { TituloBienvenida, Titulos };

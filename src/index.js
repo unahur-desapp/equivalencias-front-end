@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider } from 'styled-components';
 import IniciarSesion from './components/organisms/IniciarSesion/IniciarSesion';
 import UsuarioMisFormularios from './components/UsuarioMisFormularios';
+import { buttonTheme } from './components/atoms/Button/BotonMUI';
+import { PageCreateForm } from './PageCreateForm';
+import { PageMyForm } from './PageMyForm';
 import './index.css';
 
 const App = () => {
-    const [login, cambiarEstadoLogin] = useState(true);
+    const [login, cambiarEstadoLogin] = useState(false);
 
     return (
+        /*<ThemeProvider theme={buttonTheme}>*/
         <>
             {login ? (
                 <>
@@ -15,10 +20,13 @@ const App = () => {
                 </>
             ) : (
                 <>
-                    <IniciarSesion />
+                    {/* <IniciarSesion /> */}
+                    <PageCreateForm />
+                    {/* <PageMyForm /> */}
                 </>
             )}
         </>
+        /*<ThemeProvider/>*/
     );
 };
 
