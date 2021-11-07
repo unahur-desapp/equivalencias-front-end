@@ -12,8 +12,8 @@ import { ActionButtons } from './ActionButtons';
 const columns = [
 	{ id: 'desc', label: 'Descripción', minWidth: 170 },
 	{ id: 'dateTime', label: 'Fecha y hora', minWidth: 100 },
-	{id: 'state', label: 'Estado', minWidth: 170},
-	{id: 'actions', label: 'Acciones', minWidth: 170},
+	{ id: 'state', label: 'Estado', minWidth: 170 },
+	{ id: 'actions', label: 'Acciones', minWidth: 170 },
 ];
 
 function createData(desc, dateTime, state) {
@@ -24,12 +24,21 @@ function createData(desc, dateTime, state) {
 const rows = [
 	createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
 	createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
+	createData('Solicitud de Introducción a la Programación', '20/08/21 16:15', 'Rechazado'),
+	createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
+	createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
+	createData('Solicitud de Introducción a la Programación', '20/08/21 16:15', 'Rechazado'),
+	createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
+	createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
+	createData('Solicitud de Introducción a la Programación', '20/08/21 16:15', 'Rechazado'),
+	createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
+	createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
 	createData('Solicitud de Introducción a la Programación', '20/08/21 16:15', 'Rechazado')
 ];
 
 export default function StickyHeadTable() {
 	const [page, setPage] = React.useState(0);
-	const [rowsPerPage, setRowsPerPage] = React.useState(10);
+	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage);
@@ -51,7 +60,7 @@ export default function StickyHeadTable() {
 									key={column.id}
 									align={column.align}
 									style={{ minWidth: column.minWidth }}
-									sx={{backgroundColor: '#FBFBFB'}}
+									sx={{backgroundColor: '#FBFBFB', padding: '16px 60px'}}
 								>
 									{column.label}
 								</TableCell>
@@ -67,7 +76,7 @@ export default function StickyHeadTable() {
 										{columns.map((column) => {
 											const value = row[column.id];
 											return (
-												<TableCell key={column.id} align={column.align}>
+												<TableCell key={column.id} align={column.align} sx={{padding: '16px 60px'}}>
 													{column.format && typeof value === 'number'
 														? column.format(value)
 														: value}
@@ -81,7 +90,7 @@ export default function StickyHeadTable() {
 				</Table>
 			</TableContainer>
 			<TablePagination
-				rowsPerPageOptions={[10, 25, 100]}
+				rowsPerPageOptions={[5, 10, 25]}
 				component="div"
 				count={rows.length}
 				rowsPerPage={rowsPerPage}

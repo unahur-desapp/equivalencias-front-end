@@ -4,7 +4,8 @@ import {
     Button,
     ThemeProvider,
     Grid,
-    Avatar
+    Avatar,
+    IconButton
 } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { AccessAlarm } from '@mui/icons-material';
@@ -37,6 +38,7 @@ const Header = () => {
                         justifyContent={'flex-end'}
                         sx={{ display: 'flex', alignItems: 'center' }}
                     >
+                        
                         <Avatar sx={{ bgcolor: '#FF7F11' }}>H</Avatar>
 
                         <BotonMUI
