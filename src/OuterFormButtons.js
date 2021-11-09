@@ -22,7 +22,7 @@ const OuterFormButtons = () => {
                 direction="row"
                 justifyContent="flex-start"
                 alignItems="center"
-                xs={6}
+                lg={6}
             >
                 {/* <BotonMUI buttonContainedAddEq>
                     Agregar equivalencia
@@ -35,18 +35,31 @@ const OuterFormButtons = () => {
                 direction="row"
                 justifyContent="flex-end"
                 alignItems="center"
-                xs={6}
+                xs={12}
+                lg={6}
             >
-                <BotonMUI buttonContainedCancel>Cancelar</BotonMUI>
+                <Grid item container xs={6}>
+                    <BotonMUI
+                        buttonContainedCancel
+                        sx={{
+                            width: '100%'
+                        }}
+                    >
+                        Cancelar
+                    </BotonMUI>
+                </Grid>
 
-                <BotonMUI
-                    buttonContainedSmall
-                    sx={{
-                        marginLeft: '12px'
-                    }}
-                >
-                    Enviar
-                </BotonMUI>
+                <Grid item container xs={6}>
+                    <BotonMUI
+                        buttonContainedSmall
+                        sx={{
+                            marginLeft: '12px',
+                            width: '100%'
+                        }}
+                    >
+                        Enviar
+                    </BotonMUI>
+                </Grid>
             </Grid>
         </Grid>
     );
