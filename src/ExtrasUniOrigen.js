@@ -24,8 +24,8 @@ const ExtrasUniOrigen = () => {
             <Grid
                 item
                 container
-                xs={12}
-                md={5.8}
+                md={12}
+                lg={5.8}
                 direction="row"
                 justifyContent="space-between"
                 alignItems="flex-start"
@@ -57,8 +57,8 @@ const ExtrasUniOrigen = () => {
             <Grid
                 item
                 container
-                xs={12}
-                md={5.8}
+                md={12}
+                lg={5.8}
                 direction="row"
                 justifyContent="space-between"
                 alignItems="flex-start"

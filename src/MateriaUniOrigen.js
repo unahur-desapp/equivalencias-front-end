@@ -15,8 +15,8 @@ const MateriaUniOrigen = () => {
             <Grid
                 item
                 container
-                xs={12}
-                md={5.8}
+                md={12}
+                lg={5.8}
                 sx={{
                     marginTop: '6px'
                 }}
@@ -32,8 +32,8 @@ const MateriaUniOrigen = () => {
             <Grid
                 item
                 container
-                xs={12}
-                md={5.8}
+                md={12}
+                lg={5.8}
                 sx={{
                     marginTop: '6px'
                 }}

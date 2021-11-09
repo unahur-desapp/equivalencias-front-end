@@ -21,8 +21,8 @@ const App = () => {
             ) : (
                 <>
                     {/* <IniciarSesion /> */}
-                    <PageCreateForm />
-                    {/* <PageMyForm /> */}
+                    {/* <PageCreateForm /> */}
+                    <PageMyForm />
                 </>
             )}
         </>

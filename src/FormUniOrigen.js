@@ -11,7 +11,7 @@ const FormUniOrigen = () => {
             container
             margin={{
                 xs: '20px 30px',
-                md: '20px 60px'
+                sm: '20px 60px'
             }}
         >
             <TituloUniOrigen />

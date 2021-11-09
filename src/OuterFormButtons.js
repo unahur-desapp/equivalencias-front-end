@@ -8,7 +8,7 @@ const OuterFormButtons = () => {
             item
             container
             xs={11.5}
-            lg={7}
+            md={7}
             marginTop={{
                 xs: '20px'
             }}
@@ -35,30 +35,18 @@ const OuterFormButtons = () => {
                 direction="row"
                 justifyContent="flex-end"
                 alignItems="center"
-                xs={0}
-                sm={6}
+                xs={6}
             >
-                <Grid item container xs={6}>
-                    <BotonMUI
-                        buttonContainedCancel
-                        sx={{
-                            width: '100%'
-                        }}
-                    >
-                        Cancelar
-                    </BotonMUI>
-                </Grid>
-                <Grid item container xs={6}>
-                    <BotonMUI
-                        buttonContainedSmall
-                        sx={{
-                            marginLeft: '12px',
-                            width: '100%'
-                        }}
-                    >
-                        Enviar
-                    </BotonMUI>
-                </Grid>
+                <BotonMUI buttonContainedCancel>Cancelar</BotonMUI>
+
+                <BotonMUI
+                    buttonContainedSmall
+                    sx={{
+                        marginLeft: '12px'
+                    }}
+                >
+                    Enviar
+                </BotonMUI>
             </Grid>
         </Grid>
     );

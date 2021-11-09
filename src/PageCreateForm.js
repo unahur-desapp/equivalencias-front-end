@@ -25,7 +25,7 @@ const PageCreateForm = () => {
                     item
                     container
                     xs={11.5}
-                    lg={7}
+                    md={7}
                     sx={{
                         padding: '0px 20px'
                     }}

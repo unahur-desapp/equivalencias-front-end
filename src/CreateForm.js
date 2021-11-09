@@ -12,7 +12,7 @@ const CreateForm = () => {
             container
             blanco
             xs={11.5}
-            lg={7}
+            md={7}
             marginTop={{
                 xs: '30px'
             }}
@@ -29,7 +29,7 @@ const CreateForm = () => {
                 sm={12}
                 padding={{
                     xs: '20px 30px',
-                    md: '20px 60px'
+                    sm: '20px 60px'
                 }}
                 sx={{
                     height: 'auto',
@@ -55,8 +55,8 @@ const CreateForm = () => {
                     container
                     direction="column"
                     alignItems="flex-start"
-                    xs={12}
-                    md={5.8}
+                    md={12}
+                    lg={5.8}
                     sx={{
                         marginTop: '6px'
                     }}
