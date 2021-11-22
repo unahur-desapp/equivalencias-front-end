@@ -13,7 +13,7 @@ const TituloUniOrigen = () => {
             alignItems="flex-start"
         >
             <Titulos tituloLabel component="h2">
-                Datos Universidad Origen
+                Universidad Origen
             </Titulos>
         </Grid>
     );

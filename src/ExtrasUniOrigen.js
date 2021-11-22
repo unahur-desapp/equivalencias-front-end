@@ -11,6 +11,11 @@ import { StandardInput, FileUploader } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
 
+
+function addMateria() {
+    <p>Hola papu</p>
+}
+
 const ExtrasUniOrigen = () => {
     return (
         <Grid
@@ -131,7 +136,7 @@ const ExtrasUniOrigen = () => {
                 </Grid>
 
                 <Grid item container xs={12} sx={{ marginTop: '16px' }}>
-                    <label htmlFor="contained-button-file">
+                    <label htmlFor="contained-button-file" style={{width: '100%'}}>
                         <BotonMUI
                             sx={{
                                 marginRight: '12px'
@@ -143,9 +148,10 @@ const ExtrasUniOrigen = () => {
                             Seleccionar
                         </BotonMUI>
                         <FileUploader
-                            // style={{ display: 'none' }}
                             id="contained-button-file"
                             multiple
+                            size="small"
+                            variant="standard"
                             type="file"
                             accept="application/pdf, application/vnd.ms-Excel"
                         />
@@ -162,8 +168,8 @@ const ExtrasUniOrigen = () => {
                     buttonContainedAddMateria
                     variant="outlined"
                     sx={{ marginTop: '20px' }}
+                    onClick={addMateria}
                 >
-                    {' '}
                     Agregar materia
                 </BotonMUI>
             </Grid>
@@ -171,4 +177,4 @@ const ExtrasUniOrigen = () => {
     );
 };
 
-export { ExtrasUniOrigen };
+export { ExtrasUniOrigen, addMateria };

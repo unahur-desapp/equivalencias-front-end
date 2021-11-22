@@ -1,8 +1,8 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import { ExtrasUniOrigen } from './ExtrasUniOrigen';
-import { MateriaUniOrigen } from './MateriaUniOrigen';
+import { DatosMateriaUniOrigen } from './DatosMateriaUniOrigen';
 import { TituloUniOrigen } from './TituloUniOrigen';
+import { addMateria, ExtrasUniOrigen } from './ExtrasUniOrigen';
 
 const FormUniOrigen = () => {
     return (
@@ -16,9 +16,11 @@ const FormUniOrigen = () => {
         >
             <TituloUniOrigen />
 
-            <MateriaUniOrigen />
+            <DatosMateriaUniOrigen />
 
-            <ExtrasUniOrigen />
+            <ExtrasUniOrigen 
+                
+            />
         </Grid>
     );
 };

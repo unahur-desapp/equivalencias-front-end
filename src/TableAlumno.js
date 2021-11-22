@@ -24,32 +24,7 @@ function createData(desc, dateTime, state) {
 const rows = [
     createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
     createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
-    createData(
-        'Solicitud de Introducción a la Programación',
-        '20/08/21 16:15',
-        'Rechazado'
-    ),
-    createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
-    createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
-    createData(
-        'Solicitud de Introducción a la Programación',
-        '20/08/21 16:15',
-        'Rechazado'
-    ),
-    createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
-    createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
-    createData(
-        'Solicitud de Introducción a la Programación',
-        '20/08/21 16:15',
-        'Rechazado'
-    ),
-    createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
-    createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
-    createData(
-        'Solicitud de Introducción a la Programación',
-        '20/08/21 16:15',
-        'Rechazado'
-    )
+    createData('Solicitud de Introducción a la Programación', '20/08/21 16:15', 'Rechazado')
 ];
 
 export default function StickyHeadTable() {

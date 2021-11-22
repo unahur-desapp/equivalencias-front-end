@@ -30,16 +30,12 @@ const StandardInput = styled(TextField)`
     }
 `;
 
-const FileUploader = styled(Input)`
+const FileUploader = styled(TextField)`
+    width: 50%;
+    min-width: 212px;
+
     input[type='file']::file-selector-button {
         display: none;
-        font-family: Roboto;
-        border: none;
-        padding: 5px;
-        width: 200px;
-        border-radius: 5px;
-        background-color: #f37d63;
-        color: #fff;
     }
 `;
 
