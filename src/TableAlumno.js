@@ -9,7 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { ActionButtons } from './ActionButtons';
 import { getEquivalencia } from './services/equivalencia_service';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 const columns = [
@@ -21,32 +21,17 @@ const columns = [
 
 function createData(desc, dateTime, state) {
     const actions = <ActionButtons />;
-    console.log(getEquivalencia(1))
     return { desc, dateTime, state, actions };
 }
 
-// const [equivalenciaData, setEquivalenciaData] = useState()
 
-const rows = [
-    
-    
-    // useEffect( () => {
-    //     const fetchEquivalenciaData = async () => {
-    //         const obtainedEquivalenciaData = await getEquivalencia(1);
-    //         setEquivalenciaData(obtainedEquivalenciaData)
-    //     }
-    //         fetchEquivalenciaData()
-    // }, []),
 
-        createData(`${getEquivalencia(1).nombre_universidad}`)
-    // createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
-    // createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
-    // createData('Solicitud de Introducción a la Programación', '20/08/21 16:15', 'Rechazado')
-];
 
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+    const [equivalenciaData, setEquivalenciaData] = useState();
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -56,6 +41,31 @@ export default function StickyHeadTable() {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    const rows = [
+    
+        equivalenciaData
+        ? createData(`Solicitud de ${equivalenciaData.data['nombre_universidad']}`, "20-12-2021", "Aceptado")
+        : createData(`Cargando datos`, "20-12-2021", "Aceptado")
+        // createData(`${equivalenciaData}`, "20-12-2021", "Aceptado")
+
+        // createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
+        // createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
+        // createData('Solicitud de Introducción a la Programación', '20/08/21 16:15', 'Rechazado')
+    ];
+    
+
+    useEffect( () => {
+        const fetchEquivalenciaData = async () => {
+            const obtainedEquivalenciaData = await getEquivalencia(1);
+            console.log(obtainedEquivalenciaData)
+            setEquivalenciaData(obtainedEquivalenciaData)
+        }
+        
+        fetchEquivalenciaData();
+            
+    }, []);
+
 
     return (
         <Paper
