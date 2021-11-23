@@ -8,6 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { ActionButtons } from './ActionButtons';
+import { getEquivalencia } from './services/equivalencia_service';
+import { useState } from 'react';
+
 
 const columns = [
     { id: 'desc', label: 'Descripción', minWidth: 170 },
@@ -18,13 +21,27 @@ const columns = [
 
 function createData(desc, dateTime, state) {
     const actions = <ActionButtons />;
+    console.log(getEquivalencia(1))
     return { desc, dateTime, state, actions };
 }
 
+// const [equivalenciaData, setEquivalenciaData] = useState()
+
 const rows = [
-    createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
-    createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
-    createData('Solicitud de Introducción a la Programación', '20/08/21 16:15', 'Rechazado')
+    
+    
+    // useEffect( () => {
+    //     const fetchEquivalenciaData = async () => {
+    //         const obtainedEquivalenciaData = await getEquivalencia(1);
+    //         setEquivalenciaData(obtainedEquivalenciaData)
+    //     }
+    //         fetchEquivalenciaData()
+    // }, []),
+
+        createData(`${getEquivalencia(1).nombre_universidad}`)
+    // createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
+    // createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
+    // createData('Solicitud de Introducción a la Programación', '20/08/21 16:15', 'Rechazado')
 ];
 
 export default function StickyHeadTable() {

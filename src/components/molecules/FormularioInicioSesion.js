@@ -10,6 +10,7 @@ import { BotonMUI } from '../atoms/Button/BotonMUI';
 import { Grid, styled } from '@mui/material';
 import { Formulario } from '../atoms/Formulario/Formulario';
 
+
 const FormularioInicioSesion = () => {
     const onSubmit = (e) => {};
 

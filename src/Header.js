@@ -7,6 +7,7 @@ import {
     Avatar,
     IconButton
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { createTheme } from '@mui/material/styles';
 import { AccessAlarm } from '@mui/icons-material';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
@@ -40,14 +41,16 @@ const Header = () => {
                     >
                         <Avatar sx={{ bgcolor: '#FF7F11' }}>H</Avatar>
 
-                        <BotonMUI
-                            buttonContained
-                            buttonLogOut
-                            variant="contained"
-                            sx={{ marginLeft: '40px' }}
-                        >
-                            Cerrar sesión
-                        </BotonMUI>
+                        <Link to="/" style={{textDecoration: 'none'}} >
+                            <BotonMUI
+                                buttonContained
+                                buttonLogOut
+                                variant="contained"
+                                sx={{ marginLeft: '40px', }}
+                            >
+                                Cerrar sesión
+                            </BotonMUI>
+                        </Link>
                     </Grid>
                 </Grid>
 

@@ -1,34 +1,32 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'styled-components';
-import IniciarSesion from './components/organisms/IniciarSesion/IniciarSesion';
-import UsuarioMisFormularios from './components/UsuarioMisFormularios';
-import { buttonTheme } from './components/atoms/Button/BotonMUI';
-import { PageCreateForm } from './PageCreateForm';
-import { PageMyForm } from './PageMyForm';
 import './index.css';
+import App from './App';
 
-const App = () => {
-    const [login, cambiarEstadoLogin] = useState(false);
+// const App = () => {
+//     const [login, cambiarEstadoLogin] = useState(false);
 
-    return (
-        /*<ThemeProvider theme={buttonTheme}>*/
-        <>
-            {login ? (
-                <>
-                    <UsuarioMisFormularios />
-                </>
-            ) : (
-                <>
-                    {/* <IniciarSesion /> */}
-                    <PageCreateForm />
-                    {/* <PageMyForm /> */}
+//     return (
+//         /*<ThemeProvider theme={buttonTheme}>*/
+//         <>
+//             {login ? (
+//                 <>
+//                     <UsuarioMisFormularios />
+//                 </>
+//             ) : (
+//                 <>
+//                     <PageIniciarSesion />
+//                     {/* <PageCreateForm /> */}
+//                     {/* <PageMyForm /> */}
      
-                </>
-            )}
-        </>
-        /*<ThemeProvider/>*/
-    );
-};
+//                 </>
+//             )}
+//         </>
+//         /*<ThemeProvider/>*/
+//     );
+// };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <App />, document.getElementById('root')
+)

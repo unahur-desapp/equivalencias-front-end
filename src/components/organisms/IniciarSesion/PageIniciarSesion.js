@@ -3,7 +3,9 @@ import { FormularioInicioSesion } from '../../molecules/FormularioInicioSesion';
 import { Register } from '../../molecules/SideRegistro';
 import { TarjetaLogin, FatherContainer } from './IniciarSesionStyled';
 
-const IniciarSesion = () => {
+
+
+const PageIniciarSesion = () => {
     return (
         <FatherContainer>
             <TarjetaLogin>
@@ -15,4 +17,4 @@ const IniciarSesion = () => {
     );
 };
 
-export default IniciarSesion;
+export default PageIniciarSesion;
