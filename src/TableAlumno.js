@@ -49,12 +49,12 @@ export default function StickyHeadTable() {
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
                 let d = new Date(arrayItem.Materias_solicitada[0].createdAt);
-                let dateTime = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear() + ' - ' + d.getHours() + ':' + d.getMinutes();
+                let dateTime = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
 
                 arrayData.push(createData(
                     arrayItem.Materias_solicitada[0].nombre,
                     dateTime,
-                    "Aceptado"
+                    arrayItem.Estado[0].status
                 ))
             });
 
