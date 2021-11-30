@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
+import { Link } from 'react-router-dom';
 
 const OuterFormButtons = () => {
     return (
@@ -39,26 +40,30 @@ const OuterFormButtons = () => {
                 lg={6}
             >
                 <Grid item container xs={6} lg={4}>
-                    <BotonMUI
-                        buttonContainedCancel
-                        sx={{
-                            width: '100%'
-                        }}
-                    >
-                        Cancelar
-                    </BotonMUI>
+                    <Link to="/home" style={{textDecoration: 'none', width: '100%'}}>
+                        <BotonMUI
+                            buttonContainedCancel
+                            sx={{
+                                width: '100%'
+                            }}
+                        >
+                            Cancelar
+                        </BotonMUI>
+                    </Link>
                 </Grid>
 
                 <Grid item container xs={6} lg={4}>
-                    <BotonMUI
-                        buttonContainedSmall
-                        sx={{
-                            marginLeft: '12px',
-                            width: '100%'
-                        }}
-                    >
-                        Enviar
-                    </BotonMUI>
+                    <Link to="/home" style={{textDecoration: 'none', width: '100%'}}>
+                        <BotonMUI
+                            buttonContainedSmall
+                            sx={{
+                                marginLeft: '12px',
+                                width: '100%'
+                            }}
+                        >
+                            Enviar
+                        </BotonMUI>
+                    </Link>
                 </Grid>
             </Grid>
         </Grid>
