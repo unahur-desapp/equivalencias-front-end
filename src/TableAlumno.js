@@ -42,28 +42,28 @@ export default function StickyHeadTable() {
     };
 
 
-
-    
-    
-
     useEffect( () => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia();
             let arrayData = [];
-            //const eqData = [obtainedEquivalenciaData].map((item, index) =>{return( `${{item}['item']}`); })
-        
-            //console.log('Hola' + eqData)
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
-                arrayData.push(createData(arrayItem.Materias_solicitada[0].nombre, arrayItem.Materias_solicitada[0].createdAt, "Aceptado"))
+                let d = new Date(arrayItem.Materias_solicitada[0].createdAt);
+                let dateTime = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear() + ' - ' + d.getHours() + ':' + d.getMinutes();
+
+                arrayData.push(createData(
+                    arrayItem.Materias_solicitada[0].nombre,
+                    dateTime,
+                    "Aceptado"
+                ))
             });
 
-            setRows(arrayData)
-            
-            console.log(obtainedEquivalenciaData)
+            setRows(arrayData);
+            console.log(obtainedEquivalenciaData);
         }
-
+        
         fetchEquivalenciaData();
+        
     }, []);
 
 
