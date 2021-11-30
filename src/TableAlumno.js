@@ -30,8 +30,7 @@ function createData(desc, dateTime, state) {
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-    const [equivalenciaData, setEquivalenciaData] = useState();
+    const [rows, setRows] = useState([]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -42,28 +41,29 @@ export default function StickyHeadTable() {
         setPage(0);
     };
 
-    const rows = [
-    
-        equivalenciaData
-        ? createData(`Solicitud de ${equivalenciaData.data['nombre_universidad']}`, "20-12-2021", "Aceptado")
-        : createData(`Cargando datos`, "20-12-2021", "Aceptado")
-        // createData(`${equivalenciaData}`, "20-12-2021", "Aceptado")
 
-        // createData('Solicitud de Bases de Datos', '26/08/21 18:00', 'En espera'),
-        // createData('Solicitud de Matemática II', '22/08/21 15:30', 'Aceptado'),
-        // createData('Solicitud de Introducción a la Programación', '20/08/21 16:15', 'Rechazado')
-    ];
+
+    
     
 
     useEffect( () => {
         const fetchEquivalenciaData = async () => {
-            const obtainedEquivalenciaData = await getEquivalencia(1);
-            console.log(obtainedEquivalenciaData)
-            setEquivalenciaData(obtainedEquivalenciaData)
-        }
+            const obtainedEquivalenciaData = await getEquivalencia();
+            let arrayData = [];
+            //const eqData = [obtainedEquivalenciaData].map((item, index) =>{return( `${{item}['item']}`); })
         
-        fetchEquivalenciaData();
+            //console.log('Hola' + eqData)
+
+            obtainedEquivalenciaData.forEach(function (arrayItem) {
+                arrayData.push(createData(arrayItem.Materias_solicitada[0].nombre, arrayItem.Materias_solicitada[0].createdAt, "Aceptado"))
+            });
+
+            setRows(arrayData)
             
+            console.log(obtainedEquivalenciaData)
+        }
+
+        fetchEquivalenciaData();
     }, []);
 
 

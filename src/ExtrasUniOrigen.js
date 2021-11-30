@@ -13,7 +13,7 @@ import { BotonMUI } from './components/atoms/Button/BotonMUI';
 
 
 function addMateria() {
-    <p>Hola papu</p>
+    <p>Hola </p>
 }
 
 const ExtrasUniOrigen = () => {
