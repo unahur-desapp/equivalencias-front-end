@@ -10,11 +10,8 @@ import React from 'react';
 import { StandardInput, FileUploader } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
+import { AgregarMateriaUniOrigen, addMateria } from './AgregarMateriaUniOrigen';
 
-
-function addMateria() {
-    <p>Hola </p>
-}
 
 const ExtrasUniOrigen = () => {
     return (
@@ -158,23 +155,10 @@ const ExtrasUniOrigen = () => {
                     </label>
                 </Grid>
             </Grid>
-            <Grid
-                item
-                container
-                xs={12}
-                sx={{ borderTop: '1px solid #DADCE0', marginTop: '20px ' }}
-            >
-                <BotonMUI
-                    buttonContainedAddMateria
-                    variant="outlined"
-                    sx={{ marginTop: '20px' }}
-                    onClick={addMateria}
-                >
-                    Agregar materia
-                </BotonMUI>
-            </Grid>
+            <AgregarMateriaUniOrigen/>
+            
         </Grid>
     );
 };
 
-export { ExtrasUniOrigen, addMateria };
+export { ExtrasUniOrigen};

@@ -18,9 +18,7 @@ const FormUniOrigen = () => {
 
             <DatosMateriaUniOrigen />
 
-            <ExtrasUniOrigen 
-                
-            />
+            <ExtrasUniOrigen/>
         </Grid>
     );
 };
