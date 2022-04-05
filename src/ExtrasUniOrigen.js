@@ -6,12 +6,11 @@ import {
     FormControlLabel,
     Radio
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { StandardInput, FileUploader } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
-import { AgregarMateriaUniOrigen, addMateria } from './AgregarMateriaUniOrigen';
-
+import { AgregarMateriaUniOrigen } from './AgregarMateriaUniOrigen';
 
 const ExtrasUniOrigen = () => {
     return (
@@ -133,7 +132,10 @@ const ExtrasUniOrigen = () => {
                 </Grid>
 
                 <Grid item container xs={12} sx={{ marginTop: '16px' }}>
-                    <label htmlFor="contained-button-file" style={{width: '100%'}}>
+                    <label
+                        htmlFor="contained-button-file"
+                        style={{ width: '100%' }}
+                    >
                         <BotonMUI
                             sx={{
                                 marginRight: '12px'
@@ -155,10 +157,10 @@ const ExtrasUniOrigen = () => {
                     </label>
                 </Grid>
             </Grid>
-            <AgregarMateriaUniOrigen/>
-            
+
+            <AgregarMateriaUniOrigen />
         </Grid>
     );
 };
 
-export { ExtrasUniOrigen};
+export { ExtrasUniOrigen };
