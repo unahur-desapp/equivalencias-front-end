@@ -11,6 +11,7 @@ import { StandardInput, FileUploader } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import { AgregarMateriaUniOrigen } from './AgregarMateriaUniOrigen';
+import { FormUniOrigen } from './FormUniOrigen';
 
 const ExtrasUniOrigen = () => {
     return (
@@ -158,7 +159,7 @@ const ExtrasUniOrigen = () => {
                 </Grid>
             </Grid>
 
-            <AgregarMateriaUniOrigen />
+            {/* <AgregarMateriaUniOrigen /> */}
         </Grid>
     );
 };

@@ -1,11 +1,19 @@
 import { Grid } from '@mui/material';
 import { StandardInput } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
-import React from 'react';
+import React, { useState } from 'react';
 import { GridTop } from './GridTop';
 import { FormUniOrigen } from './FormUniOrigen';
+import { BotonMUI } from './components/atoms/Button/BotonMUI';
+import { ExtrasUniOrigen } from './ExtrasUniOrigen';
 
 const CreateForm = () => {
+    const [materia, setMateria] = useState([]);
+
+    function addMateria() {
+        setMateria([...materia, <FormUniOrigen key={0} />]);
+    }
+
     return (
         <GridTop
             item
@@ -33,7 +41,6 @@ const CreateForm = () => {
                 }}
                 sx={{
                     height: 'auto',
-                    borderBottom: '1px solid #DADCE0',
                     borderRadius: '10px 10px 0px 0px'
                 }}
             >
@@ -47,7 +54,7 @@ const CreateForm = () => {
                     }}*/
                 >
                     <Titulos tituloLabel component="h2">
-                        Universidad Nacional de Hurlingham
+                        Datos Universidad Nacional de Hurlingham
                     </Titulos>
                 </Grid>
                 <Grid
@@ -71,6 +78,30 @@ const CreateForm = () => {
             </Grid>
 
             <FormUniOrigen />
+
+            {materia.map((item, i = 1) => (
+                <span key={i}> {item} </span>
+            ))}
+
+            <Grid
+                item
+                container
+                xs={12}
+                sx={{
+                    borderTop: '1px solid #DADCE0',
+                    marginTop: '20px ',
+                    padding: '0px 40px'
+                }}
+            >
+                <BotonMUI
+                    buttonContainedAddMateria
+                    variant="outlined"
+                    sx={{ margin: '10px 0px' }}
+                    onClick={addMateria}
+                >
+                    Agregar materia
+                </BotonMUI>
+            </Grid>
         </GridTop>
     );
 };

@@ -9,16 +9,17 @@ const FormUniOrigen = () => {
         <Grid
             item
             container
-            margin={{
+            padding={{
                 xs: '20px 30px',
                 sm: '20px 60px'
             }}
+            sx={{ borderTop: '1px solid #DADCE0' }}
         >
             <TituloUniOrigen />
 
             <DatosMateriaUniOrigen />
 
-            <ExtrasUniOrigen/>
+            <ExtrasUniOrigen />
         </Grid>
     );
 };
