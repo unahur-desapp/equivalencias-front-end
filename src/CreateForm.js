@@ -1,5 +1,8 @@
-import { Grid } from '@mui/material';
-import { StandardInput } from './components/atoms/Input/InputMUI';
+import { Grid, TextField } from '@mui/material';
+import {
+    StandardInput,
+    AutocompleteInput
+} from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
 import React, { useState } from 'react';
 import { GridTop } from './GridTop';
@@ -47,33 +50,79 @@ const CreateForm = () => {
                 <Grid
                     item
                     container
-                    direction="column"
+                    xs={12}
+                    direction="row"
+                    justifyContent="space-between"
                     alignItems="flex-start"
-                    /*sx={{
-                        height: 'auto'
-                    }}*/
                 >
-                    <Titulos tituloLabel component="h2">
-                        Datos Universidad Nacional de Hurlingham
-                    </Titulos>
+                    <Grid
+                        item
+                        container
+                        direction="column"
+                        alignItems="flex-start"
+                        md={12}
+                        lg={5.8}
+                        sx={{
+                            marginTop: '6px'
+                        }}
+                    >
+                        <Titulos tituloLabel component="h2">
+                            Datos Universidad Nacional de Hurlingham
+                        </Titulos>
+                    </Grid>
                 </Grid>
+
                 <Grid
                     item
                     container
-                    direction="column"
+                    xs={12}
+                    direction="row"
+                    justifyContent="space-between"
                     alignItems="flex-start"
-                    md={12}
-                    lg={5.8}
-                    sx={{
-                        marginTop: '6px'
-                    }}
                 >
-                    <StandardInput
-                        required
-                        size="small"
-                        label="Materia solicitada UNAHUR"
-                        variant="outlined"
-                    />
+                    <Grid
+                        item
+                        container
+                        direction="column"
+                        alignItems="flex-start"
+                        md={12}
+                        lg={5.8}
+                        sx={{
+                            marginTop: '6px'
+                        }}
+                    >
+                        <StandardInput
+                            required
+                            size="small"
+                            label="Materia solicitada UNAHUR"
+                            variant="outlined"
+                        />
+                    </Grid>
+
+                    <Grid
+                        item
+                        container
+                        md={12}
+                        lg={5.8}
+                        sx={{
+                            marginTop: '6px'
+                        }}
+                    >
+                        <AutocompleteInput
+                            required
+                            size="small"
+                            label="Carrera UNAHUR"
+                            variant="outlined"
+                            disablePortal
+                            options={top100Films}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Carreras UNAHUR"
+                                />
+                            )}
+                        />
+                    </Grid>
                 </Grid>
             </Grid>
 
@@ -105,5 +154,15 @@ const CreateForm = () => {
         </GridTop>
     );
 };
+
+const top100Films = [
+    { label: 'The Shawshank Redemption', year: 1994 },
+    { label: 'The Godfather', year: 1972 },
+    { label: 'The Godfather: Part II', year: 1974 },
+    { label: 'The Dark Knight', year: 2008 },
+    { label: '12 Angry Men', year: 1957 },
+    { label: "Schindler's List", year: 1993 },
+    { label: 'Pulp Fiction', year: 1994 }
+];
 
 export { CreateForm };

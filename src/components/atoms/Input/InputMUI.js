@@ -1,4 +1,4 @@
-import { Grid, TextField, Input, styled } from '@mui/material';
+import { Grid, TextField, styled, Autocomplete } from '@mui/material';
 
 const InputMUI = styled(TextField)`
     outline: 1px;
@@ -30,6 +30,13 @@ const StandardInput = styled(TextField)`
     }
 `;
 
+const AutocompleteInput = styled(Autocomplete)`
+    outline: 0px;
+    border: 0;
+    width: 100%;
+    margin-top: 15px;
+`;
+
 const FileUploader = styled(TextField)`
     width: 50%;
     min-width: 212px;
@@ -39,4 +46,10 @@ const FileUploader = styled(TextField)`
     }
 `;
 
-export { InputMUI, ContenedorInputs, StandardInput, FileUploader };
+export {
+    InputMUI,
+    ContenedorInputs,
+    StandardInput,
+    FileUploader,
+    AutocompleteInput
+};
