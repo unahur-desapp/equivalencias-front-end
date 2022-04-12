@@ -11,11 +11,18 @@ import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import { ExtrasUniOrigen } from './ExtrasUniOrigen';
 
 const CreateForm = () => {
-    const [materia, setMateria] = useState([]);
+    const [materias, setMaterias] = useState([]);
 
-    function addMateria() {
-        setMateria([...materia, <FormUniOrigen key={0} />]);
-    }
+    // Ver si funciona llamando a un componente o hay que llamar un objeto
+    const addMateria = () => {
+        setMaterias([...materias, <FormUniOrigen key={1} />]);
+    };
+
+    const handledelete = (indexToDelete) => {
+        setMaterias((materias) =>
+            materias.filter((x) => x.key !== indexToDelete)
+        );
+    };
 
     return (
         <GridTop
@@ -126,10 +133,23 @@ const CreateForm = () => {
                 </Grid>
             </Grid>
 
-            <FormUniOrigen />
+            <FormUniOrigen key={0} />
 
-            {materia.map((item, i = 1) => (
-                <span key={i}> {item} </span>
+            {materias.map((materia) => (
+                <Grid
+                    key={key}
+                    handledelete={() =>
+                        // alert('Hola');
+                        // const newMaterias = materias.filter(
+                        //     (x) => x.key == materia.key
+                        // );
+                        // setMaterias([...newMaterias]);
+                        handledelete(i)
+                    }
+                >
+                    {materia}
+                    {console.log(i)}
+                </Grid>
             ))}
 
             <Grid

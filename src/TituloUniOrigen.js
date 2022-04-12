@@ -47,9 +47,6 @@ const TituloUniOrigen = () => {
                     sx={{ color: '#5f6368' }}
                     aria-label="upload picture"
                     component="span"
-                    onClick={() => {
-                        alert('onClick');
-                    }}
                 >
                     <DeleteOutlineOutlinedIcon />
                 </IconButton>
