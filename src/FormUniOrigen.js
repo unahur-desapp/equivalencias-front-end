@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import React from 'react';
 import { DatosMateriaUniOrigen } from './DatosMateriaUniOrigen';
-import { addMateria, ExtrasUniOrigen } from './ExtrasUniOrigen';
+import { ExtrasUniOrigen } from './ExtrasUniOrigen';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { Titulos } from './components/atoms/Title/Titulos';
@@ -41,7 +41,7 @@ const FormUniOrigen = ({ handledelete }) => {
                     </Titulos>
                 </Grid>
 
-                <Grid
+                {/* <Grid
                     item
                     container
                     direction="column"
@@ -51,16 +51,15 @@ const FormUniOrigen = ({ handledelete }) => {
                     sx={{
                         marginTop: '6px'
                     }}
+                ></Grid> */}
+                <IconButton
+                    sx={{ color: '#5f6368' }}
+                    aria-label="upload picture"
+                    component="span"
+                    onClick={handledelete}
                 >
-                    <IconButton
-                        sx={{ color: '#5f6368' }}
-                        aria-label="upload picture"
-                        component="span"
-                        onClick={handledelete}
-                    >
-                        <DeleteOutlineOutlinedIcon />
-                    </IconButton>
-                </Grid>
+                    <DeleteOutlineOutlinedIcon />
+                </IconButton>
             </Grid>
 
             <DatosMateriaUniOrigen />

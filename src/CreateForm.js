@@ -8,21 +8,21 @@ import React, { useState } from 'react';
 import { GridTop } from './GridTop';
 import { FormUniOrigen } from './FormUniOrigen';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
-import { ExtrasUniOrigen } from './ExtrasUniOrigen';
+import { nanoid } from 'nanoid';
 
 const CreateForm = () => {
-    const [materias, setMaterias] = useState([]);
+    const [materias, setMaterias] = useState([
+        <FormUniOrigen key={nanoid()} />
+    ]);
 
     // Ver si funciona llamando a un componente o hay que llamar un objeto
     const addMateria = () => {
-        setMaterias([...materias, <FormUniOrigen key={1} />]);
+        setMaterias([...materias, <FormUniOrigen key={nanoid()} />]);
     };
 
-    const handledelete = (indexToDelete) => {
-        setMaterias((materias) =>
-            materias.filter((x) => x.key !== indexToDelete)
-        );
-    };
+    // const handledelete = () => {
+    //     setMaterias((materias) => materias.filter((x) => x.key !== 0));
+    // };
 
     return (
         <GridTop
@@ -133,23 +133,21 @@ const CreateForm = () => {
                 </Grid>
             </Grid>
 
-            <FormUniOrigen key={0} />
-
             {materias.map((materia) => (
-                <Grid
-                    key={key}
-                    handledelete={() =>
-                        // alert('Hola');
-                        // const newMaterias = materias.filter(
-                        //     (x) => x.key == materia.key
-                        // );
-                        // setMaterias([...newMaterias]);
-                        handledelete(i)
+                <FormUniOrigen
+                    key={materia.key}
+                    handledelete={
+                        materias.length > 1
+                            ? () => {
+                                  const newMaterias = materias.filter(
+                                      (x) => x.key !== materia.key
+                                  );
+                                  setMaterias([...newMaterias]);
+                                  console.log(materias);
+                              }
+                            : console.log('Eliminar este console')
                     }
-                >
-                    {materia}
-                    {console.log(i)}
-                </Grid>
+                />
             ))}
 
             <Grid
