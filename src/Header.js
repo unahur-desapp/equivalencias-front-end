@@ -13,7 +13,7 @@ import { AccessAlarm } from '@mui/icons-material';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import React from 'react';
 
-const Header = () => {
+const Header = ({name}) => {
     return (
         <AppBar position="static" sx={{ bgcolor: '#122C34' }}>
             <Toolbar color="#122C34">
@@ -25,8 +25,9 @@ const Header = () => {
                             buttonContainedHeader
                             variant="contained"
                             sx={{ marginRight: '40px' }}
+                            
                         >
-                            Mis equivalencias
+                            {name}
                         </BotonMUI>
 
                         <BotonMUI variant="outlined" buttonOutlined>

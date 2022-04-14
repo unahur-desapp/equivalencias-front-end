@@ -11,7 +11,7 @@ const PageMyForm = () => {
     return (
         <Grid container direction="column">
             <Grid item container xs={12}>
-                <Header />
+                <Header name="Mis equivalencias" />
             </Grid>
 
             <Grid
