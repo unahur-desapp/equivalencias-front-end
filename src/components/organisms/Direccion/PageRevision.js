@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid, TextareaAutosize } from '@mui/material';
 import React from 'react';
 import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
@@ -126,9 +126,28 @@ const PageRevision = () => {
                                 </TableBody>
                             </Table>
                         </TableContainer>
+
+                        
+
                     </Paper>
 
                     
+                    <Grid width={'100%'}>
+                        <hr/>
+
+                        <h3>Hola</h3>
+
+                        <hr/>
+
+                        <TextareaAutosize 
+                        minRows={4} 
+                        maxRows={12} 
+                        style={{width: '500px', resize: 'none', fontFamily: 'roboto', fontSize: '16px'}} 
+                        placeholder="Observación..."
+                        />
+                    </Grid>
+
+
                 </GridTop>
 
             </Grid>
