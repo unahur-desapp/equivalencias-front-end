@@ -17,7 +17,10 @@ const CreateForm = () => {
 
     // Ver si funciona llamando a un componente o hay que llamar un objeto
     const addMateria = () => {
-        setMaterias([...materias, <FormUniOrigen key={nanoid()} />]);
+        setMaterias((cualquiera) => [
+            ...cualquiera,
+            <FormUniOrigen key={nanoid()} />
+        ]);
     };
 
     // const handledelete = () => {
@@ -136,17 +139,31 @@ const CreateForm = () => {
             {materias.map((materia) => (
                 <FormUniOrigen
                     key={materia.key}
-                    handledelete={
-                        materias.length > 1
-                            ? () => {
-                                  const newMaterias = materias.filter(
-                                      (x) => x.key !== materia.key
-                                  );
-                                  setMaterias([...newMaterias]);
-                                  console.log(materias);
-                              }
-                            : console.log('Eliminar este console')
-                    }
+                    // handledelete={
+                    //     materias.length > 1
+                    //         ? () => {
+                    //               const newMaterias = materias.filter(
+                    //                   (x) => x.key !== materia.key
+                    //               );
+                    //               setMaterias([...newMaterias]);
+                    //               console.log(materias);
+                    //           }
+                    //         : () => {
+                    //               console.log('Eliminar este console');
+                    //           }
+                    // }
+
+                    handledelete={() => {
+                        if (materias.length > 1) {
+                            const newMaterias = materias.filter(
+                                (x) => x.key !== materia.key
+                            );
+                            setMaterias([...newMaterias]);
+                            console.log(materias);
+                        } else {
+                            console.log('Eliminar este console');
+                        }
+                    }}
                 />
             ))}
 
