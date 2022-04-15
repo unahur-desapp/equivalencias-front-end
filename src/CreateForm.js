@@ -9,23 +9,33 @@ import { GridTop } from './GridTop';
 import { FormUniOrigen } from './FormUniOrigen';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import { nanoid } from 'nanoid';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateForm = () => {
     const [materias, setMaterias] = useState([
         <FormUniOrigen key={nanoid()} />
     ]);
 
-    // Ver si funciona llamando a un componente o hay que llamar un objeto
+    const notify = () => {
+        toast.error('No puede eliminar esta materia', {
+            position: 'bottom-left',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined
+        });
+    };
+
     const addMateria = () => {
         setMaterias((cualquiera) => [
             ...cualquiera,
             <FormUniOrigen key={nanoid()} />
         ]);
     };
-
-    // const handledelete = () => {
-    //     setMaterias((materias) => materias.filter((x) => x.key !== 0));
-    // };
 
     return (
         <GridTop
@@ -137,34 +147,47 @@ const CreateForm = () => {
             </Grid>
 
             {materias.map((materia) => (
-                <FormUniOrigen
-                    key={materia.key}
-                    // handledelete={
-                    //     materias.length > 1
-                    //         ? () => {
-                    //               const newMaterias = materias.filter(
-                    //                   (x) => x.key !== materia.key
-                    //               );
-                    //               setMaterias([...newMaterias]);
-                    //               console.log(materias);
-                    //           }
-                    //         : () => {
-                    //               console.log('Eliminar este console');
-                    //           }
-                    // }
+                <>
+                    <FormUniOrigen
+                        key={materia.key}
+                        // handledelete={
+                        //     materias.length > 1
+                        //         ? () => {
+                        //               const newMaterias = materias.filter(
+                        //                   (x) => x.key !== materia.key
+                        //               );
+                        //               setMaterias([...newMaterias]);
+                        //               console.log(materias);
+                        //           }
+                        //         : () => {
+                        //               console.log('Eliminar este console');
+                        //           }
+                        // }
 
-                    handledelete={() => {
-                        if (materias.length > 1) {
-                            const newMaterias = materias.filter(
-                                (x) => x.key !== materia.key
-                            );
-                            setMaterias([...newMaterias]);
-                            console.log(materias);
-                        } else {
-                            console.log('Eliminar este console');
-                        }
-                    }}
-                />
+                        handledelete={() => {
+                            if (materias.length > 1) {
+                                const newMaterias = materias.filter(
+                                    (x) => x.key !== materia.key
+                                );
+                                setMaterias([...newMaterias]);
+                                console.log(materias);
+                            } else {
+                                notify();
+                            }
+                        }}
+                    />
+                    <ToastContainer
+                        position="bottom-left"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                </>
             ))}
 
             <Grid
