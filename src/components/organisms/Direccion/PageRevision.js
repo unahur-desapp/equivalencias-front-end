@@ -9,9 +9,9 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { DateTime } from 'luxon';
+import { BotonMUI } from '../../atoms/Button/BotonMUI';
+import { TextField } from '@mui/material';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -23,20 +23,23 @@ const columns = [
 
 function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
-  }
-  
-  const rows = [
-    createData('Josecito', 'josesito@gmail.com', '11111111', '14/04/2022', '1100000000')
-  ];
+}
 
-
+const rows = [
+    createData(
+        'Josecito',
+        'josesito@gmail.com',
+        '11111111',
+        '14/04/2022',
+        '1100000000'
+    )
+];
 
 const PageRevision = () => {
     return (
         <Grid container direction="column">
             <Grid item container xs={12}>
                 <Header name="Equivalencias" />
-
             </Grid>
 
             <Grid
@@ -64,7 +67,6 @@ const PageRevision = () => {
                             Revisión
                         </Titulos>
                     </Grid>
-
                 </GridTop>
 
                 <GridTop
@@ -80,13 +82,13 @@ const PageRevision = () => {
                         height: 'auto'
                     }}
                 >
-
                     <Paper
                         sx={{
                             width: '100%',
                             overflow: 'hidden',
-                            borderRadius: '10px',
-                            boxShadow: 'none'
+                            borderRadius: '10px 10px 0px 0px',
+                            boxShadow: 'none',
+                            borderBottom: '1px solid #dadce0'
                         }}
                     >
                         <TableContainer sx={{ maxHeight: 440 }}>
@@ -96,8 +98,10 @@ const PageRevision = () => {
                                         {columns.map((column) => (
                                             <TableCell
                                                 key={column.id}
-                                                align= 'center'
-                                                style={{ minWidth: column.minWidth }}
+                                                align="center"
+                                                style={{
+                                                    minWidth: column.minWidth
+                                                }}
                                                 sx={{
                                                     backgroundColor: '#FBFBFB',
                                                     padding: '16px 60px'
@@ -110,53 +114,228 @@ const PageRevision = () => {
                                 </TableHead>
                                 <TableBody>
                                     {rows.map((row) => (
-                                    <TableRow
-                                    key={row.name}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell align = 'center' component="th" scope="row">
-                                            {row.name}
-                                        </TableCell>
-                                        <TableCell align="center">{row.calories}</TableCell>
-                                        <TableCell align="center">{row.fat}</TableCell>
-                                        <TableCell align="center">{row.carbs}</TableCell>
-                                        <TableCell align="center">{row.protein}</TableCell>
-                                    </TableRow>
+                                        <TableRow
+                                            key={row.name}
+                                            sx={{
+                                                '&:last-child td, &:last-child th': {
+                                                    border: 0
+                                                }
+                                            }}
+                                        >
+                                            <TableCell
+                                                align="center"
+                                                component="th"
+                                                scope="row"
+                                            >
+                                                {row.name}
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                {row.calories}
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                {row.fat}
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                {row.carbs}
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                {row.protein}
+                                            </TableCell>
+                                        </TableRow>
                                     ))}
                                 </TableBody>
                             </Table>
                         </TableContainer>
-
-                        
-
                     </Paper>
 
-                    
-                    <Grid width={'100%'}>
-                        <hr/>
+                    <Grid
+                        item
+                        container
+                        direction="row"
+                        justifyContent="flex-start"
+                        alignItems="center"
+                        sm={12}
+                        padding={{
+                            xs: '20px 30px',
+                            sm: '20px 60px'
+                        }}
+                        sx={{
+                            height: 'auto',
+                            borderRadius: '10px 10px 0px 0px',
+                            borderBottom: '1px solid #dadce0'
+                        }}
+                    >
+                        <h3>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Aut architecto, eos vero ipsa magni aliquid
+                            distinctio iure quidem numquam, rem beatae neque
+                            tenetur ex nemo suscipit consectetur ut veniam! Hic.
+                        </h3>
 
-                        <h3>Hola</h3>
+                        <h3>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Aut architecto, eos vero ipsa magni aliquid
+                            distinctio iure quidem numquam, rem beatae neque
+                            tenetur ex nemo suscipit consectetur ut veniam! Hic.
+                        </h3>
 
-                        <hr/>
+                        <h3>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Aut architecto, eos vero ipsa magni aliquid
+                            distinctio iure quidem numquam, rem beatae neque
+                            tenetur ex nemo suscipit consectetur ut veniam! Hic.
+                        </h3>
 
-                        <TextareaAutosize 
-                        minRows={4} 
-                        maxRows={12} 
-                        style={{width: '500px', resize: 'none', fontFamily: 'roboto', fontSize: '16px'}} 
-                        placeholder="Observación..."
-                        />
+                        <h3>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Aut architecto, eos vero ipsa magni aliquid
+                            distinctio iure quidem numquam, rem beatae neque
+                            tenetur ex nemo suscipit consectetur ut veniam! Hic.
+                        </h3>
+
+                        <h3>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Aut architecto, eos vero ipsa magni aliquid
+                            distinctio iure quidem numquam, rem beatae neque
+                            tenetur ex nemo suscipit consectetur ut veniam! Hic.
+                        </h3>
                     </Grid>
 
+                    <Grid
+                        item
+                        container
+                        direction="row"
+                        justifyContent="flex-start"
+                        alignItems="center"
+                        sm={12}
+                        padding={{
+                            xs: '30px 30px',
+                            sm: '30px 60px'
+                        }}
+                        sx={{
+                            height: 'auto',
+                            borderRadius: '10px 10px 0px 0px'
+                        }}
+                    >
+                        {/* <Grid
+                            item
+                            container
+                            direction="row"
+                            justifyContent="flex-start"
+                            alignItems="center"
+                            sm={12}
+                            sx={{
+                                padding: '0px 0px 20px 0px'
+                            }}
+                        >
+                            <p
+                                style={{
+                                    color: 'rgba(0, 0, 0, 0.87)',
+                                    fontWeight: 500
+                                }}
+                            >
+                                
+                                Devolución
+                            </p>
+                        </Grid> */}
 
+                        <Grid
+                            item
+                            container
+                            direction="row"
+                            justifyContent="flex-start"
+                            alignItems="center"
+                            sm={12}
+                        >
+                            <Grid
+                                item
+                                container
+                                direction="row"
+                                justifyContent="flex-start"
+                                alignItems="center"
+                                sm={9}
+                            >
+                                {/* <TextareaAutosize
+                                    style={{
+                                        width: '100%',
+                                        height: '206px',
+                                        resize: 'none',
+                                        fontFamily: 'roboto',
+                                        fontSize: '16px',
+                                        padding: '18px 14px',
+                                        background: '#f8f9fa',
+                                        borderStyle: 'none',
+                                        borderRadius: '5px 0px 0px 0px',
+                                        borderBottom: '1px solid #80868b',
+                                        outline: 'none'
+                                    }}
+                                    placeholder="Observación..."
+                                /> */}
+
+                                <TextField
+                                    id="filled-basic"
+                                    label="Observación..."
+                                    variant="filled"
+                                    multiline
+                                    rows={10}
+                                    sx={{
+                                        width: '100%'
+                                    }}
+                                />
+                            </Grid>
+
+                            <Grid
+                                item
+                                container
+                                direction="column"
+                                justifyContent="center"
+                                alignItems="center"
+                                sm={3}
+                            >
+                                <BotonMUI
+                                    buttonContainedSmall
+                                    sx={{
+                                        background: '#348FDC',
+                                        '&:hover': {
+                                            background: '#2380D1'
+                                        },
+                                        marginBottom: '10px'
+                                    }}
+                                >
+                                    Aceptar
+                                </BotonMUI>
+
+                                <BotonMUI
+                                    buttonContainedSmall
+                                    sx={{
+                                        background: '#009673',
+                                        '&:hover': {
+                                            background: '#007A5E'
+                                        },
+                                        marginBottom: '10px'
+                                    }}
+                                >
+                                    Revisar
+                                </BotonMUI>
+
+                                <BotonMUI
+                                    buttonContainedSmall
+                                    sx={{
+                                        background: '#E74924',
+                                        '&:hover': {
+                                            background: '#CA3716'
+                                        }
+                                    }}
+                                >
+                                    Rechazar
+                                </BotonMUI>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </GridTop>
-
             </Grid>
-             
         </Grid>
-
-        
-            
     );
 };
 
-export {PageRevision};
+export { PageRevision };

@@ -19,7 +19,7 @@ const CreateForm = () => {
     ]);
 
     const notify = () => {
-        toast.error('No puede eliminar esta materia', {
+        toast.error('Tiene que enviar al menos una materia', {
             position: 'bottom-left',
             autoClose: 5000,
             hideProgressBar: false,
@@ -70,26 +70,17 @@ const CreateForm = () => {
                 <Grid
                     item
                     container
-                    xs={12}
-                    direction="row"
-                    justifyContent="space-between"
+                    direction="column"
                     alignItems="flex-start"
+                    md={12}
+                    lg={5.8}
+                    sx={{
+                        marginTop: '6px'
+                    }}
                 >
-                    <Grid
-                        item
-                        container
-                        direction="column"
-                        alignItems="flex-start"
-                        md={12}
-                        lg={5.8}
-                        sx={{
-                            marginTop: '6px'
-                        }}
-                    >
-                        <Titulos tituloLabel component="h2">
-                            Datos Universidad Nacional de Hurlingham
-                        </Titulos>
-                    </Grid>
+                    <Titulos tituloLabel component="h2">
+                        Datos Universidad Nacional de Hurlingham
+                    </Titulos>
                 </Grid>
 
                 <Grid
@@ -129,7 +120,6 @@ const CreateForm = () => {
                         }}
                     >
                         <AutocompleteInput
-                            required
                             size="small"
                             label="Carrera UNAHUR"
                             variant="outlined"
@@ -137,6 +127,7 @@ const CreateForm = () => {
                             options={top100Films}
                             renderInput={(params) => (
                                 <TextField
+                                    required
                                     {...params}
                                     label="Carreras UNAHUR"
                                 />
