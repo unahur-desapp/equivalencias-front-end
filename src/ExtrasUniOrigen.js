@@ -13,7 +13,7 @@ import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import { AgregarMateriaUniOrigen } from './AgregarMateriaUniOrigen';
 import { FormUniOrigen } from './FormUniOrigen';
 
-const ExtrasUniOrigen = () => {
+const ExtrasUniOrigen = ({ formValue, handleChange }) => {
     return (
         <Grid
             item
@@ -38,20 +38,26 @@ const ExtrasUniOrigen = () => {
                 <Grid item container xs={5.6}>
                     <StandardInput
                         required
+                        name="anioAprobacion"
                         size="small"
                         label="Año aprobación"
                         variant="outlined"
                         type="number"
+                        value={formValue.anioAprobacion}
+                        onChange={handleChange}
                     />
                 </Grid>
 
                 <Grid item container xs={5.6}>
                     <StandardInput
                         required
+                        name="cargaHorariaTotal"
                         size="small"
                         label="Carga horaria total"
                         variant="outlined"
                         type="number"
+                        value={formValue.cargaHorariaTotal}
+                        onChange={handleChange}
                     />
                 </Grid>
             </Grid>
@@ -71,10 +77,13 @@ const ExtrasUniOrigen = () => {
                 <Grid item container xs={5.6}>
                     <StandardInput
                         required
+                        name="notaAprobacion"
                         size="small"
                         label="Nota aprobación"
                         variant="outlined"
                         type="number"
+                        value={formValue.notaAprobacion}
+                        onChange={handleChange}
                     />
                 </Grid>
 

@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import { Link } from 'react-router-dom';
 
-const OuterFormButtons = () => {
+const OuterFormButtons = ({ handleSubmit }) => {
     return (
         <Grid
             item
@@ -40,7 +40,10 @@ const OuterFormButtons = () => {
                 lg={6}
             >
                 <Grid item container xs={6} lg={4}>
-                    <Link to="/home" style={{textDecoration: 'none', width: '100%'}}>
+                    <Link
+                        to="/home"
+                        style={{ textDecoration: 'none', width: '100%' }}
+                    >
                         <BotonMUI
                             buttonContainedCancel
                             sx={{
@@ -53,9 +56,13 @@ const OuterFormButtons = () => {
                 </Grid>
 
                 <Grid item container xs={6} lg={4}>
-                    <Link to="/home" style={{textDecoration: 'none', width: '100%'}}>
+                    {/* <Link
+                        to="/home"
+                        style={{ textDecoration: 'none', width: '100%' }}
+                    >
                         <BotonMUI
                             buttonContainedSmall
+                            type="submit"
                             sx={{
                                 marginLeft: '12px',
                                 width: '100%'
@@ -63,7 +70,17 @@ const OuterFormButtons = () => {
                         >
                             Enviar
                         </BotonMUI>
-                    </Link>
+                    </Link> */}
+                    <BotonMUI
+                        buttonContainedSmall
+                        type="submit"
+                        sx={{
+                            marginLeft: '12px',
+                            width: '100%'
+                        }}
+                    >
+                        Enviar
+                    </BotonMUI>
                 </Grid>
             </Grid>
         </Grid>

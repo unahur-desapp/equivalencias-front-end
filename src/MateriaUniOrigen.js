@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import React from 'react';
 import { StandardInput } from './components/atoms/Input/InputMUI';
 
-const MateriaUniOrigen = () => {
+const MateriaUniOrigen = ({ formValue, handleChange }) => {
     return (
         <Grid
             item
@@ -23,9 +23,12 @@ const MateriaUniOrigen = () => {
             >
                 <StandardInput
                     required
+                    name="materiaAprobada"
                     size="small"
                     label="Materia aprobada"
                     variant="outlined"
+                    value={formValue.materiaAprobada}
+                    onChange={handleChange}
                 />
             </Grid>
 
@@ -40,9 +43,12 @@ const MateriaUniOrigen = () => {
             >
                 <StandardInput
                     required
+                    name="universidadOrigen"
                     size="small"
                     label="Universidad de Origen"
                     variant="outlined"
+                    value={formValue.universidadOrigen}
+                    onChange={handleChange}
                 />
             </Grid>
         </Grid>

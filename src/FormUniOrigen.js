@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { Titulos } from './components/atoms/Title/Titulos';
 
-const FormUniOrigen = ({ handledelete }) => {
+const FormUniOrigen = ({ handledelete, formValue, handleChange }) => {
     return (
         <Grid
             item
@@ -62,9 +62,15 @@ const FormUniOrigen = ({ handledelete }) => {
                 </IconButton>
             </Grid>
 
-            <DatosMateriaUniOrigen />
+            <DatosMateriaUniOrigen
+                formValue={formValue}
+                handleChange={handleChange}
+            />
 
-            <ExtrasUniOrigen />
+            <ExtrasUniOrigen
+                formValue={formValue}
+                handleChange={handleChange}
+            />
         </Grid>
     );
 };

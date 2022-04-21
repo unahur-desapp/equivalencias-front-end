@@ -165,40 +165,40 @@ const PageRevision = () => {
                             borderBottom: '1px solid #dadce0'
                         }}
                     >
-                        <h3>
+                        <p>
                             Lorem ipsum dolor sit, amet consectetur adipisicing
                             elit. Aut architecto, eos vero ipsa magni aliquid
                             distinctio iure quidem numquam, rem beatae neque
                             tenetur ex nemo suscipit consectetur ut veniam! Hic.
-                        </h3>
+                        </p>
 
-                        <h3>
+                        <p>
                             Lorem ipsum dolor sit, amet consectetur adipisicing
                             elit. Aut architecto, eos vero ipsa magni aliquid
                             distinctio iure quidem numquam, rem beatae neque
                             tenetur ex nemo suscipit consectetur ut veniam! Hic.
-                        </h3>
+                        </p>
 
-                        <h3>
+                        <p>
                             Lorem ipsum dolor sit, amet consectetur adipisicing
                             elit. Aut architecto, eos vero ipsa magni aliquid
                             distinctio iure quidem numquam, rem beatae neque
                             tenetur ex nemo suscipit consectetur ut veniam! Hic.
-                        </h3>
+                        </p>
 
-                        <h3>
+                        <p>
                             Lorem ipsum dolor sit, amet consectetur adipisicing
                             elit. Aut architecto, eos vero ipsa magni aliquid
                             distinctio iure quidem numquam, rem beatae neque
                             tenetur ex nemo suscipit consectetur ut veniam! Hic.
-                        </h3>
+                        </p>
 
-                        <h3>
+                        <p>
                             Lorem ipsum dolor sit, amet consectetur adipisicing
                             elit. Aut architecto, eos vero ipsa magni aliquid
                             distinctio iure quidem numquam, rem beatae neque
                             tenetur ex nemo suscipit consectetur ut veniam! Hic.
-                        </h3>
+                        </p>
                     </Grid>
 
                     <Grid
