@@ -1,14 +1,13 @@
 import { Grid } from '@mui/material';
-import { Header } from './Header';
-import { GridTop } from './GridTop';
-import { Titulos } from './components/atoms/Title/Titulos';
-import { BotonMUI } from './components/atoms/Button/BotonMUI'
-import StickyHeadTable from './TableAlumno';
+import { Header } from '../../../Header';
+import { GridTop } from '../../../GridTop';
+import { Titulos } from '../../atoms/Title/Titulos';
+import { BotonMUI } from '../../atoms/Button/BotonMUI';
+import StickyHeadTable from '../../../TableAlumno';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
-const PagePerfil = () => {
+const PageDireccion = () => {
     return (
         <Grid container direction="column">
             <Grid item container xs={12}>
@@ -37,11 +36,22 @@ const PagePerfil = () => {
                 >
                     <Grid item>
                         <Titulos component="h2" tituloGrande>
-                            Perfil
+                        Solicitudes de equivalencias
                         </Titulos>
                     </Grid>
 
-                    
+                    <Grid item>
+                        <Link to="/form" style={{textDecoration: 'none'}}>
+                            <BotonMUI
+                                buttonContainedSmall
+                                sx={{
+                                    width: '100%'
+                                }}
+                            >
+                                Crear equivalencia
+                            </BotonMUI>
+                        </Link>
+                    </Grid>
                 </GridTop>
 
                 <GridTop
@@ -58,12 +68,10 @@ const PagePerfil = () => {
                     }}
                 >
                     <StickyHeadTable />
-                    
-
-                    </GridTop>
+                </GridTop>
             </Grid>
         </Grid>
     );
 };
 
-export { PagePerfil };
+export { PageDireccion };
