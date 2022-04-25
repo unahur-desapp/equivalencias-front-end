@@ -3,7 +3,8 @@ import { Header } from '../../../Header';
 import { GridTop } from '../../../GridTop';
 import { Titulos } from '../../atoms/Title/Titulos';
 import { BotonMUI } from '../../atoms/Button/BotonMUI';
-import StickyHeadTable from '../../../TableAlumno';
+// import StickyHeadTable from '../../../TableAlumno';
+import StickyHeadTable from '../Direccion/TablaDireccion';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -61,7 +62,7 @@ const PageDireccion = () => {
                     xs={11.5}
                     md={7}
                     marginTop={{
-                        xs: '30px'
+                        xs: '100px'
                     }}
                     sx={{
                         height: 'auto'
