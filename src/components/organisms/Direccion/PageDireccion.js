@@ -62,7 +62,21 @@ const PageDireccion = () => {
                     xs={11.5}
                     md={7}
                     marginTop={{
-                        xs: '100px'
+                        xs: '30px'
+                    }}
+                    sx={{
+                        height: '80px'
+                    }}
+                >
+                </GridTop>
+                <GridTop
+                    item
+                    container
+                    blanco
+                    xs={11.5}
+                    md={7}
+                    marginTop={{
+                        xs: '8px'
                     }}
                     sx={{
                         height: 'auto'
