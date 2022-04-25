@@ -1,6 +1,10 @@
 import { Grid } from '@mui/material';
 import React from 'react';
 import { StandardInput } from './components/atoms/Input/InputMUI';
+import { nanoid } from 'nanoid';
+
+let materiaAprobadaVar = nanoid();
+let universidadOrigenVar = nanoid();
 
 const MateriaUniOrigen = ({ formValue, handleChange }) => {
     return (
@@ -22,12 +26,13 @@ const MateriaUniOrigen = ({ formValue, handleChange }) => {
                 }}
             >
                 <StandardInput
+                    key={materiaAprobadaVar}
                     required
                     name="materiaAprobada"
                     size="small"
                     label="Materia aprobada"
                     variant="outlined"
-                    value={formValue.materiaAprobada}
+                    value={formValue.materiaAprobadaVar}
                     onChange={handleChange}
                 />
             </Grid>
@@ -42,12 +47,13 @@ const MateriaUniOrigen = ({ formValue, handleChange }) => {
                 }}
             >
                 <StandardInput
+                    key={universidadOrigenVar}
                     required
                     name="universidadOrigen"
                     size="small"
                     label="Universidad de Origen"
                     variant="outlined"
-                    value={formValue.universidadOrigen}
+                    value={formValue.universidadOrigenVar}
                     onChange={handleChange}
                 />
             </Grid>
