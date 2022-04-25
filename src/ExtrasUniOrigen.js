@@ -12,6 +12,11 @@ import { Titulos } from './components/atoms/Title/Titulos';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import { AgregarMateriaUniOrigen } from './AgregarMateriaUniOrigen';
 import { FormUniOrigen } from './FormUniOrigen';
+import { nanoid } from 'nanoid';
+
+let anioAprobacionVar = nanoid();
+let cargaHorariaTotalVar = nanoid();
+let notaAprobacionVar = nanoid();
 
 const ExtrasUniOrigen = ({ formValue, handleChange }) => {
     return (
@@ -37,26 +42,28 @@ const ExtrasUniOrigen = ({ formValue, handleChange }) => {
             >
                 <Grid item container xs={5.6}>
                     <StandardInput
+                        key={anioAprobacionVar}
                         required
                         name="anioAprobacion"
                         size="small"
                         label="Año aprobación"
                         variant="outlined"
                         type="number"
-                        value={formValue.anioAprobacion}
+                        value={formValue.anioAprobacionVar}
                         onChange={handleChange}
                     />
                 </Grid>
 
                 <Grid item container xs={5.6}>
                     <StandardInput
+                        key={cargaHorariaTotalVar}
                         required
                         name="cargaHorariaTotal"
                         size="small"
                         label="Carga horaria total"
                         variant="outlined"
                         type="number"
-                        value={formValue.cargaHorariaTotal}
+                        value={formValue.cargaHorariaTotalVar}
                         onChange={handleChange}
                     />
                 </Grid>
@@ -76,13 +83,14 @@ const ExtrasUniOrigen = ({ formValue, handleChange }) => {
             >
                 <Grid item container xs={5.6}>
                     <StandardInput
+                        key={notaAprobacionVar}
                         required
                         name="notaAprobacion"
                         size="small"
                         label="Nota aprobación"
                         variant="outlined"
                         type="number"
-                        value={formValue.notaAprobacion}
+                        value={formValue.notaAprobacionVar}
                         onChange={handleChange}
                     />
                 </Grid>

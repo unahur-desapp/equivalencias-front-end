@@ -16,18 +16,25 @@ import { OuterFormButtons } from './OuterFormButtons';
 import { config } from '../src/config/config';
 
 const CreateForm = () => {
+    const [idMateriaUno, setIdMateriaUno] = useState(nanoid());
+
     const [materias, setMaterias] = useState([
-        <FormUniOrigen key={nanoid()} />
+        <FormUniOrigen key={idMateriaUno} />
     ]);
 
     const [formValue, setformValue] = useState({
         materiaSolicitada: '',
         carreraUnahur: '',
-        materiaAprobada: '',
-        universidadOrigen: '',
-        anioAprobacion: '',
-        cargaHorariaTotal: '',
-        notaAprobacion: ''
+        materiasAprobadas: [
+            {
+                key: idMateriaUno,
+                materiaAprobada: '',
+                universidadOrigen: '',
+                anioAprobacion: '',
+                cargaHorariaTotal: '',
+                notaAprobacion: ''
+            }
+        ]
     });
 
     const notify = () => {
@@ -50,10 +57,25 @@ const CreateForm = () => {
     };
 
     const handleChange = (event) => {
-        setformValue({
+        setformValue((formValue) => ({
             ...formValue,
             [event.target.name]: event.target.value
-        });
+        }));
+        console.log(event.target.key);
+        console.log(event.target.value);
+        console.log(event.target.name);
+        console.log(formValue);
+    };
+
+    const handleChangeArray = (event, key) => {
+        setformValue((formValue) => ({
+            ...formValue,
+            [event.target.name]: event.target.value
+        }));
+        console.log(event.target.key);
+        console.log(event.target.value);
+        console.log(event.target.name);
+        console.log(formValue);
     };
 
     const handleSubmit = async () => {
@@ -210,12 +232,20 @@ const CreateForm = () => {
                             // }
 
                             handledelete={() => {
+                                console.log(formValue);
+
                                 if (materias.length > 1) {
-                                    const newMaterias = materias.filter(
-                                        (x) => x.key !== materia.key
+                                    // const newMaterias = materias.filter(
+                                    //     (x) => x.key !== materia.key
+                                    // );
+                                    // setMaterias([...newMaterias]);
+                                    // console.log(materias);
+
+                                    setMaterias((materias) =>
+                                        materias.filter(
+                                            (x) => x.key !== materia.key
+                                        )
                                     );
-                                    setMaterias([...newMaterias]);
-                                    console.log(materias);
                                 } else {
                                     notify();
                                 }
