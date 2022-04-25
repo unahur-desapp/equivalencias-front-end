@@ -6,3 +6,9 @@ export async function getEquivalencia(){
     return apiResponse.data
 
 }
+
+export async function postEquivalencia(){
+    const apiResponse = await axios.post(`${config.apiUrl}/equivalencias/general`);
+    return apiResponse.data
+
+}
