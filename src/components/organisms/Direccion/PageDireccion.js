@@ -41,18 +41,6 @@ const PageDireccion = () => {
                         </Titulos>
                     </Grid>
 
-                    <Grid item>
-                        <Link to="/form" style={{textDecoration: 'none'}}>
-                            <BotonMUI
-                                buttonContainedSmall
-                                sx={{
-                                    width: '100%'
-                                }}
-                            >
-                                Crear equivalencia
-                            </BotonMUI>
-                        </Link>
-                    </Grid>
                 </GridTop>
 
                 <GridTop
