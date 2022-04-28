@@ -3,8 +3,6 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 
-
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const materias = [
     { materia: 'Organizacion de computadoras', year: 1994 },
     { materia: 'Introduccion a la programacion', year: 1972 },
@@ -24,14 +22,14 @@ const materias = [
 
 export default function FreeSolo() {
   return (
-    <Stack spacing={2} sx={{ width: 400,  margintop: 10}}>
-      <Autocomplete
+    <Stack spacing={2} sx={{ width: 300 }} mt={{ xs: '10px'}} marginLeft={{xs: '57px'}} > 
+      {/* <Autocomplete
         id="free-solo-demo"
         freeSolo
         options={solicitantes.map((option) => option.solicitante)}
         renderInput={(params) => <TextField {...params} label="Buscar Solicitud" />}
-      />
-      {/* <Autocomplete
+      /> */}
+      <Autocomplete
         freeSolo
         id="free-solo-2-demo"
         disableClearable
@@ -39,14 +37,14 @@ export default function FreeSolo() {
         renderInput={(params) => (
           <TextField
             {...params}
-            label="Search input"
+            label="Buscar Solicitud"
             InputProps={{
               ...params.InputProps,
               type: 'search',
             }}
           />
         )}
-      /> */}
+      />
     </Stack>
   );
 }

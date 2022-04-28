@@ -63,22 +63,10 @@ const PageDireccion = () => {
                         height: '80px'
                     }}
                 >
-                    {/* ENTRE ESTE  */}
                     <Grid item>
-                    <FreeSolo />
-                        {/* <Link to="/form" style={{textDecoration: 'none'}}>
-                            <BotonMUI
-                                buttonContainedSmall
-                                sx={{
-                                    width: '100%'
-                                }}
-                            >
-                                Buscar 
-                            </BotonMUI>
-                        </Link> */}
-
+                        <FreeSolo />
                     </Grid>
-                    {/* Y ESTE, VA EL SEARCH */}
+                    
                 </GridTop>
                 <GridTop
                     item
