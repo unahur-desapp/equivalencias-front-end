@@ -14,11 +14,7 @@ import { AgregarMateriaUniOrigen } from './AgregarMateriaUniOrigen';
 import { FormUniOrigen } from './FormUniOrigen';
 import { nanoid } from 'nanoid';
 
-let anioAprobacionVar = nanoid();
-let cargaHorariaTotalVar = nanoid();
-let notaAprobacionVar = nanoid();
-
-const ExtrasUniOrigen = ({ formValue, handleChange }) => {
+const ExtrasUniOrigen = ({ formValue, handleChangeArray, formValueArray, key2 }) => {
     return (
         <Grid
             item
@@ -42,29 +38,29 @@ const ExtrasUniOrigen = ({ formValue, handleChange }) => {
             >
                 <Grid item container xs={5.6}>
                     <StandardInput
-                        key={anioAprobacionVar}
+                        key={formValueArray.key}
                         required
                         name="anioAprobacion"
                         size="small"
                         label="Año aprobación"
                         variant="outlined"
                         type="number"
-                        value={formValue.anioAprobacionVar}
-                        onChange={handleChange}
+                        value={formValueArray.anioAprobacionVar}
+                        onChange={(event) => handleChangeArray(event, key2)}
                     />
                 </Grid>
 
                 <Grid item container xs={5.6}>
                     <StandardInput
-                        key={cargaHorariaTotalVar}
+                        key={formValueArray.key}
                         required
                         name="cargaHorariaTotal"
                         size="small"
                         label="Carga horaria total"
                         variant="outlined"
                         type="number"
-                        value={formValue.cargaHorariaTotalVar}
-                        onChange={handleChange}
+                        value={formValueArray.cargaHorariaTotalVar}
+                        onChange={(event) => handleChangeArray(event, key2)}
                     />
                 </Grid>
             </Grid>
@@ -83,15 +79,15 @@ const ExtrasUniOrigen = ({ formValue, handleChange }) => {
             >
                 <Grid item container xs={5.6}>
                     <StandardInput
-                        key={notaAprobacionVar}
+                        key={formValueArray.key}
                         required
                         name="notaAprobacion"
                         size="small"
                         label="Nota aprobación"
                         variant="outlined"
                         type="number"
-                        value={formValue.notaAprobacionVar}
-                        onChange={handleChange}
+                        value={formValueArray.notaAprobacionVar}
+                        onChange={(event) => handleChangeArray(event, key2)}
                     />
                 </Grid>
 
