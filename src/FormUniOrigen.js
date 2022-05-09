@@ -6,10 +6,16 @@ import IconButton from '@mui/material/IconButton';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { Titulos } from './components/atoms/Title/Titulos';
 
-const FormUniOrigen = ({ handledelete, formValue, handleChangeArray, handleChange, formValueArray, key2 }) => {
-    console.log(key2)
+const FormUniOrigen = ({
+    handledelete,
+    formValue,
+    handleChangeArray,
+    handleChange,
+    formValueArray,
+    key2
+}) => {
+    console.log(key2);
     return (
-
         <Grid
             item
             container
@@ -38,7 +44,7 @@ const FormUniOrigen = ({ handledelete, formValue, handleChangeArray, handleChang
                         marginTop: '6px'
                     }}
                 >
-                    <Titulos tituloLabel component="h2">
+                    <Titulos titulolabel component="h2">
                         Datos Universidad Origen
                     </Titulos>
                 </Grid>
@@ -65,14 +71,12 @@ const FormUniOrigen = ({ handledelete, formValue, handleChangeArray, handleChang
             </Grid>
 
             <DatosMateriaUniOrigen
-                
                 handleChangeArray={handleChangeArray}
                 formValueArray={formValueArray}
                 key2={key2}
             />
 
             <ExtrasUniOrigen
-                
                 handleChangeArray={handleChangeArray}
                 formValueArray={formValueArray}
                 key2={key2}

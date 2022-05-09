@@ -6,7 +6,7 @@ const UsuarioMisFormularios = () => {
     return (
         <>
             <Grid>
-                <BotonMUI buttonHeaderForm></BotonMUI>
+                <BotonMUI buttonheaderform></BotonMUI>
             </Grid>
         </>
     );

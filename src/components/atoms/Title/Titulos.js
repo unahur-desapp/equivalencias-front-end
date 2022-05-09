@@ -27,37 +27,37 @@ const Titulos = styled(Typography)`
         `}
 
 	${(props) =>
-        props.tituloGrande &&
+        props.titulogrande &&
         css`
             font-size: 2.3em;
         `}
 
     ${(props) =>
-        props.tituloBold &&
+        props.titulobold &&
         css`
             font-weight: bold;
         `}
 
     ${(props) =>
-        props.tituloChico &&
+        props.titulochico &&
         css`
             font-size: 1.875em;
         `}
 
     ${(props) =>
-        props.tituloLight &&
+        props.titulolight &&
         css`
             font-weight: lighter;
         `}
 
     ${(props) =>
-        props.tituloMarginBotton &&
+        props.titulomarginbottom &&
         css`
             margin-bottom: 30px;
         `}
 
     ${(props) =>
-        props.tituloLabel &&
+        props.titulolabel &&
         css`
             font-size: 1.3em;
         `}

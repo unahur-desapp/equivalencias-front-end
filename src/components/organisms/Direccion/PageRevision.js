@@ -63,7 +63,7 @@ const PageRevision = () => {
                     alignItems="center"
                 >
                     <Grid item>
-                        <Titulos component="h2" tituloGrande>
+                        <Titulos component="h2" titulogrande>
                             Revisión
                         </Titulos>
                     </Grid>
@@ -293,7 +293,7 @@ const PageRevision = () => {
                                 sm={3}
                             >
                                 <BotonMUI
-                                    buttonContainedSmall
+                                    buttoncontainedsmall
                                     sx={{
                                         background: '#348FDC',
                                         '&:hover': {
@@ -306,7 +306,7 @@ const PageRevision = () => {
                                 </BotonMUI>
 
                                 <BotonMUI
-                                    buttonContainedSmall
+                                    buttoncontainedsmall
                                     sx={{
                                         background: '#009673',
                                         '&:hover': {
@@ -319,7 +319,7 @@ const PageRevision = () => {
                                 </BotonMUI>
 
                                 <BotonMUI
-                                    buttonContainedSmall
+                                    buttoncontainedsmall
                                     sx={{
                                         background: '#E74924',
                                         '&:hover': {

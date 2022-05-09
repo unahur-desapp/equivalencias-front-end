@@ -14,7 +14,12 @@ import { AgregarMateriaUniOrigen } from './AgregarMateriaUniOrigen';
 import { FormUniOrigen } from './FormUniOrigen';
 import { nanoid } from 'nanoid';
 
-const ExtrasUniOrigen = ({ formValue, handleChangeArray, formValueArray, key2 }) => {
+const ExtrasUniOrigen = ({
+    formValue,
+    handleChangeArray,
+    formValueArray,
+    key2
+}) => {
     return (
         <Grid
             item
@@ -134,7 +139,7 @@ const ExtrasUniOrigen = ({ formValue, handleChangeArray, formValueArray, key2 })
             >
                 <Grid item container xs={12}>
                     <Titulos
-                        tituloLabel
+                        titulolabel
                         variant="h3"
                         fontSize={{
                             xs: '14px',
@@ -154,7 +159,7 @@ const ExtrasUniOrigen = ({ formValue, handleChangeArray, formValueArray, key2 })
                             sx={{
                                 marginRight: '12px'
                             }}
-                            buttonUpload
+                            buttonupload
                             variant="outlined"
                             component="span"
                         >

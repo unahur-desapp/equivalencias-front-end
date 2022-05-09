@@ -23,11 +23,11 @@ const Register = () => {
 
     return (
         <SideRegistro>
-            <Titulos centrar blanco tituloGrande tituloBold component="h1">
+            <Titulos centrar blanco titulogrande titulobold component="h1">
                 Trámites de Equivalencias
             </Titulos>
 
-            <BotonMUI buttonOutlined variant="outlined" onClick={onClick}>
+            <BotonMUI buttonoutlined variant="outlined" onClick={onClick}>
                 Registrarse
             </BotonMUI>
         </SideRegistro>
