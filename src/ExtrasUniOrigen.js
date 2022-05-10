@@ -50,7 +50,7 @@ const ExtrasUniOrigen = ({
                         label="Año aprobación"
                         variant="outlined"
                         type="number"
-                        value={formValueArray.anioAprobacionVar}
+                        value={formValueArray.anioAprobacion}
                         onChange={(event) => handleChangeArray(event, key2)}
                     />
                 </Grid>
@@ -64,7 +64,7 @@ const ExtrasUniOrigen = ({
                         label="Carga horaria total"
                         variant="outlined"
                         type="number"
-                        value={formValueArray.cargaHorariaTotalVar}
+                        value={formValueArray.cargaHorariaTotal}
                         onChange={(event) => handleChangeArray(event, key2)}
                     />
                 </Grid>
@@ -91,7 +91,7 @@ const ExtrasUniOrigen = ({
                         label="Nota aprobación"
                         variant="outlined"
                         type="number"
-                        value={formValueArray.notaAprobacionVar}
+                        value={formValueArray.notaAprobacion}
                         onChange={(event) => handleChangeArray(event, key2)}
                     />
                 </Grid>

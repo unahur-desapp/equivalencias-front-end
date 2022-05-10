@@ -11,7 +11,6 @@ import { ActionButtons } from './ActionButtons';
 import { getEquivalencia } from './services/equivalencia_service';
 import { useState, useEffect } from 'react';
 
-
 const columns = [
     { id: 'desc', label: 'Descripción', minWidth: 170 },
     { id: 'dateTime', label: 'Fecha y hora', minWidth: 100 },
@@ -24,8 +23,13 @@ function createData(desc, dateTime, state) {
     return { desc, dateTime, state, actions };
 }
 
-
-
+const horaConCero = (hora) => {
+    if (hora < 10) {
+        return `0${hora}`;
+    } else {
+        return hora;
+    }
+};
 
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
@@ -41,31 +45,39 @@ export default function StickyHeadTable() {
         setPage(0);
     };
 
-
-    useEffect( () => {
+    useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia();
             let arrayData = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
-                let d = new Date(arrayItem.Materias_solicitada[0].createdAt);
-                let dateTime = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+                let d = new Date(arrayItem.Materias_solicitadas[0].createdAt);
+                let dateTime =
+                    d.getDate() +
+                    '/' +
+                    d.getMonth() +
+                    '/' +
+                    d.getFullYear() +
+                    ' ' +
+                    d.getHours() +
+                    ':' +
+                    horaConCero(d.getMinutes());
 
-                arrayData.push(createData(
-                    arrayItem.Materias_solicitada[0].nombre,
-                    dateTime,
-                    arrayItem.Estado[0].status
-                ))
+                arrayData.push(
+                    createData(
+                        arrayItem.Materias_solicitadas[0].nombre,
+                        dateTime
+                        // arrayItem.Estado[0].en_proceso
+                    )
+                );
             });
 
             setRows(arrayData);
             console.log(obtainedEquivalenciaData);
-        }
-        
-        fetchEquivalenciaData();
-        
-    }, []);
+        };
 
+        fetchEquivalenciaData();
+    }, []);
 
     return (
         <Paper

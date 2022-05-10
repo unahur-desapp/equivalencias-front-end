@@ -24,11 +24,11 @@ const CreateForm = () => {
         useState([
             {
                 key: nanoid(),
-                materiaAprobada: '',
-                universidadOrigen: '',
+                notaAprobacion: null,
+                cargaHorariaTotal: null,
                 anioAprobacion: '',
-                cargaHorariaTotal: '',
-                notaAprobacion: ''
+                materiaAprobada: '',
+                universidadOrigen: '' // id de universidad
             }
         ]);
     //Push de esto?
@@ -69,11 +69,11 @@ const CreateForm = () => {
             ...materias,
             {
                 key: nanoid(),
-                materiaAprobada: '',
-                universidadOrigen: '', // id de universidad
+                notaAprobacion: null,
+                cargaHorariaTotal: null,
                 anioAprobacion: '',
-                cargaHorariaTotal: '',
-                notaAprobacion: ''
+                materiaAprobada: '',
+                universidadOrigen: '' // id de universidad
             }
         ]);
 
@@ -155,21 +155,25 @@ const CreateForm = () => {
 
     const handleSubmit = async () => {
         const equivalencia = {
-            materiaSolicitada: formValue.materiaSolicitada,
-            carreraUnahur: formValue.carreraUnahur,
-            materiasAprobadas: materias
-        };
-
-        const ms = {
             nombre: formValue.materiaSolicitada,
-            carrera: formValue.carreraUnahur
+            carrera: formValue.carreraUnahur,
+            array: materias.map((item) => {
+                return {
+                    ...item,
+                    nota: item.notaAprobacion,
+                    carga_horaria: item.cargaHorariaTotal,
+                    año_aprobacion: item.anioAprobacion,
+                    nombre_materia: item.materiaAprobada
+                    // UniversidadOrigenId: item.universidadOrigen
+                };
+            })
         };
 
         console.log(equivalencia);
 
         const res = await axios.post(
-            'http://localhost:3001/api/materias_solicitadas',
-            ms
+            'http://localhost:3001/api/equivalencias/createx3',
+            equivalencia
         );
 
         res.data.data; // '{"name":"deven"}'
@@ -402,14 +406,6 @@ const CreateForm = () => {
     );
 };
 
-const top100Films = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-    { label: 'The Dark Knight', year: 2008 },
-    { label: '12 Angry Men', year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: 'Pulp Fiction', year: 1994 }
-];
+const top100Films = [{ label: 'Informática' }];
 
 export { CreateForm };
