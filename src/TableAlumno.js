@@ -58,7 +58,7 @@ export default function StickyHeadTable() {
                     d.getMonth() +
                     '/' +
                     d.getFullYear() +
-                    ' ' +
+                    ' - ' +
                     d.getHours() +
                     ':' +
                     horaConCero(d.getMinutes());
