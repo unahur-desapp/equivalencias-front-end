@@ -7,13 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { ActionButtons } from '../../../ActionButtons'
+import { ActionButtons } from '../../../ActionButtons';
 import { getEquivalencia } from '../../../services/equivalencia_service';
 import { useState, useEffect } from 'react';
 // import TextField from '@mui/material/TextField';
 // import Stack from '@mui/material/Stack';
 // import Autocomplete from '@mui/material/Autocomplete';
-
 
 export const columns = [
     { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
@@ -26,7 +25,6 @@ function createData(solicitante, dni, dateTime) {
     const actions = <ActionButtons />;
     return { solicitante, dni, dateTime, actions };
 }
-
 
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
@@ -42,32 +40,32 @@ export default function StickyHeadTable() {
         setPage(0);
     };
 
-
-    useEffect( () => {
+    useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia();
             let arrayData = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
                 let d = new Date(arrayItem.Materias_solicitada[0].createdAt);
-                let dateTime = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+                let dateTime =
+                    d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
 
-                arrayData.push(createData(
-                    arrayItem.Materias_solicitada[0].nombre,/*DUDAAAAS */
-                    // arrayItem.Materias_solicitada[0].dni,
-                    dateTime,
-                    arrayItem.Estado[0].status
-                ))
+                arrayData.push(
+                    createData(
+                        arrayItem.Materias_solicitada[0].nombre /*DUDAAAAS */,
+                        // arrayItem.Materias_solicitada[0].dni,
+                        dateTime
+                        // arrayItem.Estado[0].status
+                    )
+                );
             });
 
             setRows(arrayData);
             console.log(obtainedEquivalenciaData);
-        }
-        
-        fetchEquivalenciaData();
-        
-    }, []);
+        };
 
+        fetchEquivalenciaData();
+    }, []);
 
     return (
         <Paper
@@ -146,4 +144,3 @@ export default function StickyHeadTable() {
         </Paper>
     );
 }
-

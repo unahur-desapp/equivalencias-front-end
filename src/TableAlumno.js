@@ -11,7 +11,6 @@ import { ActionButtons } from './ActionButtons';
 import { getEquivalencia } from './services/equivalencia_service';
 import { useState, useEffect } from 'react';
 
-
 const columns = [
     { id: 'desc', label: 'Descripción', minWidth: 170 },
     { id: 'dateTime', label: 'Fecha y hora', minWidth: 100 },
@@ -23,9 +22,6 @@ function createData(desc, dateTime, state) {
     const actions = <ActionButtons />;
     return { desc, dateTime, state, actions };
 }
-
-
-
 
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
@@ -41,31 +37,31 @@ export default function StickyHeadTable() {
         setPage(0);
     };
 
-
-    useEffect( () => {
+    useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia();
             let arrayData = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
                 let d = new Date(arrayItem.Materias_solicitada[0].createdAt);
-                let dateTime = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+                let dateTime =
+                    d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
 
-                arrayData.push(createData(
-                    arrayItem.Materias_solicitada[0].nombre,
-                    dateTime,
-                    arrayItem.Estado[0].status
-                ))
+                arrayData.push(
+                    createData(
+                        arrayItem.Materias_solicitada[0].nombre,
+                        dateTime
+                        // arrayItem.Estado[0].status
+                    )
+                );
             });
 
             setRows(arrayData);
             console.log(obtainedEquivalenciaData);
-        }
-        
-        fetchEquivalenciaData();
-        
-    }, []);
+        };
 
+        fetchEquivalenciaData();
+    }, []);
 
     return (
         <Paper
