@@ -112,15 +112,17 @@ const ExtrasUniOrigen = ({
                             required
                             row
                             aria-label="bool"
-                            name="row-radio-buttons-group"
+                            name="certificado"
+                            onChange={(event) => handleChangeArray(event, key2)}
+                            value={formValueArray.certificado}
                         >
                             <FormControlLabel
-                                value="yes"
+                                value={true}
                                 control={<Radio size="small" />}
                                 label="Si"
                             />
                             <FormControlLabel
-                                value="no"
+                                value={false}
                                 control={<Radio size="small" />}
                                 label="No"
                             />

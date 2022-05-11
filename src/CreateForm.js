@@ -28,7 +28,8 @@ const CreateForm = () => {
                 cargaHorariaTotal: null,
                 anioAprobacion: '',
                 materiaAprobada: '',
-                universidadOrigen: '' // id de universidad
+                universidadOrigen: '', // id de universidad
+                certificado: null
             }
         ]);
     //Push de esto?
@@ -73,7 +74,8 @@ const CreateForm = () => {
                 cargaHorariaTotal: null,
                 anioAprobacion: '',
                 materiaAprobada: '',
-                universidadOrigen: '' // id de universidad
+                universidadOrigen: '', // id de universidad
+                certificado: null
             }
         ]);
 
@@ -157,14 +159,16 @@ const CreateForm = () => {
         const equivalencia = {
             nombre: formValue.materiaSolicitada,
             carrera: formValue.carreraUnahur,
+            instituto: 'Instituto de Tecnología e Ingeniería',
             array: materias.map((item) => {
                 return {
                     ...item,
                     nota: item.notaAprobacion,
                     carga_horaria: item.cargaHorariaTotal,
                     año_aprobacion: item.anioAprobacion,
-                    nombre_materia: item.materiaAprobada
+                    nombre_materia: item.materiaAprobada,
                     // UniversidadOrigenId: item.universidadOrigen
+                    certificado: item.certificado
                 };
             })
         };
@@ -307,7 +311,7 @@ const CreateForm = () => {
                                 variant="outlined"
                                 onSelect={handleChange}
                                 disablePortal
-                                options={top100Films}
+                                options={carreras}
                                 renderInput={(params) => (
                                     <TextField
                                         required
@@ -406,6 +410,8 @@ const CreateForm = () => {
     );
 };
 
-const top100Films = [{ label: 'Informática' }];
+const carreras = [
+    { label: 'Informática', instituto: 'Instituto de Tecnología e Ingeniería' }
+];
 
 export { CreateForm };
