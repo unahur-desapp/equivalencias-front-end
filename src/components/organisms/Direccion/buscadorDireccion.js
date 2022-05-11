@@ -9,18 +9,13 @@ import {columns} from '../Direccion/TablaDireccion';
 //     { materia: 'Organizacion de computadoras', year: 1994 },
 //     { materia: 'Introduccion a la programacion', year: 1972 },
 //     { materia: 'Ingenieria de software', year: 1974 },
-//     { materia: 'Objetos1', year: 2008 },
-//     { materia: 'Ingles2', year: 1957 },
-//     { materia: "Mate1", year: 1993 },
-//     { materia: 'Ingles1', year: 1994 },
-    
 //   ];
-  const solicitantes = [
-    { solicitante: 'Sebastian Montes de Oca', year: 24 },
-    { solicitante: 'Lautaro', year: 24 },
-    { solicitante: 'Facundo Ferrara', year: 23 },
-      { solicitante: 'Emanuel', year: 30 },
-    ];
+  // const solicitantes = [
+  //   { solicitante: 'Sebastian Montes de Oca', year: 24 },
+  //   { solicitante: 'Lautaro', year: 24 },
+  //   { solicitante: 'Facundo Ferrara', year: 23 },
+  //     { solicitante: 'Emanuel', year: 30 },
+  //   ];
 
 export default function FreeSolo() {
   return (
@@ -39,7 +34,7 @@ export default function FreeSolo() {
         freeSolo
         id="free-solo-2-demo"
         disableClearable
-        options={columns.map((option) => option.columns)}
+        options={columns.map((option) => option.id)}
         renderInput={(params) => (
           <TextField
             {...params}

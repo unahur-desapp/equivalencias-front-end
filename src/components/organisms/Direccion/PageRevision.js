@@ -302,10 +302,10 @@ const PageRevision = () => {
                                         marginBottom: '10px'
                                     }}
                                 >
-                                    Aceptar
+                                    Responder
                                 </BotonMUI>
 
-                                <BotonMUI
+                                {/* <BotonMUI
                                     buttonContainedSmall
                                     sx={{
                                         background: '#009673',
@@ -315,10 +315,10 @@ const PageRevision = () => {
                                         marginBottom: '10px'
                                     }}
                                 >
-                                    Revisar
-                                </BotonMUI>
+                                    Solicitar +
+                                </BotonMUI> */}
 
-                                <BotonMUI
+                                {/* <BotonMUI
                                     buttonContainedSmall
                                     sx={{
                                         background: '#E74924',
@@ -328,7 +328,7 @@ const PageRevision = () => {
                                     }}
                                 >
                                     Rechazar
-                                </BotonMUI>
+                                </BotonMUI> */}
                             </Grid>
                         </Grid>
                     </Grid>

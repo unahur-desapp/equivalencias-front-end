@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material';
-import { Header } from './Header';
-import { GridTop } from './GridTop';
-import { Titulos } from './components/atoms/Title/Titulos';
-import { BotonMUI } from './components/atoms/Button/BotonMUI'
-import StickyHeadTable from './TableAlumno';
+import { Header } from '../../../Header';
+import { GridTop } from '../../../GridTop';
+import { Titulos } from '../../atoms/Title/Titulos';
+import { BotonMUI } from '../../atoms/Button/BotonMUI'
+import StickyHeadTable from '../../../TableAlumno';
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 const PagePerfil = () => {

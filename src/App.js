@@ -2,7 +2,7 @@ import PageIniciarSesion from './components/organisms/IniciarSesion/PageIniciarS
 import { PageCreateForm } from './PageCreateForm';
 import { PageRevision } from './components/organisms/Direccion/PageRevision';
 import { PageMyForm } from './PageMyForm';
-import { PagePerfil } from './PagePerfil';
+import { PagePerfil } from './components/organisms/Alumno/PagePerfil';
 import {PageDireccion} from './components/organisms/Direccion/PageDireccion';
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
