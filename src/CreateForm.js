@@ -14,6 +14,12 @@ import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { OuterFormButtons } from './OuterFormButtons';
 import { config } from '../src/config/config';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
 const CreateForm = () => {
     const [idMateriaUno, setIdMateriaUno] = useState(nanoid());
@@ -220,6 +226,16 @@ const CreateForm = () => {
         // }
     };
 
+    const [materiaEliminar, setMateriaEliminar] = React.useState(null);
+
+    const handleClickOpen = (materia) => {
+        setMateriaEliminar(materia);
+    };
+
+    const handleClose = () => {
+        setMateriaEliminar(null);
+    };
+
     return (
         <GridTop
             item
@@ -356,12 +372,7 @@ const CreateForm = () => {
                                         // );
                                         // setMaterias([...newMaterias]);
                                         // console.log(materias);
-
-                                        setMaterias((materias) =>
-                                            materias.filter(
-                                                (x) => x.key !== materia.key
-                                            )
-                                        );
+                                        handleClickOpen(materia);
                                     } else {
                                         notify();
                                     }
@@ -369,6 +380,7 @@ const CreateForm = () => {
                                 handleChangeArray={handleChangeArray}
                                 formValueArray={materia}
                             />
+
                             <ToastContainer
                                 position="bottom-left"
                                 autoClose={5000}
@@ -380,6 +392,42 @@ const CreateForm = () => {
                                 draggable
                                 pauseOnHover
                             />
+
+                            <Dialog
+                                open={materiaEliminar !== null}
+                                onClose={handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">
+                                    {'Eliminar materia del formulario'}
+                                </DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">
+                                        ¿Estás seguro/a de que querés eliminar
+                                        esta materia?
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleClose}>
+                                        Cancelar
+                                    </Button>
+                                    <Button
+                                        onClick={() => {
+                                            setMaterias((materias) =>
+                                                materias.filter(
+                                                    (x) =>
+                                                        x.key !==
+                                                        materiaEliminar.key
+                                                )
+                                            );
+                                            handleClose();
+                                        }}
+                                    >
+                                        Eliminar
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
                         </>
                     );
                 })}

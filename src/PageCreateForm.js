@@ -35,7 +35,7 @@ const PageCreateForm = () => {
                 >
                     <Grid item>
                         <Titulos component="h2" titulogrande>
-                            Formulario
+                            Formulario de Equivalencia
                         </Titulos>
                     </Grid>
                 </GridTop>

@@ -5,14 +5,20 @@ import React from 'react';
 
 const ActionButtons = () => {
     return (
-        <Grid>
+        <Grid
+            container
+            item
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+        >
             <IconButton aria-label="see" sx={{ color: '#348FDC' }}>
                 <VisibilityIcon />
             </IconButton>
 
-            <IconButton aria-label="delete" sx={{ color: '#E74924' }}>
+            {/* <IconButton aria-label="delete" sx={{ color: '#E74924' }}>
                 <DeleteIcon />
-            </IconButton>
+            </IconButton> */}
         </Grid>
     );
 };

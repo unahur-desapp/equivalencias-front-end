@@ -48,7 +48,7 @@ const PageMyForm = () => {
                                     width: '100%'
                                 }}
                             >
-                                Crear equivalencia
+                                Solicitar equivalencia
                             </BotonMUI>
                         </Link>
                     </Grid>

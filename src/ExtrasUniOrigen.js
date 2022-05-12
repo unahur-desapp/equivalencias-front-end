@@ -13,6 +13,8 @@ import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import { AgregarMateriaUniOrigen } from './AgregarMateriaUniOrigen';
 import { FormUniOrigen } from './FormUniOrigen';
 import { nanoid } from 'nanoid';
+import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
+import IconButton from '@mui/material/IconButton';
 
 const ExtrasUniOrigen = ({
     formValue,
@@ -165,8 +167,18 @@ const ExtrasUniOrigen = ({
                             variant="outlined"
                             component="span"
                         >
-                            Seleccionar
+                            Cargar
                         </BotonMUI>
+                        {/* <IconButton
+                            sx={{
+                                marginRight: '12px'
+                            }}
+                            buttonupload
+                            variant="outlined"
+                            component="span"
+                        >
+                            <AttachFileOutlinedIcon />
+                        </IconButton> */}
                         <FileUploader
                             id="contained-button-file"
                             multiple

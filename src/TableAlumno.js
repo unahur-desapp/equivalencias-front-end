@@ -15,7 +15,7 @@ const columns = [
     { id: 'desc', label: 'Descripción', minWidth: 170 },
     { id: 'dateTime', label: 'Fecha y hora', minWidth: 100 },
     { id: 'state', label: 'Estado', minWidth: 170 },
-    { id: 'actions', label: 'Acciones', minWidth: 170 }
+    { id: 'actions', label: 'Visualizar', minWidth: 170 }
 ];
 
 function createData(desc, dateTime, state) {
@@ -95,7 +95,12 @@ export default function StickyHeadTable() {
                             {columns.map((column) => (
                                 <TableCell
                                     key={column.id}
-                                    align={column.align}
+                                    // align={column.align}
+                                    align={
+                                        column.label === 'Visualizar'
+                                            ? 'center'
+                                            : 'left'
+                                    }
                                     style={{ minWidth: column.minWidth }}
                                     sx={{
                                         backgroundColor: '#FBFBFB',
