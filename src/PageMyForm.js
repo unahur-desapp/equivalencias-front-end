@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import { Header } from './Header';
 import { GridTop } from './GridTop';
 import { Titulos } from './components/atoms/Title/Titulos';
-import { BotonMUI } from './components/atoms/Button/BotonMUI'
+import { BotonMUI } from './components/atoms/Button/BotonMUI';
 import StickyHeadTable from './TableAlumno';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -35,15 +35,15 @@ const PageMyForm = () => {
                     alignItems="center"
                 >
                     <Grid item>
-                        <Titulos component="h2" tituloGrande>
+                        <Titulos component="h2" titulogrande>
                             Equivalencias
                         </Titulos>
                     </Grid>
 
                     <Grid item>
-                        <Link to="/form" style={{textDecoration: 'none'}}>
+                        <Link to="/form" style={{ textDecoration: 'none' }}>
                             <BotonMUI
-                                buttonContainedSmall
+                                buttoncontainedsmall
                                 sx={{
                                     width: '100%'
                                 }}

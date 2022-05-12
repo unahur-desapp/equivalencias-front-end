@@ -45,7 +45,7 @@ const OuterFormButtons = ({ handleSubmit }) => {
                         style={{ textDecoration: 'none', width: '100%' }}
                     >
                         <BotonMUI
-                            buttonContainedCancel
+                            buttoncontainedcancel
                             sx={{
                                 width: '100%'
                             }}
@@ -72,7 +72,7 @@ const OuterFormButtons = ({ handleSubmit }) => {
                         </BotonMUI>
                     </Link> */}
                     <BotonMUI
-                        buttonContainedSmall
+                        buttoncontainedsmall
                         type="submit"
                         sx={{
                             marginLeft: '12px',

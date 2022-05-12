@@ -27,7 +27,7 @@ const TituloUniOrigen = () => {
                     marginTop: '6px'
                 }}
             >
-                <Titulos tituloLabel component="h2">
+                <Titulos titulolabel component="h2">
                     Datos Universidad Origen
                 </Titulos>
             </Grid>

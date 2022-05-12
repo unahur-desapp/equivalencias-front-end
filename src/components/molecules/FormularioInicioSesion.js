@@ -11,17 +11,16 @@ import { Grid, styled } from '@mui/material';
 import { Formulario } from '../atoms/Formulario/Formulario';
 import { Link } from 'react-router-dom';
 
-
 const FormularioInicioSesion = () => {
     const onSubmit = (e) => {};
 
     return (
         <FormularioMain>
             <TituloBienvenida>
-                <Titulos tituloGrande tituloMarginBotton component="h2">
+                <Titulos titulogrande titulomarginbottom component="h2">
                     ¡Bienvenido/a!
                 </Titulos>
-                <Titulos tituloChico tituloLight component="h2">
+                <Titulos titulochico titulolight component="h2">
                     Iniciar sesión
                 </Titulos>
             </TituloBienvenida>
@@ -62,10 +61,10 @@ const FormularioInicioSesion = () => {
                     <LineaSeparacion></LineaSeparacion>
 
                     <Grid>
-                        <Link to="/home" style={{textDecoration: 'none'}}>
+                        <Link to="/home" style={{ textDecoration: 'none' }}>
                             <BotonMUI
                                 variant="contained"
-                                buttonContained
+                                buttoncontained
                                 disableElevation
                             >
                                 Ingresar

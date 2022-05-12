@@ -23,6 +23,14 @@ function createData(desc, dateTime, state) {
     return { desc, dateTime, state, actions };
 }
 
+const horaConCero = (hora) => {
+    if (hora < 10) {
+        return `0${hora}`;
+    } else {
+        return hora;
+    }
+};
+
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -43,15 +51,23 @@ export default function StickyHeadTable() {
             let arrayData = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
-                let d = new Date(arrayItem.Materias_solicitada[0].createdAt);
+                let d = new Date(arrayItem.Materias_solicitadas[0].createdAt);
                 let dateTime =
-                    d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+                    d.getDate() +
+                    '/' +
+                    d.getMonth() +
+                    '/' +
+                    d.getFullYear() +
+                    ' - ' +
+                    d.getHours() +
+                    ':' +
+                    horaConCero(d.getMinutes());
 
                 arrayData.push(
                     createData(
-                        arrayItem.Materias_solicitada[0].nombre,
+                        arrayItem.Materias_solicitadas[0].nombre,
                         dateTime
-                        // arrayItem.Estado[0].status
+                        // arrayItem.Estado[0].en_proceso
                     )
                 );
             });

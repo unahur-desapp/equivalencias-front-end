@@ -13,7 +13,7 @@ const BotonMUI = styled(Button)`
     }
 
     ${(props) =>
-        props.buttonContained &&
+        props.buttoncontained &&
         css`
             width: 170px;
             height: 45px;
@@ -25,7 +25,7 @@ const BotonMUI = styled(Button)`
         `}
 
     ${(props) =>
-        props.buttonOutlined &&
+        props.buttonoutlined &&
         css`
             width: 170px;
             height: 45px;
@@ -39,7 +39,7 @@ const BotonMUI = styled(Button)`
         `}
 
     ${(props) =>
-        props.buttonContainedHeader &&
+        props.buttoncontainedheader &&
         css`
             width: 170px;
             height: 45px;
@@ -51,7 +51,7 @@ const BotonMUI = styled(Button)`
         `}
 
     ${(props) =>
-        props.buttonLogOut &&
+        props.buttonlogout &&
         css`
             background-color: rgba(239, 83, 80, 0.9);
 
@@ -61,7 +61,7 @@ const BotonMUI = styled(Button)`
         `}
 
     ${(props) =>
-        props.buttonUpload &&
+        props.buttonupload &&
         css`
             background-color: #f37d63;
             width: 110px;
@@ -73,7 +73,7 @@ const BotonMUI = styled(Button)`
         `}
 
         ${(props) =>
-        props.buttonContainedAddMateria &&
+        props.buttoncontainedaddmateria &&
         css`
             width: 150px;
             height: 40px;
@@ -85,7 +85,7 @@ const BotonMUI = styled(Button)`
         `}
 
         ${(props) =>
-        props.buttonContainedAddEq &&
+        props.buttoncontainedaddeq &&
         css`
             width: 180px;
             height: 40px;
@@ -99,7 +99,7 @@ const BotonMUI = styled(Button)`
         `}
 
         ${(props) =>
-        props.buttonContainedCancel &&
+        props.buttoncontainedcancel &&
         css`
             width: 110px;
             height: 40px;
@@ -111,7 +111,7 @@ const BotonMUI = styled(Button)`
         `}
 
         ${(props) =>
-        props.buttonContainedSmall &&
+        props.buttoncontainedsmall &&
         css`
             width: 110px;
             height: 40px;
