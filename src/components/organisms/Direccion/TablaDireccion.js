@@ -7,9 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { ActionButtons } from '../../../ActionButtons';
+// import { ActionButtons } from '../../../ActionButtons';
 import { getEquivalencia } from '../../../services/equivalencia_service';
 import { useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
+import SearchBar from 'material-ui-search-bar';
 // import TextField from '@mui/material/TextField';
 // import Stack from '@mui/material/Stack';
 // import Autocomplete from '@mui/material/Autocomplete';
@@ -21,9 +23,9 @@ export const columns = [
     { id: 'actions', label: 'Acciones', minWidth: 170 }
 ];
 
-function createData(solicitante, dni, dateTime) {
-    const actions = <ActionButtons />;
-    return { solicitante, dni, dateTime, actions };
+function createData(solicitante, dateTime, dni) {
+    const actions = <Button>Revisar</Button>; //acciones lleva a pantalla revision de ese id
+    return { solicitante, dateTime, dni, actions };
 }
 
 export default function StickyHeadTable() {
@@ -46,13 +48,13 @@ export default function StickyHeadTable() {
             let arrayData = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
-                let d = new Date(arrayItem.Materias_solicitada[0].createdAt);
+                let d = new Date(arrayItem.Materias_solicitadas[0].createdAt); //tengo que traer solicitantes
                 let dateTime =
                     d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
 
                 arrayData.push(
                     createData(
-                        arrayItem.Materias_solicitada[0].nombre /*DUDAAAAS */,
+                        arrayItem.Materias_solicitadas[0].nombre,
                         // arrayItem.Materias_solicitada[0].dni,
                         dateTime
                         // arrayItem.Estado[0].status
@@ -76,6 +78,11 @@ export default function StickyHeadTable() {
                 boxShadow: 'none'
             }}
         >
+            {/* <SearchBar
+                value={searched}
+                onChange={(searchVal) => requestSearch(searchVal)}
+                onCancelSearch={() => cancelSearch()}
+            /> */}
             <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
