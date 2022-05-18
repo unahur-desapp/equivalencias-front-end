@@ -1,5 +1,5 @@
 import { Grid, TextareaAutosize } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
 import { GridTop } from '../../../GridTop';
@@ -17,6 +17,8 @@ import Typography from '@mui/material/Typography';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { OuterFormButtons } from '../../../OuterFormButtons';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl, { useFormControl } from '@mui/material/FormControl';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -39,6 +41,20 @@ const rows = [
         '1100000000'
     )
 ];
+
+function MyFormHelperText() {
+    const { focused } = useFormControl() || {};
+
+    const helperText = useMemo(() => {
+        if (focused) {
+            return 'This field is being focused';
+        }
+
+        return 'Helper text';
+    }, [focused]);
+
+    return <FormHelperText>{helperText}</FormHelperText>;
+}
 
 const PageRevision = () => {
     const [alignment, setAlignment] = useState('web');
