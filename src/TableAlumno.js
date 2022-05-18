@@ -55,7 +55,7 @@ export default function StickyHeadTable() {
                 let dateTime =
                     d.getDate() +
                     '/' +
-                    d.getMonth() +
+                    (d.getMonth() + 1) +
                     '/' +
                     d.getFullYear() +
                     ' - ' +
@@ -67,6 +67,7 @@ export default function StickyHeadTable() {
                     createData(
                         arrayItem.Materias_solicitadas[0].nombre,
                         dateTime
+
                         // arrayItem.Estado[0].en_proceso
                     )
                 );

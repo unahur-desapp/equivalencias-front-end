@@ -686,7 +686,11 @@ const PageRevision = () => {
                     </GridTop>
                     <OuterFormButtons
                         handleSubmit={handleSubmit}
-                        path={'/direccion'}
+                        path={'/direccion/solicitudes'}
+                        titulo={'Descartar revisión'}
+                        mensaje={
+                            '¿Está seguro/a de que desea descartar la revisión de la solicitud?'
+                        }
                     />
                 </Grid>
             </Grid>

@@ -15,6 +15,10 @@ import { FormUniOrigen } from './FormUniOrigen';
 import { nanoid } from 'nanoid';
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import IconButton from '@mui/material/IconButton';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import Box from '@mui/material/Box';
 
 const ExtrasUniOrigen = ({
     formValue,
@@ -22,6 +26,8 @@ const ExtrasUniOrigen = ({
     formValueArray,
     key2
 }) => {
+    const [value, setValue] = useState();
+
     return (
         <Grid
             item
@@ -44,7 +50,7 @@ const ExtrasUniOrigen = ({
                 }}
             >
                 <Grid item container xs={5.6}>
-                    <StandardInput
+                    {/* <StandardInput
                         key={formValueArray.key}
                         required
                         name="anioAprobacion"
@@ -54,7 +60,26 @@ const ExtrasUniOrigen = ({
                         type="number"
                         value={formValueArray.anioAprobacion}
                         onChange={(event) => handleChangeArray(event, key2)}
-                    />
+                    /> */}
+
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            views={['year']}
+                            label="Año aprobación"
+                            value={value}
+                            onChange={(newValue) => {
+                                setValue(newValue);
+                            }}
+                            renderInput={(params) => (
+                                <StandardInput
+                                    required
+                                    {...params}
+                                    helperText={null}
+                                    size="small"
+                                />
+                            )}
+                        />
+                    </LocalizationProvider>
                 </Grid>
 
                 <Grid item container xs={5.6}>

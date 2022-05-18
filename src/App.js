@@ -11,9 +11,10 @@ export default function App() {
         <>
             <Router>
                 <Route path="/" exact component={PageIniciarSesion} />
-                <Route path="/home" component={PageMyForm} />
-                <Route path="/form" component={PageCreateForm} />
-                <Route path="/revision" component={PageRevision} />
+                <Route path="/usuario/equivalencias" component={PageMyForm} />
+                <Route path="/usuario/formulario" component={PageCreateForm} />
+                {/* <Route path="/direccion/solicitudes" component={PageRevision} /> */}
+                <Route path="/direccion/revision" component={PageRevision} />
             </Router>
 
             <ToastContainer

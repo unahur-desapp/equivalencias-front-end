@@ -45,7 +45,10 @@ const PageMyForm = () => {
                         </Grid>
 
                         <Grid item>
-                            <Link to="/form" style={{ textDecoration: 'none' }}>
+                            <Link
+                                to="/usuario/formulario"
+                                style={{ textDecoration: 'none' }}
+                            >
                                 <BotonMUI
                                     buttoncontainedsmall
                                     sx={{

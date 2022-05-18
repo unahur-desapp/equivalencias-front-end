@@ -214,7 +214,7 @@ const CreateForm = () => {
                 try {
                     res.data.data; // '{"name":"deven"}'
 
-                    window.location = '/home';
+                    window.location = '/usuario/equivalencias';
 
                     notifyExito();
                 } catch (error) {
@@ -499,7 +499,12 @@ const CreateForm = () => {
                     </BotonMUI>
                 </Grid>
             </GridTop>
-            <OuterFormButtons handleSubmit={handleSubmit} path={'/home'} />
+            <OuterFormButtons
+                handleSubmit={handleSubmit}
+                path={'/usuario/equivalencias'}
+                titulo={'Descartar formulario'}
+                mensaje={'¿Está seguro/a de que desea descartar el formulario?'}
+            />
         </>
         // </form>
         // </Grid>

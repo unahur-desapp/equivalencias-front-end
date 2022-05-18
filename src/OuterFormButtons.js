@@ -9,7 +9,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
-const OuterFormButtons = ({ handleSubmit, path }) => {
+const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -104,12 +104,10 @@ const OuterFormButtons = ({ handleSubmit, path }) => {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">
-                    {'Descartar formulario'}
-                </DialogTitle>
+                <DialogTitle id="alert-dialog-title">{titulo}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        ¿Seguro/a que desea descartar este formulario?
+                        {mensaje}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
