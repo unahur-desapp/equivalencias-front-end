@@ -20,10 +20,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import { Redirect } from 'react-router-dom';
 
 const CreateForm = () => {
-    const [idMateriaUno, setIdMateriaUno] = useState(nanoid());
-
     const [materias, setMaterias] =
         // <FormUniOrigen key={nanoid()} />
         // <FormUniOrigen key={nanoid()} />
@@ -54,8 +53,33 @@ const CreateForm = () => {
         carreraUnahur: ''
     });
 
-    const notify = () => {
-        toast.error('Tiene que enviar al menos una materia', {
+    const notifyEnviarSinDatos = () => {
+        toast.error('Debe completar todos los campos del formulario', {
+            position: 'bottom-left',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined
+        });
+    };
+
+    const notifyBorrarMateria = () => {
+        toast.warn('Tiene que enviar al menos una materia', {
+            position: 'bottom-left',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined
+        });
+    };
+
+    const notifyExito = () => {
+        toast.success('Equivalencia creada con éxito', {
+            containerId: 'home',
             position: 'bottom-left',
             autoClose: 5000,
             hideProgressBar: false,
@@ -181,13 +205,27 @@ const CreateForm = () => {
 
         console.log(equivalencia);
 
-        const res = await axios.post(
-            'http://localhost:3001/api/equivalencias/createx3',
-            equivalencia
-        );
+        const res = await axios
+            .post(
+                'http://localhost:3001/api/equivalencias/createx3',
+                equivalencia
+            )
+            .then((res) => {
+                try {
+                    res.data.data; // '{"name":"deven"}'
 
-        res.data.data; // '{"name":"deven"}'
-        res.data.headers['Content-Type']; // 'application/json;charset=utf-8',
+                    window.location = '/home';
+
+                    notifyExito();
+                } catch (error) {
+                    console.log(error);
+                }
+            })
+            .catch(() => {
+                notifyEnviarSinDatos();
+            });
+
+        // res.data.headers['application/json']; // 'application/json;charset=utf-8',
 
         // store the states in the form data
         // const loginFormData = new FormData();
@@ -237,20 +275,41 @@ const CreateForm = () => {
     };
 
     return (
-        <GridTop
-            item
-            container
-            blanco
-            xs={11.5}
-            md={7}
-            marginTop={{
-                xs: '30px'
-            }}
-            sx={{
-                height: 'auto'
-            }}
-        >
-            <form onSubmit={handleSubmit}>
+        // <Grid
+        //     item
+        //     container
+        //     blanco
+        //     xs={11.5}
+        //     md={7}
+        //     marginTop={{
+        //         xs: '30px'
+        //     }}
+        //     sx={{
+        //         height: 'auto'
+        //     }}
+        // >
+        // <form
+        //     style={{
+        //         backgroundColor: 'red',
+        //         display: 'block',
+        //         width: '100%',
+        //         height: '100%'
+        //     }}
+        // >
+        <>
+            <GridTop
+                item
+                container
+                blanco
+                xs={11.5}
+                md={7}
+                marginTop={{
+                    xs: '30px'
+                }}
+                sx={{
+                    height: 'auto'
+                }}
+            >
                 <Grid
                     item
                     container
@@ -374,23 +433,11 @@ const CreateForm = () => {
                                         // console.log(materias);
                                         handleClickOpen(materia);
                                     } else {
-                                        notify();
+                                        notifyBorrarMateria();
                                     }
                                 }}
                                 handleChangeArray={handleChangeArray}
                                 formValueArray={materia}
-                            />
-
-                            <ToastContainer
-                                position="bottom-left"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
                             />
 
                             <Dialog
@@ -400,12 +447,11 @@ const CreateForm = () => {
                                 aria-describedby="alert-dialog-description"
                             >
                                 <DialogTitle id="alert-dialog-title">
-                                    {'Eliminar materia del formulario'}
+                                    {'Borrar materia del formulario'}
                                 </DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-description">
-                                        ¿Estás seguro/a de que querés eliminar
-                                        esta materia?
+                                        ¿Seguro/a que desea borrar esta materia?
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
@@ -414,7 +460,8 @@ const CreateForm = () => {
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            setMaterias((materias) =>
+                                            setMaterias(() =>
+                                                //Se eliminó el parámetro materias en setMaterias
                                                 materias.filter(
                                                     (x) =>
                                                         x.key !==
@@ -424,7 +471,7 @@ const CreateForm = () => {
                                             handleClose();
                                         }}
                                     >
-                                        Eliminar
+                                        Aceptar
                                     </Button>
                                 </DialogActions>
                             </Dialog>
@@ -451,10 +498,11 @@ const CreateForm = () => {
                         Agregar materia
                     </BotonMUI>
                 </Grid>
-
-                <OuterFormButtons onSubmit={handleSubmit} />
-            </form>
-        </GridTop>
+            </GridTop>
+            <OuterFormButtons handleSubmit={handleSubmit} />
+        </>
+        // </form>
+        // </Grid>
     );
 };
 
