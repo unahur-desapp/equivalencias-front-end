@@ -526,18 +526,34 @@ const PageRevision = () => {
                             item
                             container
                             direction="row"
-                            justifyContent="center"
+                            justifyContent="flex-start"
                             alignItems="center"
                             sm={12}
                             padding={{
-                                xs: '30px 30px',
-                                sm: '30px 60px'
+                                xs: '20px 30px',
+                                sm: '20px 60px'
                             }}
                             sx={{
                                 height: 'auto',
                                 borderRadius: '10px 10px 0px 0px'
                             }}
                         >
+                            <Grid
+                                item
+                                container
+                                direction="column"
+                                alignItems="flex-start"
+                                md={12}
+                                lg={5.8}
+                                sx={{
+                                    marginTop: '6px',
+                                    marginBottom: '16px'
+                                }}
+                            >
+                                <Titulos titulolabel component="h2">
+                                    Devolución
+                                </Titulos>
+                            </Grid>
                             {/* <Grid
                             item
                             container
