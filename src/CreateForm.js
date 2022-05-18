@@ -499,7 +499,7 @@ const CreateForm = () => {
                     </BotonMUI>
                 </Grid>
             </GridTop>
-            <OuterFormButtons handleSubmit={handleSubmit} />
+            <OuterFormButtons handleSubmit={handleSubmit} path={'/home'} />
         </>
         // </form>
         // </Grid>

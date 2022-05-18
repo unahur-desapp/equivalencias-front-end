@@ -9,7 +9,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
-const OuterFormButtons = ({ handleSubmit }) => {
+const OuterFormButtons = ({ handleSubmit, path }) => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -114,7 +114,7 @@ const OuterFormButtons = ({ handleSubmit }) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancelar</Button>
-                    <Link to="/home" style={{ textDecoration: 'none' }}>
+                    <Link to={path} style={{ textDecoration: 'none' }}>
                         <Button>Aceptar</Button>
                     </Link>
                 </DialogActions>
