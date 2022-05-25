@@ -6,7 +6,7 @@ import { Titulos } from '../../atoms/Title/Titulos';
 // import StickyHeadTable from '../../../TableAlumno';
 import FreeSolo from '../Direccion/buscadorDireccion';
 import StickyHeadTable from '../Direccion/TablaDireccion';
-import React from 'react';
+// import React from 'react';
 // import { Search } from '@mui/icons-material';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -22,6 +22,8 @@ import SearchIcon from '@mui/icons-material/Search';
 // import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { getEquivalencia } from '../../../services/equivalencia_service';
+import { useState, useEffect } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -66,6 +68,38 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const PageDireccion = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+    console.log(searchQuery);
+    // const [searchQuery, setSearchQuery] = useState("");
+    // console.log(searchQuery);
+
+    // const [dataFiltered, setDataFiltered ] = useState([]);
+    //   useEffect(() => {
+    //     const fetchEquivalenciaData = async () => {
+
+    //         try{
+    //             const obtainedEquivalenciaData = await getEquivalencia();
+    //             const dataFilter =  obtainedEquivalenciaData.filter((d) => d.toLowerCase().includes(searchQuery));
+
+    //             if(searchQuery){
+    //                 setDataFiltered(dataFilter)
+    //             }
+    //             else{
+    //                 setDataFiltered(obtainedEquivalenciaData)
+    //             }
+    //         }
+
+    //         catch(error){
+    //             console.log(error);
+    //         }
+
+    //     }
+
+    //     fetchEquivalenciaData();
+    // }), [];
+
+    // console.log(dataFiltered)
+
     return (
         <Grid container direction="column">
             <Grid item container xs={12}>
@@ -124,22 +158,29 @@ const PageDireccion = () => {
                             container
                             mt={2}
                             ml={7}
-                            border={0.5}
+                            // border={0.5}
                             borderColor={'grey'}
-                            borderRadius={4}
+                            // borderRadius={4}
                             sx={{
                                 height: 'auto'
                             }}
                         >
-                            <Search>
-                                <SearchIconWrapper>
-                                    <SearchIcon />
-                                </SearchIconWrapper>
-                                <StyledInputBase
-                                    placeholder="Buscar..."
-                                    inputProps={{ 'aria-label': 'search' }}
+                            <form>
+                                <TextField
+                                    id="search-bar"
+                                    className="text"
+                                    onInput={(e) => {
+                                        setSearchQuery(e.target.value);
+                                    }}
+                                    label="Buscar..."
+                                    variant="outlined"
+                                    placeholder="Buscar Solicitante..."
+                                    size="small"
                                 />
-                            </Search>
+                                <IconButton type="submit" aria-label="search">
+                                    <SearchIcon style={{ fill: 'blue' }} />
+                                </IconButton>
+                            </form>
                         </Grid>
                     </Grid>
                 </GridTop>
