@@ -1,5 +1,5 @@
 import { Grid, TextareaAutosize } from '@mui/material';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
 import { GridTop } from '../../../GridTop';
@@ -19,6 +19,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { OuterFormButtons } from '../../../OuterFormButtons';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
+import { getUsuario } from '../../../services/usuario_service';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -28,19 +29,9 @@ const columns = [
     { id: 'phone', label: 'Teléfono', minWidth: 170 }
 ];
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
+function createData(solicitante, email, dni, fechaHora, telefono) {
+    return { solicitante, email, dni, fechaHora, telefono };
 }
-
-const rows = [
-    createData(
-        'Josecito',
-        'josesito@gmail.com',
-        '11111111',
-        '14/04/2022',
-        '1100000000'
-    )
-];
 
 function MyFormHelperText() {
     const { focused } = useFormControl() || {};
@@ -56,8 +47,52 @@ function MyFormHelperText() {
     return <FormHelperText>{helperText}</FormHelperText>;
 }
 
+const horaConCero = (hora) => {
+    if (hora < 10) {
+        return `0${hora}`;
+    } else {
+        return hora;
+    }
+};
+
 const PageRevision = () => {
+    const [rows, setRows] = useState([]);
     const [alignment, setAlignment] = useState('web');
+
+    useEffect(() => {
+        const fetchUsuarioData = async () => {
+            const obtainedUsuarioData = await getUsuario(7);
+            let arrayData = [];
+
+            let d = new Date(obtainedUsuarioData.createdAt);
+            let dateTime =
+                d.getDate() +
+                '/' +
+                (d.getMonth() + 1) +
+                '/' +
+                d.getFullYear() +
+                ' - ' +
+                d.getHours() +
+                ':' +
+                horaConCero(d.getMinutes());
+
+            arrayData.push(
+                createData(
+                    obtainedUsuarioData.nombre,
+                    obtainedUsuarioData.email,
+                    obtainedUsuarioData.dni,
+                    dateTime,
+                    obtainedUsuarioData.telefono
+                )
+            );
+
+            setRows(arrayData);
+
+            console.log(arrayData);
+        };
+
+        fetchUsuarioData();
+    }, []);
 
     const handleChange = (event, newAlignment) => {
         setAlignment(newAlignment);
@@ -71,7 +106,10 @@ const PageRevision = () => {
         <>
             <Grid container direction="column">
                 <Grid item container xs={12}>
-                    <Header name="Equivalencias" />
+                    <Header
+                        name="Equivalencias"
+                        botonSeleccionado="rgba(255, 255, 255, 0.1);"
+                    />
                 </Grid>
 
                 <Grid
@@ -149,7 +187,7 @@ const PageRevision = () => {
                                     <TableBody>
                                         {rows.map((row) => (
                                             <TableRow
-                                                key={row.name}
+                                                key={row.solicitante}
                                                 sx={{
                                                     '&:last-child td, &:last-child th': {
                                                         border: 0
@@ -161,19 +199,19 @@ const PageRevision = () => {
                                                     component="th"
                                                     scope="row"
                                                 >
-                                                    {row.name}
+                                                    {row.solicitante}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {row.calories}
+                                                    {row.email}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {row.fat}
+                                                    {row.dni}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {row.carbs}
+                                                    {row.fechaHora}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {row.protein}
+                                                    {row.telefono}
                                                 </TableCell>
                                             </TableRow>
                                         ))}
@@ -235,14 +273,13 @@ const PageRevision = () => {
                                     }}
                                 >
                                     <StandardInput
+                                        className="inputDisabled"
                                         name="materiaSolicitada"
                                         label="Materia solicitada UNAHUR"
                                         defaultValue="Hello World"
                                         variant="outlined"
                                         size="small"
-                                        InputProps={{
-                                            readOnly: true
-                                        }}
+                                        disabled
                                     />
                                 </Grid>
 
@@ -567,7 +604,7 @@ const PageRevision = () => {
                                 }}
                             >
                                 <Titulos titulolabel component="h2">
-                                    Devolución
+                                    Respuesta
                                 </Titulos>
                             </Grid>
                             {/* <Grid

@@ -61,7 +61,10 @@ const FormularioInicioSesion = () => {
                     <LineaSeparacion></LineaSeparacion>
 
                     <Grid>
-                        <Link to="/home" style={{ textDecoration: 'none' }}>
+                        <Link
+                            to="/usuario/equivalencias"
+                            style={{ textDecoration: 'none' }}
+                        >
                             <BotonMUI
                                 variant="contained"
                                 buttoncontained

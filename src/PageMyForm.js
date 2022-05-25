@@ -15,7 +15,10 @@ const PageMyForm = () => {
         <>
             <Grid container direction="column">
                 <Grid item container xs={12}>
-                    <Header name="Mis equivalencias" />
+                    <Header
+                        name="Mis equivalencias"
+                        botonSeleccionado="rgba(255, 255, 255, 0.1);"
+                    />
                 </Grid>
 
                 <Grid

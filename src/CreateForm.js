@@ -141,10 +141,10 @@ const CreateForm = () => {
         console.log(key);
         console.log(indiceMateria);
         console.log(materias[indiceMateria]);
-        console.log({
-            ...materias[indiceMateria],
-            [event.target.name]: event.target.value
-        });
+        // console.log({
+        //     ...materias[indiceMateria],
+        //     [event.target.name]: event.target.value
+        // });
         setMaterias((materias) => {
             return [
                 ...materias.slice(0, indiceMateria),

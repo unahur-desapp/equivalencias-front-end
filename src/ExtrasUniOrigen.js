@@ -26,7 +26,7 @@ const ExtrasUniOrigen = ({
     formValueArray,
     key2
 }) => {
-    const [value, setValue] = useState();
+    const [value, setValue] = useState('');
 
     return (
         <Grid
@@ -66,16 +66,24 @@ const ExtrasUniOrigen = ({
                         <DatePicker
                             views={['year']}
                             label="Año aprobación"
+                            name="datepicker"
+                            onChange={(newValue) => setValue(newValue)}
                             value={value}
-                            onChange={(newValue) => {
-                                setValue(newValue);
-                            }}
                             renderInput={(params) => (
                                 <StandardInput
-                                    required
                                     {...params}
-                                    helperText={null}
+                                    key={formValueArray.key}
+                                    required
+                                    name="anioAprobacion"
                                     size="small"
+                                    variant="outlined"
+                                    type="number"
+                                    value={(formValueArray.anioAprobacion = new Date(
+                                        value
+                                    ).getFullYear()).toString()}
+                                    onClick={(event) =>
+                                        handleChangeArray(event, key2)
+                                    }
                                 />
                             )}
                         />

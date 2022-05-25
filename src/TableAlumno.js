@@ -89,7 +89,7 @@ export default function StickyHeadTable() {
                 boxShadow: 'none'
             }}
         >
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer sx={{ height: 'auto' }}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
@@ -97,6 +97,7 @@ export default function StickyHeadTable() {
                                 <TableCell
                                     key={column.id}
                                     // align={column.align}
+
                                     align={
                                         column.label === 'Visualizar'
                                             ? 'center'
