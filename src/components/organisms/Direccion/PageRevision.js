@@ -22,6 +22,7 @@ import FormControl, { useFormControl } from '@mui/material/FormControl';
 import { getUsuario } from '../../../services/usuario_service';
 import { getEquivalencia } from '../../../services/revision';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -60,8 +61,9 @@ const horaConCero = (hora) => {
 const PageRevision = () => {
     const { id } = useParams();
     const [rows, setRows] = useState([]);
-    const [equiv, setEquiv] = useState();
+    const [equiv, setEquiv] = useState({});
     const [alignment, setAlignment] = useState('web');
+    const [formValue, setFormValue] = useState({});
 
     useEffect(() => {
         const fetchUsuarioData = async () => {
@@ -102,18 +104,83 @@ const PageRevision = () => {
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia(id);
-            setEquiv(obtainedEquivalenciaData);
+
+            let arrayMat = [obtainedEquivalenciaData.Materias_aprobadas[0]];
+
+            let arrayData = {
+                nombre: obtainedEquivalenciaData.Materias_solicitadas[0].nombre,
+                carrera:
+                    obtainedEquivalenciaData.Materias_solicitadas[0].carrera,
+
+                nota: obtainedEquivalenciaData.Materias_aprobadas[0].nota,
+                carga_horaria:
+                    obtainedEquivalenciaData.Materias_aprobadas[0]
+                        .carga_horaria,
+                año_aprobacion:
+                    obtainedEquivalenciaData.Materias_aprobadas[0]
+                        .año_aprobacion,
+                nombre_materia:
+                    obtainedEquivalenciaData.Materias_aprobadas[0]
+                        .nombre_materia,
+                // UniversidadOrigenId: item.universidadOrigen
+                certificado:
+                    obtainedEquivalenciaData.Materias_aprobadas[0].certificado,
+                observaciones: obtainedEquivalenciaData.observaciones
+            };
+
+            setEquiv(arrayData);
+
+            setFormValue({
+                observaciones: obtainedEquivalenciaData.observaciones,
+                estado: obtainedEquivalenciaData.estado
+            });
+
+            console.log(obtainedEquivalenciaData);
+
+            console.log('Hola' + arrayData.nombre_materia);
         };
 
         fetchEquivalenciaData();
-    });
+    }, []);
 
-    const handleChange = (event, newAlignment) => {
-        console.log(equiv);
+    const handleChange = (event) => {
+        setFormValue((equiv) => ({
+            ...equiv,
+            [event.target.name]: event.target.value
+        }));
+        console.log(formValue);
+    };
+
+    const handleChangeToggle = (event, newAlignment) => {
+        setFormValue((equiv) => ({
+            ...equiv,
+            [event.target.name]: event.target.value
+        }));
+        console.log(formValue);
+
+        setAlignment(newAlignment);
     };
 
     const handleSubmit = async () => {
-        console.log(equiv);
+        const equivalencia = {
+            observaciones: formValue.observaciones,
+            estado: formValue.estado
+        };
+
+        console.log(equivalencia);
+
+        const res = await axios
+            .put('http://localhost:3001/api/equivalencias/' + id, equivalencia)
+            .then((res) => {
+                try {
+                    res.data.data; // '{"name":"deven"}'
+
+                    window.location = '/usuario/equivalencias';
+                } catch (error) {
+                    console.log(error);
+                }
+            })
+            .catch(() => {});
     };
 
     return (
@@ -287,13 +354,15 @@ const PageRevision = () => {
                                     }}
                                 >
                                     <StandardInput
-                                        className="inputDisabled"
                                         name="materiaSolicitada"
                                         label="Materia solicitada UNAHUR"
-                                        value={equiv[0]}
+                                        value={equiv.nombre}
                                         variant="outlined"
+                                        focused={true}
                                         size="small"
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true
+                                        }}
                                     />
                                 </Grid>
 
@@ -308,9 +377,10 @@ const PageRevision = () => {
                                 >
                                     <StandardInput
                                         label="Carreras UNAHUR"
-                                        defaultValue="Hello World"
+                                        value={equiv.carrera}
                                         variant="outlined"
                                         size="small"
+                                        focused={true}
                                         InputProps={{
                                             readOnly: true
                                         }}
@@ -375,8 +445,9 @@ const PageRevision = () => {
                                         name="materiaAprobada"
                                         size="small"
                                         label="Materia aprobada"
-                                        defaultValue="Hello World"
+                                        value={equiv.nombre_materia}
                                         variant="outlined"
+                                        focused={true}
                                         InputProps={{
                                             readOnly: true
                                         }}
@@ -392,12 +463,20 @@ const PageRevision = () => {
                                         marginTop: '6px'
                                     }}
                                 >
+                                    {/* nota: obtainedEquivalenciaData.Materias_aprobadas[0].nota,
+                carga_horaria: obtainedEquivalenciaData.Materias_aprobadas[0].carga_horaria,
+                año_aprobacion: obtainedEquivalenciaData.Materias_aprobadas[0].año_aprobacion,
+                nombre_materia: obtainedEquivalenciaData.Materias_aprobadas[0].nombre_materia,
+                // UniversidadOrigenId: item.universidadOrigen
+                certificado: obtainedEquivalenciaData.Materias_aprobadas[0].certificado */}
+
                                     <StandardInput
                                         label="Universidad de Origen"
                                         name="universidadOrigen"
-                                        defaultValue="Hello World"
+                                        value={'Universidad de la Matanza'}
                                         variant="outlined"
                                         size="small"
+                                        focused={true}
                                         InputProps={{
                                             readOnly: true
                                         }}
@@ -431,9 +510,12 @@ const PageRevision = () => {
                                         <StandardInput
                                             label="Año aprobación"
                                             name="anioAprobacion"
-                                            defaultValue="Hello World"
+                                            value={new Date(
+                                                equiv.año_aprobacion
+                                            ).getFullYear()}
                                             variant="outlined"
                                             size="small"
+                                            focused={true}
                                             InputProps={{
                                                 readOnly: true
                                             }}
@@ -444,9 +526,10 @@ const PageRevision = () => {
                                         <StandardInput
                                             label="Carga horaria total"
                                             name="cargaHorariaTotal"
-                                            defaultValue="Hello World"
+                                            value={equiv.carga_horaria}
                                             variant="outlined"
                                             size="small"
+                                            focused={true}
                                             InputProps={{
                                                 readOnly: true
                                             }}
@@ -470,9 +553,10 @@ const PageRevision = () => {
                                         <StandardInput
                                             label="Nota aprobación"
                                             name="notaAprobacion"
-                                            defaultValue="Hello World"
+                                            value={equiv.nota}
                                             variant="outlined"
                                             size="small"
+                                            focused={true}
                                             InputProps={{
                                                 readOnly: true
                                             }}
@@ -559,7 +643,7 @@ const PageRevision = () => {
                                                 variant="outlined"
                                                 component="span"
                                             >
-                                                Cargar
+                                                Descargar
                                             </BotonMUI>
                                             {/* <IconButton
                             sx={{
@@ -681,6 +765,10 @@ const PageRevision = () => {
                                         label="Observación..."
                                         variant="filled"
                                         multiline
+                                        value={formValue.observaciones}
+                                        name="observaciones"
+                                        onChange={handleChange}
+                                        focused={true}
                                         rows={8}
                                         sx={{
                                             width: '100%'
@@ -702,7 +790,7 @@ const PageRevision = () => {
                                     <ToggleButtonGroup
                                         value={alignment}
                                         exclusive
-                                        onChange={handleChange}
+                                        onChange={handleChangeToggle}
                                     >
                                         <ToggleButton
                                             color="primary"
