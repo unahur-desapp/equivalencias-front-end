@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Chip from '@mui/material/Chip';
+import { Grid } from '@mui/material';
 import { ActionButtons } from './ActionButtons';
 import { getEquivalencia } from './services/equivalencia_service';
 import { useState, useEffect } from 'react';
@@ -14,13 +16,71 @@ import { useState, useEffect } from 'react';
 const columns = [
     { id: 'desc', label: 'Descripción', minWidth: 170 },
     { id: 'dateTime', label: 'Fecha y hora', minWidth: 100 },
-    { id: 'state', label: 'Estado', minWidth: 170 },
+    { id: 'stateS', label: 'Estado', minWidth: 170 },
     { id: 'actions', label: 'Visualizar', minWidth: 170 }
 ];
 
 function createData(desc, dateTime, state) {
     const actions = <ActionButtons />;
-    return { desc, dateTime, state, actions };
+    // const stateS = (
+    //     <Stack spacing={1} alignItems="center">
+    //         <Stack direction="row" spacing={1}>
+    //             <Chip label="Falta completar" color="info" />;
+    //         </Stack>
+    //     </Stack>
+    // );
+    const stateS =
+        state === 'Falta completar' ? (
+            <Grid
+                container
+                item
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <Chip
+                    label="Falta completar"
+                    sx={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.17)',
+                        color: 'rgba(0, 0, 0, 0.87)'
+                    }}
+                />
+            </Grid>
+        ) : state === 'Aceptado' ? (
+            <Grid
+                container
+                item
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <Chip
+                    label="Aceptado"
+                    sx={{
+                        backgroundColor: 'rgba(25, 118, 210, 0.17)',
+                        color: '#1976d2'
+                    }}
+                />
+            </Grid>
+        ) : (
+            <Grid
+                container
+                item
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <Chip
+                    label="Rechazado"
+                    sx={{
+                        backgroundColor: 'rgba(211, 47, 47, 0.17)',
+                        color: '#d32f2f'
+                    }}
+                />
+            </Grid>
+        );
+
+    return { desc, dateTime, stateS, actions };
 }
 
 const horaConCero = (hora) => {
@@ -75,6 +135,7 @@ export default function StickyHeadTable() {
             });
 
             setRows(arrayData);
+            console.log('array data: ', arrayData);
             console.log(obtainedEquivalenciaData);
         };
 
@@ -100,7 +161,8 @@ export default function StickyHeadTable() {
                                     // align={column.align}
 
                                     align={
-                                        column.label === 'Visualizar'
+                                        column.label === 'Visualizar' ||
+                                        column.label === 'Estado'
                                             ? 'center'
                                             : 'left'
                                     }

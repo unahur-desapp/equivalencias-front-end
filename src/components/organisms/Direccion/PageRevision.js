@@ -794,19 +794,19 @@ const PageRevision = () => {
                                         <ToggleButton
                                             color="primary"
                                             id="estado"
-                                            value="aceptar"
+                                            value="Aceptado"
                                         >
                                             Aceptar
                                         </ToggleButton>
                                         <ToggleButton
-                                            value="masinfo"
+                                            value="Falta completar"
                                             id="estado"
                                         >
-                                            Mas información
+                                            Falta completar
                                         </ToggleButton>
                                         <ToggleButton
                                             color="error"
-                                            value="rechazar"
+                                            value="Rechazado"
                                             id="estado"
                                         >
                                             Rechazar
