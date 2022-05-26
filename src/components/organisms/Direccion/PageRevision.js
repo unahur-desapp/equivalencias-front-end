@@ -20,6 +20,8 @@ import { OuterFormButtons } from '../../../OuterFormButtons';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import { getUsuario } from '../../../services/usuario_service';
+import { getEquivalencia } from '../../../services/revision';
+import { useParams } from 'react-router-dom';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -56,7 +58,9 @@ const horaConCero = (hora) => {
 };
 
 const PageRevision = () => {
+    const { id } = useParams();
     const [rows, setRows] = useState([]);
+    const [equiv, setEquiv] = useState();
     const [alignment, setAlignment] = useState('web');
 
     useEffect(() => {
@@ -88,18 +92,28 @@ const PageRevision = () => {
 
             setRows(arrayData);
 
+            console.log('Hola' + equiv);
             console.log(arrayData);
         };
 
         fetchUsuarioData();
     }, []);
 
+    useEffect(() => {
+        const fetchEquivalenciaData = async () => {
+            const obtainedEquivalenciaData = await getEquivalencia(id);
+            setEquiv(obtainedEquivalenciaData);
+        };
+
+        fetchEquivalenciaData();
+    });
+
     const handleChange = (event, newAlignment) => {
-        setAlignment(newAlignment);
+        console.log(equiv);
     };
 
     const handleSubmit = async () => {
-        console.log('submit');
+        console.log(equiv);
     };
 
     return (

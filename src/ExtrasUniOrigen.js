@@ -4,7 +4,8 @@ import {
     FormLabel,
     RadioGroup,
     FormControlLabel,
-    Radio
+    Radio,
+    TextField
 } from '@mui/material';
 import React, { useState } from 'react';
 import { StandardInput, FileUploader } from './components/atoms/Input/InputMUI';
@@ -70,11 +71,14 @@ const ExtrasUniOrigen = ({
                             onChange={(newValue) => setValue(newValue)}
                             value={value}
                             renderInput={(params) => (
-                                <StandardInput
+                                <TextField
                                     {...params}
                                     key={formValueArray.key}
                                     required
                                     name="anioAprobacion"
+                                    sx={{
+                                        marginTop: '15px'
+                                    }}
                                     size="small"
                                     variant="outlined"
                                     type="number"
