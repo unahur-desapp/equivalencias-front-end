@@ -66,7 +66,8 @@ export default function StickyHeadTable() {
                 arrayData.push(
                     createData(
                         arrayItem.Materias_solicitadas[0].nombre,
-                        dateTime
+                        dateTime,
+                        arrayItem.estado
 
                         // arrayItem.Estado[0].en_proceso
                     )

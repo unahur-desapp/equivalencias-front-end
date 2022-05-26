@@ -105,8 +105,6 @@ const PageRevision = () => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia(id);
 
-            let arrayMat = [obtainedEquivalenciaData.Materias_aprobadas[0]];
-
             let arrayData = {
                 nombre: obtainedEquivalenciaData.Materias_solicitadas[0].nombre,
                 carrera:
@@ -154,7 +152,7 @@ const PageRevision = () => {
     const handleChangeToggle = (event, newAlignment) => {
         setFormValue((equiv) => ({
             ...equiv,
-            [event.target.name]: event.target.value
+            [event.target.id]: event.target.value
         }));
         console.log(formValue);
 
@@ -788,22 +786,28 @@ const PageRevision = () => {
                                     }}
                                 >
                                     <ToggleButtonGroup
-                                        value={alignment}
+                                        value={formValue.estado}
+                                        id="estado"
                                         exclusive
                                         onChange={handleChangeToggle}
                                     >
                                         <ToggleButton
                                             color="primary"
+                                            id="estado"
                                             value="aceptar"
                                         >
                                             Aceptar
                                         </ToggleButton>
-                                        <ToggleButton value="masinfo">
+                                        <ToggleButton
+                                            value="masinfo"
+                                            id="estado"
+                                        >
                                             Mas información
                                         </ToggleButton>
                                         <ToggleButton
                                             color="error"
                                             value="rechazar"
+                                            id="estado"
                                         >
                                             Rechazar
                                         </ToggleButton>
