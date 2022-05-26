@@ -290,7 +290,7 @@ const PageRevision = () => {
                                         className="inputDisabled"
                                         name="materiaSolicitada"
                                         label="Materia solicitada UNAHUR"
-                                        defaultValue="Hello World"
+                                        value={equiv[0]}
                                         variant="outlined"
                                         size="small"
                                         disabled
