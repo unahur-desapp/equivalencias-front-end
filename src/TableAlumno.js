@@ -62,7 +62,7 @@ function createData(desc, dateTime, state) {
                     }}
                 />
             </Grid>
-        ) : (
+        ) : state === 'Rechazado' ? (
             <Grid
                 container
                 item
@@ -75,6 +75,22 @@ function createData(desc, dateTime, state) {
                     sx={{
                         backgroundColor: 'rgba(211, 47, 47, 0.17)',
                         color: '#d32f2f'
+                    }}
+                />
+            </Grid>
+        ) : (
+            <Grid
+                container
+                item
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <Chip
+                    label="Pendiente"
+                    sx={{
+                        backgroundColor: 'rgba(237, 108, 2, 0.17)',
+                        color: 'rgb(237, 108, 2)'
                     }}
                 />
             </Grid>
