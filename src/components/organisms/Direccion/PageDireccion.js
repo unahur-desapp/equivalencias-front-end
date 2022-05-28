@@ -170,6 +170,7 @@ const PageDireccion = () => {
                                     id="search-bar"
                                     className="text"
                                     onInput={(e) => {
+                                        e.preventDefault();
                                         setSearchQuery(e.target.value);
                                     }}
                                     label="Buscar..."
@@ -177,9 +178,10 @@ const PageDireccion = () => {
                                     placeholder="Buscar Solicitante..."
                                     size="small"
                                 />
-                                <IconButton type="submit" aria-label="search">
+                                {/* <IconButton onClick={} aria-label="search">
                                     <SearchIcon style={{ fill: 'blue' }} />
-                                </IconButton>
+                                </IconButton> */}
+                                {/* como pasar hijo al padre  */}
                             </form>
                         </Grid>
                     </Grid>
@@ -197,7 +199,7 @@ const PageDireccion = () => {
                         height: 'auto'
                     }}
                 >
-                    <StickyHeadTable />
+                    <StickyHeadTable searchQuery={searchQuery} />
                 </GridTop>
             </Grid>
         </Grid>

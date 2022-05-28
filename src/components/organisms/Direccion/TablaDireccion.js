@@ -28,10 +28,11 @@ function createData(solicitante, dateTime, dni) {
     return { solicitante, dateTime, dni, actions };
 }
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable({ searchQuery }) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [rows, setRows] = useState([]);
+    const [arrayData, setArrayData] = useState([]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -42,53 +43,47 @@ export default function StickyHeadTable() {
         setPage(0);
     };
 
-    const [searchQuery, setSearchQuery] = useState('');
-    console.log(searchQuery);
-
-    const [dataFiltered, setDataFiltered] = useState([]);
+    // const [searchQuery, setSearchQuery] = useState('');
+    // console.log(searchQuery);
 
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia();
-            let arrayData = [];
+            let array = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
                 let d = new Date(arrayItem.Materias_solicitadas[0].createdAt); //tengo que traer solicitantes
                 let dateTime =
                     d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
 
-                arrayData.push(
+                array.push(
                     createData(
                         arrayItem.Materias_solicitadas[0].nombre,
-                        // arrayItem.Materias_solicitada[0].dni,
-                        dateTime
-                        // arrayItem.Estado[0].status
+                        arrayItem.Materias_solicitadas[0].dni,
+                        dateTime,
+                        arrayItem.Estado[0].status
                     )
                 );
+                setRows([...array]);
             });
+            console.log(arrayData);
 
-            try {
-                const obtainedEquivalenciaData = await getEquivalencia();
-                const dataFilter = obtainedEquivalenciaData.filter((d) =>
-                    d.toLowerCase().includes(searchQuery)
-                );
-
-                if (searchQuery) {
-                    setDataFiltered(dataFilter);
-                } else {
-                    setDataFiltered(obtainedEquivalenciaData);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-            setRows(arrayData);
-            console.log(obtainedEquivalenciaData);
+            // setRows(dataFiltered);
         };
-
         fetchEquivalenciaData();
     }, []);
+    console.log(arrayData);
 
-    console.log(dataFiltered);
+    function search() {
+        const dataFilter = arrayData.filter(
+            (d) => d.solicitante.includes(searchQuery)
+            // console.log(d.solicitante, "desde filter")
+        );
+
+        if (searchQuery) {
+            setRows(dataFilter);
+        }
+    }
 
     return (
         <Paper
