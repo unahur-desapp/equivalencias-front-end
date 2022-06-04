@@ -70,35 +70,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const PageDireccion = () => {
     const [searchQuery, setSearchQuery] = useState('');
     console.log(searchQuery);
-    // const [searchQuery, setSearchQuery] = useState("");
-    // console.log(searchQuery);
-
-    // const [dataFiltered, setDataFiltered ] = useState([]);
-    //   useEffect(() => {
-    //     const fetchEquivalenciaData = async () => {
-
-    //         try{
-    //             const obtainedEquivalenciaData = await getEquivalencia();
-    //             const dataFilter =  obtainedEquivalenciaData.filter((d) => d.toLowerCase().includes(searchQuery));
-
-    //             if(searchQuery){
-    //                 setDataFiltered(dataFilter)
-    //             }
-    //             else{
-    //                 setDataFiltered(obtainedEquivalenciaData)
-    //             }
-    //         }
-
-    //         catch(error){
-    //             console.log(error);
-    //         }
-
-    //     }
-
-    //     fetchEquivalenciaData();
-    // }), [];
-
-    // console.log(dataFiltered)
 
     return (
         <Grid container direction="column">
@@ -178,10 +149,9 @@ const PageDireccion = () => {
                                     placeholder="Buscar Solicitante..."
                                     size="small"
                                 />
-                                {/* <IconButton onClick={} aria-label="search">
+                                {/* <IconButton onClick={search()} aria-label="search">
                                     <SearchIcon style={{ fill: 'blue' }} />
                                 </IconButton> */}
-                                {/* como pasar hijo al padre  */}
                             </form>
                         </Grid>
                     </Grid>

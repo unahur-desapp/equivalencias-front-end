@@ -58,32 +58,41 @@ export default function StickyHeadTable({ searchQuery }) {
 
                 array.push(
                     createData(
+                        // arrayItem.Usuario[0].nombre ----falta esto
+                        // arrayItem.Usuario[0].dni ----falta esto
                         arrayItem.Materias_solicitadas[0].nombre,
-                        arrayItem.Materias_solicitadas[0].dni,
-                        dateTime,
-                        arrayItem.Estado[0].status
+                        // arrayItem.Materias_solicitadas[0],
+                        dateTime //fecha actual de cuando se genero la equivalencia
+                        // arrayItem.Estado[0].status
                     )
                 );
-                setRows([...array]);
+                const dataFilter = array.filter(
+                    (d) => d.solicitante.includes(searchQuery)
+                    // console.log(d.solicitante, "desde filter")
+                );
+
+                if (searchQuery) {
+                    setRows(dataFilter);
+                } else {
+                    setRows([...array]);
+                }
             });
             console.log(arrayData);
-
-            // setRows(dataFiltered);
         };
         fetchEquivalenciaData();
-    }, []);
+    }, [searchQuery]);
     console.log(arrayData);
 
-    function search() {
-        const dataFilter = arrayData.filter(
-            (d) => d.solicitante.includes(searchQuery)
-            // console.log(d.solicitante, "desde filter")
-        );
+    // function search(arrayData, setRows) {
+    //     const dataFilter = arrayData.filter(
+    //         (d) => d.solicitante.includes(searchQuery)
+    //         // console.log(d.solicitante, "desde filter")
+    //     );
 
-        if (searchQuery) {
-            setRows(dataFilter);
-        }
-    }
+    //     if (searchQuery) {
+    //         setRows(dataFilter);
+    //     }
+    // }
 
     return (
         <Paper
@@ -94,22 +103,6 @@ export default function StickyHeadTable({ searchQuery }) {
                 boxShadow: 'none'
             }}
         >
-            {/* <SearchBar
-                value={searched}
-                onChange={(searchVal) => requestSearch(searchVal)}
-                onCancelSearch={() => cancelSearch()}
-            /> */}
-
-            {/* <Search>
-            <SearchIconWrapper>
-            <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ 'aria-label': 'search' }}
-            />
-        </Search> */}
-
             <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
