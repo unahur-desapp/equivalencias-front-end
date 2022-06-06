@@ -827,11 +827,11 @@ const PageRevision = () => {
                                         // marginBottom: '10px'
                                     }}
                                 >
-                                    Aceptar
+                                    Responder
                                 </BotonMUI>
 
-                                <BotonMUI
-                                    buttoncontainedsmall
+                                {/* <BotonMUI
+                                    buttonContainedSmall
                                     sx={{
                                         background: '#ffa726',
                                         '&:hover': {
@@ -841,11 +841,11 @@ const PageRevision = () => {
                                         marginRight: '14px'
                                     }}
                                 >
-                                    Revisar
-                                </BotonMUI>
+                                    Solicitar +
+                                </BotonMUI> */}
 
-                                <BotonMUI
-                                    buttoncontainedsmall
+                                    {/* <BotonMUI
+                                    buttonContainedSmall
                                     sx={{
                                         background: '#E74924',
                                         '&:hover': {
