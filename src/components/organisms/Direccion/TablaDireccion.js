@@ -9,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 // import { ActionButtons } from '../../../ActionButtons';
 import { getEquivalencia } from '../../../services/equivalencia_service';
+import { getUsuario } from '../../../services/usuario_service';
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 // import TextField from '@mui/material/TextField';
@@ -18,14 +19,15 @@ import Button from '@mui/material/Button';
 
 export const columns = [
     { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
-    { id: 'dni', label: 'Dni', minWidth: 170 },
-    { id: 'dateTime', label: 'Fecha y hora', minWidth: 100 },
+    { id: 'dni', label: 'DNI', minWidth: 100 },
+    { id: 'materia', label: 'Materia', minWidth: 170 },
+    { id: 'dateTime', label: 'Fecha', minWidth: 100 },
     { id: 'actions', label: 'Acciones', minWidth: 170 }
 ];
 
-function createData(solicitante, dateTime, dni) {
+function createData(solicitante, dni, materia, dateTime) {
     const actions = <Button>Revisar</Button>; //acciones lleva a pantalla revision de ese id
-    return { solicitante, dateTime, dni, actions };
+    return { solicitante, dni, materia, dateTime, actions };
 }
 
 export default function StickyHeadTable({ searchQuery }) {
@@ -49,17 +51,23 @@ export default function StickyHeadTable({ searchQuery }) {
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia();
+            const obtainedUsuarioData = await getUsuario(7);
             let array = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
                 let d = new Date(arrayItem.Materias_solicitadas[0].createdAt); //tengo que traer solicitantes
+                let e = new Date(obtainedUsuarioData.createdAt);
                 let dateTime =
                     d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
 
                 array.push(
                     createData(
-                        // arrayItem.Usuario[0].nombre ----falta esto
-                        // arrayItem.Usuario[0].dni ----falta esto
+                        // arrayItem.Materias_solicitadas[0].nombre ----falta esto
+                        // arrayItem.Materias_solicitadas[0].Usuario.id,
+                        // arrayItem.Materias_solicitadas[0].usuario.dni,
+                        // arrayItem.Materias_solicitadas[0].id,
+                        obtainedUsuarioData.nombre,
+                        obtainedUsuarioData.dni,
                         arrayItem.Materias_solicitadas[0].nombre,
                         // arrayItem.Materias_solicitadas[0],
                         dateTime //fecha actual de cuando se genero la equivalencia
