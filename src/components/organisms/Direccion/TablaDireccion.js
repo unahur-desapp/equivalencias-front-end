@@ -1,4 +1,5 @@
-import * as React from 'react';
+// import * as React from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,11 +8,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-// import { ActionButtons } from '../../../ActionButtons';
 import { getEquivalencia } from '../../../services/equivalencia_service';
 import { getUsuario } from '../../../services/usuario_service';
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
+// import { OuterFormButtons } from '../../../OuterFormButtons';
+import FormHelperText from '@mui/material/FormHelperText';
+import { useFormControl } from '@mui/material/FormControl';
+
 // import TextField from '@mui/material/TextField';
 // import Stack from '@mui/material/Stack';
 // import Autocomplete from '@mui/material/Autocomplete';
@@ -21,7 +25,7 @@ export const columns = [
     { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
     { id: 'dni', label: 'DNI', minWidth: 100 },
     { id: 'materia', label: 'Materia', minWidth: 170 },
-    { id: 'dateTime', label: 'Fecha', minWidth: 100 },
+    { id: 'dateTime', label: 'Fecha y Hora', minWidth: 100 },
     { id: 'actions', label: 'Acciones', minWidth: 170 }
 ];
 
@@ -29,6 +33,27 @@ function createData(solicitante, dni, materia, dateTime) {
     const actions = <Button>Revisar</Button>; //acciones lleva a pantalla revision de ese id
     return { solicitante, dni, materia, dateTime, actions };
 }
+function MyFormHelperText() {
+    const { focused } = useFormControl() || {};
+
+    const helperText = useMemo(() => {
+        if (focused) {
+            return 'This field is being focused';
+        }
+
+        return 'Helper text';
+    }, [focused]);
+
+    return <FormHelperText>{helperText}</FormHelperText>;
+}
+
+const horaConCero = (hora) => {
+    if (hora < 10) {
+        return `0${hora}`;
+    } else {
+        return hora;
+    }
+};
 
 export default function StickyHeadTable({ searchQuery }) {
     const [page, setPage] = React.useState(0);
@@ -58,7 +83,16 @@ export default function StickyHeadTable({ searchQuery }) {
                 let d = new Date(arrayItem.Materias_solicitadas[0].createdAt); //tengo que traer solicitantes
                 let e = new Date(obtainedUsuarioData.createdAt);
                 let dateTime =
-                    d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+                    // d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+                    d.getDate() +
+                    '/' +
+                    (d.getMonth() + 1) +
+                    '/' +
+                    d.getFullYear() +
+                    ' - ' +
+                    d.getHours() +
+                    ':' +
+                    horaConCero(d.getMinutes());
 
                 array.push(
                     createData(
