@@ -19,7 +19,6 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { OuterFormButtons } from '../../../OuterFormButtons';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
-import { getUsuario } from '../../../services/usuario_service';
 import { getEquivalencia } from '../../../services/revision';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -67,7 +66,7 @@ const PageRevision = () => {
 
     useEffect(() => {
         const fetchUsuarioData = async () => {
-            const obtainedUsuarioData = await getUsuario(7);
+            const obtainedUsuarioData = await getEquivalencia(id);
             let arrayData = [];
 
             let d = new Date(obtainedUsuarioData.createdAt);
@@ -84,18 +83,20 @@ const PageRevision = () => {
 
             arrayData.push(
                 createData(
-                    obtainedUsuarioData.nombre,
-                    obtainedUsuarioData.email,
-                    obtainedUsuarioData.dni,
+                    obtainedUsuarioData.Usuario.nombre +
+                        ' ' +
+                        obtainedUsuarioData.Usuario.apellido,
+                    obtainedUsuarioData.Usuario.email,
+                    obtainedUsuarioData.Usuario.dni,
                     dateTime,
-                    obtainedUsuarioData.telefono
+                    obtainedUsuarioData.Usuario.telefono
                 )
             );
 
             setRows(arrayData);
 
             console.log('Hola' + equiv);
-            console.log(arrayData);
+            console.log('obtainedusuario:', obtainedUsuarioData.Usuario.nombre);
         };
 
         fetchUsuarioData();
@@ -110,19 +111,8 @@ const PageRevision = () => {
                 carrera:
                     obtainedEquivalenciaData.Materias_solicitadas[0].carrera,
 
-                nota: obtainedEquivalenciaData.Materias_aprobadas[0].nota,
-                carga_horaria:
-                    obtainedEquivalenciaData.Materias_aprobadas[0]
-                        .carga_horaria,
-                año_aprobacion:
-                    obtainedEquivalenciaData.Materias_aprobadas[0]
-                        .año_aprobacion,
-                nombre_materia:
-                    obtainedEquivalenciaData.Materias_aprobadas[0]
-                        .nombre_materia,
-                // UniversidadOrigenId: item.universidadOrigen
-                certificado:
-                    obtainedEquivalenciaData.Materias_aprobadas[0].certificado,
+                materiasAprobadas: obtainedEquivalenciaData.Materias_aprobadas,
+
                 observaciones: obtainedEquivalenciaData.observaciones
             };
 
@@ -387,287 +377,334 @@ const PageRevision = () => {
                             </Grid>
                         </Grid>
                         {/* Universidad Origen */}
-                        <Grid
-                            item
-                            container
-                            direction="row"
-                            justifyContent="flex-start"
-                            alignItems="center"
-                            sm={12}
-                            padding={{
-                                xs: '20px 30px',
-                                sm: '20px 60px'
-                            }}
-                            sx={{
-                                height: 'auto',
-                                borderRadius: '10px 10px 0px 0px',
-                                borderBottom: '1px solid #dadce0'
-                            }}
-                        >
-                            <Grid
-                                item
-                                container
-                                direction="column"
-                                alignItems="flex-start"
-                                md={12}
-                                lg={5.8}
-                                sx={{
-                                    marginTop: '6px'
-                                }}
-                            >
-                                <Titulos titulolabel component="h2">
-                                    Datos Universidad de Origen
-                                </Titulos>
-                            </Grid>
 
-                            <Grid
-                                item
-                                container
-                                xs={12}
-                                direction="row"
-                                justifyContent="space-between"
-                                alignItems="flex-start"
-                            >
-                                <Grid
-                                    item
-                                    container
-                                    direction="column"
-                                    alignItems="flex-start"
-                                    md={12}
-                                    lg={5.8}
-                                    sx={{
-                                        marginTop: '6px'
-                                    }}
-                                >
-                                    <StandardInput
-                                        name="materiaAprobada"
-                                        size="small"
-                                        label="Materia aprobada"
-                                        value={equiv.nombre_materia}
-                                        variant="outlined"
-                                        focused={true}
-                                        InputProps={{
-                                            readOnly: true
-                                        }}
-                                    />
-                                </Grid>
-
-                                <Grid
-                                    item
-                                    container
-                                    md={12}
-                                    lg={5.8}
-                                    sx={{
-                                        marginTop: '6px'
-                                    }}
-                                >
-                                    {/* nota: obtainedEquivalenciaData.Materias_aprobadas[0].nota,
-                carga_horaria: obtainedEquivalenciaData.Materias_aprobadas[0].carga_horaria,
-                año_aprobacion: obtainedEquivalenciaData.Materias_aprobadas[0].año_aprobacion,
-                nombre_materia: obtainedEquivalenciaData.Materias_aprobadas[0].nombre_materia,
-                // UniversidadOrigenId: item.universidadOrigen
-                certificado: obtainedEquivalenciaData.Materias_aprobadas[0].certificado */}
-
-                                    <StandardInput
-                                        label="Universidad de Origen"
-                                        name="universidadOrigen"
-                                        value={'Universidad de la Matanza'}
-                                        variant="outlined"
-                                        size="small"
-                                        focused={true}
-                                        InputProps={{
-                                            readOnly: true
-                                        }}
-                                    />
-                                </Grid>
-                            </Grid>
-
-                            {/* Datos extra */}
-
-                            <Grid
-                                item
-                                container
-                                xs={12}
-                                direction="row"
-                                justifyContent="space-between"
-                                alignItems="flex-start"
-                            >
-                                <Grid
-                                    item
-                                    container
-                                    md={12}
-                                    lg={5.8}
-                                    direction="row"
-                                    justifyContent="space-between"
-                                    alignItems="flex-start"
-                                    sx={{
-                                        marginTop: '10px'
-                                    }}
-                                >
-                                    <Grid item container xs={5.6}>
-                                        <StandardInput
-                                            label="Año aprobación"
-                                            name="anioAprobacion"
-                                            value={new Date(
-                                                equiv.año_aprobacion
-                                            ).getFullYear()}
-                                            variant="outlined"
-                                            size="small"
-                                            focused={true}
-                                            InputProps={{
-                                                readOnly: true
+                        {equiv.materiasAprobadas !== undefined ? (
+                            equiv.materiasAprobadas.map((materiaAprobada) => {
+                                return (
+                                    <>
+                                        <Grid
+                                            item
+                                            container
+                                            direction="row"
+                                            justifyContent="flex-start"
+                                            alignItems="center"
+                                            className="universidad-origen"
+                                            sm={12}
+                                            padding={{
+                                                xs: '20px 30px',
+                                                sm: '20px 60px'
                                             }}
-                                        />
-                                    </Grid>
-
-                                    <Grid item container xs={5.6}>
-                                        <StandardInput
-                                            label="Carga horaria total"
-                                            name="cargaHorariaTotal"
-                                            value={equiv.carga_horaria}
-                                            variant="outlined"
-                                            size="small"
-                                            focused={true}
-                                            InputProps={{
-                                                readOnly: true
-                                            }}
-                                        />
-                                    </Grid>
-                                </Grid>
-
-                                <Grid
-                                    item
-                                    container
-                                    md={12}
-                                    lg={5.8}
-                                    direction="row"
-                                    justifyContent="space-between"
-                                    alignItems="flex-start"
-                                    sx={{
-                                        marginTop: '10px'
-                                    }}
-                                >
-                                    <Grid item container xs={5.6}>
-                                        <StandardInput
-                                            label="Nota aprobación"
-                                            name="notaAprobacion"
-                                            value={equiv.nota}
-                                            variant="outlined"
-                                            size="small"
-                                            focused={true}
-                                            InputProps={{
-                                                readOnly: true
-                                            }}
-                                        />
-                                    </Grid>
-
-                                    <Grid
-                                        item
-                                        container
-                                        justifyContent="center"
-                                        alignItems="flex-end"
-                                        xs={5.6}
-                                        marginTop="7px"
-                                    >
-                                        {/* <FormControl component="fieldset">
-                        <FormLabel component="legend" sx={{ fontSize: '14px' }}>
-                            ¿Tiene certificado?
-                        </FormLabel>
-                        <RadioGroup
-                            required
-                            row
-                            aria-label="bool"
-                            name="certificado"
-                            onChange={(event) => handleChangeArray(event, key2)}
-                            value={formValueArray.certificado}
-                        >
-                            <FormControlLabel
-                                value={true}
-                                control={<Radio size="small" />}
-                                label="Si"
-                            />
-                            <FormControlLabel
-                                value={false}
-                                control={<Radio size="small" />}
-                                label="No"
-                            />
-                        </RadioGroup>
-                    </FormControl> */}
-                                        <Typography
-                                            variant="body1"
-                                            gutterBottom
-                                        >
-                                            No tiene certificado
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-
-                                <Grid
-                                    item
-                                    container
-                                    xs={12}
-                                    sx={{
-                                        marginTop: '16px'
-                                    }}
-                                >
-                                    <Grid item container xs={12}>
-                                        <Titulos
-                                            titulolabel
-                                            variant="h3"
-                                            fontSize={{
-                                                xs: '14px',
-                                                sm: '16px'
+                                            sx={{
+                                                height: 'auto',
+                                                borderRadius:
+                                                    '10px 10px 0px 0px',
+                                                borderBottom:
+                                                    '1px solid #dadce0'
                                             }}
                                         >
-                                            Adjuntar programa de la materia .pdf
-                                        </Titulos>
-                                    </Grid>
-
-                                    <Grid
-                                        item
-                                        container
-                                        xs={12}
-                                        sx={{ marginTop: '16px' }}
-                                    >
-                                        <label
-                                            htmlFor="contained-button-file"
-                                            style={{ width: '100%' }}
-                                        >
-                                            <BotonMUI
+                                            <Grid
+                                                item
+                                                container
+                                                direction="column"
+                                                alignItems="flex-start"
+                                                md={12}
+                                                lg={5.8}
                                                 sx={{
-                                                    marginRight: '12px'
+                                                    marginTop: '6px'
                                                 }}
-                                                buttonupload
-                                                variant="outlined"
-                                                component="span"
                                             >
-                                                Descargar
-                                            </BotonMUI>
-                                            {/* <IconButton
-                            sx={{
-                                marginRight: '12px'
-                            }}
-                            buttonupload
-                            variant="outlined"
-                            component="span"
-                        >
-                            <AttachFileOutlinedIcon />
-                        </IconButton> */}
-                                            {/* <FileUploader
-                            id="contained-button-file"
-                            multiple
-                            size="small"
-                            variant="standard"
-                            type="file"
-                            accept="application/pdf, application/vnd.ms-Excel"
-                        /> */}
-                                        </label>
-                                    </Grid>
-                                </Grid>
+                                                <Titulos
+                                                    titulolabel
+                                                    component="h2"
+                                                >
+                                                    Datos Universidad de Origen
+                                                </Titulos>
+                                            </Grid>
 
-                                {/* <AgregarMateriaUniOrigen /> */}
-                            </Grid>
-                        </Grid>
+                                            <Grid
+                                                item
+                                                container
+                                                xs={12}
+                                                direction="row"
+                                                justifyContent="space-between"
+                                                alignItems="flex-start"
+                                            >
+                                                <Grid
+                                                    item
+                                                    container
+                                                    direction="column"
+                                                    alignItems="flex-start"
+                                                    md={12}
+                                                    lg={5.8}
+                                                    sx={{
+                                                        marginTop: '6px'
+                                                    }}
+                                                >
+                                                    <StandardInput
+                                                        name="materiaAprobada"
+                                                        size="small"
+                                                        label="Materia aprobada"
+                                                        value={
+                                                            materiaAprobada.nombre_materia
+                                                        }
+                                                        variant="outlined"
+                                                        focused={true}
+                                                        InputProps={{
+                                                            readOnly: true
+                                                        }}
+                                                    />
+                                                </Grid>
+
+                                                <Grid
+                                                    item
+                                                    container
+                                                    md={12}
+                                                    lg={5.8}
+                                                    sx={{
+                                                        marginTop: '6px'
+                                                    }}
+                                                >
+                                                    {/* nota: obtainedEquivalenciaData.Materias_aprobadas[0].nota,
+                                carga_horaria: obtainedEquivalenciaData.Materias_aprobadas[0].carga_horaria,
+                                año_aprobacion: obtainedEquivalenciaData.Materias_aprobadas[0].año_aprobacion,
+                                nombre_materia: obtainedEquivalenciaData.Materias_aprobadas[0].nombre_materia,
+                                // UniversidadOrigenId: item.universidadOrigen
+                                certificado: obtainedEquivalenciaData.Materias_aprobadas[0].certificado */}
+
+                                                    <StandardInput
+                                                        label="Universidad de Origen"
+                                                        name="universidadOrigen"
+                                                        value={
+                                                            'Universidad de la Matanza'
+                                                        }
+                                                        variant="outlined"
+                                                        size="small"
+                                                        focused={true}
+                                                        InputProps={{
+                                                            readOnly: true
+                                                        }}
+                                                    />
+                                                </Grid>
+                                            </Grid>
+
+                                            {/* Datos extra */}
+
+                                            <Grid
+                                                item
+                                                container
+                                                xs={12}
+                                                direction="row"
+                                                justifyContent="space-between"
+                                                alignItems="flex-start"
+                                            >
+                                                <Grid
+                                                    item
+                                                    container
+                                                    md={12}
+                                                    lg={5.8}
+                                                    direction="row"
+                                                    justifyContent="space-between"
+                                                    alignItems="flex-start"
+                                                    sx={{
+                                                        marginTop: '10px'
+                                                    }}
+                                                >
+                                                    <Grid
+                                                        item
+                                                        container
+                                                        xs={5.6}
+                                                    >
+                                                        <StandardInput
+                                                            label="Año aprobación"
+                                                            name="anioAprobacion"
+                                                            value={new Date(
+                                                                materiaAprobada.año_aprobacion
+                                                            ).getFullYear()}
+                                                            variant="outlined"
+                                                            size="small"
+                                                            focused={true}
+                                                            InputProps={{
+                                                                readOnly: true
+                                                            }}
+                                                        />
+                                                    </Grid>
+
+                                                    <Grid
+                                                        item
+                                                        container
+                                                        xs={5.6}
+                                                    >
+                                                        <StandardInput
+                                                            label="Carga horaria total"
+                                                            name="cargaHorariaTotal"
+                                                            value={
+                                                                materiaAprobada.carga_horaria
+                                                            }
+                                                            variant="outlined"
+                                                            size="small"
+                                                            focused={true}
+                                                            InputProps={{
+                                                                readOnly: true
+                                                            }}
+                                                        />
+                                                    </Grid>
+                                                </Grid>
+
+                                                <Grid
+                                                    item
+                                                    container
+                                                    md={12}
+                                                    lg={5.8}
+                                                    direction="row"
+                                                    justifyContent="space-between"
+                                                    alignItems="flex-start"
+                                                    sx={{
+                                                        marginTop: '10px'
+                                                    }}
+                                                >
+                                                    <Grid
+                                                        item
+                                                        container
+                                                        xs={5.6}
+                                                    >
+                                                        <StandardInput
+                                                            label="Nota aprobación"
+                                                            name="notaAprobacion"
+                                                            value={
+                                                                materiaAprobada.nota
+                                                            }
+                                                            variant="outlined"
+                                                            size="small"
+                                                            focused={true}
+                                                            InputProps={{
+                                                                readOnly: true
+                                                            }}
+                                                        />
+                                                    </Grid>
+
+                                                    <Grid
+                                                        item
+                                                        container
+                                                        justifyContent="center"
+                                                        alignItems="flex-end"
+                                                        xs={5.6}
+                                                        marginTop="7px"
+                                                    >
+                                                        {/* <FormControl component="fieldset">
+                                        <FormLabel component="legend" sx={{ fontSize: '14px' }}>
+                                            ¿Tiene certificado?
+                                        </FormLabel>
+                                        <RadioGroup
+                                            required
+                                            row
+                                            aria-label="bool"
+                                            name="certificado"
+                                            onChange={(event) => handleChangeArray(event, key2)}
+                                            value={formValueArray.certificado}
+                                        >
+                                            <FormControlLabel
+                                                value={true}
+                                                control={<Radio size="small" />}
+                                                label="Si"
+                                            />
+                                            <FormControlLabel
+                                                value={false}
+                                                control={<Radio size="small" />}
+                                                label="No"
+                                            />
+                                        </RadioGroup>
+                                    </FormControl> */}
+                                                        <Typography
+                                                            variant="body1"
+                                                            gutterBottom
+                                                        >
+                                                            No tiene certificado
+                                                        </Typography>
+                                                    </Grid>
+                                                </Grid>
+
+                                                <Grid
+                                                    item
+                                                    container
+                                                    xs={12}
+                                                    sx={{
+                                                        marginTop: '16px'
+                                                    }}
+                                                >
+                                                    <Grid
+                                                        item
+                                                        container
+                                                        xs={12}
+                                                    >
+                                                        <Titulos
+                                                            titulolabel
+                                                            variant="h3"
+                                                            fontSize={{
+                                                                xs: '14px',
+                                                                sm: '16px'
+                                                            }}
+                                                        >
+                                                            Adjuntar programa de
+                                                            la materia .pdf
+                                                        </Titulos>
+                                                    </Grid>
+
+                                                    <Grid
+                                                        item
+                                                        container
+                                                        xs={12}
+                                                        sx={{
+                                                            marginTop: '16px'
+                                                        }}
+                                                    >
+                                                        <label
+                                                            htmlFor="contained-button-file"
+                                                            style={{
+                                                                width: '100%'
+                                                            }}
+                                                        >
+                                                            <BotonMUI
+                                                                sx={{
+                                                                    marginRight:
+                                                                        '12px'
+                                                                }}
+                                                                buttonupload
+                                                                variant="outlined"
+                                                                component="span"
+                                                            >
+                                                                Descargar
+                                                            </BotonMUI>
+                                                            {/* <IconButton
+                                            sx={{
+                                                marginRight: '12px'
+                                            }}
+                                            buttonupload
+                                            variant="outlined"
+                                            component="span"
+                                        >
+                                            <AttachFileOutlinedIcon />
+                                        </IconButton> */}
+                                                            {/* <FileUploader
+                                            id="contained-button-file"
+                                            multiple
+                                            size="small"
+                                            variant="standard"
+                                            type="file"
+                                            accept="application/pdf, application/vnd.ms-Excel"
+                                        /> */}
+                                                        </label>
+                                                    </Grid>
+                                                </Grid>
+
+                                                {/* <AgregarMateriaUniOrigen /> */}
+                                            </Grid>
+                                        </Grid>
+                                    </>
+                                );
+                            })
+                        ) : (
+                            <></>
+                        )}
 
                         {/* Textarea */}
 
@@ -766,7 +803,6 @@ const PageRevision = () => {
                                         value={formValue.observaciones}
                                         name="observaciones"
                                         onChange={handleChange}
-                                        focused={true}
                                         rows={8}
                                         sx={{
                                             width: '100%'

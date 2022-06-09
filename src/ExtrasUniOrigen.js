@@ -11,15 +11,9 @@ import React, { useState } from 'react';
 import { StandardInput, FileUploader } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
-import { AgregarMateriaUniOrigen } from './AgregarMateriaUniOrigen';
-import { FormUniOrigen } from './FormUniOrigen';
-import { nanoid } from 'nanoid';
-import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
-import IconButton from '@mui/material/IconButton';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
-import Box from '@mui/material/Box';
 
 const ExtrasUniOrigen = ({
     formValue,
@@ -82,9 +76,11 @@ const ExtrasUniOrigen = ({
                                     size="small"
                                     variant="outlined"
                                     type="number"
-                                    value={(formValueArray.anioAprobacion = new Date(
-                                        value
-                                    ).getFullYear()).toString()}
+                                    value={
+                                        (formValueArray.anioAprobacion = new Date(
+                                            value
+                                        ))
+                                    }
                                     onClick={(event) =>
                                         handleChangeArray(event, key2)
                                     }

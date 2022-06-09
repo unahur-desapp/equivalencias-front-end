@@ -195,12 +195,13 @@ const CreateForm = () => {
                     ...item,
                     nota: item.notaAprobacion,
                     carga_horaria: item.cargaHorariaTotal,
-                    año_aprobacion: item.anioAprobacion,
+                    año_aprobacion: item.anioAprobacion.toString('yyyy'),
                     nombre_materia: item.materiaAprobada,
                     // UniversidadOrigenId: item.universidadOrigen
                     certificado: item.certificado
                 };
-            })
+            }),
+            UsuarioId: 7
         };
 
         console.log(equivalencia);
@@ -210,16 +211,10 @@ const CreateForm = () => {
                 'http://localhost:3001/api/equivalencias/createx3',
                 equivalencia
             )
-            .then((res) => {
-                try {
-                    res.data.data; // '{"name":"deven"}'
+            .then(() => {
+                notifyExito();
 
-                    window.location = '/usuario/equivalencias';
-
-                    notifyExito();
-                } catch (error) {
-                    console.log(error);
-                }
+                window.location = '/usuario/equivalencias';
             })
             .catch(() => {
                 notifyEnviarSinDatos();
