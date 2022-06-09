@@ -109,7 +109,7 @@ export default function StickyHeadTable({ searchQuery }) {
                     )
                 );
                 const dataFilter = array.filter(
-                    (d) => d.solicitante.includes(searchQuery)
+                    (d) => d.solicitante.toLowerCase().includes(searchQuery)
                     // console.log(d.solicitante, "desde filter")
                 );
 
