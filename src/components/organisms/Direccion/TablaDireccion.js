@@ -1,4 +1,5 @@
-import * as React from 'react';
+// import * as React from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,10 +8,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-// import { ActionButtons } from '../../../ActionButtons';
 import { getEquivalencia } from '../../../services/equivalencia_service';
-import { useState, useEffect } from 'react';
+import { getUsuario } from '../../../services/usuario_service';
+// import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
+// import { OuterFormButtons } from '../../../OuterFormButtons';
+import FormHelperText from '@mui/material/FormHelperText';
+import { useFormControl } from '@mui/material/FormControl';
+
 // import TextField from '@mui/material/TextField';
 // import Stack from '@mui/material/Stack';
 // import Autocomplete from '@mui/material/Autocomplete';
@@ -18,15 +23,37 @@ import Button from '@mui/material/Button';
 
 export const columns = [
     { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
-    { id: 'dni', label: 'Dni', minWidth: 170 },
-    { id: 'dateTime', label: 'Fecha y hora', minWidth: 100 },
+    { id: 'dni', label: 'DNI', minWidth: 100 },
+    { id: 'materia', label: 'Materia', minWidth: 170 },
+    { id: 'dateTime', label: 'Fecha y Hora', minWidth: 100 },
     { id: 'actions', label: 'Acciones', minWidth: 170 }
 ];
 
-function createData(solicitante, dateTime, dni) {
+function createData(solicitante, dni, materia, dateTime) {
     const actions = <Button>Revisar</Button>; //acciones lleva a pantalla revision de ese id
-    return { solicitante, dateTime, dni, actions };
+    return { solicitante, dni, materia, dateTime, actions };
 }
+function MyFormHelperText() {
+    const { focused } = useFormControl() || {};
+
+    const helperText = useMemo(() => {
+        if (focused) {
+            return 'This field is being focused';
+        }
+
+        return 'Helper text';
+    }, [focused]);
+
+    return <FormHelperText>{helperText}</FormHelperText>;
+}
+
+const horaConCero = (hora) => {
+    if (hora < 10) {
+        return `0${hora}`;
+    } else {
+        return hora;
+    }
+};
 
 export default function StickyHeadTable({ searchQuery }) {
     const [page, setPage] = React.useState(0);
@@ -49,17 +76,32 @@ export default function StickyHeadTable({ searchQuery }) {
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia();
+            const obtainedUsuarioData = await getUsuario(7);
             let array = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
                 let d = new Date(arrayItem.Materias_solicitadas[0].createdAt); //tengo que traer solicitantes
+                let e = new Date(obtainedUsuarioData.createdAt);
                 let dateTime =
-                    d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+                    // d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+                    d.getDate() +
+                    '/' +
+                    (d.getMonth() + 1) +
+                    '/' +
+                    d.getFullYear() +
+                    ' - ' +
+                    d.getHours() +
+                    ':' +
+                    horaConCero(d.getMinutes());
 
                 array.push(
                     createData(
-                        // arrayItem.Usuario[0].nombre ----falta esto
-                        // arrayItem.Usuario[0].dni ----falta esto
+                        // arrayItem.Materias_solicitadas[0].nombre ----falta esto
+                        // arrayItem.Materias_solicitadas[0].Usuario.id,
+                        // arrayItem.Materias_solicitadas[0].usuario.dni,
+                        // arrayItem.Materias_solicitadas[0].id,
+                        obtainedUsuarioData.nombre,
+                        obtainedUsuarioData.dni,
                         arrayItem.Materias_solicitadas[0].nombre,
                         // arrayItem.Materias_solicitadas[0],
                         dateTime //fecha actual de cuando se genero la equivalencia
@@ -67,7 +109,7 @@ export default function StickyHeadTable({ searchQuery }) {
                     )
                 );
                 const dataFilter = array.filter(
-                    (d) => d.solicitante.includes(searchQuery)
+                    (d) => d.solicitante.toLowerCase().includes(searchQuery)
                     // console.log(d.solicitante, "desde filter")
                 );
 
