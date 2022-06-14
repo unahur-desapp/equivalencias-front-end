@@ -29,12 +29,12 @@ const CreateForm = () => {
         useState([
             {
                 key: nanoid(),
-                notaAprobacion: null,
-                cargaHorariaTotal: null,
+                notaAprobacion: 0,
+                cargaHorariaTotal: 0,
                 anioAprobacion: '',
                 materiaAprobada: '',
-                universidadOrigen: '', // id de universidad
-                certificado: null
+                universidadOrigen: 1, // id de universidad
+                certificado: false
             }
         ]);
     //Push de esto?
@@ -100,12 +100,12 @@ const CreateForm = () => {
             ...materias,
             {
                 key: nanoid(),
-                notaAprobacion: null,
-                cargaHorariaTotal: null,
+                notaAprobacion: 0,
+                cargaHorariaTotal: 0,
                 anioAprobacion: '',
                 materiaAprobada: '',
-                universidadOrigen: '', // id de universidad
-                certificado: null
+                universidadOrigen: 1, // id de universidad
+                certificado: false
             }
         ]);
 
@@ -189,36 +189,101 @@ const CreateForm = () => {
         const equivalencia = {
             nombre: formValue.materiaSolicitada,
             carrera: formValue.carreraUnahur,
+            estado: 'Pendiente',
+            observaciones: '',
             instituto: 'Instituto de Tecnología e Ingeniería',
             array: materias.map((item) => {
                 return {
-                    ...item,
                     nota: item.notaAprobacion,
                     carga_horaria: item.cargaHorariaTotal,
-                    año_aprobacion: item.anioAprobacion.toString('yyyy'),
+                    año_aprobacion: item.anioAprobacion,
                     nombre_materia: item.materiaAprobada,
-                    // UniversidadOrigenId: item.universidadOrigen
+                    UniversidadOrigenId: 1,
                     certificado: item.certificado
                 };
             }),
             UsuarioId: 7
         };
 
-        console.log(equivalencia);
+        console.log('Equivalencia:', equivalencia);
 
-        const res = await axios
+        // const response = await fetch(
+        //     'http://localhost:3001/api/equivalencias/createx3',
+        //     {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(equivalencia)
+        //     }
+        // )
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         console.log(data);
+        //         notifyExito();
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
+
+        const response = await axios
             .post(
                 'http://localhost:3001/api/equivalencias/createx3',
-                equivalencia
+                equivalencia,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
             )
-            .then(() => {
-                notifyExito();
-
-                window.location = '/usuario/equivalencias';
+            .then((res) => {
+                console.log('Res:', res);
+                res.status === 200 ? notifyExito() : notifyEnviarSinDatos();
             })
-            .catch(() => {
+            .catch((error) => {
+                console.log('Error: ', error);
                 notifyEnviarSinDatos();
             });
+
+        // try {
+        //     const response = await axios
+        //         .post(
+        //             'http://localhost:3001/api/equivalencias/createx3',
+        //             equivalencia,
+        //             {
+        //                 headers: {
+        //                     'Content-Type': 'application/json'
+        //                 }
+        //             }
+        //         )
+        //         .then((res) => {
+        //             console.log(res);
+        //             response.status === 200
+        //                 ? notifyExito()
+        //                 : console.log('Error');
+        //         });
+        // } catch (error) {
+        //     console.log('Catch error: ', error);
+        //     notifyEnviarSinDatos();
+        // }
+
+        // await axios.post(
+        //     'http://localhost:3001/api/equivalencias/createx3',
+        //     { equivalencia },
+        //     {
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         }
+        //     }
+        // )
+        // .then((response) => {
+        //     console.log(response);
+        //     response.status === 201 ? notifyExito() : console.log('Error');
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        //     notifyEnviarSinDatos();
+        // });
 
         // res.data.headers['application/json']; // 'application/json;charset=utf-8',
 

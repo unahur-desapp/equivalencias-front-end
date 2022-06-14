@@ -76,12 +76,11 @@ export default function StickyHeadTable({ searchQuery }) {
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia();
-            const obtainedUsuarioData = await getUsuario(7);
+
             let array = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
                 let d = new Date(arrayItem.Materias_solicitadas[0].createdAt); //tengo que traer solicitantes
-                let e = new Date(obtainedUsuarioData.createdAt);
                 let dateTime =
                     // d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
                     d.getDate() +
@@ -93,15 +92,15 @@ export default function StickyHeadTable({ searchQuery }) {
                     d.getHours() +
                     ':' +
                     horaConCero(d.getMinutes());
-
+                console.log('array item: ', arrayItem.Usuario);
                 array.push(
                     createData(
                         // arrayItem.Materias_solicitadas[0].nombre ----falta esto
                         // arrayItem.Materias_solicitadas[0].Usuario.id,
                         // arrayItem.Materias_solicitadas[0].usuario.dni,
                         // arrayItem.Materias_solicitadas[0].id,
-                        obtainedUsuarioData.nombre,
-                        obtainedUsuarioData.dni,
+                        arrayItem.Usuario.nombre,
+                        arrayItem.Usuario.dni,
                         arrayItem.Materias_solicitadas[0].nombre,
                         // arrayItem.Materias_solicitadas[0],
                         dateTime //fecha actual de cuando se genero la equivalencia
@@ -109,7 +108,10 @@ export default function StickyHeadTable({ searchQuery }) {
                     )
                 );
                 const dataFilter = array.filter(
-                    (d) => d.solicitante.toLowerCase().includes(searchQuery)
+                    (d) =>
+                        d.solicitante
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase())
                     // console.log(d.solicitante, "desde filter")
                 );
 

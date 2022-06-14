@@ -21,7 +21,7 @@ const ExtrasUniOrigen = ({
     formValueArray,
     key2
 }) => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(new Date());
 
     return (
         <Grid
@@ -63,7 +63,7 @@ const ExtrasUniOrigen = ({
                             label="Año aprobación"
                             name="datepicker"
                             onChange={(newValue) => setValue(newValue)}
-                            value={value}
+                            value={value + 1}
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
@@ -77,11 +77,11 @@ const ExtrasUniOrigen = ({
                                     variant="outlined"
                                     type="number"
                                     value={
-                                        (formValueArray.anioAprobacion = new Date(
-                                            value
-                                        ))
+                                        (formValueArray.anioAprobacion = value
+                                            .getFullYear()
+                                            .toString())
                                     }
-                                    onClick={(event) =>
+                                    onChange={(event) =>
                                         handleChangeArray(event, key2)
                                     }
                                 />
@@ -148,8 +148,8 @@ const ExtrasUniOrigen = ({
                             row
                             aria-label="bool"
                             name="certificado"
-                            onChange={(event) => handleChangeArray(event, key2)}
                             value={formValueArray.certificado}
+                            onChange={(event) => handleChangeArray(event, key2)}
                         >
                             <FormControlLabel
                                 value={true}
@@ -212,14 +212,15 @@ const ExtrasUniOrigen = ({
                         >
                             <AttachFileOutlinedIcon />
                         </IconButton> */}
-                        <FileUploader
+
+                        {/* <FileUploader
                             id="contained-button-file"
                             multiple
                             size="small"
                             variant="standard"
                             type="file"
                             accept="application/pdf, application/vnd.ms-Excel"
-                        />
+                        /> */}
                     </label>
                 </Grid>
             </Grid>

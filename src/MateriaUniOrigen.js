@@ -74,7 +74,7 @@ const MateriaUniOrigen = ({
                             {...params}
                             label="Universidad de Origen"
                             name="universidadOrigen"
-                            value={formValueArray.universidadOrigen || ''}
+                            value={(formValueArray.universidadOrigen = 1)}
                         />
                     )}
                 />
