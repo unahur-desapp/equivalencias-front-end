@@ -1,4 +1,5 @@
 import { Grid, TextField, styled, Autocomplete } from '@mui/material';
+import { css } from '@mui/styled-engine';
 
 const InputMUI = styled(TextField)`
     outline: 1px;
@@ -19,6 +20,23 @@ const StandardInput = styled(TextField)`
     border: 0;
     width: 100%;
     margin-top: 15px;
+
+    ${(props) =>
+        props.inputFocused &&
+        css`
+            .MuiOutlinedInput-root {
+                &.Mui-focused fieldset {
+                    border-color: rgba(0, 0, 0, 0.6);
+                    border-width: 1px;
+                }
+            }
+
+            .MuiInputLabel-root {
+                &.Mui-focused {
+                    color: rgba(0, 0, 0, 0.6);
+                }
+            }
+        `}
 
     input[type='number']::-webkit-inner-spin-button,
     input[type='number']::-webkit-outer-spin-button {

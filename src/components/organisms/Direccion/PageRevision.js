@@ -163,7 +163,7 @@ const PageRevision = () => {
                 try {
                     res.data.data; // '{"name":"deven"}'
 
-                    window.location = '/usuario/equivalencias';
+                    window.location = '/direccion/solicitudes';
                 } catch (error) {
                     console.log(error);
                 }

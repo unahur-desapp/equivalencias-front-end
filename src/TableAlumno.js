@@ -12,6 +12,8 @@ import { Grid } from '@mui/material';
 import { ActionButtons } from './ActionButtons';
 import { getEquivalencia } from './services/equivalencia_service';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const columns = [
     { id: 'desc', label: 'Descripción', minWidth: 170 },
@@ -20,15 +22,16 @@ const columns = [
     { id: 'actions', label: 'Visualizar', minWidth: 170 }
 ];
 
-function createData(desc, dateTime, state) {
-    const actions = <ActionButtons />;
-    // const stateS = (
-    //     <Stack spacing={1} alignItems="center">
-    //         <Stack direction="row" spacing={1}>
-    //             <Chip label="Falta completar" color="info" />;
-    //         </Stack>
-    //     </Stack>
-    // );
+function createData(desc, dateTime, state, id) {
+    const actions = (
+        <Link
+            to={'/usuario/visualizar/' + id}
+            style={{ textDecoration: 'none' }}
+        >
+            <ActionButtons>Revisar</ActionButtons>
+        </Link>
+    );
+
     const stateS =
         state === 'Falta completar' ? (
             <Grid
@@ -143,8 +146,8 @@ export default function StickyHeadTable() {
                     createData(
                         arrayItem.Materias_solicitadas[0].nombre,
                         dateTime,
-                        arrayItem.estado
-
+                        arrayItem.estado,
+                        arrayItem.id
                         // arrayItem.Estado[0].en_proceso
                     )
                 );

@@ -21,7 +21,18 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import { getEquivalencia } from '../../../services/revision';
 import { useParams } from 'react-router-dom';
+import Chip from '@mui/material/Chip';
 import axios from 'axios';
+import { styled } from '@mui/material';
+import { css } from '@mui/styled-engine';
+
+const ChipMedium = styled(Chip)`
+    ${(props) =>
+        props.chipMedium &&
+        css`
+            font-size: 14px;
+        `}
+`;
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -113,15 +124,12 @@ const PageVerEquivalencia = () => {
 
                 materiasAprobadas: obtainedEquivalenciaData.Materias_aprobadas,
 
-                observaciones: obtainedEquivalenciaData.observaciones
+                observaciones: obtainedEquivalenciaData.observaciones,
+
+                estado: obtainedEquivalenciaData.estado
             };
 
             setEquiv(arrayData);
-
-            setFormValue({
-                observaciones: obtainedEquivalenciaData.observaciones,
-                estado: obtainedEquivalenciaData.estado
-            });
 
             console.log(obtainedEquivalenciaData);
 
@@ -206,6 +214,45 @@ const PageVerEquivalencia = () => {
                                 Revisión
                             </Titulos>
                         </Grid>
+                    </GridTop>
+
+                    <GridTop
+                        item
+                        container
+                        xs={11.5}
+                        md={7}
+                        sx={{ height: 'auto', padding: '0px 20px' }}
+                    >
+                        <ChipMedium
+                            size="medium"
+                            chipMedium
+                            label={equiv.estado}
+                            sx={
+                                equiv.estado === 'Falta completar'
+                                    ? {
+                                          backgroundColor:
+                                              'rgba(0, 0, 0, 0.17)',
+                                          color: 'rgba(0, 0, 0, 0.87)'
+                                      }
+                                    : equiv.estado === 'Aceptado'
+                                    ? {
+                                          backgroundColor:
+                                              'rgba(25, 118, 210, 0.17)',
+                                          color: '#1976d2'
+                                      }
+                                    : equiv.estado === 'Rechazado'
+                                    ? {
+                                          backgroundColor:
+                                              'rgba(211, 47, 47, 0.17)',
+                                          color: '#d32f2f'
+                                      }
+                                    : {
+                                          backgroundColor:
+                                              'rgba(237, 108, 2, 0.17)',
+                                          color: 'rgb(237, 108, 2)'
+                                      }
+                            }
+                        ></ChipMedium>
                     </GridTop>
 
                     <GridTop
@@ -342,6 +389,7 @@ const PageVerEquivalencia = () => {
                                     }}
                                 >
                                     <StandardInput
+                                        inputFocused
                                         name="materiaSolicitada"
                                         label="Materia solicitada UNAHUR"
                                         value={equiv.nombre}
@@ -364,6 +412,7 @@ const PageVerEquivalencia = () => {
                                     }}
                                 >
                                     <StandardInput
+                                        inputFocused
                                         label="Carreras UNAHUR"
                                         value={equiv.carrera}
                                         variant="outlined"
@@ -441,6 +490,7 @@ const PageVerEquivalencia = () => {
                                                     }}
                                                 >
                                                     <StandardInput
+                                                        inputFocused
                                                         name="materiaAprobada"
                                                         size="small"
                                                         label="Materia aprobada"
@@ -472,6 +522,7 @@ const PageVerEquivalencia = () => {
                                 certificado: obtainedEquivalenciaData.Materias_aprobadas[0].certificado */}
 
                                                     <StandardInput
+                                                        inputFocused
                                                         label="Universidad de Origen"
                                                         name="universidadOrigen"
                                                         value={
@@ -515,6 +566,7 @@ const PageVerEquivalencia = () => {
                                                         xs={5.6}
                                                     >
                                                         <StandardInput
+                                                            inputFocused
                                                             label="Año aprobación"
                                                             name="anioAprobacion"
                                                             value={new Date(
@@ -535,6 +587,7 @@ const PageVerEquivalencia = () => {
                                                         xs={5.6}
                                                     >
                                                         <StandardInput
+                                                            inputFocused
                                                             label="Carga horaria total"
                                                             name="cargaHorariaTotal"
                                                             value={
@@ -568,6 +621,7 @@ const PageVerEquivalencia = () => {
                                                         xs={5.6}
                                                     >
                                                         <StandardInput
+                                                            inputFocused
                                                             label="Nota aprobación"
                                                             name="notaAprobacion"
                                                             value={
@@ -800,104 +854,25 @@ const PageVerEquivalencia = () => {
                                         label="Observación..."
                                         variant="filled"
                                         multiline
-                                        value={formValue.observaciones}
+                                        value={equiv.observaciones}
                                         name="observaciones"
                                         onChange={handleChange}
+                                        focused={true}
                                         rows={8}
+                                        InputProps={{
+                                            readOnly: true
+                                        }}
                                         sx={{
                                             width: '100%'
                                         }}
                                     />
-                                </Grid>
-
-                                <Grid
-                                    item
-                                    container
-                                    direction="row"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                    sm={12}
-                                    sx={{
-                                        marginTop: '20px'
-                                    }}
-                                >
-                                    <ToggleButtonGroup
-                                        value={formValue.estado}
-                                        id="estado"
-                                        exclusive
-                                        onChange={handleChangeToggle}
-                                    >
-                                        <ToggleButton
-                                            color="primary"
-                                            id="estado"
-                                            value="Aceptado"
-                                        >
-                                            Aceptar
-                                        </ToggleButton>
-                                        <ToggleButton
-                                            value="Falta completar"
-                                            id="estado"
-                                        >
-                                            Falta completar
-                                        </ToggleButton>
-                                        <ToggleButton
-                                            color="error"
-                                            value="Rechazado"
-                                            id="estado"
-                                        >
-                                            Rechazar
-                                        </ToggleButton>
-                                    </ToggleButtonGroup>
-
-                                    {/* <BotonMUI
-                                    buttoncontainedsmall
-                                    sx={{
-                                        background: '#009673',
-                                        '&:hover': {
-                                            background: '#007A5E'
-                                        }
-                                        // background: '#348FDC',
-                                        // '&:hover': {
-                                        //     background: '#2380D1'
-                                        // }
-                                        // marginBottom: '10px'
-                                    }}
-                                >
-                                    Responder
-                                </BotonMUI>
-
-                                {/* <BotonMUI
-                                    buttonContainedSmall
-                                    sx={{
-                                        background: '#ffa726',
-                                        '&:hover': {
-                                            background: '#f57c00'
-                                        },
-                                        marginLeft: '14px',
-                                        marginRight: '14px'
-                                    }}
-                                >
-                                    Solicitar +
-                                </BotonMUI> */}
-
-                                    {/* <BotonMUI
-                                    buttonContainedSmall
-                                    sx={{
-                                        background: '#E74924',
-                                        '&:hover': {
-                                            background: '#CA3716'
-                                        }
-                                    }}
-                                >
-                                    Rechazar
-                                </BotonMUI> */}
                                 </Grid>
                             </Grid>
                         </Grid>
                     </GridTop>
                     <OuterFormButtons
                         handleSubmit={handleSubmit}
-                        path={'/direccion/solicitudes'}
+                        path={'/usuario/equivalencias'}
                         titulo={'Descartar revisión'}
                         mensaje={
                             '¿Está seguro/a de que desea descartar la revisión de la solicitud?'

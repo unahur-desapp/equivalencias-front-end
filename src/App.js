@@ -16,7 +16,7 @@ export default function App() {
                 <Route path="/" exact component={PageIniciarSesion} />
                 <Route path="/usuario/equivalencias" component={PageMyForm} />
                 <Route
-                    path="/usuario/equivalencias/:id"
+                    path="/usuario/visualizar/:id"
                     component={PageVerEquivalencia}
                 />
                 <Route path="/usuario/formulario" component={PageCreateForm} />
