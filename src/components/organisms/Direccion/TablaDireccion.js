@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 // import { OuterFormButtons } from '../../../OuterFormButtons';
 import FormHelperText from '@mui/material/FormHelperText';
 import { useFormControl } from '@mui/material/FormControl';
+import { Link } from 'react-router-dom';
 
 // import TextField from '@mui/material/TextField';
 // import Stack from '@mui/material/Stack';
@@ -22,15 +23,22 @@ import { useFormControl } from '@mui/material/FormControl';
 // import { getEquivalencia } from './services/equivalencia_service';
 
 export const columns = [
-    { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
     { id: 'dni', label: 'DNI', minWidth: 100 },
+    { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
     { id: 'materia', label: 'Materia', minWidth: 170 },
     { id: 'dateTime', label: 'Fecha y Hora', minWidth: 100 },
     { id: 'actions', label: 'Acciones', minWidth: 170 }
 ];
 
-function createData(solicitante, dni, materia, dateTime) {
-    const actions = <Button>Revisar</Button>; //acciones lleva a pantalla revision de ese id
+function createData(solicitante, dni, materia, id, dateTime) {
+    const actions = (
+        <Link
+            to={'/direccion/revision/' + id}
+            style={{ textDecoration: 'none' }}
+        >
+            <Button>Revisar</Button>
+        </Link>
+    ); //acciones lleva a pantalla revision de ese id
     return { solicitante, dni, materia, dateTime, actions };
 }
 function MyFormHelperText() {
@@ -46,6 +54,10 @@ function MyFormHelperText() {
 
     return <FormHelperText>{helperText}</FormHelperText>;
 }
+
+const handleClick = () => {
+    return 'hola';
+};
 
 const horaConCero = (hora) => {
     if (hora < 10) {
@@ -93,6 +105,7 @@ export default function StickyHeadTable({ searchQuery }) {
                     ':' +
                     horaConCero(d.getMinutes());
                 console.log('array item: ', arrayItem.Usuario);
+                console.log('Equiv:', obtainedEquivalenciaData);
                 array.push(
                     createData(
                         // arrayItem.Materias_solicitadas[0].nombre ----falta esto
@@ -102,6 +115,7 @@ export default function StickyHeadTable({ searchQuery }) {
                         arrayItem.Usuario.nombre,
                         arrayItem.Usuario.dni,
                         arrayItem.Materias_solicitadas[0].nombre,
+                        arrayItem.id,
                         // arrayItem.Materias_solicitadas[0],
                         dateTime //fecha actual de cuando se genero la equivalencia
                         // arrayItem.Estado[0].status
@@ -110,6 +124,10 @@ export default function StickyHeadTable({ searchQuery }) {
                 const dataFilter = array.filter(
                     (d) =>
                         d.solicitante
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase()) +
+                        d.dni
+                            .toString()
                             .toLowerCase()
                             .includes(searchQuery.toLowerCase())
                     // console.log(d.solicitante, "desde filter")
@@ -173,12 +191,14 @@ export default function StickyHeadTable({ searchQuery }) {
                                 page * rowsPerPage + rowsPerPage
                             )
                             .map((row) => {
+                                console.log('Row: ', row);
                                 return (
                                     <TableRow
                                         hover
                                         role="checkbox"
                                         tabIndex={-1}
                                         key={row.code}
+                                        // onClick={() => handleClick(row.)}
                                     >
                                         {columns.map((column) => {
                                             const value = row[column.id];
