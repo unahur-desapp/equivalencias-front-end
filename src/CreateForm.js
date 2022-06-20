@@ -29,8 +29,8 @@ const CreateForm = () => {
         useState([
             {
                 key: nanoid(),
-                notaAprobacion: 0,
-                cargaHorariaTotal: 0,
+                notaAprobacion: null,
+                cargaHorariaTotal: null,
                 anioAprobacion: '',
                 materiaAprobada: '',
                 universidadOrigen: 1, // id de universidad
@@ -100,8 +100,8 @@ const CreateForm = () => {
             ...materias,
             {
                 key: nanoid(),
-                notaAprobacion: 0,
-                cargaHorariaTotal: 0,
+                notaAprobacion: null,
+                cargaHorariaTotal: null,
                 anioAprobacion: '',
                 materiaAprobada: '',
                 universidadOrigen: 1, // id de universidad
