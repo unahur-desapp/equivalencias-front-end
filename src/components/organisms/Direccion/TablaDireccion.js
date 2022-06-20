@@ -56,7 +56,7 @@ function MyFormHelperText() {
 }
 
 const handleClick = () => {
-    return 'puta';
+    return 'hola';
 };
 
 const horaConCero = (hora) => {
