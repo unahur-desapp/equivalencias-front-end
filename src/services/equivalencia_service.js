@@ -8,6 +8,13 @@ export async function getEquivalencia() {
     return apiResponse.data;
 }
 
+export async function getEquivalenciaUsuario(id) {
+    const apiResponse = await axios.get(
+        `${config.apiUrl}/equivalencias/generalUsuario/${id}`
+    );
+    return apiResponse.data;
+}
+
 // export async function postEquivalencia() {
 //     const apiResponse = await axios.post(
 //         `${config.apiUrl}/equivalencias/general`

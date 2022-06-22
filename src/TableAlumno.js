@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Chip from '@mui/material/Chip';
 import { Grid } from '@mui/material';
 import { ActionButtons } from './ActionButtons';
-import { getEquivalencia } from './services/equivalencia_service';
+import { getEquivalenciaUsuario } from './services/equivalencia_service';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -126,7 +126,10 @@ export default function StickyHeadTable() {
 
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
-            const obtainedEquivalenciaData = await getEquivalencia();
+            const usuarioId = parseInt(JSON.parse(localStorage.getItem('id')));
+            const obtainedEquivalenciaData = await getEquivalenciaUsuario(
+                usuarioId
+            );
             let arrayData = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
