@@ -342,6 +342,7 @@ const PageRevision = () => {
                                     }}
                                 >
                                     <StandardInput
+                                        inputFocused
                                         name="materiaSolicitada"
                                         label="Materia solicitada UNAHUR"
                                         value={equiv.nombre}
@@ -364,6 +365,7 @@ const PageRevision = () => {
                                     }}
                                 >
                                     <StandardInput
+                                        inputFocused
                                         label="Carreras UNAHUR"
                                         value={equiv.carrera}
                                         variant="outlined"
@@ -441,6 +443,7 @@ const PageRevision = () => {
                                                     }}
                                                 >
                                                     <StandardInput
+                                                        inputFocused
                                                         name="materiaAprobada"
                                                         size="small"
                                                         label="Materia aprobada"
@@ -472,6 +475,7 @@ const PageRevision = () => {
                                 certificado: obtainedEquivalenciaData.Materias_aprobadas[0].certificado */}
 
                                                     <StandardInput
+                                                        inputFocused
                                                         label="Universidad de Origen"
                                                         name="universidadOrigen"
                                                         value={
@@ -515,6 +519,7 @@ const PageRevision = () => {
                                                         xs={5.6}
                                                     >
                                                         <StandardInput
+                                                            inputFocused
                                                             label="Año aprobación"
                                                             name="anioAprobacion"
                                                             value={new Date(
@@ -535,6 +540,7 @@ const PageRevision = () => {
                                                         xs={5.6}
                                                     >
                                                         <StandardInput
+                                                            inputFocused
                                                             label="Carga horaria total"
                                                             name="cargaHorariaTotal"
                                                             value={
@@ -568,6 +574,7 @@ const PageRevision = () => {
                                                         xs={5.6}
                                                     >
                                                         <StandardInput
+                                                            inputFocused
                                                             label="Nota aprobación"
                                                             name="notaAprobacion"
                                                             value={

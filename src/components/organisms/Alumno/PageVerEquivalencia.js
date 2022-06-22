@@ -14,9 +14,6 @@ import { BotonMUI } from '../../atoms/Button/BotonMUI';
 import { TextField } from '@mui/material';
 import { StandardInput } from '../../atoms/Input/InputMUI';
 import Typography from '@mui/material/Typography';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { OuterFormButtons } from '../../../OuterFormButtons';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import { getEquivalencia } from '../../../services/revision';
@@ -25,6 +22,7 @@ import Chip from '@mui/material/Chip';
 import axios from 'axios';
 import { styled } from '@mui/material';
 import { css } from '@mui/styled-engine';
+import { Link } from 'react-router-dom';
 
 const ChipMedium = styled(Chip)`
     ${(props) =>
@@ -183,10 +181,7 @@ const PageVerEquivalencia = () => {
         <>
             <Grid container direction="column">
                 <Grid item container xs={12}>
-                    <Header
-                        name="Equivalencias"
-                        botonSeleccionado="rgba(255, 255, 255, 0.1);"
-                    />
+                    <Header />
                 </Grid>
 
                 <Grid
@@ -870,14 +865,51 @@ const PageVerEquivalencia = () => {
                             </Grid>
                         </Grid>
                     </GridTop>
-                    <OuterFormButtons
-                        handleSubmit={handleSubmit}
-                        path={'/usuario/equivalencias'}
-                        titulo={'Descartar revisión'}
-                        mensaje={
-                            '¿Está seguro/a de que desea descartar la revisión de la solicitud?'
-                        }
-                    />
+                    <Grid
+                        item
+                        container
+                        xs={11.5}
+                        md={7}
+                        marginTop={{
+                            xs: '20px'
+                        }}
+                        sx={{
+                            padding: '20px 60px'
+                        }}
+                    >
+                        <Grid
+                            item
+                            container
+                            direction="row"
+                            justifyContent="flex-start"
+                            alignItems="center"
+                            xs={12}
+                            lg={6}
+                        >
+                            <Grid item container xs={6} lg={4}>
+                                <Link
+                                    to={'/usuario/equivalencias/'}
+                                    style={{
+                                        textDecoration: 'none',
+                                        width: '100%'
+                                    }}
+                                    sx={{
+                                        marginRight: '12px'
+                                    }}
+                                >
+                                    <BotonMUI
+                                        buttoncontainedsmall
+                                        sx={{
+                                            marginRight: '12px',
+                                            width: '100%'
+                                        }}
+                                    >
+                                        Volver
+                                    </BotonMUI>
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </>

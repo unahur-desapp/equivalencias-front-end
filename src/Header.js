@@ -15,10 +15,16 @@ import { Menu } from '../src/components/molecules/Menu';
 import React from 'react';
 import md5 from 'md5';
 
-const stringConcat = 'https://gravatar.com/avatar/'.concat(
-    md5('sauron'),
-    '?s=30&d=retro&r=g'
-);
+const dni = JSON.parse(localStorage.getItem('dni'));
+
+let stringConcat = '';
+
+if (dni) {
+    stringConcat = 'https://gravatar.com/avatar/'.concat(
+        md5(dni),
+        '?s=30&d=retro&r=g'
+    );
+}
 
 const Header = ({ name, botonSeleccionado }) => {
     return (
@@ -33,16 +39,21 @@ const Header = ({ name, botonSeleccionado }) => {
                     sx={{ display: { sm: 'none', xs: 'none', md: 'flex' } }}
                 >
                     <Grid item>
-                        <BotonMUI
-                            variant="text"
-                            sx={{
-                                marginRight: '40px',
-                                width: 'auto',
-                                backgroundColor: `${botonSeleccionado}`
-                            }}
+                        <Link
+                            to={'/usuario/equivalencias/'}
+                            style={{ textDecoration: 'none' }}
                         >
-                            {name}
-                        </BotonMUI>
+                            <BotonMUI
+                                variant="text"
+                                sx={{
+                                    marginRight: '40px',
+                                    width: 'auto',
+                                    backgroundColor: `${botonSeleccionado}`
+                                }}
+                            >
+                                Mis equivalencias
+                            </BotonMUI>
+                        </Link>
 
                         <BotonMUI variant="text" sx={{ width: '100px' }}>
                             Perfil
@@ -82,6 +93,9 @@ const Header = ({ name, botonSeleccionado }) => {
                                 buttonlogout
                                 variant="contained"
                                 sx={{ marginLeft: '40px', width: '150px' }}
+                                onClick={() => {
+                                    localStorage.clear();
+                                }}
                             >
                                 Cerrar sesión
                             </BotonMUI>

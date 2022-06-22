@@ -135,6 +135,7 @@ export default function StickyHeadTable({ searchQuery }) {
 
                 if (searchQuery) {
                     setRows(dataFilter);
+                    setPage(0);
                 } else {
                     setRows([...array]);
                 }

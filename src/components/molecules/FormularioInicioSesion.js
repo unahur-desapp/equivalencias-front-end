@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TituloBienvenida, Titulos } from '../atoms/Title/Titulos';
 import {
     OlvidastePassword,
@@ -10,9 +10,47 @@ import { BotonMUI } from '../atoms/Button/BotonMUI';
 import { Grid, styled } from '@mui/material';
 import { Formulario } from '../atoms/Formulario/Formulario';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getUsuarios } from '../../services/usuario_service';
 
 const FormularioInicioSesion = () => {
-    const onSubmit = (e) => {};
+    const [dni, setDni] = useState(null);
+    const [password, setPassword] = useState('');
+    const [usuarios, setUsuarios] = useState([]);
+
+    useEffect(() => {
+        const fetchUsuariosData = async () => {
+            const usuarios = await getUsuarios();
+
+            setUsuarios(usuarios);
+        };
+
+        fetchUsuariosData();
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(usuarios);
+        const usuario = usuarios.find(
+            (usuario) => usuario.dni === dni && usuario.password === password
+        );
+        console.log(usuario);
+        if (usuario) {
+            localStorage.setItem('dni', JSON.stringify(usuario.dni));
+            localStorage.setItem('nombre', JSON.stringify(usuario.nombre));
+            localStorage.setItem('apellido', JSON.stringify(usuario.apellido));
+            localStorage.setItem('email', JSON.stringify(usuario.email));
+            localStorage.setItem('discord', JSON.stringify(usuario.discord));
+            localStorage.setItem('telefono', JSON.stringify(usuario.telefono));
+            localStorage.setItem('rol', JSON.stringify(usuario.rol));
+            localStorage.setItem('password', JSON.stringify(usuario.password));
+            localStorage.setItem('id', JSON.stringify(usuario.id));
+
+            window.location.href = '/usuario/equivalencias';
+        } else {
+            alert('Usuario o contraseña incorrectos');
+        }
+    };
 
     return (
         <FormularioMain>
@@ -28,7 +66,7 @@ const FormularioInicioSesion = () => {
             <Formulario sx={{ marginTop: '40px' }}>
                 <form
                     action=""
-                    onSubmit={onSubmit}
+                    onSubmit={handleSubmit}
                     style={{ height: '100%', textAlign: 'center' }}
                 >
                     <div>
@@ -38,6 +76,10 @@ const FormularioInicioSesion = () => {
                                 id="outlined-basic"
                                 label="DNI"
                                 variant="outlined"
+                                onChange={(e) =>
+                                    setDni(parseInt(e.target.value))
+                                }
+                                value={dni}
                             />
                         </ContenedorInputs>
 
@@ -48,6 +90,8 @@ const FormularioInicioSesion = () => {
                                 label="Contraseña"
                                 variant="outlined"
                                 margin="normal"
+                                onChange={(e) => setPassword(e.target.value)}
+                                value={password}
                             />
                         </ContenedorInputs>
                     </div>
@@ -61,18 +105,14 @@ const FormularioInicioSesion = () => {
                     <LineaSeparacion></LineaSeparacion>
 
                     <Grid>
-                        <Link
-                            to="/usuario/equivalencias"
-                            style={{ textDecoration: 'none' }}
+                        <BotonMUI
+                            variant="contained"
+                            buttoncontained
+                            disableElevation
+                            type="submit"
                         >
-                            <BotonMUI
-                                variant="contained"
-                                buttoncontained
-                                disableElevation
-                            >
-                                Ingresar
-                            </BotonMUI>
-                        </Link>
+                            Ingresar
+                        </BotonMUI>
                     </Grid>
                 </form>
             </Formulario>

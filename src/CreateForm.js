@@ -185,25 +185,31 @@ const CreateForm = () => {
     // }
     // }
 
+    const usuarioId = parseInt(JSON.parse(localStorage.getItem('id')));
+
     const handleSubmit = async () => {
-        const equivalencia = {
-            nombre: formValue.materiaSolicitada,
-            carrera: formValue.carreraUnahur,
-            estado: 'Pendiente',
-            observaciones: '',
-            instituto: 'Instituto de Tecnología e Ingeniería',
-            array: materias.map((item) => {
-                return {
-                    nota: item.notaAprobacion,
-                    carga_horaria: item.cargaHorariaTotal,
-                    año_aprobacion: item.anioAprobacion,
-                    nombre_materia: item.materiaAprobada,
-                    UniversidadOrigenId: 1,
-                    certificado: item.certificado
-                };
-            }),
-            UsuarioId: 7
-        };
+        let equivalencia;
+
+        if (usuarioId) {
+            equivalencia = {
+                nombre: formValue.materiaSolicitada,
+                carrera: formValue.carreraUnahur,
+                estado: 'Pendiente',
+                observaciones: '',
+                instituto: 'Instituto de Tecnología e Ingeniería',
+                array: materias.map((item) => {
+                    return {
+                        nota: item.notaAprobacion,
+                        carga_horaria: item.cargaHorariaTotal,
+                        año_aprobacion: item.anioAprobacion,
+                        nombre_materia: item.materiaAprobada,
+                        UniversidadOrigenId: 1,
+                        certificado: item.certificado
+                    };
+                }),
+                UsuarioId: usuarioId
+            };
+        }
 
         console.log('Equivalencia:', equivalencia);
 
