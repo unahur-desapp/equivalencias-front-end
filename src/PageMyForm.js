@@ -33,7 +33,8 @@ const PageMyForm = () => {
                         item
                         container
                         xs={11.5}
-                        md={7}
+                        md={9}
+                        lg={7}
                         sx={{
                             padding: '0px 20px'
                         }}
@@ -69,7 +70,8 @@ const PageMyForm = () => {
                         container
                         blanco
                         xs={11.5}
-                        md={7}
+                        md={9}
+                        lg={7}
                         marginTop={{
                             xs: '30px'
                         }}
