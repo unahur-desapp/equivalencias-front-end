@@ -1,48 +1,47 @@
-import { Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import DatosUsuario from './components/DatosUsuario';
-import Home from './components/Home';
-import RecoilHome from './components-recoil/Home';
-import RecoilDatosUsuario from './components-recoil/DatosUsuario';
-
-const useStyles = makeStyles(() => ({
-  root: {
-    marginTop: '50px',
-  },
-  fixedHeader: {
-    marginBottom: '40px',
-    fontSize: '30px',
-    color: 'DarkRed',
-    backgroundColor: 'Khaki',
-    textAlign: 'center',
-  },
-}));
+import PageIniciarSesion from './components/organisms/IniciarSesion/PageIniciarSesion';
+import { PageCreateForm } from './PageCreateForm';
+import { PageRevision } from './components/organisms/Direccion/PageRevision';
+import { PageMyForm } from './PageMyForm';
+import { PagePerfil } from './components/organisms/Alumno/PagePerfil';
+import { PageDireccion } from './components/organisms/Direccion/PageDireccion';
+import { PageVerEquivalencia } from './components/organisms/Alumno/PageVerEquivalencia';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
-  const classes = useStyles();
+    return (
+        <>
+            <Router>
+                <Route path="/" exact component={PageIniciarSesion} />
+                <Route path="/usuario/equivalencias" component={PageMyForm} />
+                <Route
+                    path="/usuario/visualizar/:id"
+                    component={PageVerEquivalencia}
+                />
+                <Route path="/usuario/formulario" component={PageCreateForm} />
+                <Route
+                    path="/direccion/solicitudes"
+                    component={PageDireccion}
+                />
+                <Route
+                    path="/direccion/revision/:id"
+                    component={PageRevision}
+                />
+            </Router>
 
-  return (
-    <Container maxWidth="xl" className={classes.root}>
-      <div className={classes.fixedHeader}>
-        Este es un texto fijo, va por afuera de las rutas.
-      </div>
-      <Router>
-        <Switch>
-          <Route path="/recoil/usuarios/:id">
-            <RecoilDatosUsuario />
-          </Route>
-          <Route path="/recoil">
-            <RecoilHome />
-          </Route>
-          <Route path="/usuarios/:id">
-            <DatosUsuario />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
-    </Container>
-  );
+            <ToastContainer
+                containerId={'Toastify'}
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+        </>
+    );
 }

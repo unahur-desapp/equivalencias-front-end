@@ -1,0 +1,102 @@
+import { Grid } from '@mui/material';
+import { Header } from './Header';
+import { GridTop } from './GridTop';
+import { Titulos } from './components/atoms/Title/Titulos';
+import { BotonMUI } from './components/atoms/Button/BotonMUI';
+import StickyHeadTable from './TableAlumno';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
+const PageMyForm = () => {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <>
+            <Grid container direction="column">
+                <Grid item container xs={12}>
+                    <Header
+                        name="Mis equivalencias"
+                        botonSeleccionado="rgba(255, 255, 255, 0.1);"
+                    />
+                </Grid>
+
+                <Grid
+                    item
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{ padding: '40px 0px' }}
+                >
+                    <GridTop
+                        item
+                        container
+                        xs={11.5}
+                        md={9}
+                        lg={7}
+                        sx={{
+                            padding: '0px 20px'
+                        }}
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
+                        <Grid item>
+                            <Titulos component="h2" titulogrande>
+                                Equivalencias
+                            </Titulos>
+                        </Grid>
+
+                        <Grid item>
+                            <Link
+                                to="/usuario/formulario"
+                                style={{ textDecoration: 'none' }}
+                            >
+                                <BotonMUI
+                                    buttoncontainedsmall
+                                    sx={{
+                                        width: '100%'
+                                    }}
+                                >
+                                    Solicitar equivalencia
+                                </BotonMUI>
+                            </Link>
+                        </Grid>
+                    </GridTop>
+
+                    <GridTop
+                        item
+                        container
+                        blanco
+                        xs={11.5}
+                        md={9}
+                        lg={7}
+                        marginTop={{
+                            xs: '30px'
+                        }}
+                        sx={{
+                            height: 'auto'
+                        }}
+                    >
+                        <StickyHeadTable />
+                    </GridTop>
+                </Grid>
+            </Grid>
+            <ToastContainer
+                containerId={'home'}
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+        </>
+    );
+};
+
+export { PageMyForm };
