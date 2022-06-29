@@ -9,7 +9,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-export default function App() {
+function App() {
     return (
         <>
             <Router>
@@ -45,3 +45,5 @@ export default function App() {
         </>
     );
 }
+
+export default App;
