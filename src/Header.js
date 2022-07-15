@@ -30,34 +30,42 @@ const Header = ({ name, botonSeleccionado }) => {
     return (
         <AppBar position="static" sx={{ bgcolor: '#122C34' }}>
             <Toolbar color="#122C34">
-                <Grid xs={0.5} lg={1.5} />
+                <Grid xs={0.25} lg={1.5} />
 
                 <Grid
                     container
                     lg={9}
                     justifyContent="space-between"
-                    sx={{ display: { sm: 'none', xs: 'none', md: 'flex' } }}
+                    sx={{ display: { xs: 'none', md: 'flex' } }}
                 >
-                    <Grid item>
-                        <Link
-                            to={'/usuario/equivalencias/'}
-                            style={{ textDecoration: 'none' }}
-                        >
-                            <BotonMUI
-                                variant="text"
-                                sx={{
-                                    marginRight: '40px',
-                                    width: 'auto',
-                                    backgroundColor: `${botonSeleccionado}`
-                                }}
+                    <Grid
+                        item
+                        justifyContent={'flex-start'}
+                        alignContent={'center'}
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <Grid md={5} sx={{ marginRight: '40px' }}>
+                            <Link
+                                to={'/usuario/equivalencias/'}
+                                style={{ textDecoration: 'none' }}
                             >
-                                Mis equivalencias
-                            </BotonMUI>
-                        </Link>
+                                <BotonMUI
+                                    variant="text"
+                                    sx={{
+                                        width: '150px',
+                                        backgroundColor: `${botonSeleccionado}`
+                                    }}
+                                >
+                                    Mis equivalencias
+                                </BotonMUI>
+                            </Link>
+                        </Grid>
 
-                        <BotonMUI variant="text" sx={{ width: '100px' }}>
-                            Perfil
-                        </BotonMUI>
+                        <Grid md={5}>
+                            <BotonMUI variant="text" sx={{ width: '130px' }}>
+                                Perfil
+                            </BotonMUI>
+                        </Grid>
                     </Grid>
 
                     {/* <Grid
@@ -87,25 +95,29 @@ const Header = ({ name, botonSeleccionado }) => {
                             width={'32px'}
                         />
 
-                        <Link to="/" style={{ textDecoration: 'none' }}>
-                            <BotonMUI
-                                buttoncontained
-                                buttonlogout
-                                variant="contained"
-                                sx={{ marginLeft: '40px', width: '150px' }}
-                                onClick={() => {
-                                    localStorage.clear();
-                                }}
-                            >
-                                Cerrar sesión
-                            </BotonMUI>
-                        </Link>
+                        <Grid item container sx={{ marginLeft: '40px' }}>
+                            <Link to="/" style={{ textDecoration: 'none' }}>
+                                <BotonMUI
+                                    buttoncontained
+                                    buttonlogout
+                                    variant="contained"
+                                    sx={{ width: '150px' }}
+                                    onClick={() => {
+                                        localStorage.clear();
+                                    }}
+                                >
+                                    Cerrar sesión
+                                </BotonMUI>
+                            </Link>
+                        </Grid>
                     </Grid>
                 </Grid>
+
                 {/* Mobile */}
                 <Grid
                     container
                     justifyContent="space-between"
+                    xs={11.5}
                     sx={{ display: { xs: 'flex', md: 'none' } }}
                 >
                     <Grid item>
@@ -135,7 +147,7 @@ const Header = ({ name, botonSeleccionado }) => {
                     </Grid>
                 </Grid>
 
-                <Grid xs={0.5} lg={1.5} />
+                <Grid xs={0.25} lg={1.5} />
             </Toolbar>
         </AppBar>
     );

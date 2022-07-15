@@ -28,7 +28,7 @@ function createData(desc, dateTime, state, id) {
             to={'/usuario/visualizar/' + id}
             style={{ textDecoration: 'none' }}
         >
-            <ActionButtons>Revisar</ActionButtons>
+            <ActionButtons></ActionButtons>
         </Link>
     );
 
@@ -168,7 +168,6 @@ export default function StickyHeadTable() {
         <Paper
             sx={{
                 width: '100%',
-                overflow: 'hidden',
                 borderRadius: '10px',
                 boxShadow: 'none'
             }}
@@ -240,6 +239,7 @@ export default function StickyHeadTable() {
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
                 count={rows.length}
+                labelRowsPerPage="Filas por página:"
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

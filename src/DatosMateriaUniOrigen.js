@@ -1,6 +1,11 @@
 import { MateriaUniOrigen } from './MateriaUniOrigen';
 
-const DatosMateriaUniOrigen = ({ formValue, handleChangeArray, formValueArray, key2 }) => {
+const DatosMateriaUniOrigen = ({
+    formValue,
+    handleChangeArray,
+    formValueArray,
+    key2
+}) => {
     return (
         <>
             <MateriaUniOrigen

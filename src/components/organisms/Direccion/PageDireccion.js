@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import { Header } from '../../../Header';
 import { GridTop } from '../../../GridTop';
 import { Titulos } from '../../atoms/Title/Titulos';
@@ -7,15 +7,25 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { getEquivalencia } from '../../../services/equivalencia_service';
 import { useState, useEffect } from 'react';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import React from 'react';
 
 const PageDireccion = () => {
     const [searchQuery, setSearchQuery] = useState('');
     console.log(searchQuery);
 
+    const iconSearch = React.createRef();
+    const inputSearch = React.createRef();
+
     return (
         <Grid container direction="column">
             <Grid item container xs={12}>
-                <Header name="Mis equivalencias" />
+                <Header
+                    name="Equivalencias"
+                    paginaPrincipal="/direccion/solicitudes"
+                />
             </Grid>
 
             <Grid
@@ -55,46 +65,93 @@ const PageDireccion = () => {
                     debounceSearchRender
                     xs={11.5}
                     md={7}
-                    marginTop={{
-                        xs: '30px'
-                    }}
                     sx={{
-                        height: '80px'
+                        height: '75px',
+                        borderBottom: 'none',
+                        borderBottomLeftRadius: '0px',
+                        borderBottomRightRadius: '0px'
                     }}
                 >
-                    <Grid item>
-                        {/* <FreeSolo /> */}
-
-                        <Grid
-                            item
-                            container
-                            mt={2}
-                            ml={7}
-                            // border={0.5}
-                            borderColor={'grey'}
-                            // borderRadius={4}
+                    <Grid
+                        item
+                        container
+                        direction="row"
+                        justifyContent="flex-start"
+                        alignItems="center"
+                        borderColor={'grey'}
+                        xs={12}
+                        sx={{
+                            height: 'auto',
+                            marginLeft: '40px'
+                        }}
+                    >
+                        <Paper
                             sx={{
-                                height: 'auto'
+                                display: 'flex',
+                                alignItems: 'center',
+                                boxShadow: 'none',
+                                backgroundColor: 'rgba(245, 245, 245, 0.7)',
+                                borderRadius: '10px',
+                                width: '220px'
                             }}
                         >
-                            <form>
-                                <TextField
-                                    id="search-bar"
-                                    className="text"
-                                    onInput={(e) => {
-                                        e.preventDefault();
-                                        setSearchQuery(e.target.value);
-                                    }}
-                                    label="Buscar..."
-                                    variant="outlined"
-                                    placeholder="Buscar Solicitante..."
-                                    size="small"
-                                />
-                                {/* <IconButton onClick={search()} aria-label="search">
+                            {/* <IconButton
+                                id="search-bar"
+                                sx={{ p: '10px' }}
+                                aria-label="search"
+                            > */}
+                            <SearchIcon
+                                id="icon-search-bar"
+                                ref={iconSearch}
+                                sx={{
+                                    m: '10px',
+                                    color: 'rgba(0, 0, 0, 0.54)'
+                                }}
+                            />
+                            {/* </IconButton> */}
+                            <InputBase
+                                id="search-bar"
+                                ref={inputSearch}
+                                className="text"
+                                onInput={(e) => {
+                                    e.preventDefault();
+                                    setSearchQuery(e.target.value);
+                                }}
+                                variant="outlined"
+                                placeholder="Buscar"
+                                sx={{ width: '220px' }}
+                                // Al hacer click en el input, ocultar boton
+                                onFocus={(e) => {
+                                    iconSearch.current.style.display = 'none';
+
+                                    inputSearch.current.style.margin =
+                                        '6px 20px';
+                                }}
+                                onBlur={(e) => {
+                                    iconSearch.current.style.display = 'block';
+
+                                    inputSearch.current.style.margin =
+                                        '0px 0px';
+                                }}
+                            />
+
+                            {/* <TextField
+                                id="search-bar"
+                                className="text"
+                                onInput={(e) => {
+                                    e.preventDefault();
+                                    setSearchQuery(e.target.value);
+                                }}
+                                label="Buscar"
+                                variant="outlined"
+                                placeholder="DNI o Solicitante"
+                                size="small"
+                                sx={{ width: '300px' }}
+                            /> */}
+                            {/* <IconButton onClick={search()} aria-label="search">
                                     <SearchIcon style={{ fill: 'blue' }} />
                                 </IconButton> */}
-                            </form>
-                        </Grid>
+                        </Paper>
                     </Grid>
                 </GridTop>
                 <GridTop
@@ -103,11 +160,10 @@ const PageDireccion = () => {
                     blanco
                     xs={11.5}
                     md={7}
-                    marginTop={{
-                        xs: '8px'
-                    }}
                     sx={{
-                        height: 'auto'
+                        height: 'auto',
+                        borderTopLeftRadius: '0px',
+                        borderTopRightRadius: '0px'
                     }}
                 >
                     <StickyHeadTable searchQuery={searchQuery} />

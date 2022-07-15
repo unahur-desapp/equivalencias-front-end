@@ -10,7 +10,10 @@ const PageCreateForm = () => {
     return (
         <Grid container direction="column">
             <Grid item container xs={12}>
-                <Header name="Mis equivalencias" />
+                <Header
+                    name="Mis equivalencias"
+                    paginaPrincipal="/usuario/equivalencias/"
+                />
             </Grid>
 
             <Grid

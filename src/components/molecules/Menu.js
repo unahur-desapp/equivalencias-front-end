@@ -14,8 +14,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { stringConcat } from '../../Header';
 import { Grid } from '@mui/material';
 import { Titulos } from '../atoms/Title/Titulos';
+import { Link } from 'react-router-dom';
 
-export default function Menu({ name }) {
+export default function Menu({ name, paginaPrincipal }) {
+    const nombre = JSON.parse(localStorage.getItem('nombre'));
+    const apellido = JSON.parse(localStorage.getItem('apellido'));
+    const email = JSON.parse(localStorage.getItem('email'));
+
     const [state, setState] = useState({
         left: false
     });
@@ -65,7 +70,13 @@ export default function Menu({ name }) {
                     padding: '0px 16px'
                 }}
             >
-                <strong>Nombre Apellido</strong>
+                {nombre && apellido ? (
+                    <strong>
+                        {nombre} {apellido}
+                    </strong>
+                ) : (
+                    ''
+                )}
             </Grid>
             <Grid
                 item
@@ -73,21 +84,15 @@ export default function Menu({ name }) {
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    padding: '0px 16px'
+                    padding: '0px 16px',
+                    marginTop: '2px'
                 }}
             >
-                <span style={{ color: '#71767b' }}>ejemplo@email.com</span>
+                {email ? <span style={{ color: '#71767b' }}>{email}</span> : ''}
             </Grid>
             <List sx={{ marginTop: '8px' }}>
                 <ListItem disablePadding>
-                    <ListItemButton>
-                        {/* <ListItemIcon>
-                                    {index % 2 === 0 ? (
-                                        <InboxIcon />
-                                    ) : (
-                                        <MailIcon />
-                                    )}
-                                </ListItemIcon> */}
+                    <ListItemButton component="a" href={paginaPrincipal}>
                         <ListItemText primary={name} />
                     </ListItemButton>
                 </ListItem>
@@ -95,7 +100,13 @@ export default function Menu({ name }) {
             <Divider />
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton>
+                    <ListItemButton
+                        component="a"
+                        href="/"
+                        onClick={() => {
+                            localStorage.clear();
+                        }}
+                    >
                         {/* <ListItemIcon>
                                     {index % 2 === 0 ? (
                                         <InboxIcon />
@@ -132,7 +143,7 @@ export default function Menu({ name }) {
                         <Grid>
                             <Titulos
                                 variant="subtitle1"
-                                style={{ color: 'white' }}
+                                style={{ color: 'white', marginLeft: '8px' }}
                             >
                                 Trámites de Equivalencias
                             </Titulos>

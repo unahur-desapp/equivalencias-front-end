@@ -177,6 +177,7 @@ const PageRevision = () => {
                 <Grid item container xs={12}>
                     <Header
                         name="Equivalencias"
+                        paginaPrincipal="/direccion/solicitudes"
                         botonSeleccionado="rgba(255, 255, 255, 0.1);"
                     />
                 </Grid>
@@ -214,9 +215,6 @@ const PageRevision = () => {
                         blanco
                         xs={11.5}
                         md={7}
-                        marginTop={{
-                            xs: '30px'
-                        }}
                         sx={{
                             height: 'auto'
                         }}

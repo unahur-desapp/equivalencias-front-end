@@ -18,7 +18,7 @@ import App from './App';
 //                     <PageIniciarSesion />
 //                     {/* <PageCreateForm /> */}
 //                     {/* <PageMyForm /> */}
-     
+
 //                 </>
 //             )}
 //         </>
@@ -27,6 +27,4 @@ import App from './App';
 // };
 
 // ReactDOM.render(<App />, document.getElementById('root'));
-ReactDOM.render(
-    <App />, document.getElementById('root')
-)
+ReactDOM.render(<App />, document.getElementById('root'));

@@ -3,10 +3,12 @@ import { Header } from './Header';
 import { GridTop } from './GridTop';
 import { Titulos } from './components/atoms/Title/Titulos';
 import { BotonMUI } from './components/atoms/Button/BotonMUI';
+import { FabButton } from './components/atoms/Button/FabButton';
 import StickyHeadTable from './TableAlumno';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import AddIcon from '@mui/icons-material/Add';
 
 const PageMyForm = () => {
     const [open, setOpen] = useState(false);
@@ -17,6 +19,7 @@ const PageMyForm = () => {
                 <Grid item container xs={12}>
                     <Header
                         name="Mis equivalencias"
+                        paginaPrincipal="/usuario/equivalencias/"
                         botonSeleccionado="rgba(255, 255, 255, 0.1);"
                     />
                 </Grid>
@@ -48,7 +51,13 @@ const PageMyForm = () => {
                             </Titulos>
                         </Grid>
 
-                        <Grid item>
+                        <Grid
+                            item
+                            xs={0}
+                            sx={{
+                                display: { sm: 'flex', xs: 'none' }
+                            }}
+                        >
                             <Link
                                 to="/usuario/formulario"
                                 style={{ textDecoration: 'none' }}
@@ -63,6 +72,22 @@ const PageMyForm = () => {
                                 </BotonMUI>
                             </Link>
                         </Grid>
+                        <Grid
+                            item
+                            xs={0}
+                            sx={{
+                                display: { sm: 'none', xs: 'flex' }
+                            }}
+                        >
+                            <Link
+                                to="/usuario/formulario"
+                                style={{ textDecoration: 'none' }}
+                            >
+                                <FabButton>
+                                    <AddIcon />
+                                </FabButton>
+                            </Link>
+                        </Grid>
                     </GridTop>
 
                     <GridTop
@@ -73,7 +98,8 @@ const PageMyForm = () => {
                         md={9}
                         lg={7}
                         marginTop={{
-                            xs: '30px'
+                            xs: '0px',
+                            sm: '30px'
                         }}
                         sx={{
                             height: 'auto'
