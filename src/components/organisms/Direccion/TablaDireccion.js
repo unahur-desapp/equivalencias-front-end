@@ -16,6 +16,7 @@ import Button from '@mui/material/Button';
 import FormHelperText from '@mui/material/FormHelperText';
 import { useFormControl } from '@mui/material/FormControl';
 import { Link } from 'react-router-dom';
+import { Grid } from '@mui/material';
 
 // import TextField from '@mui/material/TextField';
 // import Stack from '@mui/material/Stack';
@@ -32,32 +33,23 @@ export const columns = [
 
 function createData(solicitante, dni, materia, id, dateTime) {
     const actions = (
-        <Link
-            to={'/direccion/revision/' + id}
-            style={{ textDecoration: 'none' }}
+        <Grid
+            container
+            item
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
         >
-            <Button>Revisar</Button>
-        </Link>
+            <Link
+                to={'/direccion/revision/' + id}
+                style={{ textDecoration: 'none' }}
+            >
+                <Button>Revisar</Button>
+            </Link>
+        </Grid>
     ); //acciones lleva a pantalla revision de ese id
     return { solicitante, dni, materia, dateTime, actions };
 }
-function MyFormHelperText() {
-    const { focused } = useFormControl() || {};
-
-    const helperText = useMemo(() => {
-        if (focused) {
-            return 'This field is being focused';
-        }
-
-        return 'Helper text';
-    }, [focused]);
-
-    return <FormHelperText>{helperText}</FormHelperText>;
-}
-
-const handleClick = () => {
-    return 'hola';
-};
 
 const horaConCero = (hora) => {
     if (hora < 10) {
@@ -112,7 +104,9 @@ export default function StickyHeadTable({ searchQuery }) {
                         // arrayItem.Materias_solicitadas[0].Usuario.id,
                         // arrayItem.Materias_solicitadas[0].usuario.dni,
                         // arrayItem.Materias_solicitadas[0].id,
-                        arrayItem.Usuario.nombre,
+                        arrayItem.Usuario.nombre +
+                            ' ' +
+                            arrayItem.Usuario.apellido,
                         arrayItem.Usuario.dni,
                         arrayItem.Materias_solicitadas[0].nombre,
                         arrayItem.id,
@@ -173,11 +167,16 @@ export default function StickyHeadTable({ searchQuery }) {
                             {columns.map((column) => (
                                 <TableCell
                                     key={column.id}
-                                    align={column.align}
+                                    align={
+                                        column.label === 'Acciones'
+                                            ? 'center'
+                                            : 'left'
+                                    }
                                     style={{ minWidth: column.minWidth }}
                                     sx={{
-                                        backgroundColor: '#FBFBFB',
-                                        padding: '16px 60px'
+                                        backgroundColor:
+                                            'rgba(245, 245, 245, 0.7)',
+                                        padding: '16px 40px'
                                     }}
                                 >
                                     {column.label}
@@ -192,14 +191,12 @@ export default function StickyHeadTable({ searchQuery }) {
                                 page * rowsPerPage + rowsPerPage
                             )
                             .map((row) => {
-                                console.log('Row: ', row);
                                 return (
                                     <TableRow
                                         hover
                                         role="checkbox"
                                         tabIndex={-1}
                                         key={row.code}
-                                        // onClick={() => handleClick(row.)}
                                     >
                                         {columns.map((column) => {
                                             const value = row[column.id];
@@ -208,7 +205,7 @@ export default function StickyHeadTable({ searchQuery }) {
                                                     key={column.id}
                                                     align={column.align}
                                                     sx={{
-                                                        padding: '16px 60px'
+                                                        padding: '16px 40px'
                                                     }}
                                                 >
                                                     {column.format &&
@@ -228,6 +225,10 @@ export default function StickyHeadTable({ searchQuery }) {
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
                 count={rows.length}
+                labelRowsPerPage="Filas por página:"
+                labelDisplayedRows={({ from, to, count }) =>
+                    `${from}-${to} de ${count}`
+                }
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

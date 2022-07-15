@@ -181,7 +181,10 @@ const PageVerEquivalencia = () => {
         <>
             <Grid container direction="column">
                 <Grid item container xs={12}>
-                    <Header />
+                    <Header
+                        name="Mis equivalencias"
+                        paginaPrincipal="/usuario/equivalencias/"
+                    />
                 </Grid>
 
                 <Grid
