@@ -240,6 +240,9 @@ export default function StickyHeadTable() {
                 component="div"
                 count={rows.length}
                 labelRowsPerPage="Filas por página:"
+                labelDisplayedRows={({ from, to, count }) =>
+                    `${from}-${to} de ${count}`
+                }
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

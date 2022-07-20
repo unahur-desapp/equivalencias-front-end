@@ -26,7 +26,7 @@ if (dni) {
     );
 }
 
-const Header = ({ name, botonSeleccionado }) => {
+const Header = ({ name, paginaPrincipal, botonSeleccionado }) => {
     return (
         <AppBar position="static" sx={{ bgcolor: '#122C34' }}>
             <Toolbar color="#122C34">
@@ -121,7 +121,7 @@ const Header = ({ name, botonSeleccionado }) => {
                     sx={{ display: { xs: 'flex', md: 'none' } }}
                 >
                     <Grid item>
-                        <Menu name={name} />
+                        <Menu name={name} paginaPrincipal={paginaPrincipal} />
                     </Grid>
 
                     {/* <Grid
