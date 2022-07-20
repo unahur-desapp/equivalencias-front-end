@@ -10,25 +10,44 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 function App() {
+    const rol = JSON.parse(localStorage.getItem('rol'));
     return (
         <>
-            <Router>
-                <Route path="/" exact component={PageIniciarSesion} />
-                <Route path="/usuario/equivalencias" component={PageMyForm} />
-                <Route
-                    path="/usuario/visualizar/:id"
-                    component={PageVerEquivalencia}
-                />
-                <Route path="/usuario/formulario" component={PageCreateForm} />
-                <Route
-                    path="/direccion/solicitudes"
-                    component={PageDireccion}
-                />
-                <Route
-                    path="/direccion/revision/:id"
-                    component={PageRevision}
-                />
-            </Router>
+            {rol == 'alumno' && (
+                <Router>
+                    <Route path="/" exact component={PageIniciarSesion} />
+                    <Route
+                        path="/usuario/equivalencias"
+                        component={PageMyForm}
+                    />
+                    <Route
+                        path="/usuario/visualizar/:id"
+                        component={PageVerEquivalencia}
+                    />
+                    <Route
+                        path="/usuario/formulario"
+                        component={PageCreateForm}
+                    />
+                </Router>
+            )}
+            {rol == 'directivo' && (
+                <Router>
+                    <Route path="/" exact component={PageIniciarSesion} />
+                    <Route
+                        path="/direccion/solicitudes"
+                        component={PageDireccion}
+                    />
+                    <Route
+                        path="/direccion/revision/:id"
+                        component={PageRevision}
+                    />
+                </Router>
+            )}
+            {rol == null && (
+                <Router>
+                    <Route path="/" exact component={PageIniciarSesion} />
+                </Router>
+            )}
 
             <ToastContainer
                 containerId={'Toastify'}

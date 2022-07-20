@@ -46,7 +46,11 @@ const FormularioInicioSesion = () => {
             localStorage.setItem('password', JSON.stringify(usuario.password));
             localStorage.setItem('id', JSON.stringify(usuario.id));
 
-            window.location.href = '/usuario/equivalencias';
+            if (usuario.rol == 'alumno') {
+                window.location.href = '/usuario/equivalencias';
+            } else {
+                window.location.href = '/direccion/solicitudes';
+            }
         } else {
             alert('Usuario o contraseña incorrectos');
         }
