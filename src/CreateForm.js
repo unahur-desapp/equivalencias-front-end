@@ -233,15 +233,11 @@ const CreateForm = () => {
         //     });
 
         const response = await axios
-            .post(
-                'http://localhost:3001/api/equivalencias/createx3',
-                equivalencia,
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+            .post(config.apiUrl + '/equivalencias/createx3', equivalencia, {
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            )
+            })
             .then((res) => {
                 console.log('Res:', res);
                 res.status === 200 ? notifyExito() : notifyEnviarSinDatos();
