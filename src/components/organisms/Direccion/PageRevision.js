@@ -159,7 +159,7 @@ const PageRevision = () => {
         console.log(equivalencia);
 
         const res = await axios
-            .put(`${config.apiUrl}/api/equivalencias/` + id, equivalencia)
+            .put(`${config.apiUrl}/equivalencias/` + id, equivalencia)
             .then((res) => {
                 try {
                     res.data.data; // '{"name":"deven"}'

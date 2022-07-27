@@ -239,8 +239,12 @@ const CreateForm = () => {
                 }
             })
             .then((res) => {
-                console.log('Res:', res);
-                res.status === 200 ? notifyExito() : notifyEnviarSinDatos();
+                try {
+                    console.log('Res:', res);
+                    res.status === 200 ? notifyExito() : notifyEnviarSinDatos();
+                } catch (error) {
+                    console.log(error);
+                }
             })
             .catch((error) => {
                 console.log('Error: ', error);
