@@ -233,11 +233,15 @@ const CreateForm = () => {
         //     });
 
         const response = await axios
-            .post(config.apiUrl + '/equivalencias/createx3', equivalencia, {
-                headers: {
-                    'Content-Type': 'application/json'
+            .post(
+                'https://unahur-equivalencias-backend.herokuapp.com/api/equivalencias/createx3',
+                equivalencia,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 }
-            })
+            )
             .then((res) => {
                 console.log('Res:', res);
                 res.status === 200 ? notifyExito() : notifyEnviarSinDatos();
