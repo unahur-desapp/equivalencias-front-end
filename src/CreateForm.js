@@ -233,7 +233,7 @@ const CreateForm = () => {
         //     });
 
         const response = await axios
-            .post(config.apiUrl + '/equivalencias/createx3', equivalencia, {
+            .post(`${config.apiUrl}/equivalencias/createx3`, equivalencia, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
