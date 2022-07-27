@@ -22,6 +22,7 @@ import FormControl, { useFormControl } from '@mui/material/FormControl';
 import { getEquivalencia } from '../../../services/revision';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { config } from '../../../config/config';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -158,7 +159,7 @@ const PageRevision = () => {
         console.log(equivalencia);
 
         const res = await axios
-            .put('http://localhost:3001/api/equivalencias/' + id, equivalencia)
+            .put(`${config.apiUrl}/api/equivalencias/` + id, equivalencia)
             .then((res) => {
                 try {
                     res.data.data; // '{"name":"deven"}'

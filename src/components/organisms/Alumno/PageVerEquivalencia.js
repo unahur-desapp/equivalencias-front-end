@@ -23,6 +23,7 @@ import axios from 'axios';
 import { styled } from '@mui/material';
 import { css } from '@mui/styled-engine';
 import { Link } from 'react-router-dom';
+import { config } from '../../../config/config';
 
 const ChipMedium = styled(Chip)`
     ${(props) =>
@@ -164,7 +165,7 @@ const PageVerEquivalencia = () => {
         console.log(equivalencia);
 
         const res = await axios
-            .put('http://localhost:3001/api/equivalencias/' + id, equivalencia)
+            .put(`${config.apiUrl}/equivalencias/` + id, equivalencia)
             .then((res) => {
                 try {
                     res.data.data; // '{"name":"deven"}'
