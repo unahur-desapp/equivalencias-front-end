@@ -156,7 +156,7 @@ const CreateForm = () => {
             ];
         });
     };
-    console.log(materias);
+    console.log('Materias aprobadas: ', materias);
 
     //TURNOS
 
