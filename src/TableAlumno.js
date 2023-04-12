@@ -187,9 +187,13 @@ export default function StickyHeadTable() {
                                             ? 'center'
                                             : 'left'
                                     }
-                                    style={{ minWidth: column.minWidth }}
+                                    style={{
+                                        minWidth: column.minWidth,
+                                        fontSize: 20
+                                    }}
                                     sx={{
-                                        backgroundColor: '#FBFBFB',
+                                        backgroundColor: '#F0FFFF',
+                                        //backgroundColor: '#FBFBFB',
                                         padding: '16px 60px'
                                     }}
                                 >
