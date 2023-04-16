@@ -189,8 +189,9 @@ export default function StickyHeadTable() {
                                     }
                                     style={{ minWidth: column.minWidth }}
                                     sx={{
-                                        backgroundColor: '#FBFBFB',
-                                        padding: '16px 60px'
+                                        backgroundColor: 'azure',
+                                        padding: '16px 60px',
+                                        fontSize: '1.2rem'
                                     }}
                                 >
                                     {column.label}
