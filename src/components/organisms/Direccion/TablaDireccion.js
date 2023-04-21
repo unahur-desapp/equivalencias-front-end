@@ -28,10 +28,11 @@ export const columns = [
     { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
     { id: 'materia', label: 'Materia', minWidth: 170 },
     { id: 'dateTime', label: 'Fecha y Hora', minWidth: 100 },
-    { id: 'actions', label: 'Acciones', minWidth: 170 }
+    { id: 'estado', label: 'Estado', minWidth: 170 },
+    { id: 'actions', label: 'Acciones', minWidth: 100 } // Columna estado agregada!
 ];
 
-function createData(solicitante, dni, materia, id, dateTime) {
+function createData(solicitante, dni, materia, id, dateTime, estado) {
     const actions = (
         <Grid
             container
@@ -48,7 +49,7 @@ function createData(solicitante, dni, materia, id, dateTime) {
             </Link>
         </Grid>
     ); //acciones lleva a pantalla revision de ese id
-    return { solicitante, dni, materia, dateTime, actions };
+    return { solicitante, dni, materia, dateTime, actions, estado };
 }
 
 const horaConCero = (hora) => {
@@ -58,6 +59,8 @@ const horaConCero = (hora) => {
         return hora;
     }
 };
+
+const getEstado = () => {};
 
 export default function StickyHeadTable({ searchQuery }) {
     const [page, setPage] = React.useState(0);
@@ -98,6 +101,7 @@ export default function StickyHeadTable({ searchQuery }) {
                     horaConCero(d.getMinutes());
                 console.log('array item: ', arrayItem.Usuario);
                 console.log('Equiv:', obtainedEquivalenciaData);
+                var status = arrayItem.estado.toUpperCase();
                 array.push(
                     createData(
                         // arrayItem.Materias_solicitadas[0].nombre ----falta esto
@@ -111,8 +115,12 @@ export default function StickyHeadTable({ searchQuery }) {
                         arrayItem.Materias_solicitadas[0].nombre,
                         arrayItem.id,
                         // arrayItem.Materias_solicitadas[0],
-                        dateTime //fecha actual de cuando se genero la equivalencia
-                        // arrayItem.Estado[0].status
+                        dateTime,
+                        status,
+                        console.log('aca estan los datos del array', arrayItem)
+                        //console.log("materia solicitada",arrayItem.Materias_solicitadas.map(materias => materias.nombre) )
+                        //fecha actual de cuando se genero la equivalencia
+                        //arrayItem.Estado[0].status
                     )
                 );
                 const dataFilter = array.filter(
@@ -123,8 +131,15 @@ export default function StickyHeadTable({ searchQuery }) {
                         d.dni
                             .toString()
                             .toLowerCase()
+                            .includes(searchQuery.toLowerCase()) +
+                        d.estado
+                            .toString()
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase()) +
+                        d.materia
+                            .toString()
+                            .toLowerCase()
                             .includes(searchQuery.toLowerCase())
-                    // console.log(d.solicitante, "desde filter")
                 );
 
                 if (searchQuery) {
@@ -174,9 +189,9 @@ export default function StickyHeadTable({ searchQuery }) {
                                     }
                                     style={{ minWidth: column.minWidth }}
                                     sx={{
-                                        backgroundColor:
-                                            'rgba(245, 245, 245, 0.7)',
-                                        padding: '16px 40px'
+                                        backgroundColor: 'azure',
+                                        padding: '16px 40px',
+                                        fontSize: '1.2rem'
                                     }}
                                 >
                                     {column.label}
