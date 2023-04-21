@@ -21,7 +21,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { Redirect } from 'react-router-dom';
-
+import { useEffect } from 'react';
+import { getCarreras, getNombresCarreras } from './services/carrera_service';
 const CreateForm = () => {
     const [materias, setMaterias] =
         // <FormUniOrigen key={nanoid()} />
@@ -52,6 +53,19 @@ const CreateForm = () => {
         materiaSolicitada: '',
         carreraUnahur: ''
     });
+
+    const [carreras, setCarreras] = useState([]);
+
+    useEffect(() => {
+        const fetchCarreras = async () => {
+            const carreras = await getCarreras();
+            setCarreras(carreras);
+        };
+        fetchCarreras();
+    }, []);
+
+    const nombresCarreras =
+        carreras.data?.map((carrera) => carrera.nombre_carrera) ?? [];
 
     const notifyEnviarSinDatos = () => {
         toast.error('Debe completar todos los campos del formulario', {
@@ -452,7 +466,7 @@ const CreateForm = () => {
                                 variant="outlined"
                                 onSelect={handleChange}
                                 disablePortal
-                                options={carreras}
+                                options={nombresCarreras}
                                 renderInput={(params) => (
                                     <TextField
                                         required
@@ -576,9 +590,5 @@ const CreateForm = () => {
         // </Grid>
     );
 };
-
-const carreras = [
-    { label: 'Informática', instituto: 'Instituto de Tecnología e Ingeniería' }
-];
 
 export { CreateForm };
