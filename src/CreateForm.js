@@ -226,7 +226,7 @@ const CreateForm = () => {
             console.log('FormValue: ', formValue);
             equivalencia = {
                 nombre: formValue.materiaSolicitada,
-                carrera: formValue.carreraUnahur,
+                id_carrera: formValue.carreraUnahur,
                 estado: 'Pendiente',
                 observaciones: '',
                 instituto: 'Instituto de Tecnología e Ingeniería',
