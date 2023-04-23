@@ -129,10 +129,26 @@ const CreateForm = () => {
     };
 
     const handleChange = (event) => {
-        setformValue((formValue) => ({
-            ...formValue,
-            [event.target.name]: event.target.value
-        }));
+        if (event.target.name === 'carreraUnahur') {
+            try {
+                var id_carrera = carreras.data.find(
+                    (carrera) => carrera.nombre_carrera === event.target.value
+                ).id;
+            } catch (error) {
+                console.log(error);
+            }
+
+            setformValue((formValue) => ({
+                ...formValue,
+                [event.target.name]: id_carrera
+            }));
+        } else {
+            setformValue((formValue) => ({
+                ...formValue,
+                [event.target.name]: event.target.value
+            }));
+        }
+
         console.log(event.target.key);
         console.log(event.target.value);
         console.log(event.target.name);
@@ -205,6 +221,9 @@ const CreateForm = () => {
         let equivalencia;
 
         if (usuarioId) {
+            console.log('Enviando equivalencia...');
+            console.log('Materias aprobadas: ', materias);
+            console.log('FormValue: ', formValue);
             equivalencia = {
                 nombre: formValue.materiaSolicitada,
                 carrera: formValue.carreraUnahur,
