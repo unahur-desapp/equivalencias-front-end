@@ -3,6 +3,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
 import { GridTop } from '../../../GridTop';
+import { getCarrera } from '../../../services/carrera_service';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -115,11 +116,14 @@ const PageVerEquivalencia = () => {
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia(id);
+            const obtainedCarreraData = await getCarrera(
+                obtainedEquivalenciaData.Materias_solicitadas[0].id_carrera
+            );
 
             let arrayData = {
                 nombre: obtainedEquivalenciaData.Materias_solicitadas[0].nombre,
-                carrera:
-                    obtainedEquivalenciaData.Materias_solicitadas[0].carrera,
+
+                carrera: obtainedCarreraData.nombre_carrera,
 
                 materiasAprobadas: obtainedEquivalenciaData.Materias_aprobadas,
 

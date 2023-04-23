@@ -4,6 +4,7 @@ import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
 import { GridTop } from '../../../GridTop';
 import Paper from '@mui/material/Paper';
+import { getCarrera } from '../../../services/carrera_service';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -106,11 +107,14 @@ const PageRevision = () => {
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia(id);
+            const obtainedCarreraData = await getCarrera(
+                obtainedEquivalenciaData.Materias_solicitadas[0].id_carrera
+            );
 
             let arrayData = {
                 nombre: obtainedEquivalenciaData.Materias_solicitadas[0].nombre,
-                carrera:
-                    obtainedEquivalenciaData.Materias_solicitadas[0].carrera,
+
+                carrera: obtainedCarreraData.nombre_carrera,
 
                 materiasAprobadas: obtainedEquivalenciaData.Materias_aprobadas,
 
