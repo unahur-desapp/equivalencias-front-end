@@ -42,8 +42,8 @@ const columns = [
     { id: 'carreer', label: 'Carrera', minWidth: 170 }
 ];
 
-function createData(solicitante, email, dni, fechaHora, telefono, carrera) {
-    return { solicitante, email, dni, fechaHora, telefono, carrera };
+function createData(solicitante, email, dni, fechaHora, telefono) {
+    return { solicitante, email, dni, fechaHora, telefono };
 }
 
 function MyFormHelperText() {
@@ -81,7 +81,6 @@ const PageVerEquivalencia = () => {
             let arrayData = [];
 
             let d = new Date(obtainedUsuarioData.createdAt);
-            const obtainedEquivalenciaData = await getEquivalencia(id);
             let dateTime =
                 d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
 
