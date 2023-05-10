@@ -38,11 +38,12 @@ const columns = [
     { id: 'dateTime', label: 'Email', minWidth: 100 },
     { id: 'state', label: 'DNI', minWidth: 170 },
     { id: 'actions', label: 'Fecha', minWidth: 170 },
-    { id: 'phone', label: 'Teléfono', minWidth: 170 }
+    { id: 'phone', label: 'Teléfono', minWidth: 170 },
+    { id: 'carreer', label: 'Carrera', minWidth: 170 }
 ];
 
-function createData(solicitante, email, dni, fechaHora, telefono) {
-    return { solicitante, email, dni, fechaHora, telefono };
+function createData(solicitante, email, dni, fechaHora, telefono, carrera) {
+    return { solicitante, email, dni, fechaHora, telefono, carrera };
 }
 
 function MyFormHelperText() {
@@ -80,16 +81,9 @@ const PageVerEquivalencia = () => {
             let arrayData = [];
 
             let d = new Date(obtainedUsuarioData.createdAt);
+            const obtainedEquivalenciaData = await getEquivalencia(id);
             let dateTime =
-                d.getDate() +
-                '/' +
-                (d.getMonth() + 1) +
-                '/' +
-                d.getFullYear() +
-                ' - ' +
-                d.getHours() +
-                ':' +
-                horaConCero(d.getMinutes());
+                d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
 
             arrayData.push(
                 createData(
@@ -210,7 +204,7 @@ const PageVerEquivalencia = () => {
                     >
                         <Grid item>
                             <Titulos component="h2" titulogrande>
-                                Revisión
+                                Detalle de pedido de equivalencia
                             </Titulos>
                         </Grid>
                     </GridTop>

@@ -29,7 +29,8 @@ const columns = [
     { id: 'dateTime', label: 'Email', minWidth: 100 },
     { id: 'state', label: 'DNI', minWidth: 170 },
     { id: 'actions', label: 'Fecha', minWidth: 170 },
-    { id: 'phone', label: 'Teléfono', minWidth: 170 }
+    { id: 'phone', label: 'Teléfono', minWidth: 170 },
+    { id: 'carrera', label: 'Carrera', minWidth: 170 }
 ];
 
 function createData(solicitante, email, dni, fechaHora, telefono) {
