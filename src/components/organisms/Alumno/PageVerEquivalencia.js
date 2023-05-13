@@ -117,7 +117,7 @@ const PageVerEquivalencia = () => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia(id);
             const obtainedCarreraData = await getCarrera(
-                obtainedEquivalenciaData.Materias_solicitadas[0].id_carrera
+                obtainedEquivalenciaData.CarreraId
             );
 
             let arrayData = {
