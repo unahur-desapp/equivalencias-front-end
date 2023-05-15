@@ -505,6 +505,25 @@ const CreateForm = () => {
                         </Grid>
                     </Grid>
                 </Grid>
+                <Grid
+                    item
+                    container
+                    xs={12}
+                    sx={{
+                        borderTop: '1px solid #DADCE0',
+                        marginTop: '20px ',
+                        padding: '0px 40px'
+                    }}
+                >
+                    <BotonMUI
+                        buttoncontainedaddmateria
+                        variant="outlined"
+                        sx={{ margin: '10px 0px' }}
+                        //onClick={addMateria} Modificar onClick para que agregue otro grid de agregar materia
+                    >
+                        Agregar materia
+                    </BotonMUI>
+                </Grid>
 
                 {materias.map((materia) => {
                     console.log(materia.key);
