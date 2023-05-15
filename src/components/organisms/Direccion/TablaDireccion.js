@@ -9,12 +9,9 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { getEquivalencia } from '../../../services/equivalencia_service';
-import { getUsuario } from '../../../services/usuario_service';
 // import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 // import { OuterFormButtons } from '../../../OuterFormButtons';
-import FormHelperText from '@mui/material/FormHelperText';
-import { useFormControl } from '@mui/material/FormControl';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
 
