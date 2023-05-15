@@ -117,14 +117,11 @@ const PageVerEquivalencia = () => {
         const fetchEquivalenciaData = async () => {
             // Juntar estas 2 funciones y hacerlas una.
             const obtainedEquivalenciaData = await getEquivalencia(id);
-            const obtainedCarreraData = await getCarrera(
-                obtainedEquivalenciaData.CarreraId
-            );
 
             let arrayData = {
                 nombre: obtainedEquivalenciaData.Materias_solicitadas[0].nombre,
 
-                carrera: obtainedCarreraData.nombre_carrera,
+                carrera: obtainedEquivalenciaData.Carrera.nombre_carrera,
 
                 materiasAprobadas: obtainedEquivalenciaData.Materias_aprobadas,
 

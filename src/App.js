@@ -53,7 +53,7 @@ function App() {
                         component={PageDireccion}
                     />
                     <Route
-                        path="/superusuario/revision/:id"
+                        path="/direccion/revision/:id"
                         component={PageRevision}
                     />
                     <Route

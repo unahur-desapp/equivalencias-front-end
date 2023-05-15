@@ -24,6 +24,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { config } from '../../../config/config';
 import { HeaderDirectivo } from '../../HeaderDirectivo';
+import { HeaderSuperUsuario } from '../../HeaderSuperUsuario';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -108,14 +109,11 @@ const PageRevision = () => {
         const fetchEquivalenciaData = async () => {
             // Aca tambien incluir carreras.
             const obtainedEquivalenciaData = await getEquivalencia(id);
-            const obtainedCarreraData = await getCarrera(
-                obtainedEquivalenciaData.Materias_solicitadas[0].id_carrera
-            );
 
             let arrayData = {
                 nombre: obtainedEquivalenciaData.Materias_solicitadas[0].nombre,
 
-                carrera: obtainedCarreraData.nombre_carrera,
+                carrera: obtainedEquivalenciaData.Carrera.nombre_carrera,
 
                 materiasAprobadas: obtainedEquivalenciaData.Materias_aprobadas,
 
@@ -176,12 +174,20 @@ const PageRevision = () => {
             })
             .catch(() => {});
     };
+    const rol = JSON.parse(localStorage.getItem('rol'));
+    const rolUsuario = () => {
+        if (rol === 'directivo') {
+            return <HeaderDirectivo />;
+        } else {
+            return <HeaderSuperUsuario />;
+        }
+    };
 
     return (
         <>
             <Grid container direction="column">
                 <Grid item container xs={12}>
-                    <HeaderDirectivo />
+                    {rolUsuario()}
                 </Grid>
 
                 <Grid
