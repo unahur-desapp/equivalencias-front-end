@@ -422,22 +422,14 @@ const CreateForm = () => {
                             direction="column"
                             alignItems="flex-start"
                             md={12}
-                            lg={5.8}
-                            sx={{
-                                marginTop: '6px'
+                            lg={6}
+                            marginTop={{
+                                lg: '30px'
                             }}
                         >
-                            <StandardInput
-                                required
-                                name="materiaSolicitada"
-                                size="small"
-                                label="Materia solicitada UNAHUR"
-                                variant="outlined"
-                                value={formValue.materiaSolicitada || ''}
-                                onChange={handleChange}
-                            />
+                            Seleccione la carrera UNAHUR para la que solicitará
+                            equivalencias
                         </Grid>
-
                         <Grid
                             item
                             container
@@ -462,6 +454,53 @@ const CreateForm = () => {
                                         value={formValue.carreraUnahur || ''}
                                     />
                                 )}
+                            />
+                        </Grid>
+                        <Grid md={12} marginTop="30px">
+                            <Titulos titulolabel component="h2">
+                                Materias solicitadas
+                            </Titulos>
+                        </Grid>
+                        <Grid
+                            item
+                            container
+                            direction="column"
+                            alignItems="flex-start"
+                            // md={6}
+                            lg={5.8}
+                            sx={{
+                                marginTop: '6px'
+                            }}
+                        >
+                            <StandardInput
+                                required
+                                name="materiaSolicitada"
+                                size="small"
+                                label="Materia solicitada UNAHUR"
+                                variant="outlined"
+                                value={formValue.materiaSolicitada || ''}
+                                onChange={handleChange} // Revisar comportamiento al rellenar el campo, se copia lo que escribis en uno en todos.
+                            />
+                        </Grid>
+                        <Grid
+                            item
+                            container
+                            direction="column"
+                            alignItems="flex-start"
+                            // md={6}
+                            lg={5.8}
+                            sx={{
+                                marginTop: '6px'
+                            }}
+                        >
+                            <StandardInput
+                                required
+                                name="materiaSolicitada"
+                                size="small"
+                                label="Materia solicitada UNAHUR"
+                                variant="outlined"
+                                value={formValue.materiaSolicitada || ''}
+                                onChange={handleChange}
                             />
                         </Grid>
                     </Grid>
