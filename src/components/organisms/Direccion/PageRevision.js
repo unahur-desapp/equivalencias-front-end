@@ -106,6 +106,7 @@ const PageRevision = () => {
 
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
+            // Aca tambien incluir carreras.
             const obtainedEquivalenciaData = await getEquivalencia(id);
             const obtainedCarreraData = await getCarrera(
                 obtainedEquivalenciaData.Materias_solicitadas[0].id_carrera

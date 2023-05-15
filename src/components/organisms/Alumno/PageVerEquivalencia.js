@@ -115,6 +115,7 @@ const PageVerEquivalencia = () => {
 
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
+            // Juntar estas 2 funciones y hacerlas una.
             const obtainedEquivalenciaData = await getEquivalencia(id);
             const obtainedCarreraData = await getCarrera(
                 obtainedEquivalenciaData.Materias_solicitadas[0].id_carrera
