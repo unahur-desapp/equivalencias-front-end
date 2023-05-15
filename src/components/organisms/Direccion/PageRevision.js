@@ -1,6 +1,5 @@
 import { Grid, TextareaAutosize } from '@mui/material';
 import React, { useState, useMemo, useEffect } from 'react';
-import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
 import { GridTop } from '../../../GridTop';
 import Paper from '@mui/material/Paper';
@@ -24,6 +23,7 @@ import { getEquivalencia } from '../../../services/revision';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { config } from '../../../config/config';
+import { HeaderDirectivo } from '../../HeaderDirectivo';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -181,11 +181,7 @@ const PageRevision = () => {
         <>
             <Grid container direction="column">
                 <Grid item container xs={12}>
-                    <Header
-                        name="Equivalencias"
-                        paginaPrincipal="/direccion/solicitudes"
-                        botonSeleccionado="rgba(255, 255, 255, 0.1);"
-                    />
+                    <HeaderDirectivo />
                 </Grid>
 
                 <Grid

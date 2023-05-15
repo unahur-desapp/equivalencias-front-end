@@ -8,9 +8,11 @@ import { PageVerEquivalencia } from './components/organisms/Alumno/PageVerEquiva
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import PageSuperUsuario from './components/PageSuperUsuario';
 
 function App() {
     const rol = JSON.parse(localStorage.getItem('rol'));
+
     return (
         <>
             {rol == 'alumno' && (
@@ -40,6 +42,23 @@ function App() {
                     <Route
                         path="/direccion/revision/:id"
                         component={PageRevision}
+                    />
+                </Router>
+            )}
+            {rol == 'superusuario' && (
+                <Router>
+                    <Route path="/" exact component={PageIniciarSesion} />
+                    <Route
+                        path="/superusuario/solicitudes"
+                        component={PageDireccion}
+                    />
+                    <Route
+                        path="/superusuario/revision/:id"
+                        component={PageRevision}
+                    />
+                    <Route
+                        path="/superusuario/usuarios"
+                        component={PageSuperUsuario}
                     />
                 </Router>
             )}
