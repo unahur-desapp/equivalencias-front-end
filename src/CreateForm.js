@@ -131,17 +131,16 @@ const CreateForm = () => {
     const handleChange = (event) => {
         if (event.target.name === 'carreraUnahur') {
             try {
-                var id_carrera = carreras.data.find(
+                const id_carrera = carreras.data.find(
                     (carrera) => carrera.nombre_carrera === event.target.value
                 ).id;
+                setformValue((formValue) => ({
+                    ...formValue,
+                    [event.target.name]: id_carrera
+                }));
             } catch (error) {
                 console.log(error);
             }
-
-            setformValue((formValue) => ({
-                ...formValue,
-                [event.target.name]: id_carrera
-            }));
         } else {
             setformValue((formValue) => ({
                 ...formValue,

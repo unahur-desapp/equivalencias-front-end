@@ -1,10 +1,10 @@
 import { AppBar, Toolbar, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { BotonMUI } from './components/atoms/Button/BotonMUI';
+import { BotonMUI } from './atoms/Button/BotonMUI';
 import React from 'react';
-import AvatarIcon from './components/AvatarIcon.jsx';
+import AvatarIcon from './AvatarIcon';
 
-const Header = () => {
+const HeaderSuperUsuario = () => {
     return (
         <AppBar position="static" sx={{ bgcolor: '#122C34' }}>
             <Toolbar color="#122C34">
@@ -29,14 +29,27 @@ const Header = () => {
                         </Grid>
                         <Grid md={7}>
                             <Link
-                                to={'/usuario/equivalencias'}
+                                to={'/superusuario/solicitudes'}
                                 style={{ textDecoration: 'none' }}
                             >
                                 <BotonMUI
                                     variant="text"
-                                    sx={{ width: '160px' }}
+                                    sx={{ width: '130px' }}
                                 >
-                                    Mis equivalencias
+                                    Equivalencias
+                                </BotonMUI>
+                            </Link>
+                        </Grid>
+                        <Grid md={7}>
+                            <Link
+                                to={'/superusuario/usuarios'}
+                                style={{ textDecoration: 'none' }}
+                            >
+                                <BotonMUI
+                                    variant="text"
+                                    sx={{ width: '130px' }}
+                                >
+                                    Usuarios
                                 </BotonMUI>
                             </Link>
                         </Grid>
@@ -50,11 +63,8 @@ const Header = () => {
                     >
                         <AvatarIcon
                             info={[
-                                `${JSON.parse(
-                                    localStorage.getItem('nombre')
-                                ).trim()} ${JSON.parse(
-                                    localStorage.getItem('apellido')
-                                ).trim()}`
+                                JSON.parse(localStorage.getItem('nombre')) +
+                                    JSON.parse(localStorage.getItem('apellido'))
                             ]}
                         />
 
@@ -80,4 +90,4 @@ const Header = () => {
     );
 };
 
-export { Header };
+export { HeaderSuperUsuario };
