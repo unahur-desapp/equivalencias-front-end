@@ -116,14 +116,11 @@ const PageVerEquivalencia = () => {
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia(id);
-            const obtainedCarreraData = await getCarrera(
-                obtainedEquivalenciaData.CarreraId
-            );
 
             let arrayData = {
                 nombre: obtainedEquivalenciaData.Materias_solicitadas[0].nombre,
 
-                carrera: obtainedCarreraData.nombre_carrera,
+                carrera: obtainedEquivalenciaData.Carrera.nombre_carrera,
 
                 materiasAprobadas: obtainedEquivalenciaData.Materias_aprobadas,
 

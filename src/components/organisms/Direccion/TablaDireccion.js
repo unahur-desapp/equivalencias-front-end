@@ -8,7 +8,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { getEquivalencia } from '../../../services/equivalencia_service';
+import { getEquivalenciaPorDirectivo } from '../../../services/equivalencia_service';
+import { getEquivalenciaSuperUsuario } from '../../../services/equivalencia_service';
 // import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 // import { OuterFormButtons } from '../../../OuterFormButtons';
@@ -25,10 +26,11 @@ export const columns = [
     { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
     { id: 'materia', label: 'Materia', minWidth: 170 },
     { id: 'dateTime', label: 'Fecha y Hora', minWidth: 100 },
+    { id: 'carrera', label: 'Carrera', minWidth: 170 },
     { id: 'actions', label: 'Acciones', minWidth: 170 }
 ];
 
-function createData(solicitante, dni, materia, id, dateTime) {
+function createData(solicitante, dni, materia, id, dateTime, carrera) {
     const actions = (
         <Grid
             container
@@ -45,7 +47,7 @@ function createData(solicitante, dni, materia, id, dateTime) {
             </Link>
         </Grid>
     ); //acciones lleva a pantalla revision de ese id
-    return { solicitante, dni, materia, dateTime, actions };
+    return { solicitante, dni, materia, dateTime, actions, carrera };
 }
 
 const horaConCero = (hora) => {
@@ -71,17 +73,26 @@ export default function StickyHeadTable({ searchQuery }) {
         setPage(0);
     };
 
-    // const [searchQuery, setSearchQuery] = useState('');
-    // console.log(searchQuery);
-
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
-            const obtainedEquivalenciaData = await getEquivalencia();
+            function obtainedEquivalenciaData() {
+                if (JSON.parse(localStorage.getItem('rol')) === 'directivo') {
+                    return getEquivalenciaPorDirectivo(
+                        JSON.parse(localStorage.getItem('id'))
+                    );
+                } else if (
+                    JSON.parse(localStorage.getItem('rol')) === 'superusuario'
+                ) {
+                    return getEquivalenciaSuperUsuario();
+                }
+            }
+
+            let equivalenciaData = await obtainedEquivalenciaData();
 
             let array = [];
 
-            obtainedEquivalenciaData.forEach(function (arrayItem) {
-                let d = new Date(arrayItem.Materias_solicitadas[0].createdAt); //tengo que traer solicitantes
+            equivalenciaData.forEach(function (arrayItem) {
+                let d = new Date(arrayItem.Carrera.Equivalencia[0].createdAt); //tengo que traer solicitantes
                 let dateTime =
                     // d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
                     d.getDate() +
@@ -95,23 +106,23 @@ export default function StickyHeadTable({ searchQuery }) {
                     horaConCero(d.getMinutes());
                 console.log('array item: ', arrayItem.Usuario);
                 console.log('Equiv:', obtainedEquivalenciaData);
+
+                console.log(arrayItem.Carrera.Equivalencia[0].Usuario.nombre);
                 array.push(
                     createData(
-                        // arrayItem.Materias_solicitadas[0].nombre ----falta esto
-                        // arrayItem.Materias_solicitadas[0].Usuario.id,
-                        // arrayItem.Materias_solicitadas[0].usuario.dni,
-                        // arrayItem.Materias_solicitadas[0].id,
-                        arrayItem.Usuario.nombre +
+                        //solicitante, dni, materia, id, dateTime, carrera
+                        arrayItem.Carrera.Equivalencia[0].Usuario.nombre +
                             ' ' +
-                            arrayItem.Usuario.apellido,
-                        arrayItem.Usuario.dni,
-                        arrayItem.Materias_solicitadas[0].nombre,
-                        arrayItem.id,
-                        // arrayItem.Materias_solicitadas[0],
-                        dateTime //fecha actual de cuando se genero la equivalencia
-                        // arrayItem.Estado[0].status
+                            arrayItem.Carrera.Equivalencia[0].Usuario.apellido,
+                        arrayItem.Carrera.Equivalencia[0].Usuario.dni,
+                        arrayItem.Carrera.Equivalencia[0]
+                            .Materias_solicitadas[0].nombre,
+                        arrayItem.Carrera.Equivalencia[0].id,
+                        dateTime,
+                        arrayItem.Carrera.nombre_carrera
                     )
                 );
+                console.log(arrayItem.id, 'array');
                 const dataFilter = array.filter(
                     (d) =>
                         d.solicitante
