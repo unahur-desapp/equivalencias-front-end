@@ -482,7 +482,7 @@ const CreateForm = () => {
                                 onChange={handleChange} // Revisar comportamiento al rellenar el campo, se copia lo que escribis en uno en todos.
                             />
                         </Grid>
-                        <Grid
+                        {/* <Grid
                             item
                             container
                             direction="column"
@@ -502,7 +502,7 @@ const CreateForm = () => {
                                 value={formValue.materiaSolicitada || ''}
                                 onChange={handleChange}
                             />
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                 </Grid>
                 <Grid
