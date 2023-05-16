@@ -1,4 +1,4 @@
-import { Grid, TextareaAutosize } from '@mui/material';
+import { Container, Grid, TextareaAutosize } from '@mui/material';
 import React, { useState, useMemo, useEffect } from 'react';
 import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
@@ -24,6 +24,7 @@ import { styled } from '@mui/material';
 import { css } from '@mui/styled-engine';
 import { Link } from 'react-router-dom';
 import { config } from '../../../config/config';
+import Box from '@mui/material/Box';
 
 const ChipMedium = styled(Chip)`
     ${(props) =>
@@ -35,11 +36,11 @@ const ChipMedium = styled(Chip)`
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
-    { id: 'dateTime', label: 'Email', minWidth: 100 },
     { id: 'state', label: 'DNI', minWidth: 170 },
-    { id: 'actions', label: 'Fecha', minWidth: 170 },
+    { id: 'carreer', label: 'Carrera', minWidth: 170 },
+    { id: 'dateTime', label: 'Email', minWidth: 100 },
     { id: 'phone', label: 'Teléfono', minWidth: 170 },
-    { id: 'carreer', label: 'Carrera', minWidth: 170 }
+    { id: 'actions', label: 'Fecha', minWidth: 170 }
 ];
 
 function createData(solicitante, email, dni, fechaHora, telefono) {
@@ -207,614 +208,489 @@ const PageVerEquivalencia = () => {
                             </Titulos>
                         </Grid>
                     </GridTop>
-
-                    <GridTop
-                        item
-                        container
-                        xs={11.5}
-                        md={7}
-                        sx={{ height: 'auto', padding: '0px 20px' }}
-                    >
-                        <ChipMedium
-                            size="medium"
-                            chipMedium
-                            label={equiv.estado}
-                            sx={
-                                equiv.estado === 'Falta completar'
-                                    ? {
-                                          backgroundColor:
-                                              'rgba(0, 0, 0, 0.17)',
-                                          color: 'rgba(0, 0, 0, 0.87)'
-                                      }
-                                    : equiv.estado === 'Aceptado'
-                                    ? {
-                                          backgroundColor:
-                                              'rgba(25, 118, 210, 0.17)',
-                                          color: '#1976d2'
-                                      }
-                                    : equiv.estado === 'Rechazado'
-                                    ? {
-                                          backgroundColor:
-                                              'rgba(211, 47, 47, 0.17)',
-                                          color: '#d32f2f'
-                                      }
-                                    : {
-                                          backgroundColor:
-                                              'rgba(237, 108, 2, 0.17)',
-                                          color: 'rgb(237, 108, 2)'
-                                      }
-                            }
-                        ></ChipMedium>
-                    </GridTop>
-
-                    <GridTop
-                        item
-                        container
-                        blanco
-                        xs={11.5}
-                        md={7}
-                        marginTop={{
-                            xs: '30px'
-                        }}
-                        sx={{
-                            height: 'auto'
-                        }}
-                    >
-                        <Paper
-                            sx={{
-                                width: '100%',
-                                overflow: 'hidden',
-                                borderRadius: '10px 10px 0px 0px',
-                                boxShadow: 'none',
-                                borderBottom: '1px solid #dadce0'
-                            }}
-                        >
-                            <TableContainer sx={{ maxHeight: 440 }}>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableHead>
-                                        <TableRow>
-                                            {columns.map((column) => (
-                                                <TableCell
-                                                    key={column.id}
-                                                    align="center"
-                                                    style={{
-                                                        minWidth:
-                                                            column.minWidth
-                                                    }}
-                                                    sx={{
-                                                        backgroundColor:
-                                                            '#FBFBFB',
-                                                        padding: '16px 60px'
-                                                    }}
-                                                >
-                                                    {column.label}
-                                                </TableCell>
-                                            ))}
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {rows.map((row) => (
-                                            <TableRow
-                                                key={row.solicitante}
-                                                sx={{
-                                                    '&:last-child td, &:last-child th': {
-                                                        border: 0
-                                                    }
-                                                }}
-                                            >
-                                                <TableCell
-                                                    align="center"
-                                                    component="th"
-                                                    scope="row"
-                                                >
-                                                    {row.solicitante}
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    {row.email}
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    {row.dni}
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    {row.fechaHora}
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    {row.telefono}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
-
-                        <Grid
+                    <GridTop item container xs={12} flexDirection="column">
+                        <GridTop
                             item
                             container
-                            direction="row"
-                            justifyContent="flex-start"
-                            alignItems="center"
-                            sm={12}
-                            padding={{
-                                xs: '20px 30px',
-                                sm: '20px 60px'
+                            blanco
+                            xs={11.5}
+                            md={7}
+                            marginTop={{
+                                xs: '30px'
                             }}
                             sx={{
                                 height: 'auto',
-                                borderRadius: '10px 10px 0px 0px',
-                                borderBottom: '1px solid #dadce0'
+                                marginLeft: '100px'
                             }}
                         >
-                            <Grid
-                                item
-                                container
-                                direction="column"
-                                alignItems="flex-start"
-                                md={12}
-                                lg={5.8}
+                            <Paper
                                 sx={{
-                                    marginTop: '6px'
+                                    width: '100%',
+                                    overflow: 'hidden',
+                                    borderRadius: '10px 10px 0px 0px',
+                                    boxShadow: 'none',
+                                    borderBottom: '1px solid #dadce0'
                                 }}
                             >
-                                <Titulos titulolabel component="h2">
-                                    Datos Universidad Nacional de Hurlingham
-                                </Titulos>
-                            </Grid>
+                                <TableContainer sx={{ maxHeight: 440 }}>
+                                    <Table
+                                        stickyHeader
+                                        aria-label="sticky table"
+                                    >
+                                        <TableHead>
+                                            <TableRow>
+                                                {columns.map((column) => (
+                                                    <TableCell
+                                                        key={column.id}
+                                                        align="center"
+                                                        style={{
+                                                            minWidth:
+                                                                column.minWidth
+                                                        }}
+                                                        sx={{
+                                                            backgroundColor:
+                                                                '#FBFBFB',
+                                                            padding: '16px 60px'
+                                                        }}
+                                                    >
+                                                        {column.label}
+                                                    </TableCell>
+                                                ))}
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {rows.map((row) => (
+                                                <TableRow
+                                                    key={row.solicitante}
+                                                    sx={{
+                                                        '&:last-child td, &:last-child th': {
+                                                            border: 0
+                                                        }
+                                                    }}
+                                                >
+                                                    <TableCell
+                                                        align="center"
+                                                        component="th"
+                                                        scope="row"
+                                                    >
+                                                        {row.solicitante}
+                                                    </TableCell>
+                                                    <TableCell align="center">
+                                                        {row.dni}
+                                                    </TableCell>
+                                                    <TableCell align="center">
+                                                        {row.carrera}
+                                                    </TableCell>
+                                                    <TableCell align="center">
+                                                        {row.email}
+                                                    </TableCell>
+                                                    <TableCell align="center">
+                                                        {row.telefono}
+                                                    </TableCell>
+                                                    <TableCell align="center">
+                                                        {row.fechaHora}
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </Paper>
 
                             <Grid
                                 item
                                 container
-                                xs={12}
                                 direction="row"
-                                justifyContent="space-between"
-                                alignItems="flex-start"
+                                justifyContent="flex-start"
+                                alignItems="center"
+                                sm={12}
+                                padding={{
+                                    xs: '20px 30px',
+                                    sm: '20px 60px'
+                                }}
+                                sx={{
+                                    height: 'auto',
+                                    borderRadius: '10px 10px 0px 0px',
+                                    borderBottom: '1px solid #dadce0'
+                                }}
                             >
-                                <Grid
-                                    item
-                                    container
-                                    direction="column"
-                                    alignItems="flex-start"
-                                    md={12}
-                                    lg={5.8}
+                                <Container>
+                                    <Titulos
+                                        titulolabel
+                                        component="h2"
+                                        sx={{ textAlign: 'center' }}
+                                    >
+                                        Universidad Nacional de Hurlingham
+                                    </Titulos>
+                                </Container>
+
+                                <Box
                                     sx={{
-                                        marginTop: '6px'
+                                        marginTop: '20px',
+                                        marginLeft: '15px',
+                                        flexGrow: 1
                                     }}
                                 >
-                                    <StandardInput
-                                        inputFocused
-                                        name="materiaSolicitada"
-                                        label="Materia solicitada UNAHUR"
-                                        value={equiv.nombre}
-                                        variant="outlined"
-                                        focused={true}
-                                        size="small"
-                                        InputProps={{
-                                            readOnly: true
-                                        }}
-                                    />
-                                </Grid>
+                                    <Grid container spacing={2}>
+                                        <Grid xs={10.6}>
+                                            <Titulos titulolabel>
+                                                Materias solicitadas
+                                            </Titulos>
+                                        </Grid>
+                                        <Grid xs={1.4}>
+                                            <Titulos titulolabel>
+                                                Estado
+                                            </Titulos>
+                                        </Grid>
+                                    </Grid>
+                                </Box>
 
                                 <Grid
                                     item
                                     container
-                                    md={12}
-                                    lg={5.8}
-                                    sx={{
-                                        marginTop: '6px'
-                                    }}
+                                    xs={12}
+                                    direction="row"
+                                    justifyContent="space-between"
+                                    alignItems="flex-start"
                                 >
-                                    <StandardInput
-                                        inputFocused
-                                        label="Carreras UNAHUR"
-                                        value={equiv.carrera}
-                                        variant="outlined"
-                                        size="small"
-                                        focused={true}
-                                        InputProps={{
-                                            readOnly: true
+                                    <Grid
+                                        item
+                                        container
+                                        direction="column"
+                                        alignItems="flex-start"
+                                        md={12}
+                                        lg={10}
+                                        sx={{
+                                            marginTop: '6px'
                                         }}
-                                    />
+                                    >
+                                        <StandardInput
+                                            inputFocused
+                                            name="materiaSolicitada"
+                                            value={equiv.nombre}
+                                            variant="outlined"
+                                            focused={true}
+                                            size="small"
+                                            InputProps={{
+                                                readOnly: true
+                                            }}
+                                        />
+                                    </Grid>
+
+                                    <Grid
+                                        item
+                                        container
+                                        md={12}
+                                        lg={1.5}
+                                        sx={{
+                                            marginTop: '20px',
+                                            marginLeft: '20px',
+                                            marginRight: '0px'
+                                        }}
+                                    >
+                                        <ChipMedium
+                                            size="medium"
+                                            chipMedium
+                                            label={equiv.estado}
+                                            sx={
+                                                equiv.estado === 'Aceptado'
+                                                    ? {
+                                                          backgroundColor:
+                                                              '#009673',
+                                                          color: '#FFFFFF'
+                                                      }
+                                                    : equiv.estado ===
+                                                      'Rechazado'
+                                                    ? {
+                                                          backgroundColor:
+                                                              '#DB0505',
+                                                          color: '#FFFFFF'
+                                                      }
+                                                    : {
+                                                          backgroundColor:
+                                                              '#2A74E4',
+                                                          color: '#FFFFFF'
+                                                      }
+                                            }
+                                        ></ChipMedium>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
-                        {/* Universidad Origen */}
+                            {/* Universidad Origen */}
 
-                        {equiv.materiasAprobadas !== undefined ? (
-                            equiv.materiasAprobadas.map((materiaAprobada) => {
-                                return (
-                                    <>
-                                        <Grid
-                                            item
-                                            container
-                                            direction="row"
-                                            justifyContent="flex-start"
-                                            alignItems="center"
-                                            className="universidad-origen"
-                                            sm={12}
-                                            padding={{
-                                                xs: '20px 30px',
-                                                sm: '20px 60px'
-                                            }}
-                                            sx={{
-                                                height: 'auto',
-                                                borderRadius:
-                                                    '10px 10px 0px 0px',
-                                                borderBottom:
-                                                    '1px solid #dadce0'
-                                            }}
-                                        >
-                                            <Grid
-                                                item
-                                                container
-                                                direction="column"
-                                                alignItems="flex-start"
-                                                md={12}
-                                                lg={5.8}
-                                                sx={{
-                                                    marginTop: '6px'
-                                                }}
-                                            >
-                                                <Titulos
-                                                    titulolabel
-                                                    component="h2"
-                                                >
-                                                    Datos Universidad de Origen
-                                                </Titulos>
-                                            </Grid>
-
-                                            <Grid
-                                                item
-                                                container
-                                                xs={12}
-                                                direction="row"
-                                                justifyContent="space-between"
-                                                alignItems="flex-start"
-                                            >
+                            {equiv.materiasAprobadas !== undefined ? (
+                                equiv.materiasAprobadas.map(
+                                    (materiaAprobada) => {
+                                        return (
+                                            <>
                                                 <Grid
                                                     item
                                                     container
-                                                    direction="column"
-                                                    alignItems="flex-start"
-                                                    md={12}
-                                                    lg={5.8}
+                                                    direction="row"
+                                                    justifyContent="flex-start"
+                                                    alignItems="center"
+                                                    className="universidad-origen"
+                                                    sm={12}
+                                                    padding={{
+                                                        xs: '20px 30px',
+                                                        sm: '20px 60px'
+                                                    }}
                                                     sx={{
-                                                        marginTop: '6px'
+                                                        height: 'auto',
+                                                        borderRadius:
+                                                            '10px 10px 0px 0px',
+                                                        borderBottom:
+                                                            '1px solid #dadce0'
                                                     }}
                                                 >
-                                                    <StandardInput
-                                                        inputFocused
-                                                        name="materiaAprobada"
-                                                        size="small"
-                                                        label="Materia aprobada"
-                                                        value={
-                                                            materiaAprobada.nombre_materia
-                                                        }
-                                                        variant="outlined"
-                                                        focused={true}
-                                                        InputProps={{
-                                                            readOnly: true
+                                                    <Box
+                                                        sx={{
+                                                            marginTop: '20px',
+                                                            marginLeft: '15px',
+                                                            flexGrow: 1
                                                         }}
-                                                    />
-                                                </Grid>
+                                                    >
+                                                        <Grid
+                                                            container
+                                                            spacing={2}
+                                                        >
+                                                            <Grid xs={6.2}>
+                                                                <Titulos
+                                                                    titulolabel
+                                                                >
+                                                                    Materias
+                                                                    aprobadas
+                                                                </Titulos>
+                                                            </Grid>
+                                                            <Grid xs={5}>
+                                                                <Titulos
+                                                                    titulolabel
+                                                                >
+                                                                    Universidad
+                                                                    de origen
+                                                                </Titulos>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </Box>
 
-                                                <Grid
-                                                    item
-                                                    container
-                                                    md={12}
-                                                    lg={5.8}
-                                                    sx={{
-                                                        marginTop: '6px'
-                                                    }}
-                                                >
-                                                    {/* nota: obtainedEquivalenciaData.Materias_aprobadas[0].nota,
+                                                    <Grid
+                                                        item
+                                                        container
+                                                        xs={12}
+                                                        direction="row"
+                                                        justifyContent="space-between"
+                                                        alignItems="flex-start"
+                                                    >
+                                                        <Grid
+                                                            item
+                                                            container
+                                                            direction="column"
+                                                            alignItems="flex-start"
+                                                            md={12}
+                                                            lg={5.8}
+                                                            sx={{
+                                                                marginTop: '6px'
+                                                            }}
+                                                        >
+                                                            <StandardInput
+                                                                inputFocused
+                                                                name="materiaAprobada"
+                                                                size="small"
+                                                                label="Materia aprobada"
+                                                                value={
+                                                                    materiaAprobada.nombre_materia
+                                                                }
+                                                                variant="outlined"
+                                                                focused={true}
+                                                                InputProps={{
+                                                                    readOnly: true
+                                                                }}
+                                                            />
+                                                        </Grid>
+
+                                                        <Grid
+                                                            item
+                                                            container
+                                                            md={12}
+                                                            lg={5.8}
+                                                            sx={{
+                                                                marginTop: '6px'
+                                                            }}
+                                                        >
+                                                            {/* nota: obtainedEquivalenciaData.Materias_aprobadas[0].nota,
                                 carga_horaria: obtainedEquivalenciaData.Materias_aprobadas[0].carga_horaria,
                                 año_aprobacion: obtainedEquivalenciaData.Materias_aprobadas[0].año_aprobacion,
                                 nombre_materia: obtainedEquivalenciaData.Materias_aprobadas[0].nombre_materia,
                                 // UniversidadOrigenId: item.universidadOrigen
                                 certificado: obtainedEquivalenciaData.Materias_aprobadas[0].certificado */}
 
-                                                    <StandardInput
-                                                        inputFocused
-                                                        label="Universidad de Origen"
-                                                        name="universidadOrigen"
-                                                        value={
-                                                            'Universidad de la Matanza'
-                                                        }
-                                                        variant="outlined"
-                                                        size="small"
-                                                        focused={true}
-                                                        InputProps={{
-                                                            readOnly: true
-                                                        }}
-                                                    />
-                                                </Grid>
-                                            </Grid>
-
-                                            {/* Datos extra */}
-
-                                            <Grid
-                                                item
-                                                container
-                                                xs={12}
-                                                direction="row"
-                                                justifyContent="space-between"
-                                                alignItems="flex-start"
-                                            >
-                                                <Grid
-                                                    item
-                                                    container
-                                                    md={12}
-                                                    lg={5.8}
-                                                    direction="row"
-                                                    justifyContent="space-between"
-                                                    alignItems="flex-start"
-                                                    sx={{
-                                                        marginTop: '10px'
-                                                    }}
-                                                >
-                                                    <Grid
-                                                        item
-                                                        container
-                                                        xs={5.6}
-                                                    >
-                                                        <StandardInput
-                                                            inputFocused
-                                                            label="Año aprobación"
-                                                            name="anioAprobacion"
-                                                            value={new Date(
-                                                                materiaAprobada.año_aprobacion
-                                                            ).getFullYear()}
-                                                            variant="outlined"
-                                                            size="small"
-                                                            focused={true}
-                                                            InputProps={{
-                                                                readOnly: true
-                                                            }}
-                                                        />
-                                                    </Grid>
-
-                                                    <Grid
-                                                        item
-                                                        container
-                                                        xs={5.6}
-                                                    >
-                                                        <StandardInput
-                                                            inputFocused
-                                                            label="Carga horaria total"
-                                                            name="cargaHorariaTotal"
-                                                            value={
-                                                                materiaAprobada.carga_horaria
-                                                            }
-                                                            variant="outlined"
-                                                            size="small"
-                                                            focused={true}
-                                                            InputProps={{
-                                                                readOnly: true
-                                                            }}
-                                                        />
-                                                    </Grid>
-                                                </Grid>
-
-                                                <Grid
-                                                    item
-                                                    container
-                                                    md={12}
-                                                    lg={5.8}
-                                                    direction="row"
-                                                    justifyContent="space-between"
-                                                    alignItems="flex-start"
-                                                    sx={{
-                                                        marginTop: '10px'
-                                                    }}
-                                                >
-                                                    <Grid
-                                                        item
-                                                        container
-                                                        xs={5.6}
-                                                    >
-                                                        <StandardInput
-                                                            inputFocused
-                                                            label="Nota aprobación"
-                                                            name="notaAprobacion"
-                                                            value={
-                                                                materiaAprobada.nota
-                                                            }
-                                                            variant="outlined"
-                                                            size="small"
-                                                            focused={true}
-                                                            InputProps={{
-                                                                readOnly: true
-                                                            }}
-                                                        />
-                                                    </Grid>
-
-                                                    <Grid
-                                                        item
-                                                        container
-                                                        justifyContent="center"
-                                                        alignItems="flex-end"
-                                                        xs={5.6}
-                                                        marginTop="7px"
-                                                    >
-                                                        {/* <FormControl component="fieldset">
-                                        <FormLabel component="legend" sx={{ fontSize: '14px' }}>
-                                            ¿Tiene certificado?
-                                        </FormLabel>
-                                        <RadioGroup
-                                            required
-                                            row
-                                            aria-label="bool"
-                                            name="certificado"
-                                            onChange={(event) => handleChangeArray(event, key2)}
-                                            value={formValueArray.certificado}
-                                        >
-                                            <FormControlLabel
-                                                value={true}
-                                                control={<Radio size="small" />}
-                                                label="Si"
-                                            />
-                                            <FormControlLabel
-                                                value={false}
-                                                control={<Radio size="small" />}
-                                                label="No"
-                                            />
-                                        </RadioGroup>
-                                    </FormControl> */}
-                                                        <Typography
-                                                            variant="body1"
-                                                            gutterBottom
-                                                        >
-                                                            No tiene certificado
-                                                        </Typography>
-                                                    </Grid>
-                                                </Grid>
-
-                                                <Grid
-                                                    item
-                                                    container
-                                                    xs={12}
-                                                    sx={{
-                                                        marginTop: '16px'
-                                                    }}
-                                                >
-                                                    <Grid
-                                                        item
-                                                        container
-                                                        xs={12}
-                                                    >
-                                                        <Titulos
-                                                            titulolabel
-                                                            variant="h3"
-                                                            fontSize={{
-                                                                xs: '14px',
-                                                                sm: '16px'
-                                                            }}
-                                                        >
-                                                            Adjuntar programa de
-                                                            la materia .pdf
-                                                        </Titulos>
-                                                    </Grid>
-
-                                                    <Grid
-                                                        item
-                                                        container
-                                                        xs={12}
-                                                        sx={{
-                                                            marginTop: '16px'
-                                                        }}
-                                                    >
-                                                        <label
-                                                            htmlFor="contained-button-file"
-                                                            style={{
-                                                                width: '100%'
-                                                            }}
-                                                        >
-                                                            <BotonMUI
-                                                                sx={{
-                                                                    marginRight:
-                                                                        '12px'
-                                                                }}
-                                                                buttonupload
+                                                            <StandardInput
+                                                                inputFocused
+                                                                label="Universidad de Origen"
+                                                                name="universidadOrigen"
+                                                                value={
+                                                                    'Universidad de la Matanza'
+                                                                }
                                                                 variant="outlined"
-                                                                component="span"
+                                                                size="small"
+                                                                focused={true}
+                                                                InputProps={{
+                                                                    readOnly: true
+                                                                }}
+                                                            />
+                                                        </Grid>
+                                                    </Grid>
+
+                                                    {/* Datos extra */}
+
+                                                    <Grid
+                                                        item
+                                                        container
+                                                        xs={12}
+                                                        direction="row"
+                                                        justifyContent="space-between"
+                                                        alignItems="flex-start"
+                                                    >
+                                                        <Grid
+                                                            item
+                                                            container
+                                                            md={12}
+                                                            lg={12}
+                                                            direction="row"
+                                                            justifyContent="space-between"
+                                                            alignItems="flex-start"
+                                                            sx={{
+                                                                marginTop:
+                                                                    '10px',
+                                                                marginRight:
+                                                                    '10px'
+                                                            }}
+                                                        >
+                                                            <Grid
+                                                                item
+                                                                container
+                                                                xs={2}
                                                             >
-                                                                Descargar
-                                                            </BotonMUI>
-                                                            {/* <IconButton
-                                            sx={{
-                                                marginRight: '12px'
-                                            }}
-                                            buttonupload
-                                            variant="outlined"
-                                            component="span"
-                                        >
-                                            <AttachFileOutlinedIcon />
-                                        </IconButton> */}
-                                                            {/* <FileUploader
-                                            id="contained-button-file"
-                                            multiple
-                                            size="small"
-                                            variant="standard"
-                                            type="file"
-                                            accept="application/pdf, application/vnd.ms-Excel"
-                                        /> */}
-                                                        </label>
+                                                                <StandardInput
+                                                                    inputFocused
+                                                                    label="Año aprobación"
+                                                                    name="anioAprobacion"
+                                                                    value={new Date(
+                                                                        materiaAprobada.año_aprobacion
+                                                                    ).getFullYear()}
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    focused={
+                                                                        true
+                                                                    }
+                                                                    InputProps={{
+                                                                        readOnly: true
+                                                                    }}
+                                                                />
+                                                            </Grid>
+
+                                                            <Grid
+                                                                item
+                                                                container
+                                                                xs={2}
+                                                            >
+                                                                <StandardInput
+                                                                    inputFocused
+                                                                    label="Nota aprobación"
+                                                                    name="notaAprobacion"
+                                                                    value={
+                                                                        materiaAprobada.nota
+                                                                    }
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    focused={
+                                                                        true
+                                                                    }
+                                                                    InputProps={{
+                                                                        readOnly: true
+                                                                    }}
+                                                                />
+                                                            </Grid>
+                                                            <Grid
+                                                                item
+                                                                container
+                                                                justifyContent="center"
+                                                                alignItems="flex-end"
+                                                                xs={3}
+                                                                marginTop="10px"
+                                                                marginRight="0px"
+                                                                padding="0"
+                                                            >
+                                                                <Typography
+                                                                    variant="body1"
+                                                                    gutterBottom
+                                                                >
+                                                                    No tiene
+                                                                    certificado
+                                                                </Typography>
+                                                            </Grid>
+                                                            <Grid
+                                                                item
+                                                                container
+                                                                xs={2}
+                                                                marginTop="10px"
+                                                                textAlign="center"
+                                                            >
+                                                                <Titulos
+                                                                    titulolabel
+                                                                    variant="h3"
+                                                                    fontSize={{
+                                                                        xs:
+                                                                            '14px',
+                                                                        sm:
+                                                                            '16px'
+                                                                    }}
+                                                                >
+                                                                    Programa de
+                                                                    la materia
+                                                                    .pdf
+                                                                </Titulos>
+                                                                <label
+                                                                    htmlFor="contained-button-file"
+                                                                    style={{
+                                                                        width:
+                                                                            '100%'
+                                                                    }}
+                                                                >
+                                                                    <BotonMUI
+                                                                        buttonupload
+                                                                        variant="outlined"
+                                                                    >
+                                                                        Descargar
+                                                                    </BotonMUI>
+                                                                </label>
+                                                            </Grid>
+                                                        </Grid>
+
+                                                        {/* <AgregarMateriaUniOrigen /> */}
                                                     </Grid>
                                                 </Grid>
+                                            </>
+                                        );
+                                    }
+                                )
+                            ) : (
+                                <></>
+                            )}
 
-                                                {/* <AgregarMateriaUniOrigen /> */}
-                                            </Grid>
-                                        </Grid>
-                                    </>
-                                );
-                            })
-                        ) : (
-                            <></>
-                        )}
+                            {/* Textarea */}
 
-                        {/* Textarea */}
-
-                        <Grid
-                            item
-                            container
-                            direction="row"
-                            justifyContent="flex-start"
-                            alignItems="center"
-                            sm={12}
-                            padding={{
-                                xs: '20px 30px',
-                                sm: '20px 60px'
-                            }}
-                            sx={{
-                                height: 'auto',
-                                borderRadius: '10px 10px 0px 0px'
-                            }}
-                        >
                             <Grid
                                 item
                                 container
-                                direction="column"
-                                alignItems="flex-start"
-                                md={12}
-                                lg={5.8}
+                                xs={11.5}
+                                md={7}
+                                marginTop={{
+                                    xs: '20px'
+                                }}
                                 sx={{
-                                    marginTop: '6px',
-                                    marginBottom: '16px'
+                                    padding: '20px 60px'
                                 }}
-                            >
-                                <Titulos titulolabel component="h2">
-                                    Respuesta
-                                </Titulos>
-                            </Grid>
-                            {/* <Grid
-                            item
-                            container
-                            direction="row"
-                            justifyContent="flex-start"
-                            alignItems="center"
-                            sm={12}
-                            sx={{
-                                padding: '0px 0px 20px 0px'
-                            }}
-                        >
-                            <p
-                                style={{
-                                    color: 'rgba(0, 0, 0, 0.87)',
-                                    fontWeight: 500
-                                }}
-                            >
-                                
-                                Devolución
-                            </p>
-                        </Grid> */}
-
-                            <Grid
-                                item
-                                container
-                                direction="column"
-                                justifyContent="flex-start"
-                                alignItems="center"
-                                sm={12}
                             >
                                 <Grid
                                     item
@@ -822,91 +698,160 @@ const PageVerEquivalencia = () => {
                                     direction="row"
                                     justifyContent="flex-start"
                                     alignItems="center"
-                                    sm={12}
+                                    xs={12}
+                                    lg={6}
                                 >
-                                    {/* <TextareaAutosize
-                                    style={{
-                                        width: '100%',
-                                        height: '206px',
-                                        resize: 'none',
-                                        fontFamily: 'roboto',
-                                        fontSize: '16px',
-                                        padding: '18px 14px',
-                                        background: '#f8f9fa',
-                                        borderStyle: 'none',
-                                        borderRadius: '5px 0px 0px 0px',
-                                        borderBottom: '1px solid #80868b',
-                                        outline: 'none'
-                                    }}
-                                    placeholder="Observación..."
-                                /> */}
-
-                                    <TextField
-                                        id="filled-basic"
-                                        label="Observación..."
-                                        variant="filled"
-                                        multiline
-                                        value={equiv.observaciones}
-                                        name="observaciones"
-                                        onChange={handleChange}
-                                        focused={true}
-                                        rows={8}
-                                        InputProps={{
-                                            readOnly: true
-                                        }}
-                                        sx={{
-                                            width: '100%'
-                                        }}
-                                    />
+                                    <Grid item container xs={6} lg={4}>
+                                        <Link
+                                            to={'/usuario/equivalencias/'}
+                                            style={{
+                                                textDecoration: 'none',
+                                                width: '100%'
+                                            }}
+                                            sx={{
+                                                marginRight: '12px'
+                                            }}
+                                        >
+                                            <BotonMUI
+                                                buttoncontainedsmall
+                                                sx={{
+                                                    marginRight: '12px',
+                                                    width: '100%'
+                                                }}
+                                            >
+                                                Volver
+                                            </BotonMUI>
+                                        </Link>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
-                    </GridTop>
-                    <Grid
-                        item
-                        container
-                        xs={11.5}
-                        md={7}
-                        marginTop={{
-                            xs: '20px'
-                        }}
-                        sx={{
-                            padding: '20px 60px'
-                        }}
-                    >
-                        <Grid
+                        </GridTop>
+                        <GridTop
                             item
                             container
-                            direction="row"
-                            justifyContent="flex-start"
-                            alignItems="center"
-                            xs={12}
-                            lg={6}
+                            blanco
+                            md={6}
+                            xs={11.5}
+                            marginTop={{
+                                xs: '30px'
+                            }}
+                            sx={{
+                                marginLeft: '50px',
+                                marginRight: '100px',
+                                height: 'auto'
+                            }}
                         >
-                            <Grid item container xs={6} lg={4}>
-                                <Link
-                                    to={'/usuario/equivalencias/'}
-                                    style={{
-                                        textDecoration: 'none',
-                                        width: '100%'
-                                    }}
+                            {' '}
+                            <Grid
+                                item
+                                container
+                                direction="row"
+                                justifyContent="flex-start"
+                                alignItems="center"
+                                sm={12}
+                                padding={{
+                                    xs: '20px 30px',
+                                    sm: '20px 60px'
+                                }}
+                                sx={{
+                                    height: 'auto',
+                                    borderRadius: '10px 10px 0px 0px'
+                                }}
+                            >
+                                <Grid
+                                    item
+                                    container
+                                    direction="column"
+                                    alignItems="flex-center"
+                                    md={12}
+                                    lg={12}
                                     sx={{
-                                        marginRight: '12px'
+                                        marginTop: '6px',
+                                        marginBottom: '16px',
+                                        textAlign: 'center'
                                     }}
                                 >
-                                    <BotonMUI
-                                        buttoncontainedsmall
-                                        sx={{
-                                            marginRight: '12px',
-                                            width: '100%'
-                                        }}
+                                    <Titulos titulolabel component="h2">
+                                        Chat
+                                    </Titulos>
+                                </Grid>
+                                {/* <Grid
+                    item
+                    container
+                    direction="row"
+                    justifyContent="flex-start"
+                    alignItems="center"
+                    sm={12}
+                    sx={{
+                        padding: '0px 0px 20px 0px'
+                    }}
+                >
+                    <p
+                        style={{
+                            color: 'rgba(0, 0, 0, 0.87)',
+                            fontWeight: 500
+                        }}
+                    >
+                        
+                        Devolución
+                    </p>
+                </Grid> */}
+
+                                <Grid
+                                    item
+                                    container
+                                    direction="column"
+                                    justifyContent="flex-start"
+                                    alignItems="center"
+                                    sm={12}
+                                >
+                                    <Grid
+                                        item
+                                        container
+                                        direction="row"
+                                        justifyContent="flex-start"
+                                        alignItems="center"
+                                        sm={12}
                                     >
-                                        Volver
-                                    </BotonMUI>
-                                </Link>
+                                        {/* <TextareaAutosize
+                            style={{
+                                width: '100%',
+                                height: '206px',
+                                resize: 'none',
+                                fontFamily: 'roboto',
+                                fontSize: '16px',
+                                padding: '18px 14px',
+                                background: '#f8f9fa',
+                                borderStyle: 'none',
+                                borderRadius: '5px 0px 0px 0px',
+                                borderBottom: '1px solid #80868b',
+                                outline: 'none'
+                            }}
+                            placeholder="Observación..."
+                        /> */}
+
+                                        <TextField
+                                            id="filled-basic"
+                                            label="Observación..."
+                                            variant="filled"
+                                            multiline
+                                            value={equiv.observaciones}
+                                            name="observaciones"
+                                            onChange={handleChange}
+                                            focused={true}
+                                            rows={8}
+                                            InputProps={{
+                                                readOnly: true
+                                            }}
+                                            sx={{
+                                                width: '100%'
+                                            }}
+                                        />
+                                    </Grid>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </Grid>
+                        </GridTop>
+                    </GridTop>
                 </Grid>
             </Grid>
         </>
