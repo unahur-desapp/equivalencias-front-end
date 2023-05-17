@@ -5,7 +5,7 @@ import { css } from '@mui/styled-engine';
 const GridTop = styled(Grid)`
     width: auto;
     height: 102px;
-    border-radius: 10px;
+
     //padding: 0px 60px;
     margin: 5px;
     ${(props) =>

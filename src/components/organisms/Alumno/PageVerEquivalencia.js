@@ -249,7 +249,7 @@ const PageVerEquivalencia = () => {
                                                         }}
                                                         sx={{
                                                             backgroundColor:
-                                                                '#FBFBFB',
+                                                                'Azure',
                                                             padding: '16px 60px'
                                                         }}
                                                     >
@@ -314,16 +314,6 @@ const PageVerEquivalencia = () => {
                                     borderBottom: '1px solid #dadce0'
                                 }}
                             >
-                                <Container>
-                                    <Titulos
-                                        titulolabel
-                                        component="h2"
-                                        sx={{ textAlign: 'center' }}
-                                    >
-                                        Universidad Nacional de Hurlingham
-                                    </Titulos>
-                                </Container>
-
                                 <Box
                                     sx={{
                                         marginTop: '20px',
@@ -334,7 +324,8 @@ const PageVerEquivalencia = () => {
                                     <Grid container spacing={2}>
                                         <Grid xs={10.6}>
                                             <Titulos titulolabel>
-                                                Materias solicitadas
+                                                Materias solicitadas de la
+                                                UNAHUR
                                             </Titulos>
                                         </Grid>
                                         <Grid xs={1.4}>
@@ -741,7 +732,19 @@ const PageVerEquivalencia = () => {
                                 height: 'auto'
                             }}
                         >
-                            {' '}
+                            <Titulos
+                                titulolabel
+                                component="h2"
+                                backgroundColor="Azure"
+                                text
+                                align="center"
+                                width="100%"
+                                height="19%"
+                                borderBottom="1px solid #dadce0"
+                                margin="0px"
+                            >
+                                Chat
+                            </Titulos>{' '}
                             <Grid
                                 item
                                 container
@@ -758,23 +761,6 @@ const PageVerEquivalencia = () => {
                                     borderRadius: '10px 10px 0px 0px'
                                 }}
                             >
-                                <Grid
-                                    item
-                                    container
-                                    direction="column"
-                                    alignItems="flex-center"
-                                    md={12}
-                                    lg={12}
-                                    sx={{
-                                        marginTop: '6px',
-                                        marginBottom: '16px',
-                                        textAlign: 'center'
-                                    }}
-                                >
-                                    <Titulos titulolabel component="h2">
-                                        Chat
-                                    </Titulos>
-                                </Grid>
                                 {/* <Grid
                     item
                     container
