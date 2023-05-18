@@ -21,6 +21,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { Redirect } from 'react-router-dom';
+import FormUnahur from './FormUnahur';
 
 const CreateForm = () => {
     const [materias, setMaterias] =
@@ -392,97 +393,12 @@ const CreateForm = () => {
                         borderRadius: '10px 10px 0px 0px'
                     }}
                 >
-                    <Grid
-                        item
-                        container
-                        direction="column"
-                        alignItems="flex-start"
-                        md={12}
-                        lg={5.8}
-                        sx={{
-                            marginTop: '6px'
-                        }}
-                    >
-                        <Titulos titulolabel component="h2">
-                            Datos Universidad Nacional de Hurlingham
-                        </Titulos>
-                    </Grid>
-
-                    <Grid
-                        item
-                        container
-                        xs={12}
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="flex-start"
-                    >
-                        <Grid
-                            item
-                            container
-                            direction="column"
-                            alignItems="flex-start"
-                            md={12}
-                            lg={6}
-                            marginTop={{
-                                lg: '30px'
-                            }}
-                        >
-                            Seleccione la carrera UNAHUR para la que solicitará
-                            equivalencias
-                        </Grid>
-                        <Grid
-                            item
-                            container
-                            md={12}
-                            lg={5.8}
-                            sx={{
-                                marginTop: '6px'
-                            }}
-                        >
-                            <AutocompleteInput
-                                size="small"
-                                variant="outlined"
-                                onSelect={handleChange}
-                                disablePortal
-                                options={carreras}
-                                renderInput={(params) => (
-                                    <TextField
-                                        required
-                                        {...params}
-                                        label="Carreras UNAHUR"
-                                        name="carreraUnahur"
-                                        value={formValue.carreraUnahur || ''}
-                                    />
-                                )}
-                            />
-                        </Grid>
-                        <Grid md={12} marginTop="30px">
-                            <Titulos titulolabel component="h2">
-                                Materias solicitadas
-                            </Titulos>
-                        </Grid>
-                        <Grid
-                            item
-                            container
-                            direction="column"
-                            alignItems="flex-start"
-                            // md={6}
-                            lg={5.8}
-                            sx={{
-                                marginTop: '6px'
-                            }}
-                        >
-                            <StandardInput
-                                required
-                                name="materiaSolicitada"
-                                size="small"
-                                label="Materia solicitada UNAHUR"
-                                variant="outlined"
-                                value={formValue.materiaSolicitada || ''}
-                                onChange={handleChange} // Revisar comportamiento al rellenar el campo, se copia lo que escribis en uno en todos.
-                            />
-                        </Grid>
-                        {/* <Grid
+                    <FormUnahur
+                        formValue={formValue}
+                        carreras={carreras}
+                        handleChange={handleChange}
+                    />
+                    {/* { <Grid
                             item
                             container
                             direction="column"
@@ -502,9 +418,9 @@ const CreateForm = () => {
                                 value={formValue.materiaSolicitada || ''}
                                 onChange={handleChange}
                             />
-                        </Grid> */}
-                    </Grid>
+                        </Grid> } */}
                 </Grid>
+
                 <Grid
                     item
                     container
