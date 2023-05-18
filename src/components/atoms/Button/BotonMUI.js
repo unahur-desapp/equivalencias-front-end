@@ -104,10 +104,11 @@ const BotonMUI = styled(Button)`
         css`
             width: 110px;
             height: 40px;
-            color: #009673;
+            color: #fffff;
+            background-color: #ef2626;
 
             &:hover {
-                background-color: rgba(0, 150, 115, 0.1);
+                background-color: #c20008;
             }
         `}
 
