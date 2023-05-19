@@ -612,40 +612,43 @@ const PageVerEquivalencia = () => {
                                                                 />
                                                             </Grid>
                                                             <Grid
-                                                                item
                                                                 container
+                                                                alignItems="center"
                                                                 xs={2}
-                                                                marginTop="10px"
-                                                                textAlign="center"
+                                                                marginTop="20px"
                                                             >
-                                                                <Titulos
-                                                                    titulolabel
-                                                                    variant="h3"
-                                                                    fontSize={{
-                                                                        xs:
-                                                                            '14px',
-                                                                        sm:
-                                                                            '16px'
-                                                                    }}
+                                                                <Grid
+                                                                    item
+                                                                    xs={9}
                                                                 >
-                                                                    Programa de
-                                                                    la materia
-                                                                    .pdf
-                                                                </Titulos>
-                                                                <label
-                                                                    htmlFor="contained-button-file"
-                                                                    style={{
-                                                                        width:
-                                                                            '100%'
-                                                                    }}
-                                                                >
-                                                                    <BotonMUI
-                                                                        buttonupload
-                                                                        variant="outlined"
+                                                                    <Titulos
+                                                                        titulolabel
+                                                                        variant="h5"
+                                                                        fontSize={{
+                                                                            xs:
+                                                                                '16px',
+                                                                            sm:
+                                                                                '18px'
+                                                                        }}
                                                                     >
-                                                                        Descargar
-                                                                    </BotonMUI>
-                                                                </label>
+                                                                        Programa:
+                                                                    </Titulos>
+                                                                </Grid>
+                                                                <Grid
+                                                                    item
+                                                                    xs={3}
+                                                                    display="flex"
+                                                                    justifyContent="flex-end"
+                                                                >
+                                                                    <label htmlFor="contained-button-file">
+                                                                        <BotonMUI
+                                                                            buttondownload
+                                                                            variant="outlined"
+                                                                        >
+                                                                            Descargar
+                                                                        </BotonMUI>
+                                                                    </label>
+                                                                </Grid>
                                                             </Grid>
                                                         </Grid>
 

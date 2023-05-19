@@ -73,6 +73,21 @@ const BotonMUI = styled(Button)`
             }
         `}
 
+    ${(props) =>
+        props.buttondownload &&
+        css`
+            background-color: #fffff;
+            border: 1px solid #0941ce;
+            color: #0941ce;
+            width: 90px;
+            height: 30px;
+
+            &:hover {
+                border: 1px solid #0941ce;
+                opacity: 0.7;
+            }
+        `}   
+
         ${(props) =>
         props.buttoncontainedaddmateria &&
         css`
