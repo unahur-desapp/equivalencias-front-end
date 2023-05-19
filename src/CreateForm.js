@@ -38,6 +38,14 @@ const CreateForm = () => {
                 certificado: false
             }
         ]);
+
+    const [materiasUnahur, setMateriasUnahur] = useState([
+        {
+            key: nanoid(),
+            materiaUnahur: '',
+            universidad: 'Universidad Nacional de Hurlingham' // id de universidad
+        }
+    ]);
     //Push de esto?
     // const materiasAprobadasArray = {
 
@@ -110,9 +118,19 @@ const CreateForm = () => {
             }
         ]);
 
-        // formValue.materiasAprobadas.push(formValueArray);
-
         console.log('Agregar Materias: ', materias);
+    };
+    const addMateriaUnahur = () => {
+        setMateriasUnahur((materiasUnahur) => [
+            ...materiasUnahur,
+            {
+                key: nanoid(),
+                materiaUnahur: '',
+                universidad: 'Universidad Nacional de Hurlingham'
+            }
+        ]);
+
+        // formValue.materiasAprobadas.push(formValueArray);
     };
 
     const handleChange = (event) => {
@@ -396,6 +414,7 @@ const CreateForm = () => {
                     <FormUnahur
                         formValue={formValue}
                         carreras={carreras}
+                        materias={materiasUnahur}
                         handleChange={handleChange}
                     />
                     {/* { <Grid
@@ -435,7 +454,7 @@ const CreateForm = () => {
                         buttoncontainedaddmateria
                         variant="outlined"
                         sx={{ margin: '10px 0px' }}
-                        //onClick={addMateria} Modificar onClick para que agregue otro grid de agregar materia
+                        onClick={addMateriaUnahur} //Modificar onClick para que agregue otro grid de agregar materia
                     >
                         Agregar materia
                     </BotonMUI>

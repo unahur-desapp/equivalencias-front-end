@@ -7,7 +7,7 @@ import {
 } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
 
-const FormUnahur = ({ formValue, carreras, handleChange }) => {
+const FormUnahur = ({ formValue, carreras, materias, handleChange }) => {
     return (
         <React.Fragment>
             <Grid
@@ -74,32 +74,41 @@ const FormUnahur = ({ formValue, carreras, handleChange }) => {
                         )}
                     />
                 </Grid>
-                <Grid md={12} marginTop="30px">
+                <Grid md={12} xs={12} marginTop="30px">
                     <Titulos titulolabel component="h2">
                         Materias solicitadas
                     </Titulos>
                 </Grid>
-                <Grid
-                    item
-                    container
-                    direction="column"
-                    alignItems="flex-start"
-                    // md={6}
-                    lg={5.8}
-                    sx={{
-                        marginTop: '6px'
-                    }}
-                >
-                    <StandardInput
-                        required
-                        name="materiaSolicitada"
-                        size="small"
-                        label="Materia solicitada UNAHUR"
-                        variant="outlined"
-                        value={formValue.materiaSolicitada || ''}
-                        onChange={handleChange}
-                    />
-                </Grid>
+
+                {materias.map((materia) => {
+                    //    console.log(materia.key)
+                    return (
+                        <Grid
+                            item
+                            container
+                            direction="row"
+                            alignItems="flex-start"
+                            // md={6}
+                            //lg={5.8}
+                            xs={5.5}
+                            sx={{
+                                marginTop: '6px'
+                            }}
+                            key2={materia.key}
+                            key={materia.key}
+                        >
+                            <StandardInput
+                                required
+                                name="materiaSolicitada"
+                                size="small"
+                                label="Materia solicitada UNAHUR"
+                                variant="outlined"
+                                value={formValue.materiaSolicitada || ''}
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                    );
+                })}
             </Grid>
         </React.Fragment>
     );
