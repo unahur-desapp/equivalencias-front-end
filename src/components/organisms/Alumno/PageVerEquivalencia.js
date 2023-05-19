@@ -93,14 +93,17 @@ const PageVerEquivalencia = () => {
                     obtainedUsuarioData.Usuario.email,
                     obtainedUsuarioData.Usuario.dni,
                     dateTime,
-                    obtainedUsuarioData.Usuario.telefono
+                    obtainedUsuarioData.Usuario.telefono,
+                    obtainedUsuarioData.Materias_aprobadas[0].certificado
                 )
             );
 
             setRows(arrayData);
 
-            console.log('Hola' + equiv);
-            console.log('obtainedusuario:', obtainedUsuarioData.Usuario.nombre);
+            console.log(
+                'obtainedusuario:',
+                obtainedUsuarioData.Materias_aprobadas[0].certificado
+            );
         };
 
         fetchUsuarioData();
@@ -112,6 +115,7 @@ const PageVerEquivalencia = () => {
 
             let arrayData = {
                 nombre: obtainedEquivalenciaData.Materias_solicitadas[0].nombre,
+
                 carrera:
                     obtainedEquivalenciaData.Materias_solicitadas[0].carrera,
 
@@ -123,10 +127,6 @@ const PageVerEquivalencia = () => {
             };
 
             setEquiv(arrayData);
-
-            console.log(obtainedEquivalenciaData);
-
-            console.log('Hola' + arrayData.nombre_materia);
         };
 
         fetchEquivalenciaData();
@@ -374,7 +374,7 @@ const PageVerEquivalencia = () => {
                                         md={12}
                                         lg={1.5}
                                         sx={{
-                                            marginTop: '20px',
+                                            marginTop: '23px',
                                             marginLeft: '20px',
                                             marginRight: '0px'
                                         }}
@@ -408,6 +408,21 @@ const PageVerEquivalencia = () => {
                                 </Grid>
                             </Grid>
                             {/* Universidad Origen */}
+                            <Box
+                                sx={{
+                                    marginTop: '35px',
+                                    marginLeft: '75px',
+                                    flexGrow: 1
+                                }}
+                            >
+                                <Grid container spacing={2}>
+                                    <Grid xs={6.2}>
+                                        <Titulos titulolabel>
+                                            Materias aprobadas
+                                        </Titulos>
+                                    </Grid>
+                                </Grid>
+                            </Box>
 
                             {equiv.materiasAprobadas !== undefined ? (
                                 equiv.materiasAprobadas.map(
@@ -423,8 +438,8 @@ const PageVerEquivalencia = () => {
                                                     className="universidad-origen"
                                                     sm={12}
                                                     padding={{
-                                                        xs: '20px 30px',
-                                                        sm: '20px 60px'
+                                                        xs: '0px 30px',
+                                                        sm: '10px 60px'
                                                     }}
                                                     sx={{
                                                         height: 'auto',
@@ -434,36 +449,6 @@ const PageVerEquivalencia = () => {
                                                             '1px solid #dadce0'
                                                     }}
                                                 >
-                                                    <Box
-                                                        sx={{
-                                                            marginTop: '20px',
-                                                            marginLeft: '15px',
-                                                            flexGrow: 1
-                                                        }}
-                                                    >
-                                                        <Grid
-                                                            container
-                                                            spacing={2}
-                                                        >
-                                                            <Grid xs={6.2}>
-                                                                <Titulos
-                                                                    titulolabel
-                                                                >
-                                                                    Materias
-                                                                    aprobadas
-                                                                </Titulos>
-                                                            </Grid>
-                                                            <Grid xs={5}>
-                                                                <Titulos
-                                                                    titulolabel
-                                                                >
-                                                                    Universidad
-                                                                    de origen
-                                                                </Titulos>
-                                                            </Grid>
-                                                        </Grid>
-                                                    </Box>
-
                                                     <Grid
                                                         item
                                                         container
@@ -605,20 +590,24 @@ const PageVerEquivalencia = () => {
                                                             <Grid
                                                                 item
                                                                 container
-                                                                justifyContent="center"
-                                                                alignItems="flex-end"
-                                                                xs={3}
-                                                                marginTop="10px"
-                                                                marginRight="0px"
-                                                                padding="0"
+                                                                xs={2}
                                                             >
-                                                                <Typography
-                                                                    variant="body1"
-                                                                    gutterBottom
-                                                                >
-                                                                    No tiene
-                                                                    certificado
-                                                                </Typography>
+                                                                <StandardInput
+                                                                    inputFocused
+                                                                    label="Certificado"
+                                                                    name="notaAprobacion"
+                                                                    value={
+                                                                        'No tiene'
+                                                                    }
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    focused={
+                                                                        true
+                                                                    }
+                                                                    InputProps={{
+                                                                        readOnly: true
+                                                                    }}
+                                                                />
                                                             </Grid>
                                                             <Grid
                                                                 item
@@ -732,90 +721,43 @@ const PageVerEquivalencia = () => {
                                 height: 'auto'
                             }}
                         >
-                            <Titulos
-                                titulolabel
-                                component="h2"
+                            <Grid
                                 backgroundColor="Azure"
-                                text
-                                align="center"
                                 width="100%"
-                                height="19%"
+                                height="14%"
                                 borderBottom="1px solid #dadce0"
-                                margin="0px"
                             >
-                                Chat
-                            </Titulos>{' '}
+                                <Titulos
+                                    titulolabel
+                                    textAlign="center"
+                                    marginTop="15px"
+                                >
+                                    Chat
+                                </Titulos>
+                            </Grid>
+
                             <Grid
                                 item
                                 container
                                 direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
                                 sm={12}
-                                padding={{
-                                    xs: '20px 30px',
-                                    sm: '20px 60px'
-                                }}
+                                padding="20px"
                                 sx={{
-                                    height: 'auto',
+                                    height: '340px',
+                                    marginBottom: '20px',
                                     borderRadius: '10px 10px 0px 0px'
                                 }}
                             >
-                                {/* <Grid
-                    item
-                    container
-                    direction="row"
-                    justifyContent="flex-start"
-                    alignItems="center"
-                    sm={12}
-                    sx={{
-                        padding: '0px 0px 20px 0px'
-                    }}
-                >
-                    <p
-                        style={{
-                            color: 'rgba(0, 0, 0, 0.87)',
-                            fontWeight: 500
-                        }}
-                    >
-                        
-                        Devolución
-                    </p>
-                </Grid> */}
-
-                                <Grid
-                                    item
-                                    container
-                                    direction="column"
-                                    justifyContent="flex-start"
-                                    alignItems="center"
-                                    sm={12}
-                                >
+                                <Grid item container direction="column" sm={12}>
                                     <Grid
                                         item
                                         container
                                         direction="row"
-                                        justifyContent="flex-start"
-                                        alignItems="center"
+                                        sx={{
+                                            width: '100%'
+                                        }}
                                         sm={12}
                                     >
-                                        {/* <TextareaAutosize
-                            style={{
-                                width: '100%',
-                                height: '206px',
-                                resize: 'none',
-                                fontFamily: 'roboto',
-                                fontSize: '16px',
-                                padding: '18px 14px',
-                                background: '#f8f9fa',
-                                borderStyle: 'none',
-                                borderRadius: '5px 0px 0px 0px',
-                                borderBottom: '1px solid #80868b',
-                                outline: 'none'
-                            }}
-                            placeholder="Observación..."
-                        /> */}
-
                                         <TextField
                                             id="filled-basic"
                                             label="Observación..."
@@ -825,7 +767,7 @@ const PageVerEquivalencia = () => {
                                             name="observaciones"
                                             onChange={handleChange}
                                             focused={true}
-                                            rows={8}
+                                            rows={12}
                                             InputProps={{
                                                 readOnly: true
                                             }}
