@@ -597,7 +597,9 @@ const PageVerEquivalencia = () => {
                                                                     label="Certificado"
                                                                     name="notaAprobacion"
                                                                     value={
-                                                                        'No tiene'
+                                                                        materiaAprobada.certificado
+                                                                            ? 'Sí'
+                                                                            : 'No'
                                                                     }
                                                                     variant="outlined"
                                                                     size="small"
