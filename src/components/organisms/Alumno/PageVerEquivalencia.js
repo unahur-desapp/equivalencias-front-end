@@ -524,16 +524,16 @@ const PageVerEquivalencia = () => {
                                                         container
                                                         xs={12}
                                                         direction="row"
-                                                        justifyContent="space-between"
                                                         alignItems="flex-start"
+                                                        width="100%"
                                                     >
                                                         <Grid
                                                             item
                                                             container
                                                             md={12}
                                                             lg={12}
+                                                            xs={12}
                                                             direction="row"
-                                                            justifyContent="space-between"
                                                             alignItems="flex-start"
                                                             sx={{
                                                                 marginTop:
@@ -541,11 +541,13 @@ const PageVerEquivalencia = () => {
                                                                 marginRight:
                                                                     '10px'
                                                             }}
+                                                            width="100%"
                                                         >
                                                             <Grid
                                                                 item
                                                                 container
                                                                 xs={2}
+                                                                alignItems="flex-start"
                                                             >
                                                                 <StandardInput
                                                                     inputFocused
@@ -569,6 +571,9 @@ const PageVerEquivalencia = () => {
                                                                 item
                                                                 container
                                                                 xs={2}
+                                                                alignItems="flex-start"
+                                                                marginLeft="2%"
+                                                                width="100%"
                                                             >
                                                                 <StandardInput
                                                                     inputFocused
@@ -591,6 +596,9 @@ const PageVerEquivalencia = () => {
                                                                 item
                                                                 container
                                                                 xs={2}
+                                                                alignItems="flex-start"
+                                                                marginLeft="2%"
+                                                                width="100%"
                                                             >
                                                                 <StandardInput
                                                                     inputFocused
@@ -612,14 +620,18 @@ const PageVerEquivalencia = () => {
                                                                 />
                                                             </Grid>
                                                             <Grid
+                                                                item
                                                                 container
-                                                                alignItems="center"
-                                                                xs={2}
+                                                                xs={5}
                                                                 marginTop="20px"
+                                                                width="100%"
                                                             >
                                                                 <Grid
                                                                     item
-                                                                    xs={9}
+                                                                    container
+                                                                    alignItems="flex-start"
+                                                                    width="100%"
+                                                                    marginLeft="10%"
                                                                 >
                                                                     <Titulos
                                                                         titulolabel
@@ -630,16 +642,11 @@ const PageVerEquivalencia = () => {
                                                                             sm:
                                                                                 '18px'
                                                                         }}
+                                                                        marginTop="2px"
+                                                                        marginRight="5px"
                                                                     >
                                                                         Programa:
                                                                     </Titulos>
-                                                                </Grid>
-                                                                <Grid
-                                                                    item
-                                                                    xs={3}
-                                                                    display="flex"
-                                                                    justifyContent="flex-end"
-                                                                >
                                                                     <label htmlFor="contained-button-file">
                                                                         <BotonMUI
                                                                             buttondownload
@@ -733,9 +740,11 @@ const PageVerEquivalencia = () => {
                                 borderBottom="1px solid #dadce0"
                             >
                                 <Titulos
-                                    titulolabel
+                                    fontFamily="Roboto"
                                     textAlign="center"
                                     marginTop="15px"
+                                    fontWeight="medium"
+                                    fontSize={'15px'}
                                 >
                                     Chat
                                 </Titulos>
@@ -765,17 +774,29 @@ const PageVerEquivalencia = () => {
                                     >
                                         <TextField
                                             id="filled-basic"
-                                            label="Observación..."
+                                            label="Profesor"
                                             variant="filled"
                                             multiline
                                             value={equiv.observaciones}
                                             name="observaciones"
                                             onChange={handleChange}
-                                            focused={true}
-                                            rows={12}
+                                            focused={false}
+                                            rows={9}
                                             InputProps={{
                                                 readOnly: true
                                             }}
+                                            sx={{
+                                                width: '100%'
+                                            }}
+                                        />
+                                        <TextField
+                                            id="filled-basic"
+                                            placeholder="Escriba su mensaje aqui..."
+                                            variant="filled"
+                                            multiline
+                                            name="observaciones"
+                                            onChange={handleChange}
+                                            rows={1}
                                             sx={{
                                                 width: '100%'
                                             }}
