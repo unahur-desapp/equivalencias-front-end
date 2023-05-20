@@ -723,13 +723,11 @@ const PageVerEquivalencia = () => {
                             container
                             blanco
                             md={6}
-                            xs={11.5}
+                            xs={12}
                             marginTop={{
                                 xs: '30px'
                             }}
                             sx={{
-                                marginLeft: '50px',
-                                marginRight: '100px',
                                 height: 'auto'
                             }}
                         >
@@ -744,7 +742,7 @@ const PageVerEquivalencia = () => {
                                     textAlign="center"
                                     marginTop="15px"
                                     fontWeight="medium"
-                                    fontSize={'15px'}
+                                    fontSize={'20px'}
                                 >
                                     Chat
                                 </Titulos>
@@ -786,7 +784,8 @@ const PageVerEquivalencia = () => {
                                                 readOnly: true
                                             }}
                                             sx={{
-                                                width: '100%'
+                                                width: '100%',
+                                                paddingTop: '5px'
                                             }}
                                         />
                                         <TextField
