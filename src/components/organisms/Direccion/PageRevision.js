@@ -23,14 +23,28 @@ import { getEquivalencia } from '../../../services/revision';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { config } from '../../../config/config';
+import Chip from '@mui/material/Chip';
+import { styled } from '@mui/material';
+import { css } from '@mui/styled-engine';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
+const ChipMedium = styled(Chip)`
+    ${(props) =>
+        props.chipMedium &&
+        css`
+            font-size: 14px;
+        `}
+`;
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
-    { id: 'dateTime', label: 'Email', minWidth: 100 },
     { id: 'state', label: 'DNI', minWidth: 170 },
-    { id: 'actions', label: 'Fecha', minWidth: 170 },
+    { id: 'carreer', label: 'Carrera', minWidth: 170 },
+    { id: 'dateTime', label: 'Email', minWidth: 100 },
     { id: 'phone', label: 'Teléfono', minWidth: 170 },
-    { id: 'carrera', label: 'Carrera', minWidth: 170 }
+    { id: 'actions', label: 'Fecha', minWidth: 170 }
 ];
 
 function createData(solicitante, email, dni, fechaHora, telefono) {
@@ -59,6 +73,17 @@ const horaConCero = (hora) => {
     }
 };
 
+const BasicMenu = () => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+};
+
 const PageRevision = () => {
     const { id } = useParams();
     const [rows, setRows] = useState([]);
@@ -73,15 +98,7 @@ const PageRevision = () => {
 
             let d = new Date(obtainedUsuarioData.createdAt);
             let dateTime =
-                d.getDate() +
-                '/' +
-                (d.getMonth() + 1) +
-                '/' +
-                d.getFullYear() +
-                ' - ' +
-                d.getHours() +
-                ':' +
-                horaConCero(d.getMinutes());
+                d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
 
             arrayData.push(
                 createData(
@@ -91,14 +108,12 @@ const PageRevision = () => {
                     obtainedUsuarioData.Usuario.email,
                     obtainedUsuarioData.Usuario.dni,
                     dateTime,
-                    obtainedUsuarioData.Usuario.telefono
+                    obtainedUsuarioData.Usuario.telefono,
+                    obtainedUsuarioData.Materias_aprobadas[0].certificado
                 )
             );
 
             setRows(arrayData);
-
-            console.log('Hola' + equiv);
-            console.log('obtainedusuario:', obtainedUsuarioData.Usuario.nombre);
         };
 
         fetchUsuarioData();
@@ -110,12 +125,15 @@ const PageRevision = () => {
 
             let arrayData = {
                 nombre: obtainedEquivalenciaData.Materias_solicitadas[0].nombre,
+
                 carrera:
                     obtainedEquivalenciaData.Materias_solicitadas[0].carrera,
 
                 materiasAprobadas: obtainedEquivalenciaData.Materias_aprobadas,
 
-                observaciones: obtainedEquivalenciaData.observaciones
+                observaciones: obtainedEquivalenciaData.observaciones,
+
+                estado: obtainedEquivalenciaData.estado
             };
 
             setEquiv(arrayData);
@@ -244,7 +262,7 @@ const PageRevision = () => {
                                                     }}
                                                     sx={{
                                                         backgroundColor:
-                                                            '#FBFBFB',
+                                                            'Azure',
                                                         padding: '16px 60px'
                                                     }}
                                                 >
@@ -271,16 +289,19 @@ const PageRevision = () => {
                                                     {row.solicitante}
                                                 </TableCell>
                                                 <TableCell align="center">
+                                                    {row.dni}
+                                                </TableCell>
+                                                <TableCell aling="center">
+                                                    {row.carrera}
+                                                </TableCell>
+                                                <TableCell align="center">
                                                     {row.email}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {row.dni}
+                                                    {row.telefono}
                                                 </TableCell>
                                                 <TableCell align="center">
                                                     {row.fechaHora}
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    {row.telefono}
                                                 </TableCell>
                                             </TableRow>
                                         ))}
@@ -306,20 +327,15 @@ const PageRevision = () => {
                                 borderBottom: '1px solid #dadce0'
                             }}
                         >
-                            <Grid
-                                item
-                                container
-                                direction="column"
-                                alignItems="flex-start"
-                                md={12}
-                                lg={5.8}
-                                sx={{
-                                    marginTop: '6px'
-                                }}
-                            >
-                                <Titulos titulolabel component="h2">
-                                    Datos Universidad Nacional de Hurlingham
-                                </Titulos>
+                            <Grid container spacing={2}>
+                                <Grid xs={10.6}>
+                                    <Titulos titulolabel>
+                                        Materias solicitadas de la UNAHUR
+                                    </Titulos>
+                                </Grid>
+                                <Grid xs={1.4}>
+                                    <Titulos titulolabel>Estado</Titulos>
+                                </Grid>
                             </Grid>
 
                             <Grid
@@ -336,7 +352,7 @@ const PageRevision = () => {
                                     direction="column"
                                     alignItems="flex-start"
                                     md={12}
-                                    lg={5.8}
+                                    lg={10}
                                     sx={{
                                         marginTop: '6px'
                                     }}
@@ -344,7 +360,6 @@ const PageRevision = () => {
                                     <StandardInput
                                         inputFocused
                                         name="materiaSolicitada"
-                                        label="Materia solicitada UNAHUR"
                                         value={equiv.nombre}
                                         variant="outlined"
                                         focused={true}
@@ -359,22 +374,37 @@ const PageRevision = () => {
                                     item
                                     container
                                     md={12}
-                                    lg={5.8}
+                                    lg={1.5}
                                     sx={{
-                                        marginTop: '6px'
+                                        marginTop: '23px',
+                                        marginLeft: '20px',
+                                        marginRight: '0px'
                                     }}
                                 >
-                                    <StandardInput
-                                        inputFocused
-                                        label="Carreras UNAHUR"
-                                        value={equiv.carrera}
-                                        variant="outlined"
-                                        size="small"
-                                        focused={true}
-                                        InputProps={{
-                                            readOnly: true
-                                        }}
-                                    />
+                                    <ChipMedium
+                                        size="medium"
+                                        chipMedium
+                                        label={equiv.estado}
+                                        sx={
+                                            equiv.estado === 'Aceptado'
+                                                ? {
+                                                      backgroundColor:
+                                                          '#009673',
+                                                      color: '#FFFFFF'
+                                                  }
+                                                : equiv.estado === 'Rechazado'
+                                                ? {
+                                                      backgroundColor:
+                                                          '#DB0505',
+                                                      color: '#FFFFFF'
+                                                  }
+                                                : {
+                                                      backgroundColor:
+                                                          '#2A74E4',
+                                                      color: '#FFFFFF'
+                                                  }
+                                        }
+                                    ></ChipMedium>
                                 </Grid>
                             </Grid>
                         </Grid>

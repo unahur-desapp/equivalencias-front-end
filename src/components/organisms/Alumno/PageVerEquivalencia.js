@@ -314,27 +314,16 @@ const PageVerEquivalencia = () => {
                                     borderBottom: '1px solid #dadce0'
                                 }}
                             >
-                                <Box
-                                    sx={{
-                                        marginTop: '20px',
-                                        marginLeft: '15px',
-                                        flexGrow: 1
-                                    }}
-                                >
-                                    <Grid container spacing={2}>
-                                        <Grid xs={10.6}>
-                                            <Titulos titulolabel>
-                                                Materias solicitadas de la
-                                                UNAHUR
-                                            </Titulos>
-                                        </Grid>
-                                        <Grid xs={1.4}>
-                                            <Titulos titulolabel>
-                                                Estado
-                                            </Titulos>
-                                        </Grid>
+                                <Grid container spacing={2}>
+                                    <Grid xs={10.6}>
+                                        <Titulos titulolabel>
+                                            Materias solicitadas de la UNAHUR
+                                        </Titulos>
                                     </Grid>
-                                </Box>
+                                    <Grid xs={1.4}>
+                                        <Titulos titulolabel>Estado</Titulos>
+                                    </Grid>
+                                </Grid>
 
                                 <Grid
                                     item
