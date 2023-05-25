@@ -168,9 +168,10 @@ const PageRevision = () => {
     };
 
     const handleChangeToggle = (event, newAlignment) => {
+        const newValue = event.target.value;
         setFormValue((equiv) => ({
             ...equiv,
-            [event.target.id]: event.target.value
+            estado: newValue
         }));
         console.log(formValue);
 
@@ -404,18 +405,21 @@ const PageRevision = () => {
                                                 <Select
                                                     labelId="demo-simple-select-label"
                                                     id="demo-simple-select"
-                                                    value={unEstado}
-                                                    onChange={handleChange2}
+                                                    value={formValue.estado}
+                                                    onChange={
+                                                        handleChangeToggle
+                                                    }
                                                     size="small"
                                                     sx={
-                                                        unEstado === 'Aceptado'
+                                                        formValue.estado ===
+                                                        'Aceptado'
                                                             ? {
                                                                   backgroundColor:
                                                                       '#009673',
                                                                   color:
                                                                       '#FFFFFF'
                                                               }
-                                                            : unEstado ===
+                                                            : formValue.estado ===
                                                               'Rechazado'
                                                             ? {
                                                                   backgroundColor:
@@ -423,7 +427,7 @@ const PageRevision = () => {
                                                                   color:
                                                                       '#FFFFFF'
                                                               }
-                                                            : unEstado ===
+                                                            : formValue.estado ===
                                                               'Pendiente'
                                                             ? {
                                                                   backgroundColor:
@@ -434,19 +438,13 @@ const PageRevision = () => {
                                                             : {}
                                                     }
                                                 >
-                                                    <MenuItem
-                                                        value={'Aceptado'}
-                                                    >
+                                                    <MenuItem value="Aceptado">
                                                         Aceptado
                                                     </MenuItem>
-                                                    <MenuItem
-                                                        value={'Pendiente'}
-                                                    >
+                                                    <MenuItem value="Pendiente">
                                                         Pendiente
                                                     </MenuItem>
-                                                    <MenuItem
-                                                        value={'Rechazado'}
-                                                    >
+                                                    <MenuItem value="Rechazado">
                                                         Rechazado
                                                     </MenuItem>
                                                 </Select>
@@ -754,35 +752,7 @@ const PageRevision = () => {
                                         sx={{
                                             marginTop: '20px'
                                         }}
-                                    >
-                                        <ToggleButtonGroup
-                                            value={formValue.estado}
-                                            id="estado"
-                                            exclusive
-                                            onChange={handleChangeToggle}
-                                        >
-                                            <ToggleButton
-                                                color="primary"
-                                                id="estado"
-                                                value="Aceptado"
-                                            >
-                                                Aceptar
-                                            </ToggleButton>
-                                            <ToggleButton
-                                                value="Falta completar"
-                                                id="estado"
-                                            >
-                                                Falta completar
-                                            </ToggleButton>
-                                            <ToggleButton
-                                                color="error"
-                                                value="Rechazado"
-                                                id="estado"
-                                            >
-                                                Rechazar
-                                            </ToggleButton>
-                                        </ToggleButtonGroup>
-                                    </Grid>
+                                    ></Grid>
                                     <OuterFormButtons
                                         handleSubmit={handleSubmit}
                                         path={'/direccion/solicitudes'}
@@ -884,5 +854,4 @@ const PageRevision = () => {
         </>
     );
 };
-
 export { PageRevision };
