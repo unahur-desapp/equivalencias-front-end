@@ -243,8 +243,12 @@ const PageRevision = () => {
                             blanco
                             xs={11.5}
                             md={7}
+                            marginTop={{
+                                xs: '30px'
+                            }}
                             sx={{
-                                height: 'auto'
+                                height: 'auto',
+                                marginLeft: '100px'
                             }}
                         >
                             <Paper
@@ -419,12 +423,15 @@ const PageRevision = () => {
                                                                   color:
                                                                       '#FFFFFF'
                                                               }
-                                                            : {
+                                                            : unEstado ===
+                                                              'Pendiente'
+                                                            ? {
                                                                   backgroundColor:
                                                                       '#2A74E4',
                                                                   color:
                                                                       '#FFFFFF'
                                                               }
+                                                            : {}
                                                     }
                                                 >
                                                     <MenuItem
@@ -433,14 +440,14 @@ const PageRevision = () => {
                                                         Aceptado
                                                     </MenuItem>
                                                     <MenuItem
-                                                        value={'Rechazado'}
-                                                    >
-                                                        Rechazado
-                                                    </MenuItem>
-                                                    <MenuItem
                                                         value={'Pendiente'}
                                                     >
                                                         Pendiente
+                                                    </MenuItem>
+                                                    <MenuItem
+                                                        value={'Rechazado'}
+                                                    >
+                                                        Rechazado
                                                     </MenuItem>
                                                 </Select>
                                             </FormControl>
@@ -449,6 +456,21 @@ const PageRevision = () => {
                                 </Grid>
                             </Grid>
                             {/* Universidad Origen */}
+                            <Box
+                                sx={{
+                                    marginTop: '35px',
+                                    marginLeft: '75px',
+                                    flexGrow: 1
+                                }}
+                            >
+                                <Grid container spacing={2}>
+                                    <Grid xs={6.2}>
+                                        <Titulos titulolabel>
+                                            Materias aprobadas
+                                        </Titulos>
+                                    </Grid>
+                                </Grid>
+                            </Box>
 
                             {equiv.materiasAprobadas !== undefined ? (
                                 equiv.materiasAprobadas.map(
@@ -464,8 +486,8 @@ const PageRevision = () => {
                                                     className="universidad-origen"
                                                     sm={12}
                                                     padding={{
-                                                        xs: '20px 30px',
-                                                        sm: '20px 60px'
+                                                        xs: '0px 30px',
+                                                        sm: '10px 60px'
                                                     }}
                                                     sx={{
                                                         height: 'auto',
@@ -475,26 +497,6 @@ const PageRevision = () => {
                                                             '1px solid #dadce0'
                                                     }}
                                                 >
-                                                    <Grid
-                                                        item
-                                                        container
-                                                        direction="column"
-                                                        alignItems="flex-start"
-                                                        md={12}
-                                                        lg={5.8}
-                                                        sx={{
-                                                            marginTop: '6px'
-                                                        }}
-                                                    >
-                                                        <Titulos
-                                                            titulolabel
-                                                            component="h2"
-                                                        >
-                                                            Datos Universidad de
-                                                            Origen
-                                                        </Titulos>
-                                                    </Grid>
-
                                                     <Grid
                                                         item
                                                         container
@@ -570,26 +572,30 @@ const PageRevision = () => {
                                                         container
                                                         xs={12}
                                                         direction="row"
-                                                        justifyContent="space-between"
                                                         alignItems="flex-start"
+                                                        width="100%"
                                                     >
                                                         <Grid
                                                             item
                                                             container
                                                             md={12}
-                                                            lg={5.8}
+                                                            lg={12}
+                                                            xs={12}
                                                             direction="row"
-                                                            justifyContent="space-between"
                                                             alignItems="flex-start"
                                                             sx={{
                                                                 marginTop:
+                                                                    '10px',
+                                                                marginRight:
                                                                     '10px'
                                                             }}
+                                                            width="100%"
                                                         >
                                                             <Grid
                                                                 item
                                                                 container
-                                                                xs={5.6}
+                                                                xs={2}
+                                                                alignItems="flex-start"
                                                             >
                                                                 <StandardInput
                                                                     inputFocused
@@ -612,44 +618,10 @@ const PageRevision = () => {
                                                             <Grid
                                                                 item
                                                                 container
-                                                                xs={5.6}
-                                                            >
-                                                                <StandardInput
-                                                                    inputFocused
-                                                                    label="Carga horaria total"
-                                                                    name="cargaHorariaTotal"
-                                                                    value={
-                                                                        materiaAprobada.carga_horaria
-                                                                    }
-                                                                    variant="outlined"
-                                                                    size="small"
-                                                                    focused={
-                                                                        true
-                                                                    }
-                                                                    InputProps={{
-                                                                        readOnly: true
-                                                                    }}
-                                                                />
-                                                            </Grid>
-                                                        </Grid>
-
-                                                        <Grid
-                                                            item
-                                                            container
-                                                            md={12}
-                                                            lg={5.8}
-                                                            direction="row"
-                                                            justifyContent="space-between"
-                                                            alignItems="flex-start"
-                                                            sx={{
-                                                                marginTop:
-                                                                    '10px'
-                                                            }}
-                                                        >
-                                                            <Grid
-                                                                item
-                                                                container
-                                                                xs={5.6}
+                                                                xs={2}
+                                                                alignItems="flex-start"
+                                                                marginLeft="2%"
+                                                                width="100%"
                                                             >
                                                                 <StandardInput
                                                                     inputFocused
@@ -668,126 +640,70 @@ const PageRevision = () => {
                                                                     }}
                                                                 />
                                                             </Grid>
-
                                                             <Grid
                                                                 item
                                                                 container
-                                                                justifyContent="center"
-                                                                alignItems="flex-end"
-                                                                xs={5.6}
-                                                                marginTop="7px"
+                                                                xs={2}
+                                                                alignItems="flex-start"
+                                                                marginLeft="2%"
+                                                                width="100%"
                                                             >
-                                                                {/* <FormControl component="fieldset">
-                                        <FormLabel component="legend" sx={{ fontSize: '14px' }}>
-                                            ¿Tiene certificado?
-                                        </FormLabel>
-                                        <RadioGroup
-                                            required
-                                            row
-                                            aria-label="bool"
-                                            name="certificado"
-                                            onChange={(event) => handleChangeArray(event, key2)}
-                                            value={formValueArray.certificado}
-                                        >
-                                            <FormControlLabel
-                                                value={true}
-                                                control={<Radio size="small" />}
-                                                label="Si"
-                                            />
-                                            <FormControlLabel
-                                                value={false}
-                                                control={<Radio size="small" />}
-                                                label="No"
-                                            />
-                                        </RadioGroup>
-                                    </FormControl> */}
-                                                                <Typography
-                                                                    variant="body1"
-                                                                    gutterBottom
-                                                                >
-                                                                    No tiene
-                                                                    certificado
-                                                                </Typography>
-                                                            </Grid>
-                                                        </Grid>
-
-                                                        <Grid
-                                                            item
-                                                            container
-                                                            xs={12}
-                                                            sx={{
-                                                                marginTop:
-                                                                    '16px'
-                                                            }}
-                                                        >
-                                                            <Grid
-                                                                item
-                                                                container
-                                                                xs={12}
-                                                            >
-                                                                <Titulos
-                                                                    titulolabel
-                                                                    variant="h3"
-                                                                    fontSize={{
-                                                                        xs:
-                                                                            '14px',
-                                                                        sm:
-                                                                            '16px'
+                                                                <StandardInput
+                                                                    inputFocused
+                                                                    label="Certificado"
+                                                                    name="notaAprobacion"
+                                                                    value={
+                                                                        materiaAprobada.certificado
+                                                                            ? 'Sí'
+                                                                            : 'No'
+                                                                    }
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    focused={
+                                                                        true
+                                                                    }
+                                                                    InputProps={{
+                                                                        readOnly: true
                                                                     }}
-                                                                >
-                                                                    Adjuntar
-                                                                    programa de
-                                                                    la materia
-                                                                    .pdf
-                                                                </Titulos>
+                                                                />
                                                             </Grid>
-
                                                             <Grid
                                                                 item
                                                                 container
-                                                                xs={12}
-                                                                sx={{
-                                                                    marginTop:
-                                                                        '16px'
-                                                                }}
+                                                                xs={5}
+                                                                marginTop="20px"
+                                                                width="100%"
                                                             >
-                                                                <label
-                                                                    htmlFor="contained-button-file"
-                                                                    style={{
-                                                                        width:
-                                                                            '100%'
-                                                                    }}
+                                                                <Grid
+                                                                    item
+                                                                    container
+                                                                    alignItems="flex-start"
+                                                                    width="100%"
+                                                                    marginLeft="10%"
                                                                 >
-                                                                    <BotonMUI
-                                                                        sx={{
-                                                                            marginRight:
-                                                                                '12px'
+                                                                    <Titulos
+                                                                        titulolabel
+                                                                        variant="h5"
+                                                                        fontSize={{
+                                                                            xs:
+                                                                                '16px',
+                                                                            sm:
+                                                                                '18px'
                                                                         }}
-                                                                        buttonupload
-                                                                        variant="outlined"
-                                                                        component="span"
+                                                                        marginTop="2px"
+                                                                        marginRight="5px"
                                                                     >
-                                                                        Descargar
-                                                                    </BotonMUI>
-                                                                    {/* <IconButton
-                                            sx={{
-                                                marginRight: '12px'
-                                            }}
-                                            buttonupload
-                                            variant="outlined"
-                                            component="span"
-                                        >
-                                            <AttachFileOutlinedIcon />
-                                        </IconButton> */}
-                                                                    {/* <FileUploader
-                                            id="contained-button-file"
-                                            multiple
-                                            size="small"
-                                            variant="standard"
-                                            type="file"
-                                            accept="application/pdf, application/vnd.ms-Excel"
-                                        /> */}
-                                                                </label>
+                                                                        Programa:
+                                                                    </Titulos>
+                                                                    <label htmlFor="contained-button-file">
+                                                                        <BotonMUI
+                                                                            buttondownload
+                                                                            variant="outlined"
+                                                                        >
+                                                                            Descargar
+                                                                        </BotonMUI>
+                                                                    </label>
+                                                                </Grid>
                                                             </Grid>
                                                         </Grid>
 
@@ -820,28 +736,6 @@ const PageRevision = () => {
                                     borderRadius: '10px 10px 0px 0px'
                                 }}
                             >
-                                {/* <Grid
-                            item
-                            container
-                            direction="row"
-                            justifyContent="flex-start"
-                            alignItems="center"
-                            sm={12}
-                            sx={{
-                                padding: '0px 0px 20px 0px'
-                            }}
-                        >
-                            <p
-                                style={{
-                                    color: 'rgba(0, 0, 0, 0.87)',
-                                    fontWeight: 500
-                                }}
-                            >
-                                
-                                Devolución
-                            </p>
-                        </Grid> */}
-
                                 <Grid
                                     item
                                     container
@@ -900,61 +794,88 @@ const PageRevision = () => {
                                 </Grid>
                             </Grid>
                         </GridTop>
-                        <GridTop>
+                        <GridTop
+                            item
+                            container
+                            blanco
+                            md={6}
+                            xs={12}
+                            marginTop={{
+                                xs: '30px'
+                            }}
+                            sx={{
+                                height: 'auto'
+                            }}
+                        >
                             <Grid
-                                item
-                                container
-                                direction="column"
-                                alignItems="flex-start"
-                                md={12}
-                                lg={5.8}
-                                sx={{
-                                    marginTop: '6px',
-                                    marginBottom: '16px'
-                                }}
+                                backgroundColor="Azure"
+                                width="100%"
+                                height="14%"
+                                borderBottom="1px solid #dadce0"
                             >
-                                <Titulos titulolabel component="h2">
-                                    Respuesta
+                                <Titulos
+                                    fontFamily="Roboto"
+                                    textAlign="center"
+                                    marginTop="15px"
+                                    fontWeight="medium"
+                                    fontSize={'20px'}
+                                >
+                                    Chat
                                 </Titulos>
                             </Grid>
                             <Grid
                                 item
                                 container
                                 direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
                                 sm={12}
+                                padding="20px"
+                                sx={{
+                                    height: '340px',
+                                    marginBottom: '20px',
+                                    borderRadius: '10px 10px 0px 0px'
+                                }}
                             >
-                                {/* <TextareaAutosize
-                                    style={{
-                                        width: '100%',
-                                        height: '206px',
-                                        resize: 'none',
-                                        fontFamily: 'roboto',
-                                        fontSize: '16px',
-                                        padding: '18px 14px',
-                                        background: '#f8f9fa',
-                                        borderStyle: 'none',
-                                        borderRadius: '5px 0px 0px 0px',
-                                        borderBottom: '1px solid #80868b',
-                                        outline: 'none'
-                                    }}
-                                    placeholder="Observación..."
-                                /> */}
-
-                                <TextField
-                                    id="filled-basic"
-                                    label="Observación..."
-                                    variant="filled"
-                                    multiline
-                                    value={formValue.observaciones}
-                                    name="observaciones"
-                                    onChange={handleChange}
-                                    rows={8}
-                                    sx={{
-                                        width: '100%'
-                                    }}
-                                />
+                                <Grid item container direction="column" sm={12}>
+                                    <Grid
+                                        item
+                                        container
+                                        direction="row"
+                                        sx={{
+                                            width: '100%'
+                                        }}
+                                        sm={12}
+                                    >
+                                        <TextField
+                                            id="filled-basic"
+                                            label="Profesor"
+                                            variant="filled"
+                                            multiline
+                                            value={formValue.observaciones}
+                                            name="observaciones"
+                                            focused={false}
+                                            InputProps={{
+                                                readOnly: true
+                                            }}
+                                            onChange={handleChange}
+                                            rows={9}
+                                            sx={{
+                                                width: '100%'
+                                            }}
+                                        />
+                                        <TextField
+                                            id="filled-basic"
+                                            placeholder="Escriba su mensaje aqui..."
+                                            variant="filled"
+                                            multiline
+                                            name="observaciones"
+                                            onChange={handleChange}
+                                            rows={1}
+                                            sx={{
+                                                width: '100%'
+                                            }}
+                                        />
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </GridTop>
                     </GridTop>
