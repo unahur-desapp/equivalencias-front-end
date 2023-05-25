@@ -52,7 +52,7 @@ const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
                             width: '100%'
                         }}
                     >
-                        Enviar
+                        Finalizar Revisión
                     </BotonMUI>
                 </Grid>
 
@@ -80,7 +80,7 @@ const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
                         }}
                         onClick={handleClickOpen}
                     >
-                        Cancelar
+                        Volver
                     </BotonMUI>
                 </Grid>
             </Grid>
