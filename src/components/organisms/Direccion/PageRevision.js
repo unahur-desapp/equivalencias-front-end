@@ -127,6 +127,9 @@ const PageRevision = () => {
         fetchUsuarioData();
     }, []);
 
+    localStorage.setItem('estado', formValue.estado);
+    var estados = localStorage.getItem('estado');
+
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia(id);
@@ -370,7 +373,7 @@ const PageRevision = () => {
                                         direction="column"
                                         alignItems="flex-start"
                                         md={12}
-                                        lg={10}
+                                        lg={9}
                                         sx={{
                                             marginTop: '1px'
                                         }}
@@ -395,8 +398,8 @@ const PageRevision = () => {
                                         lg={1.5}
                                         sx={{
                                             marginTop: '15px',
-                                            marginLeft: '20px',
-                                            marginRight: '0px'
+
+                                            marginRight: '20px'
                                         }}
                                     >
                                         <Box sx={{ minWidth: 120 }}>
@@ -405,10 +408,10 @@ const PageRevision = () => {
                                                 <Select
                                                     labelId="demo-simple-select-label"
                                                     id="demo-simple-select"
-                                                    value={formValue.estado}
                                                     onChange={
                                                         handleChangeToggle
                                                     }
+                                                    value={estados}
                                                     size="small"
                                                     sx={
                                                         formValue.estado ===
@@ -742,17 +745,6 @@ const PageRevision = () => {
                                     alignItems="center"
                                     sm={12}
                                 >
-                                    <Grid
-                                        item
-                                        container
-                                        direction="row"
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        sm={12}
-                                        sx={{
-                                            marginTop: '20px'
-                                        }}
-                                    ></Grid>
                                     <OuterFormButtons
                                         handleSubmit={handleSubmit}
                                         path={'/direccion/solicitudes'}

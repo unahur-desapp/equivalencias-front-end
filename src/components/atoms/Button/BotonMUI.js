@@ -137,6 +137,18 @@ const BotonMUI = styled(Button)`
                 background-color: #007a5e;
             }
         `}
+        ${(props) =>
+        props.buttoncontainedsmallFinalizar &&
+        css`
+            width: 110px;
+            height: 40px;
+            background-color: #2a74e4;
+            color: '#FFFFFF';
+
+            &:hover {
+                background-color: #2463c2;
+            }
+        `}
 `;
 
 export { BotonMUI };
