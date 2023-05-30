@@ -1,4 +1,4 @@
-import { Grid, TextareaAutosize } from '@mui/material';
+import { AppBar, Grid, TextareaAutosize, TabScrollButton } from '@mui/material';
 import React, { useState, useMemo, useEffect } from 'react';
 import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
@@ -218,9 +218,9 @@ const PageRevision = () => {
                     item
                     container
                     direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{ padding: '40px 0px' }}
+                    sx={{
+                        padding: '40px 0px'
+                    }}
                 >
                     <GridTop
                         item
@@ -228,11 +228,9 @@ const PageRevision = () => {
                         xs={11.5}
                         md={7}
                         sx={{
-                            padding: '0px 20px'
+                            padding: '10px',
+                            marginLeft: '40%'
                         }}
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="center"
                     >
                         <Grid item>
                             <Titulos component="h2" titulogrande>
@@ -362,6 +360,7 @@ const PageRevision = () => {
                                 <Grid
                                     item
                                     container
+                                    orientation="vertical"
                                     xs={12}
                                     direction="row"
                                     justifyContent="space-between"
@@ -430,15 +429,12 @@ const PageRevision = () => {
                                                                   color:
                                                                       '#FFFFFF'
                                                               }
-                                                            : formValue.estado ===
-                                                              'Pendiente'
-                                                            ? {
+                                                            : {
                                                                   backgroundColor:
                                                                       '#2A74E4',
                                                                   color:
                                                                       '#FFFFFF'
                                                               }
-                                                            : {}
                                                     }
                                                 >
                                                     <MenuItem value="Aceptado">
