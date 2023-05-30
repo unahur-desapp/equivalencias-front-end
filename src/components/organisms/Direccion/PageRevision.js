@@ -31,7 +31,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 
 const ChipMedium = styled(Chip)`
     ${(props) =>
@@ -92,7 +92,10 @@ const PageRevision = () => {
     const [rows, setRows] = useState([]);
     const [equiv, setEquiv] = useState({});
     const [alignment, setAlignment] = useState('web');
-    const [formValue, setFormValue] = useState({});
+    const [formValue, setFormValue] = useState({
+        estado: '',
+        observaciones: ''
+    });
     const [unEstado, setState] = React.useState('');
 
     const handleChange2 = (event) => {
@@ -127,9 +130,6 @@ const PageRevision = () => {
         fetchUsuarioData();
     }, []);
 
-    localStorage.setItem('estado', formValue.estado);
-    var estados = localStorage.getItem('estado');
-
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia(id);
@@ -155,8 +155,6 @@ const PageRevision = () => {
             });
 
             console.log(obtainedEquivalenciaData);
-
-            console.log('Hola' + arrayData.nombre_materia);
         };
 
         fetchEquivalenciaData();
@@ -167,7 +165,6 @@ const PageRevision = () => {
             ...equiv,
             [event.target.name]: event.target.value
         }));
-        console.log(formValue);
     };
 
     const handleChangeToggle = (event, newAlignment) => {
@@ -410,11 +407,12 @@ const PageRevision = () => {
                                                     onChange={
                                                         handleChangeToggle
                                                     }
-                                                    value={estados}
+                                                    defaultValue="pendiente"
+                                                    value={formValue.estado}
                                                     size="small"
                                                     sx={
                                                         formValue.estado ===
-                                                        'Aceptado'
+                                                        'aceptado'
                                                             ? {
                                                                   backgroundColor:
                                                                       '#009673',
@@ -422,7 +420,7 @@ const PageRevision = () => {
                                                                       '#FFFFFF'
                                                               }
                                                             : formValue.estado ===
-                                                              'Rechazado'
+                                                              'rechazado'
                                                             ? {
                                                                   backgroundColor:
                                                                       '#DB0505',
@@ -437,13 +435,13 @@ const PageRevision = () => {
                                                               }
                                                     }
                                                 >
-                                                    <MenuItem value="Aceptado">
+                                                    <MenuItem value="aceptado">
                                                         Aceptado
                                                     </MenuItem>
-                                                    <MenuItem value="Pendiente">
+                                                    <MenuItem value="pendiente">
                                                         Pendiente
                                                     </MenuItem>
-                                                    <MenuItem value="Rechazado">
+                                                    <MenuItem value="rechazado">
                                                         Rechazado
                                                     </MenuItem>
                                                 </Select>
