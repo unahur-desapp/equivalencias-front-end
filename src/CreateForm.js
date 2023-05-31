@@ -43,7 +43,7 @@ const CreateForm = () => {
         {
             key: nanoid(),
             materiaUnahur: '',
-            universidad: 'Universidad Nacional de Hurlingham' // id de universidad
+            carreraUnahur: '' // id de universidad
         }
     ]);
     //Push de esto?
@@ -59,7 +59,8 @@ const CreateForm = () => {
 
     const [formValue, setformValue] = useState({
         materiaSolicitada: '',
-        carreraUnahur: ''
+        carreraUnahur: '',
+        estado: 'pendiente'
     });
 
     const notifyEnviarSinDatos = () => {
@@ -126,17 +127,26 @@ const CreateForm = () => {
             {
                 key: nanoid(),
                 materiaUnahur: '',
-                universidad: 'Universidad Nacional de Hurlingham'
+                universidad: 'Universidad Nacional de Hurlingham',
+                estado: 'pendiente'
             }
         ]);
 
         // formValue.materiasAprobadas.push(formValueArray);
     };
-
+    //const [inputValues, setInputValues] = useState({});
+    // const handleInputChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setInputValues((prevInputValues) => ({
+    //         ...prevInputValues,
+    //         [name]: value
+    //     }));
+    // };
     const handleChange = (event) => {
-        setformValue((formValue) => ({
-            ...formValue,
-            [event.target.name]: event.target.value
+        const { name, value } = event.target;
+        setformValue((materiaUnahur) => ({
+            ...materiaUnahur,
+            [name]: value
         }));
         console.log(event.target.key);
         console.log(event.target.value);

@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import { useState } from 'react';
 import {
     StandardInput,
     AutocompleteInput
@@ -8,6 +9,10 @@ import {
 import { Titulos } from './components/atoms/Title/Titulos';
 
 const FormUnahur = ({ formValue, carreras, materias, handleChange }) => {
+    //const [inputValues, setInputValues] = useState({});
+
+    // Función para manejar el cambio en cada input individual
+
     return (
         <React.Fragment>
             <Grid
@@ -79,8 +84,35 @@ const FormUnahur = ({ formValue, carreras, materias, handleChange }) => {
                         Materias solicitadas
                     </Titulos>
                 </Grid>
-
                 {materias.map((materia) => {
+                    return (
+                        <Grid
+                            item
+                            container
+                            direction="row"
+                            alignItems="flex-start"
+                            xs={5.5}
+                            sx={{
+                                marginTop: '6px'
+                            }}
+                            key={materia.key}
+                        >
+                            <StandardInput
+                                required
+                                name={`materiaUnahur-${materia.key}`}
+                                size="small"
+                                label="Materia solicitada UNAHUR"
+                                variant="outlined"
+                                value={
+                                    formValue[`materiaUnahur-${materia.key}`] ||
+                                    ''
+                                }
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                    );
+                })}
+                {/* {materias.map((materia) => {
                     //    console.log(materia.key)
                     return (
                         <Grid
@@ -108,7 +140,7 @@ const FormUnahur = ({ formValue, carreras, materias, handleChange }) => {
                             />
                         </Grid>
                     );
-                })}
+                })} */}
             </Grid>
         </React.Fragment>
     );
