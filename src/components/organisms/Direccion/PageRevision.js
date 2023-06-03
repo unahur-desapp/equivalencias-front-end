@@ -25,6 +25,7 @@ import axios from 'axios';
 import { config } from '../../../config/config';
 import { HeaderDirectivo } from '../../HeaderDirectivo';
 import { HeaderSuperUsuario } from '../../HeaderSuperUsuario';
+import Chat from '../../chat/Chat';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -807,6 +808,8 @@ const PageRevision = () => {
                                     }}
                                     placeholder="Observación..."
                                 /> */}
+
+                                    <Chat id={id} />
 
                                     <TextField
                                         id="filled-basic"

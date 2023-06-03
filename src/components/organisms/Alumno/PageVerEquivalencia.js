@@ -25,6 +25,7 @@ import { styled } from '@mui/material';
 import { css } from '@mui/styled-engine';
 import { Link } from 'react-router-dom';
 import { config } from '../../../config/config';
+import Chat from '../../chat/Chat';
 
 const ChipMedium = styled(Chip)`
     ${(props) =>
@@ -795,6 +796,9 @@ const PageVerEquivalencia = () => {
                                     Respuesta
                                 </Titulos>
                             </Grid>
+
+                            <Chat id={id} />
+
                             {/* <Grid
                             item
                             container
