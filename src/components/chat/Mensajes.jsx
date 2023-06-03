@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import MensajesStyle from './MensajesStyle.js';
 import AvatarIcon from '../AvatarIcon.jsx';
+import { Fragment } from 'react';
 
 const Mensajes = withStyles(MensajesStyle)((props) => {
     const { classes, mensajes, usuario_id } = props;
@@ -35,7 +36,8 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
     };
 
     return (
-        <Grid container spacing={0}>
+        <Fragment>
+            <Grid container spacing={0}>
             {mensajes.map((mensaje, i) => {
                 if (sidePorUsuario(mensaje) === 'left') {
                     if (primerUtlimoMensaje(i, mensaje) === classes.leftFirst) {
@@ -49,7 +51,7 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
                                 }
                             >
                                 <Grid item xs={1}>
-                                    <AvatarIcon info={['Gonzalo Iglesias']} />
+                                    <AvatarIcon info={['EZE Fernandez']} />
                                 </Grid>
                                 <Grid item xs={11}>
                                     <Typography
@@ -112,6 +114,7 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
                 );
             })}
         </Grid>
+        </Fragment>
     );
 });
 

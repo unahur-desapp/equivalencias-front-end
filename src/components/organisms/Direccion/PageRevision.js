@@ -811,7 +811,7 @@ const PageRevision = () => {
 
                                     <Chat id={id} />
 
-                                    <TextField
+                                    {/*<TextField
                                         id="filled-basic"
                                         label="Observación..."
                                         variant="filled"
@@ -823,7 +823,7 @@ const PageRevision = () => {
                                         sx={{
                                             width: '100%'
                                         }}
-                                    />
+                                    />*/}
                                 </Grid>
 
                                 <Grid

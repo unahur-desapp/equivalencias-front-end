@@ -1,5 +1,5 @@
 import { Grid, TextareaAutosize } from '@mui/material';
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, Fragment } from 'react';
 import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
 import { GridTop } from '../../../GridTop';
@@ -796,7 +796,6 @@ const PageVerEquivalencia = () => {
                                     Respuesta
                                 </Titulos>
                             </Grid>
-
                             <Chat id={id} />
 
                             {/* <Grid
@@ -854,7 +853,7 @@ const PageVerEquivalencia = () => {
                                     placeholder="Observación..."
                                 /> */}
 
-                                    <TextField
+                                    {/*<TextField
                                         id="filled-basic"
                                         label="Observación..."
                                         variant="filled"
@@ -870,7 +869,7 @@ const PageVerEquivalencia = () => {
                                         sx={{
                                             width: '100%'
                                         }}
-                                    />
+                                    />*/}
                                 </Grid>
                             </Grid>
                         </Grid>

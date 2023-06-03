@@ -9,6 +9,7 @@ import { Grid, InputAdornment, Paper, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import SendIcon from '@mui/icons-material/Send';
+import { Fragment } from 'react';
 
 const Chat = (props) => {
     const { id } = props;
@@ -57,7 +58,8 @@ const Chat = (props) => {
     };
 
     return (
-        <Paper
+        <Fragment>
+            <Paper
             elevation={8}
             variant="outlined"
             sx={{
@@ -70,7 +72,7 @@ const Chat = (props) => {
                 display: 'flex',
                 flexDirection: 'column'
             }}
-        >
+            >
             <div style={{ flex: 1, overflow: 'auto' }} ref={paperRef}>
                 <Mensajes mensajes={mensajes} usuario_id={usuario_id} />
             </div>
@@ -108,6 +110,7 @@ const Chat = (props) => {
                 />
             </Grid>
         </Paper>
+        </Fragment>
     );
 };
 
