@@ -309,7 +309,7 @@ const PageRevision = () => {
                                     borderBottom: '1px solid #dadce0'
                                 }}
                             >
-                                <Grid container spacing={2} sx={{}}>
+                                <Grid container spacing={12} sx={{}}>
                                     <Grid item xs={9.4}>
                                         <Titulos
                                             titulolabel
@@ -409,30 +409,20 @@ const PageRevision = () => {
                                                                                 materia.estado
                                                                             }
                                                                             size="small"
-                                                                            sx={
-                                                                                materia.estado ===
-                                                                                'aceptado'
-                                                                                    ? {
-                                                                                          backgroundColor:
-                                                                                              '#009673',
-                                                                                          color:
-                                                                                              '#FFFFFF'
-                                                                                      }
-                                                                                    : materia.estado ===
-                                                                                      'rechazado'
-                                                                                    ? {
-                                                                                          backgroundColor:
-                                                                                              '#DB0505',
-                                                                                          color:
-                                                                                              '#FFFFFF'
-                                                                                      }
-                                                                                    : {
-                                                                                          backgroundColor:
-                                                                                              '#2A74E4',
-                                                                                          color:
-                                                                                              '#FFFFFF'
-                                                                                      }
-                                                                            }
+                                                                            sx={{
+                                                                                width:
+                                                                                    '145px', // Ajusta el ancho según tus necesidades
+                                                                                backgroundColor:
+                                                                                    materia.estado ===
+                                                                                    'aceptado'
+                                                                                        ? '#009673'
+                                                                                        : materia.estado ===
+                                                                                          'rechazado'
+                                                                                        ? '#DB0505'
+                                                                                        : '#2A74E4',
+                                                                                color:
+                                                                                    '#FFFFFF'
+                                                                            }}
                                                                         >
                                                                             <MenuItem value="aceptado">
                                                                                 Aceptado
