@@ -186,9 +186,8 @@ const PageVerEquivalencia = () => {
                     item
                     container
                     direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{ padding: '40px 0px' }}
+                    justifyContent="left"
+                    sx={{ padding: '5px 0px' }}
                 >
                     <GridTop
                         item
@@ -196,11 +195,12 @@ const PageVerEquivalencia = () => {
                         xs={11.5}
                         md={7}
                         sx={{
-                            padding: '0px 20px'
+                            padding: '0px 15px',
+                            marginLeft: '6%'
                         }}
                         direction="row"
                         justifyContent="space-between"
-                        alignItems="center"
+                        alignItems="end"
                     >
                         <Grid item>
                             <Titulos component="h2" titulogrande>
@@ -216,7 +216,7 @@ const PageVerEquivalencia = () => {
                             xs={11.5}
                             md={7}
                             marginTop={{
-                                xs: '30px'
+                                xs: '5px'
                             }}
                             sx={{
                                 height: 'auto',
@@ -301,8 +301,6 @@ const PageVerEquivalencia = () => {
                                 item
                                 container
                                 direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
                                 sm={12}
                                 padding={{
                                     xs: '20px 30px',
@@ -314,9 +312,20 @@ const PageVerEquivalencia = () => {
                                     borderBottom: '1px solid #dadce0'
                                 }}
                             >
-                                <Grid container spacing={2}>
+                                <Grid
+                                    container
+                                    spacing={2}
+                                    sx={{
+                                        marginTop: '10px'
+                                    }}
+                                >
                                     <Grid xs={10.6}>
-                                        <Titulos titulolabel>
+                                        <Titulos
+                                            titulolabel
+                                            sx={{
+                                                margin: '0 15px'
+                                            }}
+                                        >
                                             Materias solicitadas de la UNAHUR
                                         </Titulos>
                                     </Grid>
@@ -711,10 +720,10 @@ const PageVerEquivalencia = () => {
                             item
                             container
                             blanco
-                            md={6}
+                            md={7}
                             xs={12}
                             marginTop={{
-                                xs: '30px'
+                                xs: '5px'
                             }}
                             sx={{
                                 height: 'auto'
@@ -774,7 +783,7 @@ const PageVerEquivalencia = () => {
                                             }}
                                             sx={{
                                                 width: '100%',
-                                                paddingTop: '5px'
+                                                paddingTop: '10px'
                                             }}
                                         />
                                         <TextField

@@ -58,12 +58,12 @@ const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
                         buttoncontainedsmallFinalizar
                         onClick={handleSubmit}
                         sx={{
-                            margin: '0px -10px 0px 50px',
+                            margin: '0px 0px 0px 50px',
                             width: '100%',
                             alignItems: 'center'
                         }}
                     >
-                        Finalizar Revisión
+                        Finalizar
                     </BotonMUI>
                 </Grid>
             </Grid>

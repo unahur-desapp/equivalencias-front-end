@@ -221,22 +221,15 @@ const PageRevision = () => {
                     />
                 </Grid>
 
-                <Grid
-                    item
-                    container
-                    direction="row"
-                    sx={{
-                        padding: '40px 0px'
-                    }}
-                >
+                <Grid item container direction="row">
                     <GridTop
                         item
                         container
                         xs={11.5}
                         md={7}
+                        alignItems="end"
                         sx={{
-                            padding: '10px',
-                            marginLeft: '40%'
+                            margin: '0% 7%'
                         }}
                     >
                         <Grid item>
@@ -254,7 +247,7 @@ const PageRevision = () => {
                             xs={11.5}
                             md={7}
                             marginTop={{
-                                xs: '30px'
+                                xs: '5px'
                             }}
                             sx={{
                                 height: 'auto',
@@ -341,8 +334,6 @@ const PageRevision = () => {
                                 item
                                 container
                                 direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
                                 sm={12}
                                 padding={{
                                     xs: '20px 30px',
@@ -354,14 +345,24 @@ const PageRevision = () => {
                                     borderBottom: '1px solid #dadce0'
                                 }}
                             >
-                                <Grid container spacing={2}>
-                                    <Grid xs={10.6}>
-                                        <Titulos titulolabel marginLeft="16px">
+                                <Grid container spacing={2} sx={{}}>
+                                    <Grid item xs={9.4}>
+                                        <Titulos
+                                            titulolabel
+                                            sx={{
+                                                margin: '0 1px'
+                                            }}
+                                        >
                                             Materias solicitadas de la UNAHUR
                                         </Titulos>
                                     </Grid>
-                                    <Grid xs={1.4}>
-                                        <Titulos titulolabel marginLeft="-5px">
+                                    <Grid item>
+                                        <Titulos
+                                            titulolabel
+                                            sx={{
+                                                margin: '0 1px'
+                                            }}
+                                        >
                                             Estado
                                         </Titulos>
                                     </Grid>
@@ -800,7 +801,7 @@ const PageRevision = () => {
                             md={6}
                             xs={12}
                             marginTop={{
-                                xs: '30px'
+                                xs: '5px'
                             }}
                             sx={{
                                 height: 'auto'
@@ -858,7 +859,8 @@ const PageRevision = () => {
                                             onChange={handleChange}
                                             rows={9}
                                             sx={{
-                                                width: '100%'
+                                                width: '100%',
+                                                paddingTop: '10px'
                                             }}
                                         />
                                         <TextField
