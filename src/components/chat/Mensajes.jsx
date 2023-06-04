@@ -27,6 +27,14 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
         return '';
     };
 
+    function convertUTCtoLocalTime(utcDatetimeString) {
+        const date = new Date(utcDatetimeString);
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const localDate = new Date(date.toLocaleString("es-AR", { timeZone }));
+        
+        return localDate;
+      }
+
     const sidePorUsuario = (mensaje) => {
         if (mensaje.id_remitente === usuario_id) {
             return 'right';
@@ -66,6 +74,8 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
                                         )}
                                     >
                                         {mensaje.texto}
+                                        <br/>
+                                        {convertUTCtoLocalTime(mensaje.createdAt)}
                                     </Typography>
                                 </Grid>
                             </Grid>
