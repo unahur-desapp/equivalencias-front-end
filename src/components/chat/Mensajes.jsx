@@ -51,7 +51,8 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
                                 }
                             >
                                 <Grid item xs={1}>
-                                    <AvatarIcon info={['EZE Fernandez']} />
+                                    <AvatarIcon
+                                    info={[mensaje.Usuario.nombre.trim() + ' ' +mensaje.Usuario.apellido.trim()]} />
                                 </Grid>
                                 <Grid item xs={11}>
                                     <Typography

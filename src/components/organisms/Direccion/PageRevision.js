@@ -26,6 +26,7 @@ import { config } from '../../../config/config';
 import { HeaderDirectivo } from '../../HeaderDirectivo';
 import { HeaderSuperUsuario } from '../../HeaderSuperUsuario';
 import Chat from '../../chat/Chat';
+import { Button } from '@mui/material';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -67,6 +68,7 @@ const PageRevision = () => {
     const [equiv, setEquiv] = useState({});
     const [alignment, setAlignment] = useState('web');
     const [formValue, setFormValue] = useState({});
+    const [chatValue, setChatValue] = useState({});
 
     useEffect(() => {
         const fetchUsuarioData = async () => {
@@ -659,7 +661,7 @@ const PageRevision = () => {
                                                     >
                                                         <Titulos
                                                             titulolabel
-                                                            variant="h3"
+                                                            variant="subtitle2"
                                                             fontSize={{
                                                                 xs: '14px',
                                                                 sm: '16px'
@@ -816,6 +818,7 @@ const PageRevision = () => {
                                     placeholder="Observación..."
                                 /> */}
 
+                                    <Button>Mostrar conversación</Button>
                                     <Chat id={id} />
 
                                     {/*<TextField
