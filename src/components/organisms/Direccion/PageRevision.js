@@ -33,6 +33,7 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 
+// No se usa
 const ChipMedium = styled(Chip)`
     ${(props) =>
         props.chipMedium &&
@@ -50,10 +51,11 @@ const columns = [
     { id: 'actions', label: 'Fecha', minWidth: 170 }
 ];
 
-function createData(solicitante, email, dni, fechaHora, telefono) {
-    return { solicitante, email, dni, fechaHora, telefono };
+function createData(solicitante, email, carrera, dni, fechaHora, telefono) {
+    return { solicitante, email, carrera, dni, fechaHora, telefono };
 }
 
+// No se usa
 function MyFormHelperText() {
     const { focused } = useFormControl() || {};
 
@@ -68,6 +70,7 @@ function MyFormHelperText() {
     return <FormHelperText>{helperText}</FormHelperText>;
 }
 
+// No se usa
 const horaConCero = (hora) => {
     if (hora < 10) {
         return `0${hora}`;
@@ -76,6 +79,7 @@ const horaConCero = (hora) => {
     }
 };
 
+// No se usa
 const BasicMenu = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -117,6 +121,7 @@ const PageRevision = () => {
                         ' ' +
                         obtainedUsuarioData.Usuario.apellido,
                     obtainedUsuarioData.Usuario.email,
+                    obtainedUsuarioData.Materias_solicitadas[0].carrera,
                     obtainedUsuarioData.Usuario.dni,
                     dateTime,
                     obtainedUsuarioData.Usuario.telefono,
@@ -133,7 +138,6 @@ const PageRevision = () => {
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
             const obtainedEquivalenciaData = await getEquivalencia(id);
-
             let arrayData = {
                 nombre: obtainedEquivalenciaData.Materias_solicitadas[0].nombre,
 
@@ -144,7 +148,13 @@ const PageRevision = () => {
 
                 observaciones: obtainedEquivalenciaData.observaciones,
 
-                estado: obtainedEquivalenciaData.estado
+                estado: obtainedEquivalenciaData.estado,
+                // Ejemplo hardcodeado para poder ver varias materias
+                materiasSolicitadas: [
+                    obtainedEquivalenciaData.Materias_solicitadas,
+                    obtainedEquivalenciaData.Materias_solicitadas,
+                    obtainedEquivalenciaData.Materias_solicitadas
+                ]
             };
 
             setEquiv(arrayData);
@@ -236,6 +246,7 @@ const PageRevision = () => {
                         </Grid>
                     </GridTop>
                     <GridTop item container xs={12} flexDirection="column">
+                        {/* Revision */}
                         <GridTop
                             item
                             container
@@ -250,6 +261,7 @@ const PageRevision = () => {
                                 marginLeft: '100px'
                             }}
                         >
+                            {/* Informacion */}
                             <Paper
                                 sx={{
                                     width: '100%',
@@ -324,6 +336,7 @@ const PageRevision = () => {
                                 </TableContainer>
                             </Paper>
 
+                            {/* Universidad Unahur */}
                             <Grid
                                 item
                                 container
@@ -357,99 +370,128 @@ const PageRevision = () => {
                                 <Grid
                                     item
                                     container
-                                    orientation="vertical"
                                     xs={12}
-                                    direction="row"
-                                    justifyContent="space-between"
-                                    alignItems="flex-start"
+                                    overflow="auto"
+                                    maxHeight={120}
                                 >
-                                    <Grid
-                                        item
-                                        container
-                                        direction="column"
-                                        alignItems="flex-start"
-                                        md={12}
-                                        lg={9}
-                                        sx={{
-                                            marginTop: '1px'
-                                        }}
-                                    >
-                                        <StandardInput
-                                            inputFocused
-                                            name="materiaSolicitada"
-                                            value={equiv.nombre}
-                                            variant="outlined"
-                                            focused={true}
-                                            size="small"
-                                            InputProps={{
-                                                readOnly: true
-                                            }}
-                                        />
-                                    </Grid>
+                                    <Grid item container>
+                                        {equiv.materiasSolicitadas !==
+                                        undefined ? (
+                                            equiv.materiasSolicitadas.map(
+                                                (materia) => {
+                                                    return (
+                                                        <>
+                                                            <Grid
+                                                                item
+                                                                container
+                                                                direction="column"
+                                                                alignItems="flex-start"
+                                                                md={12}
+                                                                lg={9}
+                                                                sx={{
+                                                                    marginTop:
+                                                                        '1px'
+                                                                }}
+                                                            >
+                                                                <StandardInput
+                                                                    inputFocused
+                                                                    name="materiaSolicitada"
+                                                                    value={
+                                                                        materia.nombre
+                                                                    }
+                                                                    variant="outlined"
+                                                                    focused={
+                                                                        true
+                                                                    }
+                                                                    size="small"
+                                                                    InputProps={{
+                                                                        readOnly: true
+                                                                    }}
+                                                                />
+                                                            </Grid>
 
-                                    <Grid
-                                        item
-                                        container
-                                        md={12}
-                                        lg={1.5}
-                                        sx={{
-                                            marginTop: '15px',
-
-                                            marginRight: '20px'
-                                        }}
-                                    >
-                                        <Box sx={{ minWidth: 120 }}>
-                                            <FormControl fullWidth>
-                                                <InputLabel id="demo-simple-select-label"></InputLabel>
-                                                <Select
-                                                    labelId="demo-simple-select-label"
-                                                    id="demo-simple-select"
-                                                    onChange={
-                                                        handleChangeToggle
-                                                    }
-                                                    defaultValue="pendiente"
-                                                    value={formValue.estado}
-                                                    size="small"
-                                                    sx={
-                                                        formValue.estado ===
-                                                        'aceptado'
-                                                            ? {
-                                                                  backgroundColor:
-                                                                      '#009673',
-                                                                  color:
-                                                                      '#FFFFFF'
-                                                              }
-                                                            : formValue.estado ===
-                                                              'rechazado'
-                                                            ? {
-                                                                  backgroundColor:
-                                                                      '#DB0505',
-                                                                  color:
-                                                                      '#FFFFFF'
-                                                              }
-                                                            : {
-                                                                  backgroundColor:
-                                                                      '#2A74E4',
-                                                                  color:
-                                                                      '#FFFFFF'
-                                                              }
-                                                    }
-                                                >
-                                                    <MenuItem value="aceptado">
-                                                        Aceptado
-                                                    </MenuItem>
-                                                    <MenuItem value="pendiente">
-                                                        Pendiente
-                                                    </MenuItem>
-                                                    <MenuItem value="rechazado">
-                                                        Rechazado
-                                                    </MenuItem>
-                                                </Select>
-                                            </FormControl>
-                                        </Box>
+                                                            <Grid
+                                                                item
+                                                                container
+                                                                lg={3}
+                                                                sx={{
+                                                                    marginTop:
+                                                                        '15px',
+                                                                    paddingRight:
+                                                                        '12px',
+                                                                    justifyContent:
+                                                                        'end'
+                                                                }}
+                                                            >
+                                                                <Box
+                                                                    sx={{
+                                                                        minWidth: 120
+                                                                    }}
+                                                                >
+                                                                    <FormControl
+                                                                        fullWidth
+                                                                    >
+                                                                        <InputLabel id="demo-simple-select-label"></InputLabel>
+                                                                        <Select
+                                                                            labelId="demo-simple-select-label"
+                                                                            id="demo-simple-select"
+                                                                            onChange={
+                                                                                handleChangeToggle
+                                                                            }
+                                                                            defaultValue="pendiente"
+                                                                            value={
+                                                                                formValue.estado
+                                                                            }
+                                                                            size="small"
+                                                                            sx={
+                                                                                formValue.estado ===
+                                                                                'aceptado'
+                                                                                    ? {
+                                                                                          backgroundColor:
+                                                                                              '#009673',
+                                                                                          color:
+                                                                                              '#FFFFFF'
+                                                                                      }
+                                                                                    : formValue.estado ===
+                                                                                      'rechazado'
+                                                                                    ? {
+                                                                                          backgroundColor:
+                                                                                              '#DB0505',
+                                                                                          color:
+                                                                                              '#FFFFFF'
+                                                                                      }
+                                                                                    : {
+                                                                                          backgroundColor:
+                                                                                              '#2A74E4',
+                                                                                          color:
+                                                                                              '#FFFFFF'
+                                                                                      }
+                                                                            }
+                                                                        >
+                                                                            <MenuItem value="aceptado">
+                                                                                Aceptado
+                                                                            </MenuItem>
+                                                                            <MenuItem value="pendiente">
+                                                                                Pendiente
+                                                                            </MenuItem>
+                                                                            <MenuItem value="rechazado">
+                                                                                Rechazado
+                                                                            </MenuItem>
+                                                                        </Select>
+                                                                    </FormControl>
+                                                                </Box>
+                                                            </Grid>
+                                                        </>
+                                                    );
+                                                }
+                                            )
+                                        ) : (
+                                            <></>
+                                        )}
                                     </Grid>
                                 </Grid>
                             </Grid>
+
                             {/* Universidad Origen */}
                             <Box
                                 sx={{
@@ -714,7 +756,6 @@ const PageRevision = () => {
                             )}
 
                             {/* Textarea */}
-
                             <Grid
                                 item
                                 container
@@ -750,6 +791,8 @@ const PageRevision = () => {
                                 </Grid>
                             </Grid>
                         </GridTop>
+
+                        {/* Chat */}
                         <GridTop
                             item
                             container
