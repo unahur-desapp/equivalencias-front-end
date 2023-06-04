@@ -29,10 +29,7 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
 
     function convertUTCtoLocalTime(utcDatetimeString) {
         const date = new Date(utcDatetimeString);
-        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const localDate = new Date(date.toLocaleString("es-AR", { timeZone }));
-        
-        return localDate;
+        return date.toTimeString().slice(0, 5) + ' ' + date.toLocaleDateString();
       }
 
     const sidePorUsuario = (mensaje) => {
@@ -47,6 +44,8 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
         <Fragment>
             <Grid container spacing={0}>
             {mensajes.map((mensaje, i) => {
+                console.log(mensaje.id)
+                console.log(convertUTCtoLocalTime(mensaje.createdAt))
                 if (sidePorUsuario(mensaje) === 'left') {
                     if (primerUtlimoMensaje(i, mensaje) === classes.leftFirst) {
                         return (
@@ -74,8 +73,8 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
                                         )}
                                     >
                                         {mensaje.texto}
-                                        <br/>
-                                        {convertUTCtoLocalTime(mensaje.createdAt)}
+                                        <br />
+                                        {convertUTCtoLocalTime(mensaje.createdAt)} 
                                     </Typography>
                                 </Grid>
                             </Grid>
@@ -99,6 +98,8 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
                                     )}
                                 >
                                     {mensaje.texto}
+                                     <br />
+                                    {convertUTCtoLocalTime(mensaje.createdAt)}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -120,6 +121,8 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
                             )}
                         >
                             {mensaje.texto}
+                            <br />
+                            {convertUTCtoLocalTime(mensaje.createdAt)}
                         </Typography>
                     </Grid>
                 );
