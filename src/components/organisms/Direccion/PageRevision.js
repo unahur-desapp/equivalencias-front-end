@@ -168,7 +168,7 @@ const PageRevision = () => {
                 try {
                     res.data.data; // '{"name":"deven"}'
 
-                    window.location = '/direccion/solicitudes';
+                    window.location = urlUsuario();
                 } catch (error) {
                     console.log(error);
                 }
@@ -181,6 +181,13 @@ const PageRevision = () => {
             return <HeaderDirectivo />;
         } else {
             return <HeaderSuperUsuario />;
+        }
+    };
+    const urlUsuario = () => {
+        if (rol === 'directivo') {
+            return '/direccion/solicitudes';
+        } else {
+            return '/superusuario/solicitudes';
         }
     };
 
@@ -913,7 +920,7 @@ const PageRevision = () => {
                     </GridTop>
                     <OuterFormButtons
                         handleSubmit={handleSubmit}
-                        path={'/direccion/solicitudes'}
+                        path={urlUsuario()}
                         titulo={'Descartar revisión'}
                         mensaje={
                             '¿Está seguro/a de que desea descartar la revisión de la solicitud?'
