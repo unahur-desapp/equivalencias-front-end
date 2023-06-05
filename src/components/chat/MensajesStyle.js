@@ -11,8 +11,17 @@ export default ({ palette, spacing }) => {
         leftRow: {
             textAlign: 'left'
         },
+        leftTime: {
+            textAlign: 'left',
+            paddingLeft: 4
+        },
         rightRow: {
-            textAlign: 'right'
+            textAlign: 'right',
+            paddingRight: 4
+        },
+        rightTime: {
+            textAlign: 'right',
+            paddingRight: 4
         },
         msg: {
             padding: spacing(1, 2),

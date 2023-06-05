@@ -5,7 +5,13 @@ import {
     enviarMensaje,
     updateMensaje
 } from '../../services/mensajes_service.js';
-import { Grid, InputAdornment, Paper, TextField } from '@mui/material';
+import {
+    Grid,
+    IconButton,
+    InputAdornment,
+    Paper,
+    TextField
+} from '@mui/material';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import SendIcon from '@mui/icons-material/Send';
@@ -60,56 +66,71 @@ const Chat = (props) => {
     return (
         <Fragment>
             <Paper
-            elevation={8}
-            variant="outlined"
-            sx={{
-                width: '100%',
-                height: 500,
-                padding: 2,
-                mt: 4,
-                mb: 4,
-                overflow: 'auto',
-                display: 'flex',
-                flexDirection: 'column'
-            }}
-            >
-            <div style={{ flex: 1, overflow: 'auto' }} ref={paperRef}>
-                <Mensajes mensajes={mensajes} usuario_id={usuario_id} />
-            </div>
-
-            <Grid
-                container
-                spacing={1}
-                pt={1}
+                elevation={8}
+                variant="outlined"
                 sx={{
-                    padding: 2
+                    width: '100%',
+                    height: 500,
+                    padding: 2,
+                    mt: 4,
+                    mb: 4,
+                    overflow: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column'
                 }}
             >
-                <TextField
-                    type="search"
-                    label="Escribe un mensaje"
-                    variant="outlined"
-                    fullWidth
-                    value={mensaje_input}
-                    onChange={handleChange}
-                    onKeyPress={(e) => {
-                        if (e.key === 'Enter') {
-                            handleSubmit(e);
-                        }
+                <div style={{ flex: 1, overflow: 'auto' }} ref={paperRef}>
+                    <Mensajes mensajes={mensajes} usuario_id={usuario_id} />
+                </div>
+
+                <Grid
+                    container
+                    spacing={1}
+                    pt={1}
+                    sx={{
+                        padding: 2
                     }}
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <SendIcon
-                                    color="primary"
-                                    onClick={handleSubmit}
-                                />
-                            </InputAdornment>
-                        )
-                    }}
-                />
-            </Grid>
-        </Paper>
+                >
+                    <TextField
+                        type="text"
+                        label="Escribe un mensaje"
+                        variant="outlined"
+                        fullWidth
+                        value={mensaje_input}
+                        onChange={handleChange}
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                                handleSubmit(e);
+                            }
+                        }}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        onClick={handleSubmit}
+                                        color="primary"
+                                        size="large"
+                                        edge="end"
+                                        sx={{
+                                            ':hover': {
+                                                backgroundColor: 'primary.main',
+                                                color: 'white',
+                                                transform: 'scale(1.1)',
+                                                transition: 'all 0.3s ease',
+                                                cursor: 'pointer',
+                                                padding: 1,
+                                                margin: '0px 2px 0px 2px'
+                                            }
+                                        }}
+                                    >
+                                        <SendIcon />
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+                </Grid>
+            </Paper>
         </Fragment>
     );
 };
