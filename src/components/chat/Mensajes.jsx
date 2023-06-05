@@ -7,6 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import MensajesStyle from './MensajesStyle.js';
 import AvatarIcon from '../AvatarIcon.jsx';
 import { Fragment } from 'react';
+import { red } from '@mui/material/colors';
 
 const Mensajes = withStyles(MensajesStyle)((props) => {
     const { classes, mensajes, usuario_id } = props;
@@ -66,6 +67,22 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
                                         classes[`${sidePorUsuario(mensaje)}Row`]
                                     }
                                 >
+                                    <Grid item xs={12}>
+                                        <Typography
+                                            variant="body2"
+                                            className={cx(
+                                                classes[
+                                                    `${sidePorUsuario(
+                                                        mensaje
+                                                    )}Name`
+                                                ]
+                                            )}
+                                        >
+                                            {mensaje.Usuario.nombre.trim() +
+                                                ' ' +
+                                                mensaje.Usuario.apellido.trim()}
+                                        </Typography>
+                                    </Grid>
                                     <Grid item xs={1}>
                                         <AvatarIcon
                                             info={[
@@ -75,6 +92,7 @@ const Mensajes = withStyles(MensajesStyle)((props) => {
                                             ]}
                                         />
                                     </Grid>
+
                                     <Grid item xs={11}>
                                         <Typography
                                             align={'left'}

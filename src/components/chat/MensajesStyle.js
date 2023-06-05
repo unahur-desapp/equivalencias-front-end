@@ -1,7 +1,10 @@
+import { cyan } from '@mui/material/colors';
+
 export default ({ palette, spacing }) => {
     const radius = spacing(2.5);
     const size = spacing(4);
     const rightBgColor = palette.primary.main;
+
     // if you want the same as facebook messenger, use this color '#09f'
     return {
         avatar: {
@@ -14,6 +17,12 @@ export default ({ palette, spacing }) => {
         leftTime: {
             textAlign: 'left',
             paddingLeft: 4
+        },
+        leftName: {
+            textAlign: 'left',
+            paddingLeft: 55,
+            color: cyan[600],
+            fontWeight: 'bold'
         },
         rightRow: {
             textAlign: 'right',
