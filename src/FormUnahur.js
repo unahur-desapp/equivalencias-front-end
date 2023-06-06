@@ -105,12 +105,17 @@ const FormUnahur = ({
                         >
                             <StandardInput
                                 required
-                                //name={`materiaUnahur-${materia.key}`}
+                                name={materia.materiaUnahur}
                                 size="small"
                                 label="Materia solicitada UNAHUR"
                                 variant="outlined"
-                                //value={formValue[`materiaUnahur-${materia.key}`] ||''              }
-                                //onChange={handleChange}
+                                value={materia.materiaUnahur || ''}
+                                onChange={(event) =>
+                                    handleChangeMateriaUnaHur(
+                                        event,
+                                        materia.key
+                                    )
+                                }
                             />
                         </Grid>
                     );

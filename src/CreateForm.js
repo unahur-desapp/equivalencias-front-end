@@ -32,11 +32,13 @@ const CreateForm = () => {
 
     const [materiasUnahur, setMateriasUnahur] = useState([
         {
-            key: '',
+            key: nanoid(),
             materiaUnahur: '',
             estado: 'pendiente'
         }
     ]);
+
+    //Cambiarlo a un string que no sea un obj.
     const [formValue, setformValue] = useState({
         carreraUnahur: ''
     });
@@ -105,15 +107,18 @@ const CreateForm = () => {
             }
         ]);
     };
+    //MateriasUnahur
+    const handleChangeMateriaUnaHur = (event, key) => {
+        const copiaMaterias = [].concat(materiasUnahur);
+        const { value } = event.target;
 
-    const handleChangeMateriaUnaHur = (event) => {
-        const { name, value } = event.target;
-        setformValue((carrera) => ({
-            ...carrera,
-            [name]: value
-        }));
+        copiaMaterias
+            .filter((mat) => mat.key === key)
+            .map((mat) => (mat.materiaUnahur = value));
+        setMateriasUnahur(copiaMaterias);
+        console.log('Materias Unahur: ', materiasUnahur);
     };
-
+    //Carrera
     const handleChangeCarrera = (event) => {
         const { name, value } = event.target;
         setformValue((carrera) => ({
@@ -121,7 +126,7 @@ const CreateForm = () => {
             [name]: value
         }));
     };
-
+    //MateriasEquivalencias
     const handleChangeArray = (event, key) => {
         const indiceMateria = materias.findIndex((e) => e.key === key);
         console.log(materias);
