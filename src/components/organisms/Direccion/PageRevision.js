@@ -294,160 +294,143 @@ const PageRevision = () => {
                             </Paper>
 
                             {/* Universidad Unahur */}
-                            <Grid
-                                item
-                                container
-                                direction="row"
-                                sm={12}
-                                padding={{
-                                    xs: '20px 30px',
-                                    sm: '20px 60px'
-                                }}
-                                sx={{
-                                    height: 'auto',
-                                    borderRadius: '10px 10px 0px 0px',
-                                    borderBottom: '1px solid #dadce0'
-                                }}
-                            >
-                                <Grid container>
-                                    <Grid
-                                        item
-                                        container
-                                        lg={9}
-                                        sx={{
-                                            paddingRight: '12px',
-                                            justifyContent: 'start'
-                                        }}
-                                    >
-                                        <Titulos titulolabel>
+                            <Grid>
+                                <Box
+                                    container
+                                    sx={{
+                                        margin: '20px 0px 20px 60px',
+                                        flexGrow: 1
+                                    }}
+                                    display="flex"
+                                >
+                                    <Grid container>
+                                        <Titulos item titulolabel>
                                             Materias solicitadas de la UNAHUR
                                         </Titulos>
                                     </Grid>
                                     <Grid
-                                        item
                                         container
-                                        lg={3}
                                         sx={{
                                             paddingRight: '12px',
-                                            justifyContent: 'end'
+                                            justifyContent: 'end',
+                                            marginRight: '10%'
                                         }}
                                     >
-                                        <Titulos titulolabel>Estado</Titulos>
+                                        <Titulos item titulolabel>
+                                            Estado
+                                        </Titulos>
                                     </Grid>
-                                </Grid>
+                                </Box>
 
                                 <Grid
-                                    item
                                     container
                                     overflow="auto"
-                                    maxHeight={120}
+                                    maxHeight={150}
+                                    padding={{
+                                        xs: '20px 30px',
+                                        sm: '20px 60px'
+                                    }}
                                 >
-                                    <Grid item container>
-                                        {equiv.materiasSolicitadas !==
-                                        undefined ? (
-                                            equiv.materiasSolicitadas.map(
-                                                (materia) => {
-                                                    return (
-                                                        <>
-                                                            <Grid
-                                                                item
-                                                                container
-                                                                direction="column"
-                                                                alignItems="flex-start"
-                                                                md={12}
-                                                                lg={9}
-                                                                sx={{
-                                                                    marginTop:
-                                                                        '1px'
+                                    {equiv.materiasSolicitadas !== undefined ? (
+                                        equiv.materiasSolicitadas.map(
+                                            (materia) => {
+                                                return (
+                                                    <>
+                                                        <Grid
+                                                            item
+                                                            container
+                                                            direction="column"
+                                                            alignItems="flex-start"
+                                                            md={12}
+                                                            lg={9}
+                                                            sx={{
+                                                                marginTop: '1px'
+                                                            }}
+                                                        >
+                                                            <StandardInput
+                                                                inputFocused
+                                                                name="materiaSolicitada"
+                                                                value={
+                                                                    materia.nombre
+                                                                }
+                                                                variant="outlined"
+                                                                focused={true}
+                                                                size="small"
+                                                                InputProps={{
+                                                                    readOnly: true
                                                                 }}
-                                                            >
-                                                                <StandardInput
-                                                                    inputFocused
-                                                                    name="materiaSolicitada"
-                                                                    value={
-                                                                        materia.nombre
-                                                                    }
-                                                                    variant="outlined"
-                                                                    focused={
-                                                                        true
-                                                                    }
-                                                                    size="small"
-                                                                    InputProps={{
-                                                                        readOnly: true
-                                                                    }}
-                                                                />
-                                                            </Grid>
+                                                            />
+                                                        </Grid>
 
-                                                            <Grid
-                                                                item
-                                                                container
-                                                                lg={3}
-                                                                sx={{
-                                                                    marginTop:
-                                                                        '15px',
-                                                                    paddingRight:
-                                                                        '12px',
-                                                                    justifyContent:
-                                                                        'end'
-                                                                }}
-                                                            >
-                                                                <Box>
-                                                                    <FormControl
-                                                                        fullWidth
+                                                        <Grid
+                                                            item
+                                                            container
+                                                            lg={3}
+                                                            sx={{
+                                                                marginTop:
+                                                                    '15px',
+                                                                paddingRight:
+                                                                    '12px',
+                                                                justifyContent:
+                                                                    'end'
+                                                            }}
+                                                        >
+                                                            <Box>
+                                                                <FormControl
+                                                                    fullWidth
+                                                                >
+                                                                    <InputLabel id="demo-simple-select-label"></InputLabel>
+                                                                    <Select
+                                                                        labelId="demo-simple-select-label"
+                                                                        id="demo-simple-select"
+                                                                        onChange={(
+                                                                            event
+                                                                        ) =>
+                                                                            cambiarEstado(
+                                                                                event,
+                                                                                materia.id
+                                                                            )
+                                                                        }
+                                                                        defaultValue="pendiente"
+                                                                        value={
+                                                                            materia.estado
+                                                                        }
+                                                                        size="small"
+                                                                        sx={{
+                                                                            width:
+                                                                                '145px', // Ajusta el ancho según tus necesidades
+                                                                            backgroundColor:
+                                                                                materia.estado ===
+                                                                                'aceptado'
+                                                                                    ? '#009673'
+                                                                                    : materia.estado ===
+                                                                                      'rechazado'
+                                                                                    ? '#DB0505'
+                                                                                    : '#2A74E4',
+                                                                            color:
+                                                                                '#FFFFFF'
+                                                                        }}
                                                                     >
-                                                                        <InputLabel id="demo-simple-select-label"></InputLabel>
-                                                                        <Select
-                                                                            labelId="demo-simple-select-label"
-                                                                            id="demo-simple-select"
-                                                                            onChange={(
-                                                                                event
-                                                                            ) =>
-                                                                                cambiarEstado(
-                                                                                    event,
-                                                                                    materia.id
-                                                                                )
-                                                                            }
-                                                                            defaultValue="pendiente"
-                                                                            value={
-                                                                                materia.estado
-                                                                            }
-                                                                            size="small"
-                                                                            sx={{
-                                                                                width:
-                                                                                    '145px', // Ajusta el ancho según tus necesidades
-                                                                                backgroundColor:
-                                                                                    materia.estado ===
-                                                                                    'aceptado'
-                                                                                        ? '#009673'
-                                                                                        : materia.estado ===
-                                                                                          'rechazado'
-                                                                                        ? '#DB0505'
-                                                                                        : '#2A74E4',
-                                                                                color:
-                                                                                    '#FFFFFF'
-                                                                            }}
-                                                                        >
-                                                                            <MenuItem value="aceptado">
-                                                                                Aceptado
-                                                                            </MenuItem>
-                                                                            <MenuItem value="pendiente">
-                                                                                Pendiente
-                                                                            </MenuItem>
-                                                                            <MenuItem value="rechazado">
-                                                                                Rechazado
-                                                                            </MenuItem>
-                                                                        </Select>
-                                                                    </FormControl>
-                                                                </Box>
-                                                            </Grid>
-                                                        </>
-                                                    );
-                                                }
-                                            )
-                                        ) : (
-                                            <></>
-                                        )}
-                                    </Grid>
+                                                                        <MenuItem value="aceptado">
+                                                                            Aceptado
+                                                                        </MenuItem>
+                                                                        <MenuItem value="pendiente">
+                                                                            Pendiente
+                                                                        </MenuItem>
+                                                                        <MenuItem value="rechazado">
+                                                                            Rechazado
+                                                                        </MenuItem>
+                                                                    </Select>
+                                                                </FormControl>
+                                                            </Box>
+                                                        </Grid>
+                                                    </>
+                                                );
+                                            }
+                                        )
+                                    ) : (
+                                        <></>
+                                    )}
                                 </Grid>
                             </Grid>
 
@@ -457,6 +440,7 @@ const PageRevision = () => {
                                     sx={{
                                         marginTop: '35px',
                                         marginLeft: '75px',
+                                        marginBottom: '20px',
                                         flexGrow: 1
                                     }}
                                 >
