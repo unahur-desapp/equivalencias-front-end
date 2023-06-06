@@ -445,7 +445,7 @@ const CreateForm = () => {
                         formValue={formValue}
                         carreras={carreras}
                         materias={materiasUnahur}
-                        handleChangeCarrera={handleChangeCarrera}
+                        handleChange={handleChangeCarrera}
                         handleChangeMateriaUnaHur={handleChangeMateriaUnaHur}
                     />
                     {/* { <Grid
