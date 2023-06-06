@@ -90,6 +90,7 @@ const PageRevision = () => {
                 observaciones: equivalenciasResponse.observaciones
             };
             setEquiv(equivData);
+            console.log(equiv);
 
             if (equivalenciasResponse.Materias_solicitadas.length > 0) {
                 const materias = [];
@@ -136,7 +137,6 @@ const PageRevision = () => {
                 estado: materia.estado
             };
             if (equivalencia) {
-                console.log(equivalencia);
                 const response = await axios
                     .put(
                         `${config.apiUrl}/equivalencias/` + materia.id,
@@ -144,9 +144,8 @@ const PageRevision = () => {
                     )
                     .then((res) => {
                         try {
-                            console.log(res);
                             res.data.data;
-                            //window.location = '/direccion/solicitudes';
+                            window.location = '/direccion/solicitudes';
                         } catch (error) {
                             console.log(error);
                         }
@@ -385,7 +384,7 @@ const PageRevision = () => {
                                                                     paddingRight:
                                                                         '12px',
                                                                     justifyContent:
-                                                                        'end'
+                                                                        'center'
                                                                 }}
                                                             >
                                                                 <Box>
