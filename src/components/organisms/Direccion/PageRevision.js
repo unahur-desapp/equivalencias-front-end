@@ -136,7 +136,6 @@ const PageRevision = () => {
                 estado: materia.estado
             };
             if (equivalencia) {
-                console.log(equivalencia);
                 const response = await axios
                     .put(
                         `${config.apiUrl}/equivalencias/` + materia.id,
@@ -144,11 +143,10 @@ const PageRevision = () => {
                     )
                     .then((res) => {
                         try {
-                            console.log(res);
                             res.data.data;
-                            //window.location = '/direccion/solicitudes';
+                            window.location = '/direccion/solicitudes';
                         } catch (error) {
-                            console.log(error);
+                            console.error(error);
                         }
                     })
                     .catch(() => {});
