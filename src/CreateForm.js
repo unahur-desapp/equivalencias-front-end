@@ -41,9 +41,10 @@ const CreateForm = () => {
 
     const [materiasUnahur, setMateriasUnahur] = useState([
         {
-            key: nanoid(),
+            key: '',
             materiaUnahur: '',
-            carreraUnahur: '' // id de universidad
+            //carreraUnahur: '', // id de universidad
+            estado: 'pendiente'
         }
     ]);
     //Push de esto?
@@ -56,11 +57,12 @@ const CreateForm = () => {
     // 		cargaHorariaTotal: '',
     // 		notaAprobacion: ''
     // })
+    //Este forValue tendria que volar
 
     const [formValue, setformValue] = useState({
-        materiaSolicitada: '',
-        carreraUnahur: '',
-        estado: 'pendiente'
+        //materiaSolicitada: '',
+        carreraUnahur: ''
+        //estado: 'pendiente'
     });
 
     const notifyEnviarSinDatos = () => {
@@ -121,13 +123,15 @@ const CreateForm = () => {
 
         console.log('Agregar Materias: ', materias);
     };
+
+    // Funcion para agregar materia una hur
     const addMateriaUnahur = () => {
         setMateriasUnahur((materiasUnahur) => [
             ...materiasUnahur,
             {
                 key: nanoid(),
                 materiaUnahur: '',
-                universidad: 'Universidad Nacional de Hurlingham',
+                //universidad: 'Universidad Nacional de Hurlingham',
                 estado: 'pendiente'
             }
         ]);
@@ -142,17 +146,33 @@ const CreateForm = () => {
     //         [name]: value
     //     }));
     // };
-    const handleChange = (event) => {
+
+    //Handle change para materias una hur
+    const handleChangeMateriaUnaHur = (event) => {
         const { name, value } = event.target;
-        setformValue((materiaUnahur) => ({
-            ...materiaUnahur,
+        setformValue((carrera) => ({
+            ...carrera,
             [name]: value
         }));
-        console.log(event.target.key);
-        console.log(event.target.value);
-        console.log(event.target.name);
-        console.log(formValue);
+        //console.log(event.target.key);
+        //console.log(event.target.value);
+        //console.log(event.target.name);
+        //console.log(formValue);
     };
+
+    //Handle change carrera
+    const handleChangeCarrera = (event) => {
+        const { name, value } = event.target;
+        setformValue((carrera) => ({
+            ...carrera,
+            [name]: value
+        }));
+        //console.log(event.target.key);
+        //console.log(event.target.value);
+        //console.log(event.target.name);
+        //console.log(formValue);
+    };
+    //Handle change para materias de equivalencias
 
     const handleChangeArray = (event, key) => {
         // const materia = materias.find(e => e.key === key)
@@ -425,7 +445,8 @@ const CreateForm = () => {
                         formValue={formValue}
                         carreras={carreras}
                         materias={materiasUnahur}
-                        handleChange={handleChange}
+                        handleChangeCarrera={handleChangeCarrera}
+                        handleChangeMateriaUnaHur={handleChangeMateriaUnaHur}
                     />
                     {/* { <Grid
                             item

@@ -8,7 +8,13 @@ import {
 } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
 
-const FormUnahur = ({ formValue, carreras, materias, handleChange }) => {
+const FormUnahur = ({
+    formValue,
+    carreras,
+    materias,
+    handleChangeCarrera,
+    handleChangeMateriaUnaHur
+}) => {
     //const [inputValues, setInputValues] = useState({});
 
     // Función para manejar el cambio en cada input individual
@@ -65,7 +71,7 @@ const FormUnahur = ({ formValue, carreras, materias, handleChange }) => {
                     <AutocompleteInput
                         size="small"
                         variant="outlined"
-                        onSelect={handleChange}
+                        onSelect={handleChangeCarrera}
                         disablePortal
                         options={carreras}
                         renderInput={(params) => (
@@ -74,7 +80,7 @@ const FormUnahur = ({ formValue, carreras, materias, handleChange }) => {
                                 {...params}
                                 label="Carreras UNAHUR"
                                 name="carreraUnahur"
-                                value={formValue.carreraUnahur || ''}
+                                value={'' || formValue.carreraUnahur}
                             />
                         )}
                     />
@@ -99,15 +105,12 @@ const FormUnahur = ({ formValue, carreras, materias, handleChange }) => {
                         >
                             <StandardInput
                                 required
-                                name={`materiaUnahur-${materia.key}`}
+                                //name={`materiaUnahur-${materia.key}`}
                                 size="small"
                                 label="Materia solicitada UNAHUR"
                                 variant="outlined"
-                                value={
-                                    formValue[`materiaUnahur-${materia.key}`] ||
-                                    ''
-                                }
-                                onChange={handleChange}
+                                //value={formValue[`materiaUnahur-${materia.key}`] ||''              }
+                                //onChange={handleChange}
                             />
                         </Grid>
                     );
