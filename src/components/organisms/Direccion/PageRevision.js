@@ -24,7 +24,8 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 
-const PageRevision = () => {
+const PageRevision = ({ rol }) => {
+    console.log(rol);
     const { id } = useParams();
     const [user, setUser] = useState([]);
     const [equiv, setEquiv] = useState({});
@@ -381,6 +382,13 @@ const PageRevision = () => {
                                                                     <Select
                                                                         labelId="demo-simple-select-label"
                                                                         id="demo-simple-select"
+                                                                        inputProps={{
+                                                                            readOnly:
+                                                                                rol ===
+                                                                                'alumno'
+                                                                                    ? true
+                                                                                    : false
+                                                                        }}
                                                                         onChange={(
                                                                             event
                                                                         ) =>
@@ -524,13 +532,6 @@ const PageRevision = () => {
                                                                             '6px'
                                                                     }}
                                                                 >
-                                                                    {/* nota: obtainedEquivalenciaData.Materias_aprobadas[0].nota,
-                                    carga_horaria: obtainedEquivalenciaData.Materias_aprobadas[0].carga_horaria,
-                                    año_aprobacion: obtainedEquivalenciaData.Materias_aprobadas[0].año_aprobacion,
-                                    nombre_materia: obtainedEquivalenciaData.Materias_aprobadas[0].nombre_materia,
-                                    // UniversidadOrigenId: item.universidadOrigen
-                                    certificado: obtainedEquivalenciaData.Materias_aprobadas[0].certificado */}
-
                                                                     <StandardInput
                                                                         inputFocused
                                                                         label="Universidad de Origen"
@@ -690,8 +691,6 @@ const PageRevision = () => {
                                                                         </Grid>
                                                                     </Grid>
                                                                 </Grid>
-
-                                                                {/* <AgregarMateriaUniOrigen /> */}
                                                             </Grid>
                                                         </Grid>
                                                     </>
