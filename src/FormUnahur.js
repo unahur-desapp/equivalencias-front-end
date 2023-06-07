@@ -17,7 +17,7 @@ const FormUnahur = ({
     materias,
     handleChangeCarrera,
     handleChangeMateriaUnaHur,
-    deleteMatUnaHur
+    handledelete
 }) => {
     return (
         <React.Fragment>
@@ -120,7 +120,7 @@ const FormUnahur = ({
                             <IconButton
                                 sx={{ color: '#5f6368' }}
                                 aria-label="upload picture"
-                                onClick={deleteMatUnaHur}
+                                onClick={handledelete}
                             >
                                 <DeleteOutlineOutlinedIcon />
                             </IconButton>
