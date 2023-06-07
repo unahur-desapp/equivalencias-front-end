@@ -18,6 +18,69 @@ import Button from '@mui/material/Button';
 import FormUnahur from './FormUnahur';
 
 const CreateForm = () => {
+    const carreras = [
+        {
+            label: 'Tecnicatura en Electromovilidad',
+            instituto: 'Instituto de Tecnología e Ingeniería'
+        },
+        {
+            label: 'Tecnicatura en Inteligencia Artificial',
+            instituto: 'Instituto de Tecnología e Ingeniería'
+        },
+        {
+            label: 'Tecnicatura en Programación',
+            instituto: 'Instituto de Tecnología e Ingeniería'
+        },
+        {
+            label: 'Tecnicatura en Programación de Videojuegos',
+            instituto: 'Instituto de Tecnología e Ingeniería'
+        },
+        {
+            label: 'Tecnicatura en Ciencias del Ambiente',
+            instituto: 'Instituto de Biotecnología'
+        },
+        {
+            label: 'Tecnicatura en Laboratorios',
+            instituto: 'Instituto de Biotecnología'
+        },
+        {
+            label: 'Licenciatura en Biotecnología',
+            instituto: 'Instituto de Biotecnología'
+        },
+        {
+            label: 'Licenciatura en Gestión Ambiental',
+            instituto: 'Instituto de Biotecnología'
+        },
+        {
+            label: 'Enfermería Universitaria',
+            instituto: 'Instituto de Salud Comunitaria'
+        },
+        {
+            label: 'Licenciatura en Enfermería',
+            instituto: 'Instituto de Salud Comunitaria'
+        },
+        {
+            label: 'Licenciatura en Gestión Ambiental',
+            instituto: 'Instituto de Salud Comunitaria'
+        },
+        {
+            label: 'Licenciatura en Gestión Ambiental',
+            instituto: 'Instituto de Salud Comunitaria'
+        },
+        {
+            label: 'Licenciatura en Kinesiología y Fisiatría',
+            instituto: 'Instituto de Educación'
+        },
+        {
+            label: 'Licenciatura en Obstetricia',
+            instituto: 'Instituto de Educación'
+        },
+        { label: 'Profesorado de Inglés', instituto: 'Instituto de Educación' },
+        { label: 'Profesorado de Letras', instituto: 'Instituto de Educación' }
+    ];
+
+    const usuarioId = parseInt(JSON.parse(localStorage.getItem('id')));
+
     const [materias, setMaterias] = useState([
         {
             key: nanoid(),
@@ -80,6 +143,7 @@ const CreateForm = () => {
         });
     };
 
+    //Materias boton agregar
     const addMateria = () => {
         setMaterias((materias) => [
             ...materias,
@@ -94,9 +158,10 @@ const CreateForm = () => {
             }
         ]);
 
-        console.log('Agregar Materias: ', materias);
+        //console.log('Agregar Materias: ', materias);
     };
 
+    //MateriasUnahur funtions
     const addMateriaUnahur = () => {
         setMateriasUnahur((materiasUnahur) => [
             ...materiasUnahur,
@@ -107,7 +172,7 @@ const CreateForm = () => {
             }
         ]);
     };
-    //MateriasUnahur
+
     const handleChangeMateriaUnaHur = (event, key) => {
         const copiaMaterias = [].concat(materiasUnahur);
         const { value } = event.target;
@@ -116,8 +181,9 @@ const CreateForm = () => {
             .filter((mat) => mat.key === key)
             .map((mat) => (mat.materiaUnahur = value));
         setMateriasUnahur(copiaMaterias);
-        console.log('Materias Unahur: ', materiasUnahur);
+        //console.log("Materias Unahur: ",materiasUnahur)
     };
+
     //Carrera
     const handleChangeCarrera = (event) => {
         const { name, value } = event.target;
@@ -126,7 +192,8 @@ const CreateForm = () => {
             [name]: value
         }));
     };
-    //MateriasEquivalencias
+
+    //MateriasEquivalencias functions
     const handleChangeArray = (event, key) => {
         const indiceMateria = materias.findIndex((e) => e.key === key);
         console.log(materias);
@@ -144,10 +211,18 @@ const CreateForm = () => {
             ];
         });
     };
-    console.log('Materias aprobadas: ', materias);
+    //console.log('Materias aprobadas: ', materias);
+    const handleClickOpen = (materia) => {
+        setMateriaEliminar(materia);
+    };
 
-    const usuarioId = parseInt(JSON.parse(localStorage.getItem('id')));
+    const handleClose = () => {
+        setMateriaEliminar(null);
+    };
 
+    const [materiaEliminar, setMateriaEliminar] = useState(null);
+
+    //Summit function
     const handleSubmit = async () => {
         let equivalencia;
 
@@ -172,7 +247,7 @@ const CreateForm = () => {
             };
         }
 
-        console.log('Equivalencia:', equivalencia);
+        //console.log('Equivalencia:', equivalencia);
 
         const response = await axios
             .post(`${config.apiUrl}/equivalencias/createx3`, equivalencia, {
@@ -194,16 +269,6 @@ const CreateForm = () => {
             });
     };
 
-    const [materiaEliminar, setMateriaEliminar] = React.useState(null);
-
-    const handleClickOpen = (materia) => {
-        setMateriaEliminar(materia);
-    };
-
-    const handleClose = () => {
-        setMateriaEliminar(null);
-    };
-
     return (
         <>
             <GridTop
@@ -212,12 +277,8 @@ const CreateForm = () => {
                 blanco
                 xs={11.5}
                 md={7}
-                marginTop={{
-                    xs: '30px'
-                }}
-                sx={{
-                    height: 'auto'
-                }}
+                marginTop={{ xs: '30px' }}
+                sx={{ height: 'auto' }}
             >
                 <Grid
                     item
@@ -241,6 +302,13 @@ const CreateForm = () => {
                         materias={materiasUnahur}
                         handleChange={handleChangeCarrera}
                         handleChangeMateriaUnaHur={handleChangeMateriaUnaHur}
+                        handledelete={() => {
+                            if (materiasUnahur.length > 1) {
+                                handleClickOpen(materiasUnahur);
+                            } else {
+                                notifyBorrarMateria();
+                            }
+                        }}
                     />
                 </Grid>
 
@@ -258,7 +326,7 @@ const CreateForm = () => {
                         buttoncontainedaddmateria
                         variant="outlined"
                         sx={{ margin: '10px 0px' }}
-                        onClick={addMateriaUnahur} //Modificar onClick para que agregue otro grid de agregar materia
+                        onClick={addMateriaUnahur}
                     >
                         Agregar materia
                     </BotonMUI>
@@ -272,8 +340,7 @@ const CreateForm = () => {
                                 key2={materia.key}
                                 key={materia.key}
                                 handledelete={() => {
-                                    console.log(formValue);
-
+                                    //console.log(formValue);
                                     if (materias.length > 1) {
                                         handleClickOpen(materia);
                                     } else {
@@ -352,9 +419,5 @@ const CreateForm = () => {
         </>
     );
 };
-
-const carreras = [
-    { label: 'Informática', instituto: 'Instituto de Tecnología e Ingeniería' }
-];
 
 export { CreateForm };

@@ -1,24 +1,24 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
 import {
     StandardInput,
     AutocompleteInput
 } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
+import { Icon, Button, InputAdornment } from '@mui/material';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import IconButton from '@mui/material/IconButton';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 const FormUnahur = ({
     formValue,
     carreras,
     materias,
     handleChangeCarrera,
-    handleChangeMateriaUnaHur
+    handleChangeMateriaUnaHur,
+    deleteMatUnaHur
 }) => {
-    //const [inputValues, setInputValues] = useState({});
-
-    // Función para manejar el cambio en cada input individual
-
     return (
         <React.Fragment>
             <Grid
@@ -26,8 +26,7 @@ const FormUnahur = ({
                 container
                 direction="column"
                 alignItems="flex-start"
-                md={12}
-                lg={5.8}
+                fullwide
                 sx={{
                     marginTop: '6px'
                 }}
@@ -63,9 +62,9 @@ const FormUnahur = ({
                     item
                     container
                     md={12}
-                    lg={5.8}
+                    lg={6}
                     sx={{
-                        marginTop: '6px'
+                        marginTop: '1rem'
                     }}
                 >
                     <AutocompleteInput
@@ -80,7 +79,7 @@ const FormUnahur = ({
                                 {...params}
                                 label="Carreras UNAHUR"
                                 name="carreraUnahur"
-                                value={'' || formValue.carreraUnahur}
+                                value={'' || formValue.carreras}
                             />
                         )}
                     />
@@ -98,12 +97,13 @@ const FormUnahur = ({
                             direction="row"
                             alignItems="flex-start"
                             xs={5.5}
+                            fullwide
                             sx={{
                                 marginTop: '6px'
                             }}
                             key={materia.key}
                         >
-                            <StandardInput
+                            <TextField
                                 required
                                 name={materia.materiaUnahur}
                                 size="small"
@@ -117,38 +117,16 @@ const FormUnahur = ({
                                     )
                                 }
                             />
+                            <IconButton
+                                sx={{ color: '#5f6368' }}
+                                aria-label="upload picture"
+                                onClick={deleteMatUnaHur}
+                            >
+                                <DeleteOutlineOutlinedIcon />
+                            </IconButton>
                         </Grid>
                     );
                 })}
-                {/* {materias.map((materia) => {
-                    //    console.log(materia.key)
-                    return (
-                        <Grid
-                            item
-                            container
-                            direction="row"
-                            alignItems="flex-start"
-                            // md={6}
-                            //lg={5.8}
-                            xs={5.5}
-                            sx={{
-                                marginTop: '6px'
-                            }}
-                            key2={materia.key}
-                            key={materia.key}
-                        >
-                            <StandardInput
-                                required
-                                name="materiaSolicitada"
-                                size="small"
-                                label="Materia solicitada UNAHUR"
-                                variant="outlined"
-                                value={formValue.materiaSolicitada || ''}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                    );
-                })} */}
             </Grid>
         </React.Fragment>
     );
