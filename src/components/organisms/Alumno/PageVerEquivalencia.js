@@ -1,4 +1,4 @@
-import { Grid, TextareaAutosize } from '@mui/material';
+import { Grid, Button } from '@mui/material';
 import React, { useState, useMemo, useEffect, Fragment } from 'react';
 import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
@@ -75,6 +75,11 @@ const PageVerEquivalencia = () => {
     const [equiv, setEquiv] = useState({});
     const [alignment, setAlignment] = useState('web');
     const [formValue, setFormValue] = useState({});
+    const [mostrarChat, setMostrarChat] = useState(false);
+
+    const handleMostrarChat = () => {
+        setMostrarChat(!mostrarChat);
+    };
 
     useEffect(() => {
         const fetchUsuarioData = async () => {
@@ -780,23 +785,30 @@ const PageVerEquivalencia = () => {
                                 borderRadius: '10px 10px 0px 0px'
                             }}
                         >
+                            <Button
+                                onClick={handleMostrarChat}
+                                variant="contained"
+                                sx={{
+                                    backgroundColor: '#009673',
+                                    ':hover': { backgroundColor: '#009674' }
+                                }}
+                            >
+                                {mostrarChat ? 'Ocultar chat' : 'Mostrar chat'}
+                            </Button>
+
                             <Grid
                                 item
                                 container
-                                direction="column"
-                                alignItems="flex-start"
-                                md={12}
-                                lg={5.8}
+                                direction="row"
+                                justifyContent="flex-start"
+                                alignItems="center"
+                                sm={12}
                                 sx={{
-                                    marginTop: '6px',
-                                    marginBottom: '16px'
+                                    marginTop: '20px'
                                 }}
                             >
-                                <Titulos titulolabel component="h2">
-                                    Respuesta
-                                </Titulos>
+                                {mostrarChat ? <Chat id={id} /> : <></>}
                             </Grid>
-                            <Chat id={id} />
 
                             {/* <Grid
                             item
