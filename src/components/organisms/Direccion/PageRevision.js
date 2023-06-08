@@ -24,6 +24,7 @@ import Select from '@mui/material/Select';
 import { Chat } from '../../molecules/Chat';
 import { Item } from '../../atoms/Item/Item';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const PageRevision = ({ rol }) => {
     const { id } = useParams();
@@ -128,6 +129,23 @@ const PageRevision = ({ rol }) => {
         }));
     };
 
+    const notifyExito = () => {
+        toast.success('Equivalencia modificada con éxito', {
+            containerId: 'home',
+            position: 'bottom-left',
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined
+        });
+        // Esperar 5 segundos
+        setTimeout(() => {
+            window.location = '/direccion/solicitudes';
+        }, 1000);
+    };
+
     // Modificar
     const handleSubmit = async () => {
         // TODO: Las equivalencias se tienen que cambiar de a varias, no de a una sola
@@ -152,15 +170,22 @@ const PageRevision = ({ rol }) => {
             }
         });
         setTimeout(async () => {
+            let state = '';
             if (equiv.materiasSolicitadas.length > 0) {
-                // Logica para saber que porcentaje de aceptadas tiene
-                const aceptadas = equiv.materiasSolicitadas.filter(
-                    (materia) => materia.estado === 'aceptado'
+                const pendientes = equiv.materiasSolicitadas.filter(
+                    (materia) => materia.estado === 'pendiente'
                 );
-                const porcentaje =
-                    (aceptadas.length * 100) / equiv.materiasSolicitadas.length;
+                if (pendientes.length === 0) {
+                    state = 'Cerrado';
+                } else if (
+                    pendientes.length === equiv.materiasSolicitadas.length
+                ) {
+                    state = 'Pendiente';
+                } else {
+                    state = 'Abierto';
+                }
                 const solicitud = {
-                    estado: porcentaje >= 50 ? 'Aceptado' : 'Rechazado',
+                    estado: state,
                     observaciones: formValue.observaciones
                 };
                 const response = await axios
@@ -168,16 +193,16 @@ const PageRevision = ({ rol }) => {
                     .then((res) => {
                         try {
                             res.data.data;
-                            //window.location = '/direccion/solicitudes';
+                            notifyExito();
                         } catch (error) {
                             console.error(error);
                         }
                     })
                     .catch(() => {});
             } else {
-                //window.location = '/direccion/solicitudes';
+                notifyExito();
             }
-        }, 3000);
+        }, 1000);
     };
 
     return (
