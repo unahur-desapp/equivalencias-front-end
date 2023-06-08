@@ -1,4 +1,4 @@
-import { Grid, Paper } from '@mui/material';
+import { Grid, MenuItem, Paper, Select } from '@mui/material';
 import { Header } from '../../../Header';
 import { GridTop } from '../../../GridTop';
 import { Titulos } from '../../atoms/Title/Titulos';
@@ -13,9 +13,19 @@ import SearchIcon from '@mui/icons-material/Search';
 import React from 'react';
 
 const PageDireccion = () => {
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState({
+        value: '',
+        column: 'dni'
+    });
     const iconSearch = React.createRef();
     const inputSearch = React.createRef();
+
+    const handleChange = (event) => {
+        setSearchQuery((prevState) => ({
+            ...prevState,
+            column: event.target.value
+        }));
+    };
 
     return (
         <Grid container direction="column">
@@ -113,7 +123,10 @@ const PageDireccion = () => {
                                 className="text"
                                 onInput={(e) => {
                                     e.preventDefault();
-                                    setSearchQuery(e.target.value);
+                                    setSearchQuery((prevState) => ({
+                                        ...prevState,
+                                        value: e.target.value
+                                    }));
                                 }}
                                 variant="outlined"
                                 placeholder="Buscar"
@@ -150,6 +163,18 @@ const PageDireccion = () => {
                                     <SearchIcon style={{ fill: 'blue' }} />
                                 </IconButton> */}
                         </Paper>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={searchQuery.column}
+                            label="Age"
+                            onChange={handleChange}
+                        >
+                            <MenuItem value="dni">DNI</MenuItem>
+                            <MenuItem value="solicitante">Solicitante</MenuItem>
+                            <MenuItem value="materia">Materia</MenuItem>
+                            <MenuItem value="estado">Estado</MenuItem>
+                        </Select>
                     </Grid>
                 </GridTop>
                 <GridTop

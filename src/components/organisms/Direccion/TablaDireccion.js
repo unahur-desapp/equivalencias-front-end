@@ -119,25 +119,66 @@ export default function StickyHeadTable({ searchQuery }) {
                         //arrayItem.Estado[0].status
                     )
                 );
-                const dataFilter = array.filter(
-                    (d) =>
-                        d.solicitante
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase()) +
-                        d.dni
-                            .toString()
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase()) +
-                        d.estado
-                            .toString()
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase()) +
-                        d.materia
-                            .toString()
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase())
-                );
-
+                let dataFilter = array;
+                switch (searchQuery.column) {
+                    case 'dni':
+                        dataFilter = array.filter((d) =>
+                            d.dni
+                                .toString()
+                                .toLowerCase()
+                                .includes(searchQuery.value.toLowerCase())
+                        );
+                        console.log(
+                            'entro a dni',
+                            searchQuery.value,
+                            dataFilter
+                        );
+                        break;
+                    case 'solicitante':
+                        dataFilter = array.filter((d) =>
+                            d.solicitante
+                                .toLowerCase()
+                                .includes(searchQuery.value.toLowerCase())
+                        );
+                        console.log(
+                            'entro a solicitante',
+                            searchQuery.value,
+                            dataFilter
+                        );
+                        break;
+                    case 'materia':
+                        dataFilter = array.filter((d) =>
+                            d.materia
+                                .toLowerCase()
+                                .includes(searchQuery.value.toLowerCase())
+                        );
+                        console.log(
+                            'entro a materia',
+                            searchQuery.value,
+                            dataFilter
+                        );
+                        break;
+                    case 'estado':
+                        dataFilter = array.filter((d) =>
+                            d.estado
+                                .toLowerCase()
+                                .includes(searchQuery.value.toLowerCase())
+                        );
+                        console.log(
+                            'entro a estado',
+                            searchQuery.value,
+                            dataFilter
+                        );
+                        break;
+                    default:
+                        dataFilter = array;
+                        console.log(
+                            'entro a default',
+                            searchQuery.value,
+                            dataFilter
+                        );
+                        break;
+                }
                 if (searchQuery) {
                     setRows(dataFilter);
                     setPage(0);
@@ -148,17 +189,6 @@ export default function StickyHeadTable({ searchQuery }) {
         };
         fetchEquivalenciaData();
     }, [searchQuery]);
-
-    // function search(arrayData, setRows) {
-    //     const dataFilter = arrayData.filter(
-    //         (d) => d.solicitante.includes(searchQuery)
-    //         // console.log(d.solicitante, "desde filter")
-    //     );
-
-    //     if (searchQuery) {
-    //         setRows(dataFilter);
-    //     }
-    // }
 
     return (
         <Paper
