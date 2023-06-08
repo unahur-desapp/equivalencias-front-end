@@ -48,6 +48,8 @@ const CreateForm = () => {
 
     const usuarioId = parseInt(JSON.parse(localStorage.getItem('id')));
 
+    const [handleEliminar, handlePerepe] = useState(false);
+
     const [materias, setMaterias] = useState([
         {
             key: nanoid(),
@@ -59,6 +61,8 @@ const CreateForm = () => {
             certificado: false
         }
     ]);
+
+    const [materiaEliminar, setMateriaEliminar] = useState(null);
 
     const [materiasUnahur, setMateriasUnahur] = useState([
         {
@@ -72,6 +76,10 @@ const CreateForm = () => {
     const [formValue, setformValue] = useState({
         carreraUnahur: ''
     });
+
+    const elegirMateriaABorrar = (bool) => {
+        handlePerepe((handleEliminar) => (handleEliminar = bool));
+    };
 
     const notifyEnviarSinDatos = () => {
         toast.error('Debe completar todos los campos del formulario', {
@@ -192,17 +200,16 @@ const CreateForm = () => {
         setMateriaEliminar(null);
     };
 
-    const [materiaEliminar, setMateriaEliminar] = useState(null);
-
     //Summit function
     const handleSubmit = async () => {
         let equivalencia;
 
         if (usuarioId) {
             equivalencia = {
+                //Ver que onda con el nombre si no se envia explota.
+                nombre: 'Equivalencia',
                 materiaSolicitada: materiasUnahur.map((item) => {
                     return {
-                        //id:item.key,
                         nombre: item.materiaUnahur,
                         estado: 'pendiente'
                     };
@@ -280,13 +287,9 @@ const CreateForm = () => {
                         materias={materiasUnahur}
                         handleChangeCarrera={handleChangeCarrera}
                         handleChangeMateriaUnaHur={handleChangeMateriaUnaHur}
-                        handledelete={() => {
-                            if (materiasUnahur.length > 1) {
-                                handleClickOpen(materiasUnahur);
-                            } else {
-                                notifyBorrarMateria();
-                            }
-                        }}
+                        handledelete={handleClickOpen}
+                        handledelete2={notifyBorrarMateria}
+                        handleEliminar={elegirMateriaABorrar}
                     />
                 </Grid>
 
@@ -318,8 +321,12 @@ const CreateForm = () => {
                                 key2={materia.key}
                                 key={materia.key}
                                 handledelete={() => {
-                                    //console.log(formValue);
+                                    console.log(
+                                        'Hadle eliminar en materia equivalencia',
+                                        handleEliminar
+                                    );
                                     if (materias.length > 1) {
+                                        elegirMateriaABorrar(true);
                                         handleClickOpen(materia);
                                     } else {
                                         notifyBorrarMateria();
@@ -349,14 +356,24 @@ const CreateForm = () => {
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            setMaterias(() =>
-                                                //Se eliminó el parámetro materias en setMaterias
-                                                materias.filter(
-                                                    (x) =>
-                                                        x.key !==
-                                                        materiaEliminar.key
-                                                )
-                                            );
+                                            if (handleEliminar) {
+                                                setMaterias(() =>
+                                                    //Se eliminó el parámetro materias en setMaterias
+                                                    materias.filter(
+                                                        (x) =>
+                                                            x.key !==
+                                                            materiaEliminar.key
+                                                    )
+                                                );
+                                            } else {
+                                                setMateriasUnahur(() =>
+                                                    materiasUnahur.filter(
+                                                        (x) =>
+                                                            x.key !==
+                                                            materiaEliminar.key
+                                                    )
+                                                );
+                                            }
                                             handleClose();
                                         }}
                                     >

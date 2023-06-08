@@ -1,13 +1,8 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import {
-    StandardInput,
-    AutocompleteInput
-} from './components/atoms/Input/InputMUI';
+import { AutocompleteInput } from './components/atoms/Input/InputMUI';
 import { Titulos } from './components/atoms/Title/Titulos';
-import { Icon, Button, InputAdornment } from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
@@ -17,7 +12,9 @@ const FormUnahur = ({
     materias,
     handleChangeCarrera,
     handleChangeMateriaUnaHur,
-    handledelete
+    handledelete,
+    handledelete2,
+    handleEliminar
 }) => {
     return (
         <React.Fragment>
@@ -121,7 +118,14 @@ const FormUnahur = ({
                             <IconButton
                                 sx={{ color: '#5f6368' }}
                                 aria-label="upload picture"
-                                onClick={handledelete}
+                                onClick={() => {
+                                    if (materias.length > 1) {
+                                        handleEliminar(false);
+                                        handledelete(materia);
+                                    } else {
+                                        handledelete2();
+                                    }
+                                }}
                             >
                                 <DeleteOutlineOutlinedIcon />
                             </IconButton>
