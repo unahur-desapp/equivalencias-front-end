@@ -40,6 +40,7 @@ const Chat = ({ observaciones }) => {
                 display="flex"
                 justifyContent="center"
                 paddingTop="5px"
+                backgroundColor="Azure"
             >
                 <Titulos
                     fontFamily="Roboto"
@@ -51,7 +52,7 @@ const Chat = ({ observaciones }) => {
                     Chat
                 </Titulos>
             </Grid>
-            <Grid item xs={12} height="80%" backgroundColor="#E8E8E8">
+            <Grid item xs={12} height="80%">
                 <Grid xs={12} item container direction="column" height="100%">
                     {mockChat.map((chat) => (
                         <TextField
@@ -73,7 +74,7 @@ const Chat = ({ observaciones }) => {
                     ))}
                 </Grid>
             </Grid>
-            <Grid item xs={12} height="10%" backgroundColor="#E8E8E8">
+            <Grid item xs={12} height="10%">
                 <Grid xs={12} item container direction="column" height="100%">
                     <TextField
                         id="filled-basic"

@@ -9,7 +9,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
-const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
+const OuterFormButtons = ({
+    handleSubmit,
+    path,
+    titulo,
+    mensaje,
+    revision
+}) => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -25,7 +31,7 @@ const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
             item
             container
             xs={12}
-            md={7}
+            md={revision ? 9 : 7}
             marginTop={{
                 xs: '20px'
             }}
