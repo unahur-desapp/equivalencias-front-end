@@ -20,63 +20,30 @@ import FormUnahur from './FormUnahur';
 const CreateForm = () => {
     const carreras = [
         {
+            key: nanoid(),
             label: 'Tecnicatura en Electromovilidad',
             instituto: 'Instituto de Tecnología e Ingeniería'
         },
         {
+            key: nanoid(),
             label: 'Tecnicatura en Inteligencia Artificial',
             instituto: 'Instituto de Tecnología e Ingeniería'
         },
         {
+            key: nanoid(),
             label: 'Tecnicatura en Programación',
             instituto: 'Instituto de Tecnología e Ingeniería'
         },
         {
+            key: nanoid(),
             label: 'Tecnicatura en Programación de Videojuegos',
             instituto: 'Instituto de Tecnología e Ingeniería'
         },
         {
+            key: nanoid(),
             label: 'Tecnicatura en Ciencias del Ambiente',
             instituto: 'Instituto de Biotecnología'
-        },
-        {
-            label: 'Tecnicatura en Laboratorios',
-            instituto: 'Instituto de Biotecnología'
-        },
-        {
-            label: 'Licenciatura en Biotecnología',
-            instituto: 'Instituto de Biotecnología'
-        },
-        {
-            label: 'Licenciatura en Gestión Ambiental',
-            instituto: 'Instituto de Biotecnología'
-        },
-        {
-            label: 'Enfermería Universitaria',
-            instituto: 'Instituto de Salud Comunitaria'
-        },
-        {
-            label: 'Licenciatura en Enfermería',
-            instituto: 'Instituto de Salud Comunitaria'
-        },
-        {
-            label: 'Licenciatura en Gestión Ambiental',
-            instituto: 'Instituto de Salud Comunitaria'
-        },
-        {
-            label: 'Licenciatura en Gestión Ambiental',
-            instituto: 'Instituto de Salud Comunitaria'
-        },
-        {
-            label: 'Licenciatura en Kinesiología y Fisiatría',
-            instituto: 'Instituto de Educación'
-        },
-        {
-            label: 'Licenciatura en Obstetricia',
-            instituto: 'Instituto de Educación'
-        },
-        { label: 'Profesorado de Inglés', instituto: 'Instituto de Educación' },
-        { label: 'Profesorado de Letras', instituto: 'Instituto de Educación' }
+        }
     ];
 
     const usuarioId = parseInt(JSON.parse(localStorage.getItem('id')));
@@ -141,6 +108,10 @@ const CreateForm = () => {
             draggable: true,
             progress: undefined
         });
+        // Esperar 5 segundos
+        setTimeout(() => {
+            window.location = '/usuario/equivalencias';
+        }, 5000);
     };
 
     //Materias boton agregar
@@ -181,16 +152,17 @@ const CreateForm = () => {
             .filter((mat) => mat.key === key)
             .map((mat) => (mat.materiaUnahur = value));
         setMateriasUnahur(copiaMaterias);
-        //console.log("Materias Unahur: ",materiasUnahur)
     };
 
     //Carrera
     const handleChangeCarrera = (event) => {
         const { name, value } = event.target;
+        console.log(name, value);
         setformValue((carrera) => ({
             ...carrera,
             [name]: value
         }));
+        console.log(formValue.carreraUnahur);
     };
 
     //MateriasEquivalencias functions
@@ -232,16 +204,13 @@ const CreateForm = () => {
                     return {
                         //id:item.key,
                         nombre: item.materiaUnahur,
-                        carrera: formValue.carreraUnahur,
-                        estado: 'Pendiente'
+                        estado: 'pendiente'
                     };
                 }),
-                id: 910,
-
                 observaciones: ' ',
                 instituto: 'Instituto de Tecnología e Ingeniería',
                 estado: 'pendiente',
-                //carrera:'asdas',
+                carrera: formValue.carreraUnahur,
                 array: materias.map((item) => {
                     return {
                         nota: item.notaAprobacion,
@@ -309,7 +278,7 @@ const CreateForm = () => {
                         formValue={formValue}
                         carreras={carreras}
                         materias={materiasUnahur}
-                        handleChange={handleChangeCarrera}
+                        handleChangeCarrera={handleChangeCarrera}
                         handleChangeMateriaUnaHur={handleChangeMateriaUnaHur}
                         handledelete={() => {
                             if (materiasUnahur.length > 1) {
