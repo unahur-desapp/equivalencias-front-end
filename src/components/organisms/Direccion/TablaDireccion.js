@@ -99,8 +99,6 @@ export default function StickyHeadTable({ searchQuery }) {
                     d.getHours() +
                     ':' +
                     horaConCero(d.getMinutes());
-                console.log('array item: ', arrayItem.Usuario);
-                console.log('Equiv:', obtainedEquivalenciaData);
                 var status = arrayItem.estado.toUpperCase();
                 array.push(
                     createData(
@@ -116,9 +114,7 @@ export default function StickyHeadTable({ searchQuery }) {
                         arrayItem.id,
                         // arrayItem.Materias_solicitadas[0],
                         dateTime,
-                        status,
-                        console.log('aca estan los datos del array', arrayItem)
-                        //console.log("materia solicitada",arrayItem.Materias_solicitadas.map(materias => materias.nombre) )
+                        status
                         //fecha actual de cuando se genero la equivalencia
                         //arrayItem.Estado[0].status
                     )
@@ -149,11 +145,9 @@ export default function StickyHeadTable({ searchQuery }) {
                     setRows([...array]);
                 }
             });
-            console.log(arrayData);
         };
         fetchEquivalenciaData();
     }, [searchQuery]);
-    console.log(arrayData);
 
     // function search(arrayData, setRows) {
     //     const dataFilter = arrayData.filter(

@@ -14,7 +14,6 @@ const FormUniOrigen = ({
     formValueArray,
     key2
 }) => {
-    console.log(key2);
     return (
         <Grid
             item

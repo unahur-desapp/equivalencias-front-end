@@ -2,7 +2,6 @@ import { Titulos } from '../atoms/Title/Titulos';
 import { Grid, TextField } from '@mui/material';
 
 const Chat = ({ observaciones }) => {
-    console.info(observaciones);
     const mockChat = [
         {
             id: 1,
