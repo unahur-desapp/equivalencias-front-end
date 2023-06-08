@@ -14,8 +14,6 @@ import React from 'react';
 
 const PageDireccion = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    console.log(searchQuery);
-
     const iconSearch = React.createRef();
     const inputSearch = React.createRef();
 

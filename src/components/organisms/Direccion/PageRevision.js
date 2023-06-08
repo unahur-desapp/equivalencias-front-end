@@ -26,7 +26,6 @@ import { Item } from '../../atoms/Item/Item';
 import { Link } from 'react-router-dom';
 
 const PageRevision = ({ rol }) => {
-    console.log(rol);
     const { id } = useParams();
     const [user, setUser] = useState([]);
     const [equiv, setEquiv] = useState({});
@@ -62,7 +61,6 @@ const PageRevision = ({ rol }) => {
     useEffect(() => {
         const fetchData = async () => {
             const equivalenciasResponse = await getEquivalencia(id);
-            console.log(equivalenciasResponse);
             let dateAux = new Date(equivalenciasResponse.createdAt);
             let date =
                 dateAux.getDate() +
@@ -88,12 +86,8 @@ const PageRevision = ({ rol }) => {
             setUser(userData);
 
             const equivData = {
-                materiasAprobadas: [
-                    equivalenciasResponse.Materias_aprobadas[0]
-                ],
-                materiasSolicitadas: [
-                    equivalenciasResponse.Materias_solicitadas[0]
-                ],
+                materiasAprobadas: equivalenciasResponse.Materias_aprobadas,
+                materiasSolicitadas: equivalenciasResponse.Materias_solicitadas,
                 observaciones: equivalenciasResponse.observaciones
             };
             setEquiv(equivData);
@@ -110,7 +104,8 @@ const PageRevision = ({ rol }) => {
                 );
                 setFormValue({
                     materias: materias,
-                    observaciones: equivalenciasResponse.observaciones
+                    observaciones: equivalenciasResponse.observaciones,
+                    instituto: equivalenciasResponse.instituto
                 });
             }
         };
@@ -118,11 +113,18 @@ const PageRevision = ({ rol }) => {
     }, []);
 
     const cambiarEstado = (event, idMateria) => {
-        const solicitudes = [].concat(equiv.materiasSolicitadas);
-        solicitudes[idMateria - 1].estado = event.target.value;
+        const solicitudes = [].concat(formValue.materias);
+        formValue.materias.find((materia) => materia.id === idMateria).estado =
+            event.target.value;
+        solicitudes.find((solicitud) => solicitud.id === idMateria).estado =
+            event.target.value;
         setEquiv((equiv) => ({
             ...equiv,
             materiasSolicitadas: solicitudes
+        }));
+        setFormValue((formValue) => ({
+            ...formValue,
+            materias: solicitudes
         }));
     };
 
@@ -131,19 +133,17 @@ const PageRevision = ({ rol }) => {
         // TODO: Las equivalencias se tienen que cambiar de a varias, no de a una sola
         formValue.materias.forEach(async (materia) => {
             const equivalencia = {
-                observaciones: formValue.observaciones,
                 estado: materia.estado
             };
             if (equivalencia) {
                 const response = await axios
                     .put(
-                        `${config.apiUrl}/equivalencias/` + materia.id,
+                        `${config.apiUrl}/materias_solicitadas/` + materia.id,
                         equivalencia
                     )
                     .then((res) => {
                         try {
                             res.data.data;
-                            window.location = '/direccion/solicitudes';
                         } catch (error) {
                             console.error(error);
                         }
@@ -151,6 +151,33 @@ const PageRevision = ({ rol }) => {
                     .catch(() => {});
             }
         });
+        setTimeout(async () => {
+            if (equiv.materiasSolicitadas.length > 0) {
+                // Logica para saber que porcentaje de aceptadas tiene
+                const aceptadas = equiv.materiasSolicitadas.filter(
+                    (materia) => materia.estado === 'aceptado'
+                );
+                const porcentaje =
+                    (aceptadas.length * 100) / equiv.materiasSolicitadas.length;
+                const solicitud = {
+                    estado: porcentaje >= 50 ? 'Aceptado' : 'Rechazado',
+                    observaciones: formValue.observaciones
+                };
+                const response = await axios
+                    .put(`${config.apiUrl}/equivalencias/` + id, solicitud)
+                    .then((res) => {
+                        try {
+                            res.data.data;
+                            //window.location = '/direccion/solicitudes';
+                        } catch (error) {
+                            console.error(error);
+                        }
+                    })
+                    .catch(() => {});
+            } else {
+                //window.location = '/direccion/solicitudes';
+            }
+        }, 3000);
     };
 
     return (
