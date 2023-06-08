@@ -25,6 +25,8 @@ import axios from 'axios';
 import { config } from '../../../config/config';
 import { HeaderDirectivo } from '../../HeaderDirectivo';
 import { HeaderSuperUsuario } from '../../HeaderSuperUsuario';
+import Chat from '../../chat/Chat';
+import { Button } from '@mui/material';
 
 const columns = [
     { id: 'desc', label: 'Solicitante', minWidth: 170 },
@@ -66,6 +68,11 @@ const PageRevision = () => {
     const [equiv, setEquiv] = useState({});
     const [alignment, setAlignment] = useState('web');
     const [formValue, setFormValue] = useState({});
+    const [mostrarChat, setMostrarChat] = useState(false);
+
+    const handleMostrarChat = () => {
+        setMostrarChat(!mostrarChat);
+    };
 
     useEffect(() => {
         const fetchUsuarioData = async () => {
@@ -107,6 +114,7 @@ const PageRevision = () => {
 
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
+            // Aca tambien incluir carreras.
             const obtainedEquivalenciaData = await getEquivalencia(id);
 
             let arrayData = {
@@ -166,7 +174,7 @@ const PageRevision = () => {
                 try {
                     res.data.data; // '{"name":"deven"}'
 
-                    window.location = '/direccion/solicitudes';
+                    window.location = urlUsuario();
                 } catch (error) {
                     console.log(error);
                 }
@@ -179,6 +187,13 @@ const PageRevision = () => {
             return <HeaderDirectivo />;
         } else {
             return <HeaderSuperUsuario />;
+        }
+    };
+    const urlUsuario = () => {
+        if (rol === 'directivo') {
+            return '/direccion/solicitudes';
+        } else {
+            return '/superusuario/solicitudes';
         }
     };
 
@@ -650,7 +665,7 @@ const PageRevision = () => {
                                                     >
                                                         <Titulos
                                                             titulolabel
-                                                            variant="h3"
+                                                            variant="subtitle2"
                                                             fontSize={{
                                                                 xs: '14px',
                                                                 sm: '16px'
@@ -736,22 +751,6 @@ const PageRevision = () => {
                                 borderRadius: '10px 10px 0px 0px'
                             }}
                         >
-                            <Grid
-                                item
-                                container
-                                direction="column"
-                                alignItems="flex-start"
-                                md={12}
-                                lg={5.8}
-                                sx={{
-                                    marginTop: '6px',
-                                    marginBottom: '16px'
-                                }}
-                            >
-                                <Titulos titulolabel component="h2">
-                                    Respuesta
-                                </Titulos>
-                            </Grid>
                             {/* <Grid
                             item
                             container
@@ -807,7 +806,36 @@ const PageRevision = () => {
                                     placeholder="Observación..."
                                 /> */}
 
-                                    <TextField
+                                    <Button
+                                        onClick={handleMostrarChat}
+                                        variant="contained"
+                                        sx={{
+                                            backgroundColor: '#009673',
+                                            ':hover': {
+                                                backgroundColor: '#009674'
+                                            }
+                                        }}
+                                    >
+                                        {mostrarChat
+                                            ? 'Ocultar chat'
+                                            : 'Mostrar chat'}
+                                    </Button>
+
+                                    <Grid
+                                        item
+                                        container
+                                        direction="row"
+                                        justifyContent="flex-start"
+                                        alignItems="center"
+                                        sm={12}
+                                        sx={{
+                                            marginTop: '20px'
+                                        }}
+                                    >
+                                        {mostrarChat ? <Chat id={id} /> : <></>}
+                                    </Grid>
+
+                                    {/*<TextField
                                         id="filled-basic"
                                         label="Observación..."
                                         variant="filled"
@@ -819,7 +847,7 @@ const PageRevision = () => {
                                         sx={{
                                             width: '100%'
                                         }}
-                                    />
+                                    />*/}
                                 </Grid>
 
                                 <Grid
@@ -909,7 +937,7 @@ const PageRevision = () => {
                     </GridTop>
                     <OuterFormButtons
                         handleSubmit={handleSubmit}
-                        path={'/direccion/solicitudes'}
+                        path={urlUsuario()}
                         titulo={'Descartar revisión'}
                         mensaje={
                             '¿Está seguro/a de que desea descartar la revisión de la solicitud?'

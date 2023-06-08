@@ -63,8 +63,11 @@ const HeaderSuperUsuario = () => {
                     >
                         <AvatarIcon
                             info={[
-                                JSON.parse(localStorage.getItem('nombre')) +
-                                    JSON.parse(localStorage.getItem('apellido'))
+                                `${JSON.parse(
+                                    localStorage.getItem('nombre')
+                                ).trim()} ${JSON.parse(
+                                    localStorage.getItem('apellido')
+                                ).trim()}`
                             ]}
                         />
 
