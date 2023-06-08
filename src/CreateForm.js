@@ -228,11 +228,20 @@ const CreateForm = () => {
 
         if (usuarioId) {
             equivalencia = {
-                nombre: formValue.materiaSolicitada,
-                carrera: formValue.carreraUnahur,
-                estado: 'Pendiente',
-                observaciones: '',
+                materiaSolicitada: materiasUnahur.map((item) => {
+                    return {
+                        //id:item.key,
+                        nombre: item.materiaUnahur,
+                        carrera: formValue.carreraUnahur,
+                        estado: 'Pendiente'
+                    };
+                }),
+                id: 910,
+
+                observaciones: ' ',
                 instituto: 'Instituto de Tecnología e Ingeniería',
+                estado: 'pendiente',
+                //carrera:'asdas',
                 array: materias.map((item) => {
                     return {
                         nota: item.notaAprobacion,
@@ -247,7 +256,7 @@ const CreateForm = () => {
             };
         }
 
-        //console.log('Equivalencia:', equivalencia);
+        console.log('Equivalencia:', equivalencia);
 
         const response = await axios
             .post(`${config.apiUrl}/equivalencias/createx3`, equivalencia, {
