@@ -47,18 +47,6 @@ const FormUniOrigen = ({
                         Datos Universidad Origen
                     </Titulos>
                 </Grid>
-
-                {/* <Grid
-                    item
-                    container
-                    direction="column"
-                    alignItems="flex-end"
-                    md={12}
-                    lg={5.8}
-                    sx={{
-                        marginTop: '6px'
-                    }}
-                ></Grid> */}
                 <IconButton
                     sx={{ color: '#5f6368' }}
                     aria-label="upload picture"
