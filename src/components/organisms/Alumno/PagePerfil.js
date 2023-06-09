@@ -35,7 +35,7 @@ const PagePerfil = () => {
                     alignItems="center"
                 >
                     <Grid item>
-                        <Titulos component="h2" tituloGrande>
+                        <Titulos component="h2" tituloGrande="+true">
                             Perfil
                         </Titulos>
                     </Grid>

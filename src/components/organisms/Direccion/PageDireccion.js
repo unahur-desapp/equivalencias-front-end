@@ -57,7 +57,7 @@ const PageDireccion = () => {
                     alignItems="center"
                 >
                     <Grid item>
-                        <Titulos component="h2" titulogrande>
+                        <Titulos component="h2" titulogrande="+true">
                             Solicitudes de equivalencias
                         </Titulos>
                     </Grid>

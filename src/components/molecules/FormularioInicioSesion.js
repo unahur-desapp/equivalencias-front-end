@@ -57,7 +57,7 @@ const FormularioInicioSesion = () => {
     return (
         <FormularioMain>
             <TituloBienvenida>
-                <Titulos titulogrande titulomarginbottom component="h2">
+                <Titulos titulogrande="+true" titulomarginbottom component="h2">
                     ¡Bienvenido/a!
                 </Titulos>
                 <Titulos titulochico titulolight component="h2">

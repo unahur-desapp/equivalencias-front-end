@@ -24,9 +24,9 @@ const Register = () => {
     return (
         <SideRegistro>
             <Titulos
-                centrar
+                centrar="+true"
                 blanco="+true"
-                titulogrande
+                titulogrande="+true"
                 titulobold
                 component="h1"
             >

@@ -46,7 +46,7 @@ const PageMyForm = () => {
                         alignItems="center"
                     >
                         <Grid item>
-                            <Titulos component="h2" titulogrande>
+                            <Titulos component="h2" titulogrande="+true">
                                 Equivalencias
                             </Titulos>
                         </Grid>
