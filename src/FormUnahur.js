@@ -44,7 +44,7 @@ const FormUnahur = ({
                 <Grid
                     item
                     container
-                    direction="column"
+                    direction="raw"
                     alignItems="flex-start"
                     md={12}
                     lg={6}
@@ -70,6 +70,9 @@ const FormUnahur = ({
                         onSelect={(event) => handleChangeCarrera(event)}
                         disablePortal
                         options={carreras}
+                        sx={{
+                            marginTop: '1rem'
+                        }}
                         renderInput={(params) => (
                             <TextField
                                 required
@@ -93,17 +96,17 @@ const FormUnahur = ({
                             item
                             container
                             direction="row"
-                            alignItems="flex-start"
                             xs={5.5}
-                            fullwide
                             sx={{
-                                marginTop: '6px'
+                                marginTop: '1rem'
                             }}
+                            justifyContent="space-between"
                             key={materia.key}
                         >
                             <TextField
                                 required
                                 name={materia.materiaUnahur}
+                                sx={{ width: '90%' }}
                                 size="small"
                                 label="Materia solicitada UNAHUR"
                                 variant="outlined"
