@@ -93,7 +93,7 @@ const PageMyForm = () => {
                     <GridTop
                         item
                         container
-                        blanco
+                        blanco="+true"
                         xs={11.5}
                         md={9}
                         lg={7}

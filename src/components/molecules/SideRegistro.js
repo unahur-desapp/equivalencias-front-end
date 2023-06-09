@@ -23,7 +23,13 @@ const Register = () => {
 
     return (
         <SideRegistro>
-            <Titulos centrar blanco titulogrande titulobold component="h1">
+            <Titulos
+                centrar
+                blanco="+true"
+                titulogrande
+                titulobold
+                component="h1"
+            >
                 Trámites de Equivalencias
             </Titulos>
 
