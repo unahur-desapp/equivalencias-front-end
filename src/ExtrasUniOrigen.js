@@ -202,30 +202,9 @@ const ExtrasUniOrigen = ({
                         >
                             Cargar
                         </BotonMUI>
-                        {/* <IconButton
-                            sx={{
-                                marginRight: '12px'
-                            }}
-                            buttonupload
-                            variant="outlined"
-                            component="span"
-                        >
-                            <AttachFileOutlinedIcon />
-                        </IconButton> */}
-
-                        {/* <FileUploader
-                            id="contained-button-file"
-                            multiple
-                            size="small"
-                            variant="standard"
-                            type="file"
-                            accept="application/pdf, application/vnd.ms-Excel"
-                        /> */}
                     </label>
                 </Grid>
             </Grid>
-
-            {/* <AgregarMateriaUniOrigen /> */}
         </Grid>
     );
 };
