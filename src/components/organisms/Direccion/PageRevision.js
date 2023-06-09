@@ -773,7 +773,7 @@ const PageRevision = ({ rol }) => {
                                 }}
                             >
                                 <BotonMUI
-                                    buttoncontainedsmall
+                                    buttoncontainedsmall="+true"
                                     sx={{
                                         marginRight: '12px',
                                         width: '100%'

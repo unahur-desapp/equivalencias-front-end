@@ -295,7 +295,7 @@ const CreateForm = () => {
                     }}
                 >
                     <BotonMUI
-                        buttoncontainedaddmateria
+                        buttoncontainedaddmateria="+true"
                         variant="outlined"
                         sx={{ margin: '10px 0px' }}
                         onClick={addMateriaUnahur}
@@ -382,7 +382,7 @@ const CreateForm = () => {
                     }}
                 >
                     <BotonMUI
-                        buttoncontainedaddmateria
+                        buttoncontainedaddmateria="+true"
                         variant="outlined"
                         sx={{ margin: '10px 0px' }}
                         onClick={addMateria}

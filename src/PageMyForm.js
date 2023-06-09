@@ -63,7 +63,7 @@ const PageMyForm = () => {
                                 style={{ textDecoration: 'none' }}
                             >
                                 <BotonMUI
-                                    buttoncontainedsmall
+                                    buttoncontainedsmall="+true"
                                     sx={{
                                         width: '100%'
                                     }}

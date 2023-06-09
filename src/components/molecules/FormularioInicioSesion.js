@@ -109,7 +109,7 @@ const FormularioInicioSesion = () => {
                     <Grid>
                         <BotonMUI
                             variant="contained"
-                            buttoncontained
+                            buttoncontained="+true"
                             disableElevation
                             type="submit"
                         >
