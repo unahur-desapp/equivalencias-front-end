@@ -321,10 +321,6 @@ const CreateForm = () => {
                                 key2={materia.key}
                                 key={materia.key}
                                 handledelete={() => {
-                                    console.log(
-                                        'Hadle eliminar en materia equivalencia',
-                                        handleEliminar
-                                    );
                                     if (materias.length > 1) {
                                         elegirMateriaABorrar(true);
                                         handleClickOpen(materia);

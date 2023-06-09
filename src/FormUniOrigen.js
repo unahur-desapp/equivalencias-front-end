@@ -8,9 +8,7 @@ import { Titulos } from './components/atoms/Title/Titulos';
 
 const FormUniOrigen = ({
     handledelete,
-    formValue,
     handleChangeArray,
-    handleChange,
     formValueArray,
     key2
 }) => {
