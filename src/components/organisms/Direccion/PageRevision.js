@@ -207,16 +207,17 @@ const PageRevision = ({ rol }) => {
 
     return (
         <Box sx={{ flexGrow: 1, width: '100vw', height: '100vh' }}>
-            <Grid item container xs={12}>
+            <Grid container xs={12}>
                 <Header
+                    item
                     name="Equivalencias"
                     paginaPrincipal="/direccion/solicitudes"
                     botonSeleccionado="rgba(255, 255, 255, 0.1);"
                 />
             </Grid>
-            <Grid item container xs={12} paddingX={20} paddingTop={4}>
-                <Grid item container xs={12}>
-                    <Titulos component="h2" titulogrande>
+            <Grid xs={12} paddingX={20} paddingTop={4}>
+                <Grid container xs={12}>
+                    <Titulos item component="h2" titulogrande>
                         Revisión
                     </Titulos>
                 </Grid>
