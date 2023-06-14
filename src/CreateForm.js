@@ -109,7 +109,7 @@ const CreateForm = () => {
         toast.success('Equivalencia creada con éxito', {
             containerId: 'home',
             position: 'bottom-left',
-            autoClose: 5000,
+            autoClose: 800,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -119,7 +119,7 @@ const CreateForm = () => {
         // Esperar 5 segundos
         setTimeout(() => {
             window.location = '/usuario/equivalencias';
-        }, 5000);
+        }, 2000);
     };
 
     //Materias boton agregar

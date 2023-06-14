@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid, Icon } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { Header } from '../../../Header';
 import { Titulos } from '../../atoms/Title/Titulos';
@@ -40,12 +40,12 @@ const PageRevision = ({ rol }) => {
         observaciones: ''
     });
     const columns = [
-        { id: 'desc', label: 'Solicitante', minWidth: 170 },
+        { id: 'desc', label: 'Solicitante', minWidth: 'auto' },
         { id: 'state', label: 'DNI', minWidth: 170 },
-        { id: 'carreer', label: 'Carrera', minWidth: 170 },
-        { id: 'dateTime', label: 'Email', minWidth: 100 },
-        { id: 'phone', label: 'Teléfono', minWidth: 170 },
-        { id: 'actions', label: 'Fecha', minWidth: 170 }
+        { id: 'carreer', label: 'Carrera', minWidth: 'auto' },
+        { id: 'dateTime', label: 'Email', minWidth: 'auto' },
+        { id: 'phone', label: 'Teléfono', minWidth: 'auto' },
+        { id: 'actions', label: 'Fecha', minWidth: 'auto' }
     ];
 
     const createData = (
@@ -206,7 +206,7 @@ const PageRevision = ({ rol }) => {
     };
 
     return (
-        <Box sx={{ flexGrow: 1 }} width="100vw" height="100vh">
+        <Box sx={{ flexGrow: 1, width: '100vw', height: '100vh' }}>
             <Grid item container xs={12}>
                 <Header
                     name="Equivalencias"
@@ -323,7 +323,10 @@ const PageRevision = ({ rol }) => {
                                     <Box
                                         container
                                         display="flex"
-                                        paddingTop={0}
+                                        sx={{
+                                            paddingTop: 2,
+                                            paddingBottom: 2
+                                        }}
                                     >
                                         <Grid container paddingLeft="60px">
                                             <Titulos item titulolabel>
@@ -347,7 +350,7 @@ const PageRevision = ({ rol }) => {
                                     <Grid
                                         container
                                         overflow="auto"
-                                        maxHeight={170}
+                                        maxHeight={200}
                                         padding={{
                                             xs: '0px 30px',
                                             sm: '0px 60px'
@@ -409,13 +412,17 @@ const PageRevision = ({ rol }) => {
                                                                         <Select
                                                                             labelId="demo-simple-select-label"
                                                                             id="demo-simple-select"
-                                                                            inputProps={{
-                                                                                readOnly:
-                                                                                    rol ===
-                                                                                    'alumno'
-                                                                                        ? true
-                                                                                        : false
-                                                                            }}
+                                                                            inputProps={
+                                                                                rol ===
+                                                                                'alumno'
+                                                                                    ? {
+                                                                                          readOnly:
+                                                                                              'false',
+                                                                                          IconComponent:
+                                                                                              'false'
+                                                                                      }
+                                                                                    : {}
+                                                                            }
                                                                             onChange={(
                                                                                 event
                                                                             ) =>
@@ -472,7 +479,10 @@ const PageRevision = ({ rol }) => {
                                     <Box
                                         container
                                         display="flex"
-                                        paddingTop={2}
+                                        sx={{
+                                            paddingTop: 2,
+                                            paddingBottom: 2
+                                        }}
                                     >
                                         <Grid container paddingLeft="60px">
                                             <Titulos item titulolabel>
@@ -480,7 +490,7 @@ const PageRevision = ({ rol }) => {
                                             </Titulos>
                                         </Grid>
                                     </Box>
-                                    <Grid overflow="auto" maxHeight={230}>
+                                    <Grid overflow="auto" maxHeight={200}>
                                         {equiv.materiasAprobadas !==
                                         undefined ? (
                                             equiv.materiasAprobadas.map(
