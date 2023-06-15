@@ -26,8 +26,8 @@ import { Grid } from '@mui/material';
 export const columns = [
     { id: 'dni', label: 'DNI', minWidth: 100 },
     { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
-    { id: 'materia', label: 'Materia', minWidth: 170 },
-    { id: 'dateTime', label: 'Fecha y Hora', minWidth: 100 },
+    { id: 'materia', label: 'Materias Solicitadas', minWidth: 170 },
+    { id: 'dateTime', label: 'Fecha', minWidth: 100 },
     { id: 'estado', label: 'Estado', minWidth: 170 },
     { id: 'actions', label: 'Acciones', minWidth: 100 } // Columna estado agregada!
 ];
@@ -94,11 +94,7 @@ export default function StickyHeadTable({ searchQuery }) {
                     '/' +
                     (d.getMonth() + 1) +
                     '/' +
-                    d.getFullYear() +
-                    ' - ' +
-                    d.getHours() +
-                    ':' +
-                    horaConCero(d.getMinutes());
+                    d.getFullYear();
                 var status = arrayItem.estado.toUpperCase();
                 array.push(
                     createData(
