@@ -99,8 +99,6 @@ export default function StickyHeadTable({ searchQuery }) {
                     d.getHours() +
                     ':' +
                     horaConCero(d.getMinutes());
-                console.log('array item: ', arrayItem.Usuario);
-                console.log('Equiv:', obtainedEquivalenciaData);
                 var status = arrayItem.estado.toUpperCase();
                 array.push(
                     createData(
@@ -116,32 +114,71 @@ export default function StickyHeadTable({ searchQuery }) {
                         arrayItem.id,
                         // arrayItem.Materias_solicitadas[0],
                         dateTime,
-                        status,
-                        console.log('aca estan los datos del array', arrayItem)
-                        //console.log("materia solicitada",arrayItem.Materias_solicitadas.map(materias => materias.nombre) )
+                        status
                         //fecha actual de cuando se genero la equivalencia
                         //arrayItem.Estado[0].status
                     )
                 );
-                const dataFilter = array.filter(
-                    (d) =>
-                        d.solicitante
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase()) +
-                        d.dni
-                            .toString()
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase()) +
-                        d.estado
-                            .toString()
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase()) +
-                        d.materia
-                            .toString()
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase())
-                );
-
+                let dataFilter = array;
+                switch (searchQuery.column) {
+                    case 'dni':
+                        dataFilter = array.filter((d) =>
+                            d.dni
+                                .toString()
+                                .toLowerCase()
+                                .includes(searchQuery.value.toLowerCase())
+                        );
+                        console.log(
+                            'entro a dni',
+                            searchQuery.value,
+                            dataFilter
+                        );
+                        break;
+                    case 'solicitante':
+                        dataFilter = array.filter((d) =>
+                            d.solicitante
+                                .toLowerCase()
+                                .includes(searchQuery.value.toLowerCase())
+                        );
+                        console.log(
+                            'entro a solicitante',
+                            searchQuery.value,
+                            dataFilter
+                        );
+                        break;
+                    case 'materia':
+                        dataFilter = array.filter((d) =>
+                            d.materia
+                                .toLowerCase()
+                                .includes(searchQuery.value.toLowerCase())
+                        );
+                        console.log(
+                            'entro a materia',
+                            searchQuery.value,
+                            dataFilter
+                        );
+                        break;
+                    case 'estado':
+                        dataFilter = array.filter((d) =>
+                            d.estado
+                                .toLowerCase()
+                                .includes(searchQuery.value.toLowerCase())
+                        );
+                        console.log(
+                            'entro a estado',
+                            searchQuery.value,
+                            dataFilter
+                        );
+                        break;
+                    default:
+                        dataFilter = array;
+                        console.log(
+                            'entro a default',
+                            searchQuery.value,
+                            dataFilter
+                        );
+                        break;
+                }
                 if (searchQuery) {
                     setRows(dataFilter);
                     setPage(0);
@@ -149,22 +186,9 @@ export default function StickyHeadTable({ searchQuery }) {
                     setRows([...array]);
                 }
             });
-            console.log(arrayData);
         };
         fetchEquivalenciaData();
     }, [searchQuery]);
-    console.log(arrayData);
-
-    // function search(arrayData, setRows) {
-    //     const dataFilter = arrayData.filter(
-    //         (d) => d.solicitante.includes(searchQuery)
-    //         // console.log(d.solicitante, "desde filter")
-    //     );
-
-    //     if (searchQuery) {
-    //         setRows(dataFilter);
-    //     }
-    // }
 
     return (
         <Paper

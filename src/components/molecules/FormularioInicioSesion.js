@@ -30,11 +30,9 @@ const FormularioInicioSesion = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(usuarios);
         const usuario = usuarios.find(
             (usuario) => usuario.dni === dni && usuario.password === password
         );
-        console.log(usuario);
         if (usuario) {
             localStorage.setItem('dni', JSON.stringify(usuario.dni));
             localStorage.setItem('nombre', JSON.stringify(usuario.nombre));

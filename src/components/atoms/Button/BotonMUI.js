@@ -73,6 +73,21 @@ const BotonMUI = styled(Button)`
             }
         `}
 
+    ${(props) =>
+        props.buttondownload &&
+        css`
+            background-color: #fffff;
+            border: 1px solid #0941ce;
+            color: #0941ce;
+            width: 90px;
+            height: 30px;
+
+            &:hover {
+                border: 1px solid #0941ce;
+                opacity: 0.7;
+            }
+        `}   
+
         ${(props) =>
         props.buttoncontainedaddmateria &&
         css`
@@ -121,6 +136,18 @@ const BotonMUI = styled(Button)`
 
             &:hover {
                 background-color: #007a5e;
+            }
+        `}
+        ${(props) =>
+        props.buttoncontainedsmallFinalizar &&
+        css`
+            width: 110px;
+            height: 40px;
+            background-color: #2a74e4;
+            color: '#FFFFFF';
+
+            &:hover {
+                background-color: #2463c2;
             }
         `}
 `;

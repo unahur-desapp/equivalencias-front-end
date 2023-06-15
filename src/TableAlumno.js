@@ -157,8 +157,6 @@ export default function StickyHeadTable() {
             });
 
             setRows(arrayData);
-            console.log('array data: ', arrayData);
-            console.log(obtainedEquivalenciaData);
         };
 
         fetchEquivalenciaData();

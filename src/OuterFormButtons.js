@@ -9,7 +9,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
-const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
+const OuterFormButtons = ({
+    handleSubmit,
+    path,
+    titulo,
+    mensaje,
+    revision
+}) => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -24,63 +30,46 @@ const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
         <Grid
             item
             container
-            xs={11.5}
-            md={7}
+            xs={12}
+            md={revision ? 9 : 7}
             marginTop={{
                 xs: '20px'
-            }}
-            sx={{
-                padding: '20px 60px'
             }}
         >
             <Grid
                 item
                 container
                 direction="row"
-                justifyContent="flex-start"
+                justifyContent="space-between"
                 alignItems="center"
+                width="100%"
                 xs={12}
-                lg={6}
+                lg={12}
             >
-                <Grid item container xs={6} lg={4}>
+                <Grid item container xs={1} lg={1}>
                     <BotonMUI
                         buttoncontainedsmall
-                        // type="submit"
-                        onClick={handleSubmit}
                         sx={{
-                            marginRight: '12px',
-                            width: '100%'
-                        }}
-                    >
-                        Enviar
-                    </BotonMUI>
-                </Grid>
-
-                <Grid item container xs={6} lg={4}>
-                    {/* <Link
-                        to="/home"
-                        style={{ textDecoration: 'none', width: '100%' }}
-                    >
-                        <BotonMUI
-                            buttonContainedSmall
-                            type="submit"
-                            sx={{
-                                marginLeft: '12px',
-                                width: '100%'
-                            }}
-                        >
-                            Enviar
-                        </BotonMUI>
-                    </Link> */}
-
-                    <BotonMUI
-                        buttoncontainedcancel
-                        sx={{
-                            width: '100%'
+                            width: '100%',
+                            backgroundColor: '#009673',
+                            color: '#FFFFFF'
                         }}
                         onClick={handleClickOpen}
                     >
-                        Cancelar
+                        Volver
+                    </BotonMUI>
+                </Grid>
+                <Grid item container xs={6} lg={3}>
+                    <BotonMUI
+                        buttoncontainedsmallFinalizar
+                        onClick={handleSubmit}
+                        sx={{
+                            margin: '0px 0px 0px 50px',
+                            width: '100%',
+                            alignItems: 'center'
+                        }}
+                    >
+                        Finalizar
                     </BotonMUI>
                 </Grid>
             </Grid>
@@ -92,11 +81,7 @@ const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
                 justifyContent="flex-end"
                 alignItems="center"
                 lg={6}
-            >
-                {/* <BotonMUI buttonContainedAddEq>
-                    Agregar equivalencia
-                </BotonMUI> */}
-            </Grid>
+            ></Grid>
 
             <Dialog
                 open={open}

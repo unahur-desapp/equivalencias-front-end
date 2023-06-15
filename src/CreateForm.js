@@ -165,21 +165,15 @@ const CreateForm = () => {
     //Carrera
     const handleChangeCarrera = (event) => {
         const { name, value } = event.target;
-        console.log(name, value);
         setformValue((carrera) => ({
             ...carrera,
             [name]: value
         }));
-        console.log(formValue.carreraUnahur);
     };
 
     //MateriasEquivalencias functions
     const handleChangeArray = (event, key) => {
         const indiceMateria = materias.findIndex((e) => e.key === key);
-        console.log(materias);
-        console.log(key);
-        console.log(indiceMateria);
-        console.log(materias[indiceMateria]);
         setMaterias((materias) => {
             return [
                 ...materias.slice(0, indiceMateria),
@@ -232,8 +226,6 @@ const CreateForm = () => {
             };
         }
 
-        console.log('Equivalencia:', equivalencia);
-
         const response = await axios
             .post(`${config.apiUrl}/equivalencias/createx3`, equivalencia, {
                 headers: {
@@ -242,14 +234,13 @@ const CreateForm = () => {
             })
             .then((res) => {
                 try {
-                    console.log('Res:', res);
                     res.status === 200 ? notifyExito() : notifyEnviarSinDatos();
                 } catch (error) {
-                    console.log(error);
+                    console.error(error);
                 }
             })
             .catch((error) => {
-                console.log('Error: ', error);
+                console.error('Error: ', error);
                 notifyEnviarSinDatos();
             });
     };
@@ -314,7 +305,6 @@ const CreateForm = () => {
                 </Grid>
 
                 {materias.map((materia) => {
-                    console.log(materia.key);
                     return (
                         <>
                             <FormUniOrigen
