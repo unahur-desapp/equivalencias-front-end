@@ -207,6 +207,7 @@ const PageRevision = ({ rol }) => {
 
     return (
         <Box sx={{ flexGrow: 1, width: '100vw', height: '100vh' }}>
+            {/*Header de perfil*/}
             <Grid container xs={12}>
                 <Header
                     item
@@ -215,14 +216,16 @@ const PageRevision = ({ rol }) => {
                     botonSeleccionado="rgba(255, 255, 255, 0.1);"
                 />
             </Grid>
-            <Grid xs={12} paddingX={20} paddingTop={4}>
+            {/*Contenedor general*/}
+            <Grid paddingX={5} paddingTop={4}>
+                {/*Titulo principal*/}
                 <Grid container xs={12}>
                     <Titulos item component="h2" titulogrande>
                         Revisión
                     </Titulos>
                 </Grid>
                 <Grid container spacing={6} paddingTop={2}>
-                    <Grid item xs={9}>
+                    <Grid item xs={12} sm={12} md={12} lg={9}>
                         <Item>
                             <Grid item container width="100%" height="100%">
                                 {/* Informacion */}
@@ -320,43 +323,47 @@ const PageRevision = ({ rol }) => {
                                 <Grid
                                     borderBottom="2px solid #dadce0"
                                     width="100%"
+                                    overflow="auto"
+                                    maxHeight={200}
                                 >
-                                    <Box
+                                    <Grid
                                         container
-                                        display="flex"
-                                        sx={{
-                                            paddingTop: 2,
-                                            paddingBottom: 2
+                                        padding={{
+                                            xs: '0px 30px',
+                                            sm: '0px 60px'
                                         }}
                                     >
-                                        <Grid container paddingLeft="60px">
+                                        <Grid
+                                            xs={10}
+                                            lg={11}
+                                            display="flex"
+                                            style={{
+                                                position: 'sticky',
+                                                top: 0,
+                                                backgroundColor: '#FFFFFF',
+                                                zIndex: 1
+                                            }}
+                                        >
                                             <Titulos item titulolabel>
                                                 Materias solicitadas de la
                                                 UNAHUR
                                             </Titulos>
                                         </Grid>
                                         <Grid
-                                            container
-                                            sx={{
-                                                justifyContent: 'end',
-                                                marginRight: '11%'
+                                            xs={2}
+                                            lg={1}
+                                            display="flex"
+                                            style={{
+                                                position: 'sticky',
+                                                top: 0,
+                                                backgroundColor: '#FFFFFF',
+                                                zIndex: 1
                                             }}
                                         >
                                             <Titulos item titulolabel>
                                                 Estado
                                             </Titulos>
                                         </Grid>
-                                    </Box>
-
-                                    <Grid
-                                        container
-                                        overflow="auto"
-                                        maxHeight={200}
-                                        padding={{
-                                            xs: '0px 30px',
-                                            sm: '0px 60px'
-                                        }}
-                                    >
                                         {equiv.materiasSolicitadas !==
                                         undefined ? (
                                             equiv.materiasSolicitadas.map(
@@ -368,8 +375,8 @@ const PageRevision = ({ rol }) => {
                                                                 container
                                                                 direction="column"
                                                                 alignItems="flex-start"
-                                                                md={12}
-                                                                lg={9}
+                                                                xs={10}
+                                                                lg={10}
                                                                 sx={{
                                                                     marginTop:
                                                                         '1px'
@@ -395,12 +402,11 @@ const PageRevision = ({ rol }) => {
                                                             <Grid
                                                                 item
                                                                 container
-                                                                lg={3}
+                                                                xs={2}
+                                                                lg={2}
                                                                 sx={{
                                                                     marginTop:
                                                                         '15px',
-                                                                    paddingRight:
-                                                                        '12px',
                                                                     justifyContent:
                                                                         'end'
                                                                 }}
@@ -409,7 +415,6 @@ const PageRevision = ({ rol }) => {
                                                                     <FormControl
                                                                         fullWidth
                                                                     >
-                                                                        <InputLabel id="demo-simple-select-label"></InputLabel>
                                                                         <Select
                                                                             labelId="demo-simple-select-label"
                                                                             id="demo-simple-select"
@@ -476,7 +481,7 @@ const PageRevision = ({ rol }) => {
                                 </Grid>
 
                                 {/* Universidad Origen */}
-                                <Grid>
+                                <Grid width="100%">
                                     <Box
                                         container
                                         display="flex"
@@ -534,6 +539,7 @@ const PageRevision = ({ rol }) => {
                                                                         container
                                                                         direction="column"
                                                                         alignItems="flex-start"
+                                                                        xs={12}
                                                                         md={12}
                                                                         lg={5.8}
                                                                         sx={{
@@ -592,7 +598,6 @@ const PageRevision = ({ rol }) => {
                                                                 <Grid
                                                                     item
                                                                     container
-                                                                    xs={12}
                                                                     direction="row"
                                                                     alignItems="flex-start"
                                                                     width="100%"
@@ -600,9 +605,6 @@ const PageRevision = ({ rol }) => {
                                                                     <Grid
                                                                         item
                                                                         container
-                                                                        md={12}
-                                                                        lg={12}
-                                                                        xs={12}
                                                                         direction="row"
                                                                         alignItems="flex-start"
                                                                         sx={{
@@ -617,6 +619,9 @@ const PageRevision = ({ rol }) => {
                                                                             item
                                                                             container
                                                                             xs={
+                                                                                3
+                                                                            }
+                                                                            lg={
                                                                                 2
                                                                             }
                                                                             alignItems="flex-start"
@@ -643,6 +648,9 @@ const PageRevision = ({ rol }) => {
                                                                             item
                                                                             container
                                                                             xs={
+                                                                                3
+                                                                            }
+                                                                            lg={
                                                                                 2
                                                                             }
                                                                             alignItems="flex-start"
@@ -670,7 +678,7 @@ const PageRevision = ({ rol }) => {
                                                                             item
                                                                             container
                                                                             xs={
-                                                                                2
+                                                                                3
                                                                             }
                                                                             alignItems="flex-start"
                                                                             marginLeft="2%"
@@ -699,10 +707,12 @@ const PageRevision = ({ rol }) => {
                                                                             item
                                                                             container
                                                                             xs={
-                                                                                5
+                                                                                12
+                                                                            }
+                                                                            lg={
+                                                                                3
                                                                             }
                                                                             marginTop="20px"
-                                                                            width="100%"
                                                                         >
                                                                             <Grid
                                                                                 item
@@ -751,7 +761,7 @@ const PageRevision = ({ rol }) => {
                         </Item>
                     </Grid>
                     {/* Chat */}
-                    <Grid item xs={3}>
+                    <Grid item xs={12} sm={12} md={12} lg={3}>
                         <Item>
                             <Chat
                                 observaciones={formValue.observaciones}
