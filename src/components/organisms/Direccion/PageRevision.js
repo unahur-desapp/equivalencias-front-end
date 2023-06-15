@@ -319,7 +319,7 @@ const PageRevision = ({ rol }) => {
                                     </TableContainer>
                                 </Paper>
 
-                                {/* Universidad Unahur */}
+                                {/* Universidad Unahur Corregir Scroll*/}
                                 <Grid
                                     borderBottom="2px solid #dadce0"
                                     width="100%"
