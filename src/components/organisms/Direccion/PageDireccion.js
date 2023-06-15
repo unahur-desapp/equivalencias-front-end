@@ -57,7 +57,7 @@ const PageDireccion = () => {
                     alignItems="center"
                 >
                     <Grid item>
-                        <Titulos component="h2" titulogrande>
+                        <Titulos component="h2" titulogrande="+true">
                             Solicitudes de equivalencias
                         </Titulos>
                     </Grid>
@@ -66,7 +66,7 @@ const PageDireccion = () => {
                 <GridTop
                     item
                     container
-                    blanco
+                    blanco="+true"
                     search
                     searchPlaceholder
                     searchProps
@@ -180,7 +180,7 @@ const PageDireccion = () => {
                 <GridTop
                     item
                     container
-                    blanco
+                    blanco="+true"
                     xs={11.5}
                     md={7}
                     sx={{

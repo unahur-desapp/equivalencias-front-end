@@ -216,7 +216,7 @@ const PageRevision = ({ rol }) => {
             </Grid>
             <Grid item container xs={12} paddingX={20} paddingTop={4}>
                 <Grid item container xs={12}>
-                    <Titulos component="h2" titulogrande>
+                    <Titulos component="h2" titulogrande="+true">
                         Revisión
                     </Titulos>
                 </Grid>
@@ -783,7 +783,7 @@ const PageRevision = ({ rol }) => {
                                 }}
                             >
                                 <BotonMUI
-                                    buttoncontainedsmall
+                                    buttoncontainedsmall="+true"
                                     sx={{
                                         marginRight: '12px',
                                         width: '100%'

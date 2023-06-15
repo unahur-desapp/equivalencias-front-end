@@ -48,7 +48,7 @@ const OuterFormButtons = ({
             >
                 <Grid item container xs={1} lg={1}>
                     <BotonMUI
-                        buttoncontainedsmall
+                        buttoncontainedsmall="+true"
                         sx={{
                             width: '100%',
                             backgroundColor: '#009673',
@@ -61,7 +61,7 @@ const OuterFormButtons = ({
                 </Grid>
                 <Grid item container xs={6} lg={3}>
                     <BotonMUI
-                        buttoncontainedsmallFinalizar
+                        buttoncontainedsmallFinalizar="+true"
                         onClick={handleSubmit}
                         sx={{
                             margin: '0px 0px 0px 50px',
