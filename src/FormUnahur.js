@@ -45,7 +45,7 @@ const FormUnahur = ({
                 <Grid
                     item
                     container
-                    direction="column"
+                    direction="raw"
                     alignItems="flex-start"
                     md={12}
                     lg={6}
@@ -71,6 +71,9 @@ const FormUnahur = ({
                         onSelect={(event) => handleChangeCarrera(event)}
                         disablePortal
                         options={carreras}
+                        sx={{
+                            marginTop: '1rem'
+                        }}
                         renderInput={(params) => (
                             <TextField
                                 required

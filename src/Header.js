@@ -98,8 +98,8 @@ const Header = ({ name, paginaPrincipal, botonSeleccionado }) => {
                         <Grid item container sx={{ marginLeft: '40px' }}>
                             <Link to="/" style={{ textDecoration: 'none' }}>
                                 <BotonMUI
-                                    buttoncontained
-                                    buttonlogout
+                                    buttoncontained="+true"
+                                    buttonlogout="+true"
                                     variant="contained"
                                     sx={{ width: '150px' }}
                                     onClick={() => {

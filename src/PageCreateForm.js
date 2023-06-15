@@ -37,7 +37,7 @@ const PageCreateForm = () => {
                     alignItems="center"
                 >
                     <Grid item>
-                        <Titulos component="h2" titulogrande>
+                        <Titulos component="h2" titulogrande="+true">
                             Formulario de Equivalencia
                         </Titulos>
                     </Grid>

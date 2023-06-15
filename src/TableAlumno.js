@@ -16,13 +16,14 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 const columns = [
-    { id: 'desc', label: 'Descripción', minWidth: 170 },
-    { id: 'dateTime', label: 'Fecha y hora', minWidth: 100 },
+    { id: 'carrera', label: 'Carrera', minWidth: 170 },
+    { id: 'desc', label: 'Materias solicitadas', minWidth: 170 },
+    { id: 'dateTime', label: 'Fecha', minWidth: 100 },
     { id: 'stateS', label: 'Estado', minWidth: 170 },
     { id: 'actions', label: 'Visualizar', minWidth: 170 }
 ];
 
-function createData(desc, dateTime, state, id) {
+function createData(carrera, desc, dateTime, state, id) {
     const actions = (
         <Link
             to={'/usuario/visualizar/' + id}
@@ -99,7 +100,7 @@ function createData(desc, dateTime, state, id) {
             </Grid>
         );
 
-    return { desc, dateTime, stateS, actions };
+    return { carrera, desc, dateTime, stateS, actions };
 }
 
 const horaConCero = (hora) => {
@@ -139,23 +140,20 @@ export default function StickyHeadTable() {
                     '/' +
                     (d.getMonth() + 1) +
                     '/' +
-                    d.getFullYear() +
-                    ' - ' +
-                    d.getHours() +
-                    ':' +
-                    horaConCero(d.getMinutes());
+                    d.getFullYear();
+                let carrera = arrayItem.carrera;
 
                 arrayData.push(
                     createData(
+                        carrera,
                         arrayItem.Materias_solicitadas[0].nombre,
                         dateTime,
                         arrayItem.estado,
                         arrayItem.id
-                        // arrayItem.Estado[0].en_proceso
                     )
                 );
             });
-
+            console.log('Que trae arrayData: ', obtainedEquivalenciaData);
             setRows(arrayData);
         };
 

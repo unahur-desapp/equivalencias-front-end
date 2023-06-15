@@ -57,7 +57,7 @@ const PageDireccion = () => {
                     alignItems="center"
                 >
                     <Grid item>
-                        <Titulos component="h2" titulogrande>
+                        <Titulos component="h2" titulogrande="+true">
                             Solicitudes de equivalencias
                         </Titulos>
                     </Grid>
@@ -66,7 +66,7 @@ const PageDireccion = () => {
                 <GridTop
                     item
                     container
-                    blanco
+                    blanco="+true"
                     search
                     searchPlaceholder
                     searchProps
@@ -145,23 +145,6 @@ const PageDireccion = () => {
                                         '0px 0px';
                                 }}
                             />
-
-                            {/* <TextField
-                                id="search-bar"
-                                className="text"
-                                onInput={(e) => {
-                                    e.preventDefault();
-                                    setSearchQuery(e.target.value);
-                                }}
-                                label="Buscar"
-                                variant="outlined"
-                                placeholder="DNI o Solicitante"
-                                size="small"
-                                sx={{ width: '300px' }}
-                            /> */}
-                            {/* <IconButton onClick={search()} aria-label="search">
-                                    <SearchIcon style={{ fill: 'blue' }} />
-                                </IconButton> */}
                         </Paper>
                         <Select
                             labelId="demo-simple-select-label"
@@ -169,6 +152,10 @@ const PageDireccion = () => {
                             value={searchQuery.column}
                             label="Age"
                             onChange={handleChange}
+                            size="small"
+                            sx={{
+                                marginLeft: '1%'
+                            }}
                         >
                             <MenuItem value="dni">DNI</MenuItem>
                             <MenuItem value="solicitante">Solicitante</MenuItem>
@@ -180,7 +167,7 @@ const PageDireccion = () => {
                 <GridTop
                     item
                     container
-                    blanco
+                    blanco="+true"
                     xs={11.5}
                     md={7}
                     sx={{

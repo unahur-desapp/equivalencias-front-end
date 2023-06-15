@@ -57,7 +57,7 @@ const FormularioInicioSesion = () => {
     return (
         <FormularioMain>
             <TituloBienvenida>
-                <Titulos titulogrande titulomarginbottom component="h2">
+                <Titulos titulogrande="+true" titulomarginbottom component="h2">
                     ¡Bienvenido/a!
                 </Titulos>
                 <Titulos titulochico titulolight component="h2">
@@ -109,7 +109,7 @@ const FormularioInicioSesion = () => {
                     <Grid>
                         <BotonMUI
                             variant="contained"
-                            buttoncontained
+                            buttoncontained="+true"
                             disableElevation
                             type="submit"
                         >
