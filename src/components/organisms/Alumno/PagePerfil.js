@@ -35,7 +35,7 @@ const PagePerfil = () => {
                     alignItems="center"
                 >
                     <Grid item>
-                        <Titulos component="h2" tituloGrande>
+                        <Titulos component="h2" tituloGrande="+true">
                             Perfil
                         </Titulos>
                     </Grid>
@@ -44,7 +44,7 @@ const PagePerfil = () => {
                 <GridTop
                     item
                     container
-                    blanco
+                    blanco="+true"
                     xs={11.5}
                     md={7}
                     marginTop={{
