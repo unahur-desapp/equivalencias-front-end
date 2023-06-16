@@ -14,7 +14,7 @@ import {
 } from '../../services/equivalencia_service';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { Grid, TextField } from '@mui/material';
+import { Grid, TextField, Typography } from '@mui/material';
 import { ActionButtons } from '../atoms/Button/ActionButtons';
 
 export default function TablaEquivalencias({ searchQuery, rol }) {
@@ -82,7 +82,6 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                 )}
             </Grid>
         );
-
         if (rol === 'directivo') {
             return { solicitante, dni, materia, dateTime, actions, estado };
         } else {
@@ -106,6 +105,31 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
             stringSalida = `Cantidad de materias: ${cant}`;
         }
         return stringSalida;
+    };
+
+    const renderState = (estado) => {
+        let color = 'success';
+        switch (estado) {
+            case 'CERRADO':
+                color = 'error';
+                break;
+            case 'PENDIENTE':
+                color = 'success';
+                break;
+            default:
+                color = 'info';
+        }
+        return (
+            <Button
+                color={color}
+                variant="contained"
+                disableRipple="false"
+                disableElevation="false"
+                fullWidth
+            >
+                {estado}
+            </Button>
+        );
     };
 
     useEffect(() => {
@@ -133,7 +157,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                     '/' +
                     d.getFullYear();
                 let carrera = arrayItem.carrera;
-                var status = arrayItem.estado.toUpperCase();
+                var status = renderState(arrayItem.estado.toUpperCase());
                 console.log(status);
                 array.push(
                     createData(
