@@ -14,7 +14,7 @@ import {
 } from '../../services/equivalencia_service';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { Grid } from '@mui/material';
+import { Grid, TextField } from '@mui/material';
 import { ActionButtons } from '../atoms/Button/ActionButtons';
 
 export default function TablaEquivalencias({ searchQuery, rol }) {
@@ -82,6 +82,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                 )}
             </Grid>
         );
+
         if (rol === 'directivo') {
             return { solicitante, dni, materia, dateTime, actions, estado };
         } else {
@@ -92,6 +93,19 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
+    };
+
+    const filterNameMat = (materias) => {
+        let stringSalida = '';
+        let cant = materias.length;
+        if (cant == 1) {
+            stringSalida = materias[0].nombre;
+        } else if (cant == 2) {
+            stringSalida = materias[0].nombre + ', ' + materias[1].nombre;
+        } else {
+            stringSalida = `Cantidad de materias: ${cant}`;
+        }
+        return stringSalida;
     };
 
     useEffect(() => {
@@ -120,9 +134,10 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                     d.getFullYear();
                 let carrera = arrayItem.carrera;
                 var status = arrayItem.estado.toUpperCase();
+                console.log(status);
                 array.push(
                     createData(
-                        arrayItem.Materias_solicitadas[0].nombre,
+                        filterNameMat(arrayItem.Materias_solicitadas),
                         dateTime,
                         status,
                         arrayItem.Usuario.nombre +
