@@ -160,7 +160,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                 let carrera = arrayItem.carrera;
                 //Se deja funcion andando de los botones de estado falta implementar se llama renderState.
                 //Se saca porque rompe el buscador por estado ver de implementar de otra manera o arreglar.
-                var status = arrayItem.estado.toUpperCase();
+                var status = renderState(arrayItem.estado.toUpperCase());
                 console.log(status);
                 array.push(
                     createData(
@@ -202,7 +202,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                             break;
                         case 'estado':
                             dataFilter = array.filter((d) =>
-                                d.estado
+                                d.estado.props.children
                                     .toLowerCase()
                                     .includes(searchQuery.value.toLowerCase())
                             );
@@ -271,17 +271,22 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                                     >
                                         {columns.map((column) => {
                                             const value = row[column.id];
+                                            column.id === 'estado'
+                                                ? console.log(
+                                                      'Estado value: ',
+                                                      value.props.children
+                                                  )
+                                                : 'Nada';
                                             return (
                                                 <TableCell
                                                     key={column.id}
-                                                    align={column.align}
+                                                    align="center"
                                                     sx={{
                                                         padding: '1rem 2rem'
                                                     }}
                                                 >
-                                                    {column.format &&
-                                                    typeof value === 'number'
-                                                        ? column.format(value)
+                                                    {column.id === 'estado'
+                                                        ? value
                                                         : value}
                                                 </TableCell>
                                             );
