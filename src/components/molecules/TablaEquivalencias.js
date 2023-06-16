@@ -107,7 +107,6 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
         return stringSalida;
     };
 
-    //Se deja funcion andando de los botones de estado falta implementar
     const renderState = (estado) => {
         let color = 'success';
         switch (estado) {
@@ -158,8 +157,6 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                     '/' +
                     d.getFullYear();
                 let carrera = arrayItem.carrera;
-                //Se deja funcion andando de los botones de estado falta implementar se llama renderState.
-                //Se saca porque rompe el buscador por estado ver de implementar de otra manera o arreglar.
                 var status = renderState(arrayItem.estado.toUpperCase());
                 console.log(status);
                 array.push(
@@ -285,9 +282,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                                                         padding: '1rem 2rem'
                                                     }}
                                                 >
-                                                    {column.id === 'estado'
-                                                        ? value
-                                                        : value}
+                                                    {value}
                                                 </TableCell>
                                             );
                                         })}
