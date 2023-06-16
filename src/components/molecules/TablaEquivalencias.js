@@ -1,5 +1,5 @@
 // import * as React from 'react';
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,68 +8,85 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { getEquivalencia } from '../../../services/equivalencia_service';
-import { getUsuario } from '../../../services/usuario_service';
-// import { useState, useEffect } from 'react';
+import {
+    getEquivalencia,
+    getEquivalenciaUsuario
+} from '../../services/equivalencia_service';
 import Button from '@mui/material/Button';
-// import { OuterFormButtons } from '../../../OuterFormButtons';
-import FormHelperText from '@mui/material/FormHelperText';
-import { useFormControl } from '@mui/material/FormControl';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
+import { ActionButtons } from '../atoms/Button/ActionButtons';
 
-// import TextField from '@mui/material/TextField';
-// import Stack from '@mui/material/Stack';
-// import Autocomplete from '@mui/material/Autocomplete';
-// import { getEquivalencia } from './services/equivalencia_service';
-
-export const columns = [
-    { id: 'dni', label: 'DNI', minWidth: 100 },
-    { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
-    { id: 'materia', label: 'Materias Solicitadas', minWidth: 170 },
-    { id: 'dateTime', label: 'Fecha', minWidth: 100 },
-    { id: 'estado', label: 'Estado', minWidth: 170 },
-    { id: 'actions', label: 'Acciones', minWidth: 100 } // Columna estado agregada!
-];
-
-function createData(solicitante, dni, materia, id, dateTime, estado) {
-    const actions = (
-        <Grid
-            container
-            item
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-        >
-            <Link
-                to={'/direccion/revision/' + id}
-                style={{ textDecoration: 'none' }}
-            >
-                <Button>Revisar</Button>
-            </Link>
-        </Grid>
-    ); //acciones lleva a pantalla revision de ese id
-    return { solicitante, dni, materia, dateTime, actions, estado };
-}
-
-const horaConCero = (hora) => {
-    if (hora < 10) {
-        return `0${hora}`;
-    } else {
-        return hora;
-    }
-};
-
-const getEstado = () => {};
-
-export default function StickyHeadTable({ searchQuery }) {
+export default function TablaEquivalencias({ searchQuery, rol }) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [rows, setRows] = useState([]);
-    const [arrayData, setArrayData] = useState([]);
+    console.log(rol);
+    const getColumns = () => {
+        if (rol === 'directivo') {
+            return [
+                { id: 'dni', label: 'DNI', minWidth: 100 },
+                { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
+                { id: 'materia', label: 'Materias Solicitadas', minWidth: 170 },
+                { id: 'dateTime', label: 'Fecha', minWidth: 100 },
+                { id: 'estado', label: 'Estado', minWidth: 170 },
+                { id: 'actions', label: 'Acciones', minWidth: 100 }
+            ];
+        } else {
+            return [
+                { id: 'carrera', label: 'Carrera', minWidth: 170 },
+                { id: 'materia', label: 'Materias solicitadas', minWidth: 170 },
+                { id: 'dateTime', label: 'Fecha', minWidth: 100 },
+                { id: 'estado', label: 'Estado', minWidth: 170 },
+                { id: 'actions', label: 'Visualizar', minWidth: 170 }
+            ];
+        }
+    };
+    const columns = getColumns();
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
+    };
+
+    const createData = (
+        materia,
+        dateTime,
+        estado,
+        solicitante,
+        dni,
+        id,
+        carrera
+    ) => {
+        const actions = (
+            <Grid
+                container
+                item
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+            >
+                {rol === 'directivo' ? (
+                    <Link
+                        to={'/direccion/revision/' + id}
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <ActionButtons></ActionButtons>
+                    </Link>
+                ) : (
+                    <Link
+                        to={'/usuario/visualizar/' + id}
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <ActionButtons></ActionButtons>
+                    </Link>
+                )}
+            </Grid>
+        );
+        if (rol === 'directivo') {
+            return { solicitante, dni, materia, dateTime, actions, estado };
+        } else {
+            return { carrera, materia, dateTime, estado, actions };
+        }
     };
 
     const handleChangeRowsPerPage = (event) => {
@@ -77,111 +94,92 @@ export default function StickyHeadTable({ searchQuery }) {
         setPage(0);
     };
 
-    // const [searchQuery, setSearchQuery] = useState('');
-    // console.log(searchQuery);
-
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
-            const obtainedEquivalenciaData = await getEquivalencia();
+            let obtainedEquivalenciaData = [];
+            if (rol === 'directivo') {
+                obtainedEquivalenciaData = await getEquivalencia();
+            } else {
+                const usuarioId = parseInt(
+                    JSON.parse(localStorage.getItem('id'))
+                );
+                obtainedEquivalenciaData = await getEquivalenciaUsuario(
+                    usuarioId
+                );
+            }
 
             let array = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
-                let d = new Date(arrayItem.Materias_solicitadas[0].createdAt); //tengo que traer solicitantes
+                let d = new Date(arrayItem.Materias_solicitadas[0].createdAt);
                 let dateTime =
-                    // d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
                     d.getDate() +
                     '/' +
                     (d.getMonth() + 1) +
                     '/' +
                     d.getFullYear();
+                let carrera = arrayItem.carrera;
                 var status = arrayItem.estado.toUpperCase();
                 array.push(
                     createData(
-                        // arrayItem.Materias_solicitadas[0].nombre ----falta esto
-                        // arrayItem.Materias_solicitadas[0].Usuario.id,
-                        // arrayItem.Materias_solicitadas[0].usuario.dni,
-                        // arrayItem.Materias_solicitadas[0].id,
+                        arrayItem.Materias_solicitadas[0].nombre,
+                        dateTime,
+                        status,
                         arrayItem.Usuario.nombre +
                             ' ' +
                             arrayItem.Usuario.apellido,
                         arrayItem.Usuario.dni,
-                        arrayItem.Materias_solicitadas[0].nombre,
                         arrayItem.id,
-                        // arrayItem.Materias_solicitadas[0],
-                        dateTime,
-                        status
-                        //fecha actual de cuando se genero la equivalencia
-                        //arrayItem.Estado[0].status
+                        carrera
                     )
                 );
-                let dataFilter = array;
-                switch (searchQuery.column) {
-                    case 'dni':
-                        dataFilter = array.filter((d) =>
-                            d.dni
-                                .toString()
-                                .toLowerCase()
-                                .includes(searchQuery.value.toLowerCase())
-                        );
-                        console.log(
-                            'entro a dni',
-                            searchQuery.value,
-                            dataFilter
-                        );
-                        break;
-                    case 'solicitante':
-                        dataFilter = array.filter((d) =>
-                            d.solicitante
-                                .toLowerCase()
-                                .includes(searchQuery.value.toLowerCase())
-                        );
-                        console.log(
-                            'entro a solicitante',
-                            searchQuery.value,
-                            dataFilter
-                        );
-                        break;
-                    case 'materia':
-                        dataFilter = array.filter((d) =>
-                            d.materia
-                                .toLowerCase()
-                                .includes(searchQuery.value.toLowerCase())
-                        );
-                        console.log(
-                            'entro a materia',
-                            searchQuery.value,
-                            dataFilter
-                        );
-                        break;
-                    case 'estado':
-                        dataFilter = array.filter((d) =>
-                            d.estado
-                                .toLowerCase()
-                                .includes(searchQuery.value.toLowerCase())
-                        );
-                        console.log(
-                            'entro a estado',
-                            searchQuery.value,
-                            dataFilter
-                        );
-                        break;
-                    default:
-                        dataFilter = array;
-                        console.log(
-                            'entro a default',
-                            searchQuery.value,
-                            dataFilter
-                        );
-                        break;
-                }
-                if (searchQuery) {
-                    setRows(dataFilter);
-                    setPage(0);
+                if (rol === 'directivo') {
+                    let dataFilter = array;
+                    switch (searchQuery.column) {
+                        case 'dni':
+                            dataFilter = array.filter((d) =>
+                                d.dni
+                                    .toString()
+                                    .toLowerCase()
+                                    .includes(searchQuery.value.toLowerCase())
+                            );
+                            break;
+                        case 'solicitante':
+                            dataFilter = array.filter((d) =>
+                                d.solicitante
+                                    .toLowerCase()
+                                    .includes(searchQuery.value.toLowerCase())
+                            );
+                            break;
+                        case 'materia':
+                            dataFilter = array.filter((d) =>
+                                d.materia
+                                    .toLowerCase()
+                                    .includes(searchQuery.value.toLowerCase())
+                            );
+                            break;
+                        case 'estado':
+                            dataFilter = array.filter((d) =>
+                                d.estado
+                                    .toLowerCase()
+                                    .includes(searchQuery.value.toLowerCase())
+                            );
+                            break;
+                        default:
+                            dataFilter = array;
+                            break;
+                    }
+                    if (searchQuery) {
+                        setRows(dataFilter);
+                        setPage(0);
+                    } else {
+                        setRows([...array]);
+                    }
                 } else {
                     setRows([...array]);
                 }
             });
+            console.table([columns, array]);
         };
         fetchEquivalenciaData();
     }, [searchQuery]);

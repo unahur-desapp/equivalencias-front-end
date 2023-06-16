@@ -1,6 +1,6 @@
 import { Grid, Icon } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-import { Header } from '../../../Header';
+import { Header } from '../../molecules/Header';
 import { Titulos } from '../../atoms/Title/Titulos';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -11,7 +11,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { BotonMUI } from '../../atoms/Button/BotonMUI';
 import { StandardInput } from '../../atoms/Input/InputMUI';
-import { OuterFormButtons } from '../../../OuterFormButtons';
+import { OuterFormButtons } from '../../molecules/OuterFormButtons';
 import FormControl from '@mui/material/FormControl';
 import { getEquivalencia } from '../../../services/revision';
 import { useParams } from 'react-router-dom';

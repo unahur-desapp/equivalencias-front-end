@@ -11,10 +11,10 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
-import { stringConcat } from '../../Header';
 import { Grid } from '@mui/material';
 import { Titulos } from '../atoms/Title/Titulos';
 import { Link } from 'react-router-dom';
+import { stringConcat } from './Header';
 
 export default function Menu({ name, paginaPrincipal }) {
     const nombre = JSON.parse(localStorage.getItem('nombre'));
