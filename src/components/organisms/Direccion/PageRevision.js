@@ -319,183 +319,172 @@ const PageRevision = ({ rol }) => {
                                     </TableContainer>
                                 </Paper>
 
-                                {/* Universidad Unahur Corregir Scrol*/}
-                                <Grid
-                                    borderBottom="2px solid #dadce0"
-                                    width="100%"
-                                    overflow="auto"
-                                    maxHeight={200}
-                                >
+                                {/* Universidad Unahur*/}
+
+                                <Grid container>
                                     <Grid
-                                        container
-                                        padding={{
-                                            xs: '0px 30px',
-                                            sm: '0px 60px'
+                                        item
+                                        xs={12}
+                                        lg={10}
+                                        sx={{
+                                            paddingLeft: '60px'
                                         }}
                                     >
-                                        <Grid
-                                            xs={10}
-                                            lg={11}
-                                            display="flex"
-                                            style={{
-                                                position: 'sticky',
-                                                top: 0,
-                                                backgroundColor: '#FFFFFF',
-                                                zIndex: 1
+                                        <Titulos
+                                            item
+                                            titulolabel
+                                            sx={{
+                                                textAlign: {
+                                                    lg: 'left'
+                                                }
                                             }}
                                         >
-                                            <Titulos item titulolabel>
-                                                Materias solicitadas de la
-                                                UNAHUR
-                                            </Titulos>
-                                        </Grid>
-                                        <Grid
-                                            xs={2}
-                                            lg={1}
-                                            display="flex"
-                                            style={{
-                                                position: 'sticky',
-                                                top: 0,
-                                                backgroundColor: '#FFFFFF',
-                                                zIndex: 1
-                                            }}
+                                            Materias solicitadas de la UNAHUR
+                                        </Titulos>
+                                    </Grid>
+                                    <Grid
+                                        item
+                                        xs={12}
+                                        lg={2}
+                                        sx={{
+                                            display: {
+                                                xs: 'none',
+                                                lg: 'inline'
+                                            },
+                                            paddingLeft: '60px'
+                                        }}
+                                    >
+                                        <Titulos
+                                            item
+                                            titulolabel
+                                            textAlign="left"
                                         >
-                                            <Titulos item titulolabel>
-                                                Estado
-                                            </Titulos>
-                                        </Grid>
-                                        {equiv.materiasSolicitadas !==
-                                        undefined ? (
-                                            equiv.materiasSolicitadas.map(
-                                                (materia) => {
-                                                    return (
-                                                        <>
-                                                            <Grid
-                                                                item
-                                                                container
-                                                                direction="column"
-                                                                alignItems="flex-start"
-                                                                xs={10}
-                                                                lg={10}
-                                                                sx={{
-                                                                    marginTop:
-                                                                        '1px'
+                                            Estado
+                                        </Titulos>
+                                    </Grid>
+                                </Grid>
+                                <Grid container overflow="auto" maxHeight={200}>
+                                    {equiv.materiasSolicitadas !== undefined ? (
+                                        equiv.materiasSolicitadas.map(
+                                            (materia) => {
+                                                return (
+                                                    <>
+                                                        {/*Equivalencias solicitadas*/}
+                                                        <Grid
+                                                            lg={10}
+                                                            xs={12}
+                                                            paddingLeft="60px"
+                                                        >
+                                                            <StandardInput
+                                                                inputFocused
+                                                                name="materiaSolicitada"
+                                                                value={
+                                                                    materia.nombre
+                                                                }
+                                                                variant="outlined"
+                                                                focused={true}
+                                                                size="small"
+                                                                InputProps={{
+                                                                    readOnly: true
                                                                 }}
+                                                            />
+                                                        </Grid>
+                                                        {/*Estados*/}
+                                                        <Grid
+                                                            lg={2}
+                                                            xs={12}
+                                                            paddingLeft="60px"
+                                                            marginTop="15px"
+                                                        >
+                                                            <FormControl
+                                                                fullWidth
                                                             >
-                                                                <StandardInput
-                                                                    inputFocused
-                                                                    name="materiaSolicitada"
-                                                                    value={
-                                                                        materia.nombre
+                                                                <Select
+                                                                    labelId="demo-simple-select-label"
+                                                                    id="demo-simple-select"
+                                                                    inputProps={
+                                                                        rol ===
+                                                                        'alumno'
+                                                                            ? {
+                                                                                  readOnly:
+                                                                                      'false',
+                                                                                  IconComponent:
+                                                                                      'false'
+                                                                              }
+                                                                            : {}
                                                                     }
-                                                                    variant="outlined"
-                                                                    focused={
-                                                                        true
+                                                                    onChange={(
+                                                                        event
+                                                                    ) =>
+                                                                        cambiarEstado(
+                                                                            event,
+                                                                            materia.id
+                                                                        )
+                                                                    }
+                                                                    defaultValue="pendiente"
+                                                                    value={
+                                                                        materia.estado
                                                                     }
                                                                     size="small"
-                                                                    InputProps={{
-                                                                        readOnly: true
+                                                                    sx={{
+                                                                        width:
+                                                                            '145px', // Ajusta el ancho según tus necesidades
+                                                                        backgroundColor:
+                                                                            materia.estado ===
+                                                                            'aceptado'
+                                                                                ? '#009673'
+                                                                                : materia.estado ===
+                                                                                  'rechazado'
+                                                                                ? '#DB0505'
+                                                                                : '#2A74E4',
+                                                                        color:
+                                                                            '#FFFFFF'
                                                                     }}
-                                                                />
-                                                            </Grid>
-
-                                                            <Grid
-                                                                item
-                                                                container
-                                                                xs={2}
-                                                                lg={2}
-                                                                sx={{
-                                                                    marginTop:
-                                                                        '15px',
-                                                                    justifyContent:
-                                                                        'end'
-                                                                }}
-                                                            >
-                                                                <Box>
-                                                                    <FormControl
-                                                                        fullWidth
-                                                                    >
-                                                                        <Select
-                                                                            labelId="demo-simple-select-label"
-                                                                            id="demo-simple-select"
-                                                                            inputProps={
-                                                                                rol ===
-                                                                                'alumno'
-                                                                                    ? {
-                                                                                          readOnly:
-                                                                                              'false',
-                                                                                          IconComponent:
-                                                                                              'false'
-                                                                                      }
-                                                                                    : {}
-                                                                            }
-                                                                            onChange={(
-                                                                                event
-                                                                            ) =>
-                                                                                cambiarEstado(
-                                                                                    event,
-                                                                                    materia.id
-                                                                                )
-                                                                            }
-                                                                            defaultValue="pendiente"
-                                                                            value={
-                                                                                materia.estado
-                                                                            }
-                                                                            size="small"
-                                                                            sx={{
-                                                                                width:
-                                                                                    '145px', // Ajusta el ancho según tus necesidades
-                                                                                backgroundColor:
-                                                                                    materia.estado ===
-                                                                                    'aceptado'
-                                                                                        ? '#009673'
-                                                                                        : materia.estado ===
-                                                                                          'rechazado'
-                                                                                        ? '#DB0505'
-                                                                                        : '#2A74E4',
-                                                                                color:
-                                                                                    '#FFFFFF'
-                                                                            }}
-                                                                        >
-                                                                            <MenuItem value="aceptado">
-                                                                                Aceptado
-                                                                            </MenuItem>
-                                                                            <MenuItem value="pendiente">
-                                                                                Pendiente
-                                                                            </MenuItem>
-                                                                            <MenuItem value="rechazado">
-                                                                                Rechazado
-                                                                            </MenuItem>
-                                                                        </Select>
-                                                                    </FormControl>
-                                                                </Box>
-                                                            </Grid>
-                                                        </>
-                                                    );
-                                                }
-                                            )
-                                        ) : (
-                                            <></>
-                                        )}
-                                    </Grid>
+                                                                >
+                                                                    <MenuItem value="aceptado">
+                                                                        Aceptado
+                                                                    </MenuItem>
+                                                                    <MenuItem value="pendiente">
+                                                                        Pendiente
+                                                                    </MenuItem>
+                                                                    <MenuItem value="rechazado">
+                                                                        Rechazado
+                                                                    </MenuItem>
+                                                                </Select>
+                                                            </FormControl>
+                                                        </Grid>
+                                                    </>
+                                                );
+                                            }
+                                        )
+                                    ) : (
+                                        <></>
+                                    )}
                                 </Grid>
 
                                 {/* Universidad Origen */}
                                 <Grid width="100%">
-                                    <Box
-                                        container
-                                        display="flex"
+                                    <Grid
+                                        item
+                                        xs={12}
                                         sx={{
-                                            paddingTop: 2,
-                                            paddingBottom: 2
+                                            paddingLeft: '60px',
+                                            marginTop: '10px',
+                                            borderTop: '2px solid #dadce0'
                                         }}
                                     >
-                                        <Grid container paddingLeft="60px">
-                                            <Titulos item titulolabel>
-                                                Materias aprobadas
-                                            </Titulos>
-                                        </Grid>
-                                    </Box>
+                                        <Titulos
+                                            item
+                                            titulolabel
+                                            sx={{
+                                                textAlign: {
+                                                    lg: 'left'
+                                                }
+                                            }}
+                                        >
+                                            Materias aprobadas
+                                        </Titulos>
+                                    </Grid>
                                     <Grid overflow="auto" maxHeight={200}>
                                         {equiv.materiasAprobadas !==
                                         undefined ? (
@@ -770,7 +759,7 @@ const PageRevision = ({ rol }) => {
                     </Grid>
                 </Grid>
                 {/* Footer */}
-                <Grid item container xs={12}>
+                <Grid item container sm={12} spacing={6}>
                     {rol === 'directivo' ? (
                         <OuterFormButtons
                             handleSubmit={handleSubmit}
@@ -782,7 +771,7 @@ const PageRevision = ({ rol }) => {
                             revision={true}
                         />
                     ) : (
-                        <Grid item container xs={1} lg={1} marginTop="20px">
+                        <Grid marginTop="20px">
                             <Link
                                 to={'/usuario/equivalencias/'}
                                 style={{
@@ -794,7 +783,7 @@ const PageRevision = ({ rol }) => {
                                 }}
                             >
                                 <BotonMUI
-                                    buttoncontainedsmall="+true"
+                                    buttoncontainedsmall
                                     sx={{
                                         marginRight: '12px',
                                         width: '100%'
