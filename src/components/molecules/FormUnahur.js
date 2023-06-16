@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { AutocompleteInput } from './components/atoms/Input/InputMUI';
-import { Titulos } from './components/atoms/Title/Titulos';
+import { AutocompleteInput } from '../atoms/Input/InputMUI';
+import { Titulos } from '../atoms/Title/Titulos';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 

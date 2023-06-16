@@ -1,15 +1,15 @@
 import { Grid, MenuItem, Paper, Select } from '@mui/material';
-import { Header } from '../../../Header';
-import { GridTop } from '../../../GridTop';
-import { Titulos } from '../../atoms/Title/Titulos';
+import { Header } from '../molecules/Header';
+import { GridTop } from '../atoms/GridTop';
+import { Titulos } from '../atoms/Title/Titulos';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react';
-import { BotonMUI } from '../../atoms/Button/BotonMUI';
+import { BotonMUI } from '../atoms/Button/BotonMUI';
 import { ToastContainer } from 'react-toastify';
-import TablaEquivalencias from '../../molecules/TablaEquivalencias';
+import TablaEquivalencias from '../molecules/TablaEquivalencias';
 
 const PageEquivalencias = ({ rol }) => {
     const [searchQuery, setSearchQuery] = useState({

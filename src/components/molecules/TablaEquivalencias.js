@@ -15,7 +15,7 @@ import {
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
-import { ActionButtons } from '../../ActionButtons';
+import { ActionButtons } from '../atoms/Button/ActionButtons';
 
 export default function TablaEquivalencias({ searchQuery, rol }) {
     const [page, setPage] = React.useState(0);

@@ -1,10 +1,10 @@
 import PageIniciarSesion from './components/organisms/IniciarSesion/PageIniciarSesion';
-import { PageCreateForm } from './PageCreateForm';
 import { PageRevision } from './components/organisms/Direccion/PageRevision';
-import { PageEquivalencias } from './components/organisms/Direccion/PageEquivalencias';
+import { PageEquivalencias } from './components/organisms/PageEquivalencias';
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { PageCreateForm } from './components/molecules/PageCreateForm';
 
 function App() {
     const rol = JSON.parse(localStorage.getItem('rol'));

@@ -1,14 +1,14 @@
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
-import { GridTop } from './GridTop';
+import { GridTop } from '../atoms/GridTop';
 import { FormUniOrigen } from './FormUniOrigen';
-import { BotonMUI } from './components/atoms/Button/BotonMUI';
+import { BotonMUI } from '../atoms/Button/BotonMUI';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { OuterFormButtons } from './OuterFormButtons';
-import { config } from '../src/config/config';
+import { config } from '../../config/config';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
