@@ -107,6 +107,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
         return stringSalida;
     };
 
+    //Se deja funcion andando de los botones de estado falta implementar
     const renderState = (estado) => {
         let color = 'success';
         switch (estado) {
@@ -157,7 +158,9 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                     '/' +
                     d.getFullYear();
                 let carrera = arrayItem.carrera;
-                var status = renderState(arrayItem.estado.toUpperCase());
+                //Se deja funcion andando de los botones de estado falta implementar se llama renderState.
+                //Se saca porque rompe el buscador por estado ver de implementar de otra manera o arreglar.
+                var status = arrayItem.estado.toUpperCase();
                 console.log(status);
                 array.push(
                     createData(
@@ -239,11 +242,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                             {columns.map((column) => (
                                 <TableCell
                                     key={column.id}
-                                    align={
-                                        column.label === 'Acciones'
-                                            ? 'center'
-                                            : 'left'
-                                    }
+                                    align={'center'}
                                     style={{ minWidth: column.minWidth }}
                                     sx={{
                                         backgroundColor: 'azure',
@@ -277,7 +276,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                                                     key={column.id}
                                                     align={column.align}
                                                     sx={{
-                                                        padding: '16px 40px'
+                                                        padding: '1rem 2rem'
                                                     }}
                                                 >
                                                     {column.format &&
