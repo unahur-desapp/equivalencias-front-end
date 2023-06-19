@@ -114,21 +114,28 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                 color = 'error';
                 break;
             case 'PENDIENTE':
-                color = 'success';
+                color = 'info';
                 break;
             default:
-                color = 'info';
+                color = 'success';
         }
         return (
-            <Button
-                color={color}
-                variant="contained"
-                disableRipple="false"
-                disableElevation="false"
-                fullWidth
-            >
-                {estado}
-            </Button>
+            <span>
+                <Button
+                    color={color}
+                    variant="contained"
+                    disableRipple="false"
+                    disableElevation="false"
+                    fullWidth
+                    sx={{
+                        '&:hover': {
+                            cursor: 'default'
+                        }
+                    }}
+                >
+                    {estado}
+                </Button>
+            </span>
         );
     };
 
