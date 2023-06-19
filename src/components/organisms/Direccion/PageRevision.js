@@ -796,7 +796,7 @@ const PageRevision = ({ rol }) => {
                     </Grid>
                 </Grid>
                 {/* Footer */}
-                <Grid item container sm={12} spacing={6}>
+                <Grid item container xs={12}>
                     {rol === 'directivo' ? (
                         <OuterFormButtons
                             handleSubmit={handleSubmit}
@@ -808,7 +808,7 @@ const PageRevision = ({ rol }) => {
                             revision={true}
                         />
                     ) : (
-                        <Grid marginTop="20px">
+                        <Grid item container xs={1} lg={1} marginTop="20px">
                             <Link
                                 to={'/usuario/equivalencias/'}
                                 style={{
@@ -820,7 +820,7 @@ const PageRevision = ({ rol }) => {
                                 }}
                             >
                                 <BotonMUI
-                                    buttoncontainedsmall
+                                    buttoncontainedsmall="+true"
                                     sx={{
                                         marginRight: '12px',
                                         width: '100%'
