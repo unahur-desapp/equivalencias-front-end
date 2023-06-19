@@ -81,7 +81,7 @@ const PageEquivalencias = ({ rol }) => {
                             item
                             xs={0}
                             sx={{
-                                display: { sm: 'flex', xs: 'none' }
+                                display: { sm: 'flex' }
                             }}
                         >
                             <Link
