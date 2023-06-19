@@ -16,6 +16,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { Grid, TextField, Typography } from '@mui/material';
 import { ActionButtons } from '../atoms/Button/ActionButtons';
+import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
 
 export default function TablaEquivalencias({ searchQuery, rol }) {
     const [page, setPage] = React.useState(0);
@@ -107,7 +108,15 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
         return stringSalida;
     };
 
-    const renderState = (estado) => {
+    const renderNotify = (materias) => {
+        let salida = '';
+        if (materias.length > 3) {
+            salida = <NotificationImportantIcon />;
+        }
+        return salida;
+    };
+
+    const renderState = (estado, materias) => {
         let color = 'success';
         switch (estado) {
             case 'CERRADO':
@@ -127,10 +136,9 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                     disableRipple="false"
                     disableElevation="false"
                     fullWidth
+                    endIcon={renderNotify(materias)}
                     sx={{
-                        '&:hover': {
-                            cursor: 'default'
-                        }
+                        pointerEvents: 'none'
                     }}
                 >
                     {estado}
@@ -164,7 +172,10 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                     '/' +
                     d.getFullYear();
                 let carrera = arrayItem.carrera;
-                var status = renderState(arrayItem.estado.toUpperCase());
+                var status = renderState(
+                    arrayItem.estado.toUpperCase(),
+                    arrayItem.Materias_solicitadas
+                );
                 console.log(status);
                 array.push(
                     createData(
