@@ -219,8 +219,17 @@ const PageRevision = ({ rol }) => {
             {/*Contenedor general*/}
             <Grid paddingX={5} paddingTop={4}>
                 {/*Titulo principal*/}
-                <Grid container xs={12}>
-                    <Titulos item component="h2" titulogrande>
+                <Grid item lg={12}>
+                    <Titulos
+                        component="h2"
+                        titulogrande
+                        sx={{
+                            textAlign: {
+                                xs: 'center',
+                                lg: 'left'
+                            }
+                        }}
+                    >
                         Revisión
                     </Titulos>
                 </Grid>
@@ -286,7 +295,7 @@ const PageRevision = ({ rol }) => {
                                                         {user.dni}
                                                     </TableCell>
                                                     <TableCell
-                                                        aling="center"
+                                                        align="center"
                                                         component="th"
                                                         scope="row"
                                                     >
@@ -327,7 +336,10 @@ const PageRevision = ({ rol }) => {
                                         xs={12}
                                         lg={10}
                                         sx={{
-                                            paddingLeft: '60px'
+                                            padding: {
+                                                xs: '0px 30px',
+                                                lg: '0px 60px'
+                                            }
                                         }}
                                     >
                                         <Titulos
@@ -373,7 +385,14 @@ const PageRevision = ({ rol }) => {
                                                         <Grid
                                                             lg={10}
                                                             xs={12}
-                                                            paddingLeft="60px"
+                                                            sx={{
+                                                                padding: {
+                                                                    xs:
+                                                                        '0px 30px',
+                                                                    lg:
+                                                                        '0px 60px'
+                                                                }
+                                                            }}
                                                         >
                                                             <StandardInput
                                                                 inputFocused
@@ -393,7 +412,14 @@ const PageRevision = ({ rol }) => {
                                                         <Grid
                                                             lg={2}
                                                             xs={12}
-                                                            paddingLeft="60px"
+                                                            sx={{
+                                                                padding: {
+                                                                    xs:
+                                                                        '0px 30px',
+                                                                    lg:
+                                                                        '0px 60px'
+                                                                }
+                                                            }}
                                                             marginTop="15px"
                                                         >
                                                             <FormControl
@@ -468,9 +494,12 @@ const PageRevision = ({ rol }) => {
                                         item
                                         xs={12}
                                         sx={{
-                                            paddingLeft: '60px',
                                             marginTop: '10px',
-                                            borderTop: '2px solid #dadce0'
+                                            borderTop: '2px solid #dadce0',
+                                            padding: {
+                                                xs: '0px 30px',
+                                                lg: '0px 60px'
+                                            }
                                         }}
                                     >
                                         <Titulos
@@ -669,6 +698,9 @@ const PageRevision = ({ rol }) => {
                                                                             xs={
                                                                                 3
                                                                             }
+                                                                            lg={
+                                                                                2
+                                                                            }
                                                                             alignItems="flex-start"
                                                                             marginLeft="2%"
                                                                             width="100%"
@@ -692,47 +724,50 @@ const PageRevision = ({ rol }) => {
                                                                                 }}
                                                                             />
                                                                         </Grid>
+
                                                                         <Grid
                                                                             item
                                                                             container
+                                                                            width="100%"
                                                                             xs={
                                                                                 12
                                                                             }
                                                                             lg={
-                                                                                3
+                                                                                4
                                                                             }
-                                                                            marginTop="20px"
+                                                                            sx={{
+                                                                                marginBottom:
+                                                                                    '10px',
+                                                                                marginTop:
+                                                                                    '20px',
+                                                                                padding: {
+                                                                                    lg:
+                                                                                        '0px 60px'
+                                                                                }
+                                                                            }}
                                                                         >
-                                                                            <Grid
-                                                                                item
-                                                                                container
-                                                                                alignItems="flex-start"
-                                                                                width="100%"
-                                                                                marginLeft="10%"
+                                                                            <Titulos
+                                                                                titulolabel
+                                                                                variant="h5"
+                                                                                fontSize={{
+                                                                                    xs:
+                                                                                        '16px',
+                                                                                    sm:
+                                                                                        '18px'
+                                                                                }}
+                                                                                marginTop="2px"
+                                                                                marginRight="5px"
                                                                             >
-                                                                                <Titulos
-                                                                                    titulolabel
-                                                                                    variant="h5"
-                                                                                    fontSize={{
-                                                                                        xs:
-                                                                                            '16px',
-                                                                                        sm:
-                                                                                            '18px'
-                                                                                    }}
-                                                                                    marginTop="2px"
-                                                                                    marginRight="5px"
+                                                                                Programa:
+                                                                            </Titulos>
+                                                                            <label htmlFor="contained-button-file">
+                                                                                <BotonMUI
+                                                                                    buttondownload
+                                                                                    variant="outlined"
                                                                                 >
-                                                                                    Programa:
-                                                                                </Titulos>
-                                                                                <label htmlFor="contained-button-file">
-                                                                                    <BotonMUI
-                                                                                        buttondownload
-                                                                                        variant="outlined"
-                                                                                    >
-                                                                                        Descargar
-                                                                                    </BotonMUI>
-                                                                                </label>
-                                                                            </Grid>
+                                                                                    Descargar
+                                                                                </BotonMUI>
+                                                                            </label>
                                                                         </Grid>
                                                                     </Grid>
                                                                 </Grid>
