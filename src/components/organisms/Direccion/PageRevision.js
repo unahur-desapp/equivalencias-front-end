@@ -532,7 +532,7 @@ const PageRevision = ({ rol }) => {
                                                                 padding={{
                                                                     xs:
                                                                         '0px 30px',
-                                                                    sm:
+                                                                    lg:
                                                                         '10px 60px'
                                                                 }}
                                                                 sx={{
@@ -740,9 +740,11 @@ const PageRevision = ({ rol }) => {
                                                                                     '10px',
                                                                                 marginTop:
                                                                                     '20px',
-                                                                                padding: {
+                                                                                marginLeft: {
                                                                                     lg:
-                                                                                        '0px 60px'
+                                                                                        '2%',
+                                                                                    xs:
+                                                                                        '0%'
                                                                                 }
                                                                             }}
                                                                         >
