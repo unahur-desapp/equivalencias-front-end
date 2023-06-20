@@ -1,4 +1,4 @@
-import { Grid, Icon } from '@mui/material';
+import { Grid, Button, Icon, TextField, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { Header } from '../../molecules/Header';
 import { Titulos } from '../../atoms/Title/Titulos';
@@ -40,12 +40,12 @@ const PageRevision = ({ rol }) => {
         observaciones: ''
     });
     const columns = [
-        { id: 'desc', label: 'Solicitante', minWidth: 'auto' },
-        { id: 'state', label: 'DNI', minWidth: 170 },
-        { id: 'carreer', label: 'Carrera', minWidth: 'auto' },
-        { id: 'dateTime', label: 'Email', minWidth: 'auto' },
-        { id: 'phone', label: 'Teléfono', minWidth: 'auto' },
-        { id: 'actions', label: 'Fecha', minWidth: 'auto' }
+        { id: 'desc', label: 'Solicitante' },
+        { id: 'state', label: 'DNI' },
+        { id: 'carreer', label: 'Carrera' },
+        { id: 'dateTime', label: 'Email' },
+        { id: 'phone', label: 'Teléfono' },
+        { id: 'actions', label: 'Fecha' }
     ];
 
     const createData = (
@@ -58,60 +58,6 @@ const PageRevision = ({ rol }) => {
     ) => {
         return { solicitante, email, carrera, dni, fechaHora, telefono };
     };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const equivalenciasResponse = await getEquivalencia(id);
-            let dateAux = new Date(equivalenciasResponse.createdAt);
-            let date =
-                dateAux.getDate() +
-                '/' +
-                (dateAux.getMonth() + 1) +
-                '/' +
-                dateAux.getFullYear();
-            const carrera =
-                equivalenciasResponse.Materias_solicitadas.length > 0
-                    ? equivalenciasResponse.carrera
-                    : '';
-
-            const userData = createData(
-                equivalenciasResponse.Usuario.nombre +
-                    ' ' +
-                    equivalenciasResponse.Usuario.apellido,
-                equivalenciasResponse.Usuario.email,
-                carrera,
-                equivalenciasResponse.Usuario.dni,
-                date,
-                equivalenciasResponse.Usuario.telefono
-            );
-            setUser(userData);
-
-            const equivData = {
-                materiasAprobadas: equivalenciasResponse.Materias_aprobadas,
-                materiasSolicitadas: equivalenciasResponse.Materias_solicitadas,
-                observaciones: equivalenciasResponse.observaciones
-            };
-            setEquiv(equivData);
-
-            if (equivalenciasResponse.Materias_solicitadas.length > 0) {
-                const materias = [];
-                equivalenciasResponse.Materias_solicitadas.forEach(
-                    (materia) => {
-                        materias.push({
-                            id: materia.id,
-                            estado: materia.estado
-                        });
-                    }
-                );
-                setFormValue({
-                    materias: materias,
-                    observaciones: equivalenciasResponse.observaciones,
-                    instituto: equivalenciasResponse.instituto
-                });
-            }
-        };
-        fetchData();
-    }, []);
 
     const cambiarEstado = (event, idMateria) => {
         const solicitudes = [].concat(formValue.materias);
@@ -204,6 +150,115 @@ const PageRevision = ({ rol }) => {
             }
         }, 1000);
     };
+
+    const renderStatus = (materia) => {
+        let salida;
+        if (rol === 'alumno') {
+            salida = (
+                <Button
+                    variant="contained"
+                    disableRipple="false"
+                    disableElevation="false"
+                    fullWidth
+                    sx={{
+                        pointerEvents: 'none',
+                        width: '10rem',
+                        backgroundColor:
+                            materia.estado === 'aceptado'
+                                ? '#009673'
+                                : materia.estado === 'rechazado'
+                                ? '#DB0505'
+                                : '#2A74E4',
+                        color: '#FFFFFF'
+                    }}
+                >
+                    {materia.estado}
+                </Button>
+            );
+        } else {
+            salida = (
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    autoWidth="true"
+                    //align="center"
+                    onChange={(event) => cambiarEstado(event, materia.id)}
+                    defaultValue="pendiente"
+                    value={materia.estado}
+                    size="small"
+                    sx={{
+                        width: '10rem',
+                        backgroundColor:
+                            materia.estado === 'aceptado'
+                                ? '#009673'
+                                : materia.estado === 'rechazado'
+                                ? '#DB0505'
+                                : '#2A74E4',
+                        color: '#FFFFFF'
+                    }}
+                >
+                    <MenuItem value="aceptado">Aceptado</MenuItem>
+                    <MenuItem value="pendiente">Pendiente</MenuItem>
+                    <MenuItem value="rechazado">Rechazado</MenuItem>
+                </Select>
+            );
+        }
+        return salida;
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const equivalenciasResponse = await getEquivalencia(id);
+            let dateAux = new Date(equivalenciasResponse.createdAt);
+            let date =
+                dateAux.getDate() +
+                '/' +
+                (dateAux.getMonth() + 1) +
+                '/' +
+                dateAux.getFullYear();
+            const carrera =
+                equivalenciasResponse.Materias_solicitadas.length > 0
+                    ? equivalenciasResponse.carrera
+                    : '';
+
+            const userData = createData(
+                equivalenciasResponse.Usuario.nombre +
+                    ' ' +
+                    equivalenciasResponse.Usuario.apellido,
+                equivalenciasResponse.Usuario.email,
+                carrera,
+                equivalenciasResponse.Usuario.dni,
+                date,
+                equivalenciasResponse.Usuario.telefono
+            );
+            setUser(userData);
+
+            const equivData = {
+                materiasAprobadas: equivalenciasResponse.Materias_aprobadas,
+                materiasSolicitadas: equivalenciasResponse.Materias_solicitadas,
+                observaciones: equivalenciasResponse.observaciones
+            };
+            setEquiv(equivData);
+
+            if (equivalenciasResponse.Materias_solicitadas.length > 0) {
+                const materias = [];
+                equivalenciasResponse.Materias_solicitadas.forEach(
+                    (materia) => {
+                        materias.push({
+                            id: materia.id,
+                            estado: materia.estado
+                        });
+                    }
+                );
+                setFormValue({
+                    materias: materias,
+                    observaciones: equivalenciasResponse.observaciones,
+                    instituto: equivalenciasResponse.instituto
+                });
+            }
+        };
+        fetchData();
+    }, []);
 
     return (
         <Box sx={{ flexGrow: 1, width: '100vw', height: '100vh' }}>
@@ -363,7 +418,10 @@ const PageRevision = ({ rol }) => {
                                                 xs: 'none',
                                                 lg: 'inline'
                                             },
-                                            paddingLeft: '60px'
+                                            padding: {
+                                                xs: '0rem 2rem',
+                                                lg: '0rem 1rem 0rem 1rem'
+                                            }
                                         }}
                                     >
                                         <Titulos
@@ -410,74 +468,31 @@ const PageRevision = ({ rol }) => {
                                                         </Grid>
                                                         {/*Estados*/}
                                                         <Grid
+                                                            container
                                                             lg={2}
                                                             xs={12}
                                                             sx={{
                                                                 padding: {
                                                                     xs:
-                                                                        '0px 30px',
+                                                                        '0rem 2rem',
                                                                     lg:
-                                                                        '0px 60px'
+                                                                        '0rem 1rem 0rem 1rem'
                                                                 }
                                                             }}
-                                                            marginTop="15px"
+                                                            marginTop="1rem"
+                                                            alignItems="flex-start"
+                                                            //justifyContent='flex-start'
+                                                            // direction='row'
                                                         >
-                                                            <FormControl
-                                                                fullWidth
-                                                            >
-                                                                <Select
-                                                                    labelId="demo-simple-select-label"
-                                                                    id="demo-simple-select"
-                                                                    inputProps={
-                                                                        rol ===
-                                                                        'alumno'
-                                                                            ? {
-                                                                                  readOnly:
-                                                                                      'false',
-                                                                                  IconComponent:
-                                                                                      'false'
-                                                                              }
-                                                                            : {}
-                                                                    }
-                                                                    onChange={(
-                                                                        event
-                                                                    ) =>
-                                                                        cambiarEstado(
-                                                                            event,
-                                                                            materia.id
-                                                                        )
-                                                                    }
-                                                                    defaultValue="pendiente"
-                                                                    value={
-                                                                        materia.estado
-                                                                    }
-                                                                    size="small"
-                                                                    sx={{
-                                                                        width:
-                                                                            '145px', // Ajusta el ancho según tus necesidades
-                                                                        backgroundColor:
-                                                                            materia.estado ===
-                                                                            'aceptado'
-                                                                                ? '#009673'
-                                                                                : materia.estado ===
-                                                                                  'rechazado'
-                                                                                ? '#DB0505'
-                                                                                : '#2A74E4',
-                                                                        color:
-                                                                            '#FFFFFF'
-                                                                    }}
-                                                                >
-                                                                    <MenuItem value="aceptado">
-                                                                        Aceptado
-                                                                    </MenuItem>
-                                                                    <MenuItem value="pendiente">
-                                                                        Pendiente
-                                                                    </MenuItem>
-                                                                    <MenuItem value="rechazado">
-                                                                        Rechazado
-                                                                    </MenuItem>
-                                                                </Select>
-                                                            </FormControl>
+                                                            {
+                                                                //<FormControl
+                                                                //fullWidth
+                                                                //>
+                                                                //</FormControl>
+                                                            }
+                                                            {renderStatus(
+                                                                materia
+                                                            )}
                                                         </Grid>
                                                     </>
                                                 );
