@@ -16,7 +16,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { Grid, TextField, Typography } from '@mui/material';
 import { ActionButtons } from '../atoms/Button/ActionButtons';
-import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
+import NotificationsActiveTwoToneIcon from '@mui/icons-material/NotificationsActiveTwoTone';
 
 export default function TablaEquivalencias({ searchQuery, rol }) {
     const [page, setPage] = React.useState(0);
@@ -71,14 +71,14 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                         to={'/direccion/revision/' + id}
                         style={{ textDecoration: 'none' }}
                     >
-                        <ActionButtons></ActionButtons>
+                        <ActionButtons />
                     </Link>
                 ) : (
                     <Link
                         to={'/usuario/visualizar/' + id}
                         style={{ textDecoration: 'none' }}
                     >
-                        <ActionButtons></ActionButtons>
+                        <ActionButtons />
                     </Link>
                 )}
             </Grid>
@@ -111,7 +111,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
     const renderNotify = (materias) => {
         let salida = '';
         if (materias.length > 3) {
-            salida = <NotificationImportantIcon />;
+            salida = <NotificationsActiveTwoToneIcon color="error" />;
         }
         return salida;
     };
