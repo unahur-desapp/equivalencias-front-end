@@ -198,7 +198,6 @@ const PageEquivalencias = ({ rol }) => {
                                 <MenuItem value="solicitante">
                                     Solicitante
                                 </MenuItem>
-                                <MenuItem value="materia">Materia</MenuItem>
                                 <MenuItem value="estado">Estado</MenuItem>
                             </Select>
                         </Grid>

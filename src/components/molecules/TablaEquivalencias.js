@@ -55,34 +55,9 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
         estado,
         solicitante,
         dni,
-        id,
+        actions,
         carrera
     ) => {
-        const actions = (
-            <Grid
-                container
-                item
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-            >
-                {rol === 'directivo' ? (
-                    <Link
-                        to={'/direccion/revision/' + id}
-                        style={{ textDecoration: 'none' }}
-                    >
-                        <ActionButtons />
-                    </Link>
-                ) : (
-                    <Link
-                        to={'/usuario/visualizar/' + id}
-                        style={{ textDecoration: 'none' }}
-                    >
-                        <ActionButtons />
-                    </Link>
-                )}
-            </Grid>
-        );
         if (rol === 'directivo') {
             return { solicitante, dni, materia, dateTime, actions, estado };
         } else {
@@ -108,6 +83,36 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
         return stringSalida;
     };
 
+    const defineActions = (id, materias) => {
+        const color = materias.length > 3 ? 'error' : 'info';
+        const actions = (
+            <Grid
+                container
+                item
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+            >
+                {rol === 'directivo' ? (
+                    <Link
+                        to={'/direccion/revision/' + id}
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <ActionButtons color={color} />
+                    </Link>
+                ) : (
+                    <Link
+                        to={'/usuario/visualizar/' + id}
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <ActionButtons color={color} />
+                    </Link>
+                )}
+            </Grid>
+        );
+        return actions;
+    };
+
     const renderNotify = (materias) => {
         let salida = '';
         if (materias.length > 3) {
@@ -129,21 +134,20 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                 color = 'success';
         }
         return (
-            <span>
-                <Button
-                    color={color}
-                    variant="contained"
-                    disableRipple="false"
-                    disableElevation="false"
-                    fullWidth
-                    endIcon={renderNotify(materias)}
-                    sx={{
-                        pointerEvents: 'none'
-                    }}
-                >
-                    {estado}
-                </Button>
-            </span>
+            <Button
+                color={color}
+                variant="contained"
+                disableRipple="false"
+                disableElevation="false"
+                fullWidth
+                endIcon={renderNotify(materias)}
+                sx={{
+                    backgroundColor: color === 'success' ? '#009673' : '',
+                    pointerEvents: 'none'
+                }}
+            >
+                {estado}
+            </Button>
         );
     };
 
@@ -172,8 +176,12 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                     '/' +
                     d.getFullYear();
                 let carrera = arrayItem.carrera;
-                var status = renderState(
+                let status = renderState(
                     arrayItem.estado.toUpperCase(),
+                    arrayItem.Materias_solicitadas
+                );
+                let actions = defineActions(
+                    arrayItem.id,
                     arrayItem.Materias_solicitadas
                 );
                 console.log(status);
@@ -186,7 +194,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                             ' ' +
                             arrayItem.Usuario.apellido,
                         arrayItem.Usuario.dni,
-                        arrayItem.id,
+                        actions,
                         carrera
                     )
                 );
@@ -208,13 +216,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                                     .includes(searchQuery.value.toLowerCase())
                             );
                             break;
-                        case 'materia':
-                            dataFilter = array.filter((d) =>
-                                d.materia
-                                    .toLowerCase()
-                                    .includes(searchQuery.value.toLowerCase())
-                            );
-                            break;
+
                         case 'estado':
                             dataFilter = array.filter((d) =>
                                 d.estado.props.children
@@ -236,7 +238,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                     setRows([...array]);
                 }
             });
-            console.table([columns, array]);
+            //console.table([columns, array]);
         };
         fetchEquivalenciaData();
     }, [searchQuery]);
@@ -286,12 +288,6 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                                     >
                                         {columns.map((column) => {
                                             const value = row[column.id];
-                                            column.id === 'estado'
-                                                ? console.log(
-                                                      'Estado value: ',
-                                                      value.props.children
-                                                  )
-                                                : 'Nada';
                                             return (
                                                 <TableCell
                                                     key={column.id}
