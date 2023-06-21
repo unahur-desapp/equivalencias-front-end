@@ -8,8 +8,21 @@ import {
     MenuItem,
     Select,
     TextField,
+    IconButton,
+    Modal,
+    Typography,
     Button
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
 import {
     StandardInput,
     AutocompleteInput
@@ -27,10 +40,55 @@ const PageCRUDCarreras = () => {
 
     const [carreras, setCarreras] = useState([]);
 
+    const columns = [
+        {
+            id: 'nombre_carrera',
+            label: 'Carrera',
+            minWidth: 140,
+            align: 'center'
+        },
+        {
+            id: 'nombre_instituto',
+            label: 'Instituto',
+            minWidth: 140,
+            align: 'center'
+        },
+        {
+            id: 'updatedAt',
+            label: 'Fecha Actualizacion',
+            minWidth: 140,
+            align: 'center'
+        }
+    ];
+
+    function formatearCelda(column, value) {
+        if (column.id === 'updatedAt') {
+            return convertUTCtoLocalTime(value);
+        } else if (column.format && typeof value === 'number') {
+            return column.format(value);
+        } else {
+            return value;
+        }
+    }
+
+    function convertUTCtoLocalTime(utcDatetimeString) {
+        const date = new Date(utcDatetimeString);
+        return (
+            date.toLocaleDateString() +
+            ' - ' +
+            date.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true
+            })
+        );
+    }
+
     useEffect(() => {
         const fetchCarreras = async () => {
-            const carreras = await getCarreras();
-            setCarreras(carreras);
+            const carreras_input = await getCarreras();
+            console.log(carreras_input.data)
+            setCarreras(carreras_input.data);
         };
         fetchCarreras();
     }, []);
@@ -45,6 +103,73 @@ const PageCRUDCarreras = () => {
             console.log(error);
         }
     };
+
+    function createData(id, nombre_carrera, nombre_instituto, updatedAt) {
+        return { id, nombre_carrera, nombre_instituto, updatedAt };
+    }
+
+    const rows = carreras.map((carrera) =>
+        createData(
+            carrera.id,
+            carrera.nombre_carrera,
+            carrera.nombre_instituto,
+            carrera.updatedAt
+        )
+    );
+
+    
+    const [openAgregar, setOpenAgregar] = useState(false);
+    const [openEditar, setOpenEditar] = useState(false);
+    const [openEliminar, setOpenEliminar] = useState(false);
+
+    const handleOpenAgregar = () => {
+        setOpenAgregar(true);
+    };
+    const handleCloseAgregar = () => {
+        setOpenAgregar(false);
+    };
+    const handleOpenEditar = () => {
+        setOpenEditar(true);
+    };
+    const handleCloseEditar = () => {
+        setOpenEditar(false);
+    };
+    const handleOpenEliminar = () => {
+        setOpenEliminar(true);
+    };
+    const handleCloseEliminar = () => {
+        setOpenEliminar(false);
+    };
+
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        let objCarrera = {
+            id: formValue.id,
+            nombre_carrera: formValue.nombre_carrera,
+            nombre_instituto: formValue.nombre_instituto
+        };
+        console.log(objCarrera);
+        /*
+        updateCarrera(objCarrera).then((rpta) => {
+            console.log(rpta);
+            setCarreras('');
+        }); */
+    };
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        let objCarrera = {
+            id: formValue.id
+        };
+        console.log(objCarrera);
+        /*
+        deleteCarrera(objCarrera).then((rpta) => {
+            console.log(rpta);
+            setCarreras('');
+        }); */
+    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -79,71 +204,242 @@ const PageCRUDCarreras = () => {
                     container
                     xs={11.5}
                     md={7}
+                    sx={{ padding: '0px 20px' }}
+                    direction="row"
                     justifyContent="space-between"
                     alignItems="center"
                 >
-                    <Grid item xs={12}>
+                    <Grid item>
                         <Titulos component="h2" titulogrande>
-                            CRUD Carreras
+                            Carreras
                         </Titulos>
                     </Grid>
+                    <Grid item>
+                        <Button
+                            variant="contained"
+                            color="success"
+                            onClick={handleOpenAgregar}
+                        >
+                            Agregar Carrera
+                        </Button>
+                        <Modal
+                            open={openAgregar}
+                            onClose={handleCloseAgregar}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                    width: 400,
+                                    bgcolor: 'background.paper',
+                                    border: '2px solid #000',
+                                    boxShadow: 24,
+                                    p: 4
+                                }}
+                            >
+                                <FormControl
+                                    onSubmit={handleSubmit}
+                                >
+                                    <Grid container spacing={2}>
+                                        <Titulos component="h2">
+                                            Agregar Carrera
+                                        </Titulos>
+                                        <Grid item xs={12}>
+                                            <StandardInput
+                                                label="Nombre de la Carrera"
+                                                name="nombre_carrera"
+                                                value={formValue.nombre_carrera}
+                                                onChange={handleChange}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <StandardInput
+                                                label="Nombre del Instituto"
+                                                name="nombre_instituto"
+                                                value={
+                                                    formValue.nombre_instituto
+                                                }
+                                                onChange={handleChange}
+                                            />
+                                        </Grid>
+                                        <Grid item
+                                            container
+                                            justifyContent="space-between"
+
+                                            xs={12}
+                                        >
+                                            <Button
+                                                variant="contained"
+                                                color="success"
+                                                type="submit"
+                                            >
+                                                Agregar
+                                            </Button>
+
+                                            <Button
+                                                variant="contained"
+                                                color="error"
+                                                onClick={handleCloseEditar}
+                                            >
+                                                Cancelar
+                                            </Button>
+
+                                        </Grid>
+
+                                    </Grid>
+                                </FormControl>
+
+                            </Box>
+                        </Modal>
+                    </Grid>
+
                 </GridTop>
 
-            
-                <Grid
-                    item
-                    container
-                    direction="column"
-                    alignItems="flex-start"
-                    md={12}
-                    lg={5.8}
-                    sx={{
-                        marginTop: '6px'
-                    }}
-                >
-                    <StandardInput
-                        required
-                        name="nombre_carrera"
-                        size="small"
-                        label="Nombre Carrera"
-                        variant="outlined"
-                        value={formValue.nombre_carrera || ''}
-                        onChange={handleChange}
-                    />
-                </Grid>
 
                 <Grid
                     item
                     container
-                    direction="column"
-                    alignItems="flex-start"
-                    md={12}
-                    lg={5.8}
+                    xs={11.5}
+                    md={7}
                     sx={{
-                        marginTop: '6px'
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'flex-end'
                     }}
                 >
-                    <StandardInput
-                        required
-                        name="nombre_instituto"
-                        size="small"
-                        label="Nombre Instituto"
-                        variant="outlined"
-                        value={formValue.nombre_instituto || ''}
-                        onChange={handleChange}
-                    />
-                </Grid>
+                    <Paper sx={{ width: '100%', overflow: 'hidden', boxShadow: 5 }}>
+                        <TableContainer sx={{ maxHeight: 440 }}>
+                            <Table stickyHeader aria-label="sticky table">
+                                <TableHead>
+                                    {columns.map((column) => (
+                                        <TableCell
+                                            key={column.id}
+                                            align={column.align}
+                                            style={{
+                                                minWidth: column.minWidth,
+                                                fontWeight: 'bold'
+                                            }}
+                                        >
+                                            {column.label}
+                                        </TableCell>
+                                    ))}
 
-                <Button
-                    variant="contained"
-                    color="primary"
-                    sx={{
-                        marginTop: '6px'
-                    }}
-                    onClick={handleSubmit}
-                >
-                    Crear Carrera
-                </Button>
+                                </TableHead>
+                                <TableBody>
+                                    {rows.map((row) => {
+                                        return (
+                                            <TableRow
+                                                hover
+                                                tabIndex={-1}
+                                                key={row.code}
+                                            >
+                                                {columns.map((column) => {
+                                                    const value = row[column.id];
+                                                    return (
+                                                        <TableCell
+                                                            key={column.id}
+                                                            align={column.align}
+                                                        >
+                                                            {formatearCelda(column, value)}
+                                                        </TableCell>
+                                                    );
+                                                })}
+                                                <TableCell>
+
+                                                    <IconButton onClick={handleOpenEditar} aria-label="edit">
+                                                        <EditIcon 
+                                                        />
+                                                    </IconButton>
+                                                    <Modal
+                                                        open={openEditar}
+                                                        onClose={handleCloseEditar}
+                                                        aria-labelledby="modal-modal-title"
+                                                        aria-describedby="modal-modal-description"
+                                                    >
+                                                        <Box
+                                                            sx={{
+                                                                position: 'absolute',
+                                                                top: '50%',
+                                                                left: '50%',
+                                                                transform: 'translate(-50%, -50%)',
+                                                                width: 400,
+                                                                bgcolor: 'background.paper',
+                                                                border: '2px solid #000',
+                                                                boxShadow: 24,
+                                                                p: 4
+                                                            }}
+                                                        >
+                                                            <FormControl
+                                                                onSubmit={handleSubmit}
+                                                            >
+                                                                <Grid container spacing={2}>
+                                                                    <Titulos component="h2">
+                                                                        Agregar Carrera
+                                                                    </Titulos>
+                                                                    <Grid item xs={12}>
+                                                                        <StandardInput
+                                                                            label="Nombre de la Carrera"
+                                                                            name="nombre_carrera"
+                                                                            value={formValue.nombre_carrera}
+                                                                            onChange={handleChange}
+                                                                        />
+                                                                    </Grid>
+                                                                    <Grid item xs={12}>
+                                                                        <StandardInput
+                                                                            label="Nombre del Instituto"
+                                                                            name="nombre_instituto"
+                                                                            value={
+                                                                                formValue.nombre_instituto
+                                                                            }
+                                                                            onChange={handleChange}
+                                                                        />
+                                                                    </Grid>
+                                                                    <Grid item
+                                                                        container
+                                                                        justifyContent="space-between"
+
+                                                                        xs={12}
+                                                                    >
+                                                                        <Button
+                                                                            variant="contained"
+                                                                            color="success"
+                                                                            type="submit"
+                                                                        >
+                                                                            Agregar
+                                                                        </Button>
+
+                                                                        <Button
+                                                                            variant="contained"
+                                                                            color="error"
+                                                                            onClick={handleCloseEliminar}
+                                                                        >
+                                                                            Cancelar
+                                                                        </Button>
+
+                                                                    </Grid>
+
+                                                                </Grid>
+                                                            </FormControl>
+
+                                                        </Box>
+                                                    </Modal>
+
+                                                    <IconButton aria-label="delete">
+                                                        <DeleteIcon />
+                                                    </IconButton>
+                                                </TableCell>
+                                            </TableRow>
+                                        );
+                                    })}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Paper>
+                </Grid>
             </Grid>
         </Grid>
     );
