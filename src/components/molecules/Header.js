@@ -68,20 +68,6 @@ const Header = ({ name, paginaPrincipal, botonSeleccionado }) => {
                         </Grid>
                     </Grid>
 
-                    {/* <Grid
-                        item
-                        justifyContent={'center'}
-                        alignContent={'center'}
-                        sx={{ display: 'flex', alignItems: 'center' }}
-                    >
-                        <img
-                            src="https://unahur.edu.ar/wp-content/uploads/2021/03/UNAHUR-1.png"
-                            alt=""
-                            width={'40px'}
-                            height={'45px'}
-                        />
-                    </Grid> */}
-
                     <Grid
                         item
                         justifyContent={'flex-end'}
@@ -122,28 +108,6 @@ const Header = ({ name, paginaPrincipal, botonSeleccionado }) => {
                 >
                     <Grid item>
                         <Menu name={name} paginaPrincipal={paginaPrincipal} />
-                    </Grid>
-
-                    {/* <Grid
-                        item
-                        justifyContent={'center'}
-                        alignContent={'center'}
-                        sx={{ display: 'flex', alignItems: 'center' }}
-                    >
-                        <img
-                            src="https://unahur.edu.ar/wp-content/uploads/2021/03/UNAHUR-1.png"
-                            alt=""
-                            width={'30px'}
-                            height={'35px'}
-                        />
-                    </Grid> */}
-
-                    <Grid
-                        item
-                        justifyContent={'flex-end'}
-                        sx={{ display: 'flex', alignItems: 'center' }}
-                    >
-                        {/* <img src={stringConcat} alt="" /> */}
                     </Grid>
                 </Grid>
 
