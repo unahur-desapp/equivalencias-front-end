@@ -19,3 +19,12 @@ export async function createCarrera(carrera) {
     });
     return apiResponse.data;
 }
+
+export async function updateCarrera(carrera) {
+    const apiResponse = await axios.put(`${config.apiUrl}/carreras`, carrera, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    return apiResponse.data;
+}

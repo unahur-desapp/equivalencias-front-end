@@ -30,7 +30,7 @@ import {
 import { GridTop } from '../GridTop';
 import { Titulos } from './atoms/Title/Titulos';
 import { HeaderSuperUsuario } from './HeaderSuperUsuario';
-import { getCarreras, createCarrera } from '../services/carrera_service';
+import { getCarreras, createCarrera, updateCarrera} from '../services/carrera_service';
 
 const PageCRUDCarreras = () => {
     const [formValue, setformValue] = useState({
@@ -150,11 +150,12 @@ const PageCRUDCarreras = () => {
             nombre_instituto: formValue.nombre_instituto
         };
         console.log(objCarrera);
-        /*
+        setOpenEditar(false)
+        
         updateCarrera(objCarrera).then((rpta) => {
             console.log(rpta);
             setCarreras('');
-        }); */
+        }); 
     };
 
     const handleDelete = (e) => {
@@ -178,11 +179,13 @@ const PageCRUDCarreras = () => {
             nombre_instituto: formValue.nombre_instituto
         };
         console.log(objCarrera);
-        /*
+        setOpenAgregar(false)
+        
         createCarrera(objCarrera).then((rpta) => {
             console.log(rpta);
             setCarreras('');
-        }); */
+        });
+        window.location.reload(false) 
     };
 
     return (
@@ -241,9 +244,6 @@ const PageCRUDCarreras = () => {
                                     p: 4
                                 }}
                             >
-                                <FormControl
-                                    onSubmit={handleSubmit}
-                                >
                                     <Grid container spacing={2}>
                                         <Titulos component="h2">
                                             Agregar Carrera
@@ -276,6 +276,7 @@ const PageCRUDCarreras = () => {
                                                 variant="contained"
                                                 color="success"
                                                 type="submit"
+                                                onClick={handleSubmit}
                                             >
                                                 Agregar
                                             </Button>
@@ -283,7 +284,7 @@ const PageCRUDCarreras = () => {
                                             <Button
                                                 variant="contained"
                                                 color="error"
-                                                onClick={handleCloseEditar}
+                                                onClick={handleCloseAgregar}
                                             >
                                                 Cancelar
                                             </Button>
@@ -291,7 +292,6 @@ const PageCRUDCarreras = () => {
                                         </Grid>
 
                                     </Grid>
-                                </FormControl>
 
                             </Box>
                         </Modal>
@@ -373,9 +373,6 @@ const PageCRUDCarreras = () => {
                                                                 p: 4
                                                             }}
                                                         >
-                                                            <FormControl
-                                                                onSubmit={handleSubmit}
-                                                            >
                                                                 <Grid container spacing={2}>
                                                                     <Titulos component="h2">
                                                                         Agregar Carrera
@@ -408,6 +405,7 @@ const PageCRUDCarreras = () => {
                                                                             variant="contained"
                                                                             color="success"
                                                                             type="submit"
+                                                                            onClick={handleUpdate}
                                                                         >
                                                                             Agregar
                                                                         </Button>
@@ -415,7 +413,7 @@ const PageCRUDCarreras = () => {
                                                                         <Button
                                                                             variant="contained"
                                                                             color="error"
-                                                                            onClick={handleCloseEliminar}
+                                                                            onClick={handleCloseEditar}
                                                                         >
                                                                             Cancelar
                                                                         </Button>
@@ -423,8 +421,6 @@ const PageCRUDCarreras = () => {
                                                                     </Grid>
 
                                                                 </Grid>
-                                                            </FormControl>
-
                                                         </Box>
                                                     </Modal>
 
