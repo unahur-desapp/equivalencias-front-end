@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
-import { BotonMUI } from './components/atoms/Button/BotonMUI';
+import { BotonMUI } from '../atoms/Button/BotonMUI';
 import { Link } from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -9,7 +9,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
-const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
+const OuterFormButtons = ({
+    handleSubmit,
+    path,
+    titulo,
+    mensaje,
+    revision
+}) => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -21,70 +27,51 @@ const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
     };
 
     return (
-        <Grid
-            item
-            container
-            xs={11.5}
-            md={7}
-            marginTop={{
-                xs: '20px'
-            }}
-            sx={{
-                padding: '20px 60px'
-            }}
-        >
-            <Grid
-                item
-                container
-                direction="row"
-                justifyContent="flex-start"
-                alignItems="center"
-                xs={12}
-                lg={6}
-            >
-                <Grid item container xs={6} lg={4}>
+        <Grid container item xs={12} lg={9} marginTop={{ xs: '20px' }}>
+            <Grid container item direction="row" width="100%" xs={12} lg={12}>
+                <Grid
+                    item
+                    container
+                    xs={6}
+                    lg={1}
+                    justifyContent={{ xs: 'flex-start', lg: 'flex-start' }}
+                >
                     <BotonMUI
-                        buttoncontainedsmall
-                        // type="submit"
-                        onClick={handleSubmit}
+                        buttoncontainedsmall="+true"
                         sx={{
-                            marginRight: '12px',
-                            width: '100%'
-                        }}
-                    >
-                        Enviar
-                    </BotonMUI>
-                </Grid>
-
-                <Grid item container xs={6} lg={4}>
-                    {/* <Link
-                        to="/home"
-                        style={{ textDecoration: 'none', width: '100%' }}
-                    >
-                        <BotonMUI
-                            buttonContainedSmall
-                            type="submit"
-                            sx={{
-                                marginLeft: '12px',
-                                width: '100%'
-                            }}
-                        >
-                            Enviar
-                        </BotonMUI>
-                    </Link> */}
-
-                    <BotonMUI
-                        buttoncontainedcancel
-                        sx={{
-                            width: '100%'
+                            backgroundColor: '#009673',
+                            color: '#FFFFFF',
+                            width: {
+                                lg: '20rem',
+                                xs: '7rem'
+                            }
                         }}
                         onClick={handleClickOpen}
                     >
-                        Cancelar
+                        Volver
+                    </BotonMUI>
+                </Grid>
+                <Grid
+                    item
+                    container
+                    xs={6}
+                    lg={10.9}
+                    justifyContent={{ xs: 'flex-end', lg: 'flex-end' }}
+                >
+                    <BotonMUI
+                        buttoncontainedsmallFinalizar="+true"
+                        onClick={handleSubmit}
+                        sx={{
+                            width: {
+                                lg: '20rem',
+                                xs: '7rem'
+                            }
+                        }}
+                    >
+                        Finalizar
                     </BotonMUI>
                 </Grid>
             </Grid>
-
             <Grid
                 item
                 container
@@ -92,11 +79,7 @@ const OuterFormButtons = ({ handleSubmit, path, titulo, mensaje }) => {
                 justifyContent="flex-end"
                 alignItems="center"
                 lg={6}
-            >
-                {/* <BotonMUI buttonContainedAddEq>
-                    Agregar equivalencia
-                </BotonMUI> */}
-            </Grid>
+            ></Grid>
 
             <Dialog
                 open={open}

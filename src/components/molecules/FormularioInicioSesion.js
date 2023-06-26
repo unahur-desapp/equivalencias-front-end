@@ -30,11 +30,9 @@ const FormularioInicioSesion = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(usuarios);
         const usuario = usuarios.find(
             (usuario) => usuario.dni === dni && usuario.password === password
         );
-        console.log(usuario);
         if (usuario) {
             localStorage.setItem('dni', JSON.stringify(usuario.dni));
             localStorage.setItem('nombre', JSON.stringify(usuario.nombre));
@@ -59,7 +57,7 @@ const FormularioInicioSesion = () => {
     return (
         <FormularioMain>
             <TituloBienvenida>
-                <Titulos titulogrande titulomarginbottom component="h2">
+                <Titulos titulogrande="+true" titulomarginbottom component="h2">
                     ¡Bienvenido/a!
                 </Titulos>
                 <Titulos titulochico titulolight component="h2">
@@ -111,7 +109,7 @@ const FormularioInicioSesion = () => {
                     <Grid>
                         <BotonMUI
                             variant="contained"
-                            buttoncontained
+                            buttoncontained="+true"
                             disableElevation
                             type="submit"
                         >

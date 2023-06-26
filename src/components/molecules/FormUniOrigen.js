@@ -4,17 +4,14 @@ import { DatosMateriaUniOrigen } from './DatosMateriaUniOrigen';
 import { ExtrasUniOrigen } from './ExtrasUniOrigen';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { Titulos } from './components/atoms/Title/Titulos';
+import { Titulos } from '../atoms/Title/Titulos';
 
 const FormUniOrigen = ({
     handledelete,
-    formValue,
     handleChangeArray,
-    handleChange,
     formValueArray,
     key2
 }) => {
-    console.log(key2);
     return (
         <Grid
             item
@@ -48,18 +45,6 @@ const FormUniOrigen = ({
                         Datos Universidad Origen
                     </Titulos>
                 </Grid>
-
-                {/* <Grid
-                    item
-                    container
-                    direction="column"
-                    alignItems="flex-end"
-                    md={12}
-                    lg={5.8}
-                    sx={{
-                        marginTop: '6px'
-                    }}
-                ></Grid> */}
                 <IconButton
                     sx={{ color: '#5f6368' }}
                     aria-label="upload picture"
