@@ -14,8 +14,9 @@ import {
 } from '../../services/equivalencia_service';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { Grid } from '@mui/material';
+import { Grid, TextField, Typography } from '@mui/material';
 import { ActionButtons } from '../atoms/Button/ActionButtons';
+import NotificationsActiveTwoToneIcon from '@mui/icons-material/NotificationsActiveTwoTone';
 
 export default function TablaEquivalencias({ searchQuery, rol }) {
     const [page, setPage] = React.useState(0);
@@ -54,9 +55,36 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
         estado,
         solicitante,
         dni,
-        id,
+        actions,
         carrera
     ) => {
+        if (rol === 'directivo') {
+            return { solicitante, dni, materia, dateTime, actions, estado };
+        } else {
+            return { carrera, materia, dateTime, estado, actions };
+        }
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+
+    const filterNameMat = (materias) => {
+        let stringSalida = '';
+        let cant = materias.length;
+        if (cant == 1) {
+            stringSalida = materias[0].nombre;
+        } else if (cant == 2) {
+            stringSalida = materias[0].nombre + ', ' + materias[1].nombre;
+        } else {
+            stringSalida = `Cantidad de materias: ${cant}`;
+        }
+        return stringSalida;
+    };
+
+    const defineActions = (id, materias) => {
+        const color = materias.length > 3 ? 'error' : 'info';
         const actions = (
             <Grid
                 container
@@ -70,28 +98,57 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                         to={'/direccion/revision/' + id}
                         style={{ textDecoration: 'none' }}
                     >
-                        <ActionButtons></ActionButtons>
+                        <ActionButtons color={color} />
                     </Link>
                 ) : (
                     <Link
                         to={'/usuario/visualizar/' + id}
                         style={{ textDecoration: 'none' }}
                     >
-                        <ActionButtons></ActionButtons>
+                        <ActionButtons color={color} />
                     </Link>
                 )}
             </Grid>
         );
-        if (rol === 'directivo') {
-            return { solicitante, dni, materia, dateTime, actions, estado };
-        } else {
-            return { carrera, materia, dateTime, estado, actions };
-        }
+        return actions;
     };
 
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
+    const renderNotify = (materias) => {
+        let salida = '';
+        if (materias.length > 3) {
+            salida = <NotificationsActiveTwoToneIcon color="error" />;
+        }
+        return salida;
+    };
+
+    const renderState = (estado, materias) => {
+        let color = 'success';
+        switch (estado) {
+            case 'CERRADO':
+                color = 'error';
+                break;
+            case 'PENDIENTE':
+                color = 'info';
+                break;
+            default:
+                color = 'success';
+        }
+        return (
+            <Button
+                color={color}
+                variant="contained"
+                disableRipple="false"
+                disableElevation="false"
+                fullWidth
+                endIcon={renderNotify(materias)}
+                sx={{
+                    backgroundColor: color === 'success' ? '#009673' : '',
+                    pointerEvents: 'none'
+                }}
+            >
+                {estado}
+            </Button>
+        );
     };
 
     useEffect(() => {
@@ -119,17 +176,25 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                     '/' +
                     d.getFullYear();
                 let carrera = arrayItem.carrera;
-                var status = arrayItem.estado.toUpperCase();
+                let status = renderState(
+                    arrayItem.estado.toUpperCase(),
+                    arrayItem.Materias_solicitadas
+                );
+                let actions = defineActions(
+                    arrayItem.id,
+                    arrayItem.Materias_solicitadas
+                );
+                console.log(status);
                 array.push(
                     createData(
-                        arrayItem.Materias_solicitadas[0].nombre,
+                        filterNameMat(arrayItem.Materias_solicitadas),
                         dateTime,
                         status,
                         arrayItem.Usuario.nombre +
                             ' ' +
                             arrayItem.Usuario.apellido,
                         arrayItem.Usuario.dni,
-                        arrayItem.id,
+                        actions,
                         carrera
                     )
                 );
@@ -151,16 +216,10 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                                     .includes(searchQuery.value.toLowerCase())
                             );
                             break;
-                        case 'materia':
-                            dataFilter = array.filter((d) =>
-                                d.materia
-                                    .toLowerCase()
-                                    .includes(searchQuery.value.toLowerCase())
-                            );
-                            break;
+
                         case 'estado':
                             dataFilter = array.filter((d) =>
-                                d.estado
+                                d.estado.props.children
                                     .toLowerCase()
                                     .includes(searchQuery.value.toLowerCase())
                             );
@@ -179,7 +238,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                     setRows([...array]);
                 }
             });
-            console.table([columns, array]);
+            //console.table([columns, array]);
         };
         fetchEquivalenciaData();
     }, [searchQuery]);
@@ -200,11 +259,7 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                             {columns.map((column) => (
                                 <TableCell
                                     key={column.id}
-                                    align={
-                                        column.label === 'Acciones'
-                                            ? 'center'
-                                            : 'left'
-                                    }
+                                    align={'center'}
                                     style={{ minWidth: column.minWidth }}
                                     sx={{
                                         backgroundColor: 'azure',
@@ -236,15 +291,12 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
                                             return (
                                                 <TableCell
                                                     key={column.id}
-                                                    align={column.align}
+                                                    align="center"
                                                     sx={{
-                                                        padding: '16px 40px'
+                                                        padding: '1rem 2rem'
                                                     }}
                                                 >
-                                                    {column.format &&
-                                                    typeof value === 'number'
-                                                        ? column.format(value)
-                                                        : value}
+                                                    {value}
                                                 </TableCell>
                                             );
                                         })}
