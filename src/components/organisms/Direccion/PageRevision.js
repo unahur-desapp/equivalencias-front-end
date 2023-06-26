@@ -1,4 +1,4 @@
-import { Grid, Icon } from '@mui/material';
+import { Grid, Button, Icon, TextField, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { Header } from '../../molecules/Header';
 import { Titulos } from '../../atoms/Title/Titulos';
@@ -40,12 +40,12 @@ const PageRevision = ({ rol }) => {
         observaciones: ''
     });
     const columns = [
-        { id: 'desc', label: 'Solicitante', minWidth: 'auto' },
-        { id: 'state', label: 'DNI', minWidth: 170 },
-        { id: 'carreer', label: 'Carrera', minWidth: 'auto' },
-        { id: 'dateTime', label: 'Email', minWidth: 'auto' },
-        { id: 'phone', label: 'Teléfono', minWidth: 'auto' },
-        { id: 'actions', label: 'Fecha', minWidth: 'auto' }
+        { id: 'desc', label: 'Solicitante' },
+        { id: 'state', label: 'DNI' },
+        { id: 'carreer', label: 'Carrera' },
+        { id: 'dateTime', label: 'Email' },
+        { id: 'phone', label: 'Teléfono' },
+        { id: 'actions', label: 'Fecha' }
     ];
 
     const createData = (
@@ -58,60 +58,6 @@ const PageRevision = ({ rol }) => {
     ) => {
         return { solicitante, email, carrera, dni, fechaHora, telefono };
     };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const equivalenciasResponse = await getEquivalencia(id);
-            let dateAux = new Date(equivalenciasResponse.createdAt);
-            let date =
-                dateAux.getDate() +
-                '/' +
-                (dateAux.getMonth() + 1) +
-                '/' +
-                dateAux.getFullYear();
-            const carrera =
-                equivalenciasResponse.Materias_solicitadas.length > 0
-                    ? equivalenciasResponse.carrera
-                    : '';
-
-            const userData = createData(
-                equivalenciasResponse.Usuario.nombre +
-                    ' ' +
-                    equivalenciasResponse.Usuario.apellido,
-                equivalenciasResponse.Usuario.email,
-                carrera,
-                equivalenciasResponse.Usuario.dni,
-                date,
-                equivalenciasResponse.Usuario.telefono
-            );
-            setUser(userData);
-
-            const equivData = {
-                materiasAprobadas: equivalenciasResponse.Materias_aprobadas,
-                materiasSolicitadas: equivalenciasResponse.Materias_solicitadas,
-                observaciones: equivalenciasResponse.observaciones
-            };
-            setEquiv(equivData);
-
-            if (equivalenciasResponse.Materias_solicitadas.length > 0) {
-                const materias = [];
-                equivalenciasResponse.Materias_solicitadas.forEach(
-                    (materia) => {
-                        materias.push({
-                            id: materia.id,
-                            estado: materia.estado
-                        });
-                    }
-                );
-                setFormValue({
-                    materias: materias,
-                    observaciones: equivalenciasResponse.observaciones,
-                    instituto: equivalenciasResponse.instituto
-                });
-            }
-        };
-        fetchData();
-    }, []);
 
     const cambiarEstado = (event, idMateria) => {
         const solicitudes = [].concat(formValue.materias);
@@ -205,23 +151,145 @@ const PageRevision = ({ rol }) => {
         }, 1000);
     };
 
+    const renderStatus = (materia) => {
+        let salida;
+        if (rol === 'alumno') {
+            salida = (
+                <Button
+                    variant="contained"
+                    disableRipple="false"
+                    disableElevation="false"
+                    fullWidth
+                    sx={{
+                        pointerEvents: 'none',
+                        width: '10rem',
+                        backgroundColor:
+                            materia.estado === 'aceptado'
+                                ? '#009673'
+                                : materia.estado === 'rechazado'
+                                ? '#DB0505'
+                                : '#2A74E4',
+                        color: '#FFFFFF'
+                    }}
+                >
+                    {materia.estado}
+                </Button>
+            );
+        } else {
+            salida = (
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    autoWidth="true"
+                    //align="center"
+                    onChange={(event) => cambiarEstado(event, materia.id)}
+                    defaultValue="pendiente"
+                    value={materia.estado}
+                    size="small"
+                    sx={{
+                        width: '10rem',
+                        backgroundColor:
+                            materia.estado === 'aceptado'
+                                ? '#009673'
+                                : materia.estado === 'rechazado'
+                                ? '#DB0505'
+                                : '#2A74E4',
+                        color: '#FFFFFF'
+                    }}
+                >
+                    <MenuItem value="aceptado">Aceptado</MenuItem>
+                    <MenuItem value="pendiente">Pendiente</MenuItem>
+                    <MenuItem value="rechazado">Rechazado</MenuItem>
+                </Select>
+            );
+        }
+        return salida;
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const equivalenciasResponse = await getEquivalencia(id);
+            let dateAux = new Date(equivalenciasResponse.createdAt);
+            let date =
+                dateAux.getDate() +
+                '/' +
+                (dateAux.getMonth() + 1) +
+                '/' +
+                dateAux.getFullYear();
+            const carrera =
+                equivalenciasResponse.Materias_solicitadas.length > 0
+                    ? equivalenciasResponse.carrera
+                    : '';
+
+            const userData = createData(
+                equivalenciasResponse.Usuario.nombre +
+                    ' ' +
+                    equivalenciasResponse.Usuario.apellido,
+                equivalenciasResponse.Usuario.email,
+                carrera,
+                equivalenciasResponse.Usuario.dni,
+                date,
+                equivalenciasResponse.Usuario.telefono
+            );
+            setUser(userData);
+
+            const equivData = {
+                materiasAprobadas: equivalenciasResponse.Materias_aprobadas,
+                materiasSolicitadas: equivalenciasResponse.Materias_solicitadas,
+                observaciones: equivalenciasResponse.observaciones
+            };
+            setEquiv(equivData);
+
+            if (equivalenciasResponse.Materias_solicitadas.length > 0) {
+                const materias = [];
+                equivalenciasResponse.Materias_solicitadas.forEach(
+                    (materia) => {
+                        materias.push({
+                            id: materia.id,
+                            estado: materia.estado
+                        });
+                    }
+                );
+                setFormValue({
+                    materias: materias,
+                    observaciones: equivalenciasResponse.observaciones,
+                    instituto: equivalenciasResponse.instituto
+                });
+            }
+        };
+        fetchData();
+    }, []);
+
     return (
         <Box sx={{ flexGrow: 1, width: '100vw', height: '100vh' }}>
-            <Grid item container xs={12}>
+            {/*Header de perfil*/}
+            <Grid container xs={12}>
                 <Header
+                    item
                     name="Equivalencias"
                     paginaPrincipal="/direccion/solicitudes"
                     botonSeleccionado="rgba(255, 255, 255, 0.1);"
                 />
             </Grid>
-            <Grid item container xs={12} paddingX={20} paddingTop={4}>
-                <Grid item container xs={12}>
-                    <Titulos component="h2" titulogrande="+true">
+            {/*Contenedor general*/}
+            <Grid paddingX={5} paddingTop={4}>
+                {/*Titulo principal*/}
+                <Grid item lg={12}>
+                    <Titulos
+                        component="h2"
+                        titulogrande
+                        sx={{
+                            textAlign: {
+                                xs: 'center',
+                                lg: 'left'
+                            }
+                        }}
+                    >
                         Revisión
                     </Titulos>
                 </Grid>
                 <Grid container spacing={6} paddingTop={2}>
-                    <Grid item xs={9}>
+                    <Grid item xs={12} sm={12} md={12} lg={9}>
                         <Item>
                             <Grid item container width="100%" height="100%">
                                 {/* Informacion */}
@@ -282,7 +350,7 @@ const PageRevision = ({ rol }) => {
                                                         {user.dni}
                                                     </TableCell>
                                                     <TableCell
-                                                        aling="center"
+                                                        align="center"
                                                         component="th"
                                                         scope="row"
                                                     >
@@ -315,181 +383,152 @@ const PageRevision = ({ rol }) => {
                                     </TableContainer>
                                 </Paper>
 
-                                {/* Universidad Unahur */}
-                                <Grid
-                                    borderBottom="2px solid #dadce0"
-                                    width="100%"
-                                >
-                                    <Box
-                                        container
-                                        display="flex"
+                                {/* Universidad Unahur*/}
+
+                                <Grid container>
+                                    <Grid
+                                        item
+                                        xs={12}
+                                        lg={10}
                                         sx={{
-                                            paddingTop: 2,
-                                            paddingBottom: 2
+                                            padding: {
+                                                xs: '0px 30px',
+                                                lg: '0px 60px'
+                                            }
                                         }}
                                     >
-                                        <Grid container paddingLeft="60px">
-                                            <Titulos item titulolabel>
-                                                Materias solicitadas de la
-                                                UNAHUR
-                                            </Titulos>
-                                        </Grid>
-                                        <Grid
-                                            container
+                                        <Titulos
+                                            item
+                                            titulolabel
                                             sx={{
-                                                justifyContent: 'end',
-                                                marginRight: '11%'
+                                                textAlign: {
+                                                    lg: 'left'
+                                                }
                                             }}
                                         >
-                                            <Titulos item titulolabel>
-                                                Estado
-                                            </Titulos>
-                                        </Grid>
-                                    </Box>
-
+                                            Materias solicitadas de la UNAHUR
+                                        </Titulos>
+                                    </Grid>
                                     <Grid
-                                        container
-                                        overflow="auto"
-                                        maxHeight={200}
-                                        padding={{
-                                            xs: '0px 30px',
-                                            sm: '0px 60px'
+                                        item
+                                        xs={12}
+                                        lg={2}
+                                        sx={{
+                                            display: {
+                                                xs: 'none',
+                                                lg: 'inline'
+                                            },
+                                            padding: {
+                                                xs: '0rem 2rem',
+                                                lg: '0rem 1rem 0rem 1rem'
+                                            }
                                         }}
                                     >
-                                        {equiv.materiasSolicitadas !==
-                                        undefined ? (
-                                            equiv.materiasSolicitadas.map(
-                                                (materia) => {
-                                                    return (
-                                                        <>
-                                                            <Grid
-                                                                item
-                                                                container
-                                                                direction="column"
-                                                                alignItems="flex-start"
-                                                                md={12}
-                                                                lg={9}
-                                                                sx={{
-                                                                    marginTop:
-                                                                        '1px'
-                                                                }}
-                                                            >
-                                                                <StandardInput
-                                                                    inputFocused
-                                                                    name="materiaSolicitada"
-                                                                    value={
-                                                                        materia.nombre
-                                                                    }
-                                                                    variant="outlined"
-                                                                    focused={
-                                                                        true
-                                                                    }
-                                                                    size="small"
-                                                                    InputProps={{
-                                                                        readOnly: true
-                                                                    }}
-                                                                />
-                                                            </Grid>
-
-                                                            <Grid
-                                                                item
-                                                                container
-                                                                lg={3}
-                                                                sx={{
-                                                                    marginTop:
-                                                                        '15px',
-                                                                    paddingRight:
-                                                                        '12px',
-                                                                    justifyContent:
-                                                                        'end'
-                                                                }}
-                                                            >
-                                                                <Box>
-                                                                    <FormControl
-                                                                        fullWidth
-                                                                    >
-                                                                        <InputLabel id="demo-simple-select-label"></InputLabel>
-                                                                        <Select
-                                                                            labelId="demo-simple-select-label"
-                                                                            id="demo-simple-select"
-                                                                            inputProps={
-                                                                                rol ===
-                                                                                'alumno'
-                                                                                    ? {
-                                                                                          readOnly:
-                                                                                              'false',
-                                                                                          IconComponent:
-                                                                                              'false'
-                                                                                      }
-                                                                                    : {}
-                                                                            }
-                                                                            onChange={(
-                                                                                event
-                                                                            ) =>
-                                                                                cambiarEstado(
-                                                                                    event,
-                                                                                    materia.id
-                                                                                )
-                                                                            }
-                                                                            defaultValue="pendiente"
-                                                                            value={
-                                                                                materia.estado
-                                                                            }
-                                                                            size="small"
-                                                                            sx={{
-                                                                                width:
-                                                                                    '145px', // Ajusta el ancho según tus necesidades
-                                                                                backgroundColor:
-                                                                                    materia.estado ===
-                                                                                    'aceptado'
-                                                                                        ? '#009673'
-                                                                                        : materia.estado ===
-                                                                                          'rechazado'
-                                                                                        ? '#DB0505'
-                                                                                        : '#2A74E4',
-                                                                                color:
-                                                                                    '#FFFFFF'
-                                                                            }}
-                                                                        >
-                                                                            <MenuItem value="aceptado">
-                                                                                Aceptado
-                                                                            </MenuItem>
-                                                                            <MenuItem value="pendiente">
-                                                                                Pendiente
-                                                                            </MenuItem>
-                                                                            <MenuItem value="rechazado">
-                                                                                Rechazado
-                                                                            </MenuItem>
-                                                                        </Select>
-                                                                    </FormControl>
-                                                                </Box>
-                                                            </Grid>
-                                                        </>
-                                                    );
-                                                }
-                                            )
-                                        ) : (
-                                            <></>
-                                        )}
+                                        <Titulos
+                                            item
+                                            titulolabel
+                                            textAlign="left"
+                                        >
+                                            Estado
+                                        </Titulos>
                                     </Grid>
+                                </Grid>
+                                <Grid container overflow="auto" maxHeight={200}>
+                                    {equiv.materiasSolicitadas !== undefined ? (
+                                        equiv.materiasSolicitadas.map(
+                                            (materia) => {
+                                                return (
+                                                    <>
+                                                        {/*Equivalencias solicitadas*/}
+                                                        <Grid
+                                                            lg={10}
+                                                            xs={12}
+                                                            sx={{
+                                                                padding: {
+                                                                    xs:
+                                                                        '0px 30px',
+                                                                    lg:
+                                                                        '0px 60px'
+                                                                }
+                                                            }}
+                                                        >
+                                                            <StandardInput
+                                                                inputFocused
+                                                                name="materiaSolicitada"
+                                                                value={
+                                                                    materia.nombre
+                                                                }
+                                                                variant="outlined"
+                                                                focused={true}
+                                                                size="small"
+                                                                InputProps={{
+                                                                    readOnly: true
+                                                                }}
+                                                            />
+                                                        </Grid>
+                                                        {/*Estados*/}
+                                                        <Grid
+                                                            container
+                                                            lg={2}
+                                                            xs={12}
+                                                            sx={{
+                                                                padding: {
+                                                                    xs:
+                                                                        '0rem 2rem',
+                                                                    lg:
+                                                                        '0rem 1rem 0rem 1rem'
+                                                                }
+                                                            }}
+                                                            marginTop="1rem"
+                                                            alignItems="flex-start"
+                                                            //justifyContent='flex-start'
+                                                            // direction='row'
+                                                        >
+                                                            {
+                                                                //<FormControl
+                                                                //fullWidth
+                                                                //>
+                                                                //</FormControl>
+                                                            }
+                                                            {renderStatus(
+                                                                materia
+                                                            )}
+                                                        </Grid>
+                                                    </>
+                                                );
+                                            }
+                                        )
+                                    ) : (
+                                        <></>
+                                    )}
                                 </Grid>
 
                                 {/* Universidad Origen */}
-                                <Grid>
-                                    <Box
-                                        container
-                                        display="flex"
+                                <Grid width="100%">
+                                    <Grid
+                                        item
+                                        xs={12}
                                         sx={{
-                                            paddingTop: 2,
-                                            paddingBottom: 2
+                                            marginTop: '10px',
+                                            borderTop: '2px solid #dadce0',
+                                            padding: {
+                                                xs: '0px 30px',
+                                                lg: '0px 60px'
+                                            }
                                         }}
                                     >
-                                        <Grid container paddingLeft="60px">
-                                            <Titulos item titulolabel>
-                                                Materias aprobadas
-                                            </Titulos>
-                                        </Grid>
-                                    </Box>
+                                        <Titulos
+                                            item
+                                            titulolabel
+                                            sx={{
+                                                textAlign: {
+                                                    lg: 'left'
+                                                }
+                                            }}
+                                        >
+                                            Materias aprobadas
+                                        </Titulos>
+                                    </Grid>
                                     <Grid overflow="auto" maxHeight={200}>
                                         {equiv.materiasAprobadas !==
                                         undefined ? (
@@ -508,7 +547,7 @@ const PageRevision = ({ rol }) => {
                                                                 padding={{
                                                                     xs:
                                                                         '0px 30px',
-                                                                    sm:
+                                                                    lg:
                                                                         '10px 60px'
                                                                 }}
                                                                 sx={{
@@ -533,6 +572,7 @@ const PageRevision = ({ rol }) => {
                                                                         container
                                                                         direction="column"
                                                                         alignItems="flex-start"
+                                                                        xs={12}
                                                                         md={12}
                                                                         lg={5.8}
                                                                         sx={{
@@ -591,7 +631,6 @@ const PageRevision = ({ rol }) => {
                                                                 <Grid
                                                                     item
                                                                     container
-                                                                    xs={12}
                                                                     direction="row"
                                                                     alignItems="flex-start"
                                                                     width="100%"
@@ -599,9 +638,6 @@ const PageRevision = ({ rol }) => {
                                                                     <Grid
                                                                         item
                                                                         container
-                                                                        md={12}
-                                                                        lg={12}
-                                                                        xs={12}
                                                                         direction="row"
                                                                         alignItems="flex-start"
                                                                         sx={{
@@ -616,6 +652,9 @@ const PageRevision = ({ rol }) => {
                                                                             item
                                                                             container
                                                                             xs={
+                                                                                3
+                                                                            }
+                                                                            lg={
                                                                                 2
                                                                             }
                                                                             alignItems="flex-start"
@@ -642,6 +681,9 @@ const PageRevision = ({ rol }) => {
                                                                             item
                                                                             container
                                                                             xs={
+                                                                                3
+                                                                            }
+                                                                            lg={
                                                                                 2
                                                                             }
                                                                             alignItems="flex-start"
@@ -669,6 +711,9 @@ const PageRevision = ({ rol }) => {
                                                                             item
                                                                             container
                                                                             xs={
+                                                                                3
+                                                                            }
+                                                                            lg={
                                                                                 2
                                                                             }
                                                                             alignItems="flex-start"
@@ -694,45 +739,52 @@ const PageRevision = ({ rol }) => {
                                                                                 }}
                                                                             />
                                                                         </Grid>
+
                                                                         <Grid
                                                                             item
                                                                             container
-                                                                            xs={
-                                                                                5
-                                                                            }
-                                                                            marginTop="20px"
                                                                             width="100%"
+                                                                            xs={
+                                                                                12
+                                                                            }
+                                                                            lg={
+                                                                                4
+                                                                            }
+                                                                            sx={{
+                                                                                marginBottom:
+                                                                                    '10px',
+                                                                                marginTop:
+                                                                                    '20px',
+                                                                                marginLeft: {
+                                                                                    lg:
+                                                                                        '2%',
+                                                                                    xs:
+                                                                                        '0%'
+                                                                                }
+                                                                            }}
                                                                         >
-                                                                            <Grid
-                                                                                item
-                                                                                container
-                                                                                alignItems="flex-start"
-                                                                                width="100%"
-                                                                                marginLeft="10%"
+                                                                            <Titulos
+                                                                                titulolabel
+                                                                                variant="h5"
+                                                                                fontSize={{
+                                                                                    xs:
+                                                                                        '16px',
+                                                                                    sm:
+                                                                                        '18px'
+                                                                                }}
+                                                                                marginTop="2px"
+                                                                                marginRight="5px"
                                                                             >
-                                                                                <Titulos
-                                                                                    titulolabel
-                                                                                    variant="h5"
-                                                                                    fontSize={{
-                                                                                        xs:
-                                                                                            '16px',
-                                                                                        sm:
-                                                                                            '18px'
-                                                                                    }}
-                                                                                    marginTop="2px"
-                                                                                    marginRight="5px"
+                                                                                Programa:
+                                                                            </Titulos>
+                                                                            <label htmlFor="contained-button-file">
+                                                                                <BotonMUI
+                                                                                    buttondownload
+                                                                                    variant="outlined"
                                                                                 >
-                                                                                    Programa:
-                                                                                </Titulos>
-                                                                                <label htmlFor="contained-button-file">
-                                                                                    <BotonMUI
-                                                                                        buttondownload
-                                                                                        variant="outlined"
-                                                                                    >
-                                                                                        Descargar
-                                                                                    </BotonMUI>
-                                                                                </label>
-                                                                            </Grid>
+                                                                                    Descargar
+                                                                                </BotonMUI>
+                                                                            </label>
                                                                         </Grid>
                                                                     </Grid>
                                                                 </Grid>
@@ -750,7 +802,7 @@ const PageRevision = ({ rol }) => {
                         </Item>
                     </Grid>
                     {/* Chat */}
-                    <Grid item xs={3}>
+                    <Grid item xs={12} sm={12} md={12} lg={3}>
                         <Item>
                             <Chat
                                 observaciones={formValue.observaciones}

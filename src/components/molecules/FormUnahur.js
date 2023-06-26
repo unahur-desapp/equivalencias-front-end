@@ -5,6 +5,7 @@ import { AutocompleteInput } from '../atoms/Input/InputMUI';
 import { Titulos } from '../atoms/Title/Titulos';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import Box from '@mui/material/Box';
 
 const FormUnahur = ({
     formValue,
@@ -90,51 +91,59 @@ const FormUnahur = ({
                         Materias solicitadas
                     </Titulos>
                 </Grid>
-                {materias.map((materia) => {
-                    return (
-                        <Grid
-                            item
-                            container
-                            direction="row"
-                            xs={5.5}
-                            sx={{
-                                marginTop: '1rem'
-                            }}
-                            justifyContent="space-between"
-                            key={materia.key}
-                        >
-                            <TextField
-                                required
-                                name={materia.materiaUnahur}
-                                sx={{ width: '90%' }}
-                                size="small"
-                                label="Materia solicitada UNAHUR"
-                                variant="outlined"
-                                value={materia.materiaUnahur || ''}
-                                onChange={(event) =>
-                                    handleChangeMateriaUnaHur(
-                                        event,
-                                        materia.key
-                                    )
-                                }
-                            />
-                            <IconButton
-                                sx={{ color: '#5f6368' }}
-                                aria-label="upload picture"
-                                onClick={() => {
-                                    if (materias.length > 1) {
-                                        handleEliminar(false);
-                                        handledelete(materia);
-                                    } else {
-                                        handledelete2();
-                                    }
+                <Grid
+                    container
+                    xs={12}
+                    justifyContent="space-between"
+                    alignItems="flex-start"
+                >
+                    {materias.map((materia) => {
+                        return (
+                            <Box
+                                item
+                                sx={{
+                                    marginTop: '6px',
+                                    width: '45%'
                                 }}
+                                key={materia.key}
                             >
-                                <DeleteOutlineOutlinedIcon />
-                            </IconButton>
-                        </Grid>
-                    );
-                })}
+                                <Grid>
+                                    <TextField
+                                        required
+                                        name={materia.materiaUnahur}
+                                        sx={{
+                                            width: '80%'
+                                        }}
+                                        size="small"
+                                        label="Materia solicitada UNAHUR"
+                                        variant="outlined"
+                                        value={materia.materiaUnahur || ''}
+                                        onChange={(event) =>
+                                            handleChangeMateriaUnaHur(
+                                                event,
+                                                materia.key
+                                            )
+                                        }
+                                    />
+                                    <IconButton
+                                        sx={{ color: '#5f6368' }}
+                                        aria-label="upload picture"
+                                        onClick={() => {
+                                            if (materias.length > 1) {
+                                                handleEliminar(false);
+                                                handledelete(materia);
+                                            } else {
+                                                handledelete2();
+                                            }
+                                        }}
+                                    >
+                                        <DeleteOutlineOutlinedIcon />
+                                    </IconButton>
+                                </Grid>
+                            </Box>
+                        );
+                    })}
+                </Grid>
             </Grid>
         </React.Fragment>
     );

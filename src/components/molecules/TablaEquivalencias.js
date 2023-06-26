@@ -26,12 +26,12 @@ export default function TablaEquivalencias({ searchQuery, rol }) {
     const getColumns = () => {
         if (rol === 'directivo') {
             return [
-                { id: 'dni', label: 'DNI', minWidth: 100 },
-                { id: 'solicitante', label: 'Solicitante', minWidth: 170 },
-                { id: 'materia', label: 'Materias Solicitadas', minWidth: 170 },
-                { id: 'dateTime', label: 'Fecha', minWidth: 100 },
-                { id: 'estado', label: 'Estado', minWidth: 170 },
-                { id: 'actions', label: 'Acciones', minWidth: 100 }
+                { id: 'dni', label: 'DNI' },
+                { id: 'solicitante', label: 'Solicitante' },
+                { id: 'materia', label: 'Materias Solicitadas' },
+                { id: 'dateTime', label: 'Fecha' },
+                { id: 'estado', label: 'Estado' },
+                { id: 'actions', label: 'Acciones' }
             ];
         } else {
             return [
