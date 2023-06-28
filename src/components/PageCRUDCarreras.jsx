@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {
     Box,
-    FormControl,
     Grid,
-    InputAdornment,
-    InputLabel,
-    MenuItem,
-    Select,
-    TextField,
     IconButton,
     Modal,
-    Typography,
     Button
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -21,11 +14,9 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import {
-    StandardInput,
-    AutocompleteInput
+    StandardInput
 } from './atoms/Input/InputMUI';
 import { GridTop } from '../GridTop';
 import { Titulos } from './atoms/Title/Titulos';
@@ -33,11 +24,6 @@ import { HeaderSuperUsuario } from './HeaderSuperUsuario';
 import { getCarreras, createCarrera, updateCarrera, deleteCarrera } from '../services/carrera_service';
 
 const PageCRUDCarreras = () => {
-    const [formValue, setformValue] = useState({
-        nombre_carrera: '',
-        nombre_instituto: ''
-    });
-
     const [carreraSeleccionada, setCarreraSeleccionada] = useState({
         nombre_carrera: '',
         nombre_instituto: '',
