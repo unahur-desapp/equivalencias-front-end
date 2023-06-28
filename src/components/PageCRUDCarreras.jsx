@@ -30,7 +30,7 @@ import {
 import { GridTop } from '../GridTop';
 import { Titulos } from './atoms/Title/Titulos';
 import { HeaderSuperUsuario } from './HeaderSuperUsuario';
-import { getCarreras, createCarrera, updateCarrera, deleteCarrera} from '../services/carrera_service';
+import { getCarreras, createCarrera, updateCarrera, deleteCarrera } from '../services/carrera_service';
 
 const PageCRUDCarreras = () => {
     const [formValue, setformValue] = useState({
@@ -38,15 +38,15 @@ const PageCRUDCarreras = () => {
         nombre_instituto: ''
     });
 
-    const [carreraSeleccionada, setCarreraSeleccionada]=useState({
+    const [carreraSeleccionada, setCarreraSeleccionada] = useState({
         nombre_carrera: '',
-        nombre_instituto:'',
-        id:''
-      })
+        nombre_instituto: '',
+        id: ''
+    })
 
-    const seleccionarCarrera=(carrera, caso)=>{
+    const seleccionarCarrera = (carrera, caso) => {
         setCarreraSeleccionada(carrera);
-        (caso==='Editar')?handleOpenEditar():handleOpenEliminar()
+        (caso === 'Editar') ? handleOpenEditar() : handleOpenEliminar()
     }
 
     const [carreras, setCarreras] = useState([]);
@@ -104,11 +104,11 @@ const PageCRUDCarreras = () => {
         fetchCarreras();
     }, []);
 
-    const handleChange=e=>{
-        const {name, value}=e.target;
-        setCarreraSeleccionada(prevState=>({
-          ...prevState,
-          [name]: value
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setCarreraSeleccionada(prevState => ({
+            ...prevState,
+            [name]: value
         }))
         console.log(carreraSeleccionada);
     }
@@ -126,7 +126,7 @@ const PageCRUDCarreras = () => {
         )
     );
 
-    
+
     const [openAgregar, setOpenAgregar] = useState(false);
     const [openEditar, setOpenEditar] = useState(false);
     const [openEliminar, setOpenEliminar] = useState(false);
@@ -160,12 +160,12 @@ const PageCRUDCarreras = () => {
         };
         console.log(objCarrera);
         setOpenEditar(false)
-        
+
         updateCarrera(objCarrera).then((rpta) => {
             console.log(rpta);
             setCarreras('');
         });
-        window.location.reload(false)  
+        window.location.reload(false)
     };
 
     const handleDelete = (e) => {
@@ -179,24 +179,24 @@ const PageCRUDCarreras = () => {
             console.log(rpta);
             setCarreras('');
         });
-        window.location.reload(false)  
+        window.location.reload(false)
     };
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         let objCarrera = {
-            nombre_carrera: formValue.nombre_carrera,
-            nombre_instituto: formValue.nombre_instituto
+            nombre_carrera: carreraSeleccionada.nombre_carrera,
+            nombre_instituto: carreraSeleccionada.nombre_instituto
         };
         console.log(objCarrera);
         setOpenAgregar(false)
-        
+
         createCarrera(objCarrera).then((rpta) => {
             console.log(rpta);
             setCarreras('');
         });
-        window.location.reload(false) 
+        window.location.reload(false)
     };
 
     return (
@@ -250,59 +250,55 @@ const PageCRUDCarreras = () => {
                                     transform: 'translate(-50%, -50%)',
                                     width: 400,
                                     bgcolor: 'background.paper',
-                                    border: '2px solid #000',
                                     boxShadow: 24,
-                                    p: 4
-                                }}
+                                    p: 4,
+                                    borderRadius: 2,
+                                  }}
                             >
-                                    <Grid container spacing={2}>
-                                        <Titulos component="h2">
-                                            Agregar Carrera
-                                        </Titulos>
-                                        <Grid item xs={12}>
-                                            <StandardInput
-                                                label="Nombre de la Carrera"
-                                                name="nombre_carrera"
-                                                value={formValue.nombre_carrera}
-                                                onChange={handleChange}
-                                            />
-                                        </Grid>
-                                        <Grid item xs={12}>
-                                            <StandardInput
-                                                label="Nombre del Instituto"
-                                                name="nombre_instituto"
-                                                value={
-                                                    formValue.nombre_instituto
-                                                }
-                                                onChange={handleChange}
-                                            />
-                                        </Grid>
-                                        <Grid item
-                                            container
-                                            justifyContent="space-between"
-
-                                            xs={12}
+                                <Grid container spacing={2}>
+                                    <Titulos component="h1">
+                                        Agregar Carrera
+                                    </Titulos>
+                                    <Grid item xs={12}>
+                                        <StandardInput
+                                            label="Nombre de la Carrera"
+                                            name="nombre_carrera"
+                                            onChange={handleChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <StandardInput
+                                            label="Nombre del Instituto"
+                                            name="nombre_instituto"
+                                            onChange={handleChange}
+                                        />
+                                    </Grid>
+                                    <Grid item
+                                        container
+                                        justifyContent="space-between"
+                                        
+                                        xs={12}
+                                    >
+                                        <Button
+                                            variant="contained"
+                                            color="success"
+                                            type="submit"
+                                            onClick={handleSubmit}
                                         >
-                                            <Button
-                                                variant="contained"
-                                                color="success"
-                                                type="submit"
-                                                onClick={handleSubmit}
-                                            >
-                                                Agregar
-                                            </Button>
+                                            Agregar
+                                        </Button>
 
-                                            <Button
-                                                variant="contained"
-                                                color="error"
-                                                onClick={handleCloseAgregar}
-                                            >
-                                                Cancelar
-                                            </Button>
-
-                                        </Grid>
+                                        <Button
+                                            variant="contained"
+                                            color="error"
+                                            onClick={handleCloseAgregar}
+                                        >
+                                            Cancelar
+                                        </Button>
 
                                     </Grid>
+
+                                </Grid>
 
                             </Box>
                         </Modal>
@@ -361,8 +357,8 @@ const PageCRUDCarreras = () => {
                                                 })}
                                                 <TableCell>
 
-                                                    <IconButton onClick={()=>seleccionarCarrera(row, 'Editar')} aria-label="edit">
-                                                        <EditIcon 
+                                                    <IconButton onClick={() => seleccionarCarrera(row, 'Editar')} aria-label="edit">
+                                                        <EditIcon
                                                         />
                                                     </IconButton>
                                                     <Modal
@@ -379,63 +375,63 @@ const PageCRUDCarreras = () => {
                                                                 transform: 'translate(-50%, -50%)',
                                                                 width: 400,
                                                                 bgcolor: 'background.paper',
-                                                                border: '2px solid #000',
                                                                 boxShadow: 24,
-                                                                p: 4
+                                                                p: 4,
+                                                                borderRadius: 2,
                                                             }}
                                                         >
-                                                                <Grid container spacing={2}>
-                                                                    <Titulos component="h2">
-                                                                        Agregar Carrera
-                                                                    </Titulos>
-                                                                    <Grid item xs={12}>
-                                                                        <StandardInput
-                                                                            label="Nombre de la Carrera"
-                                                                            name="nombre_carrera"
-                                                                            value={carreraSeleccionada && carreraSeleccionada.nombre_carrera}
-                                                                            onChange={handleChange}
-                                                                        />
-                                                                    </Grid>
-                                                                    <Grid item xs={12}>
-                                                                        <StandardInput
-                                                                            label="Nombre del Instituto"
-                                                                            name="nombre_instituto"
-                                                                            value={
-                                                                                carreraSeleccionada && carreraSeleccionada.nombre_instituto
-                                                                            }
-                                                                            onChange={handleChange}
-                                                                        />
-                                                                    </Grid>
-                                                                    <Grid item
-                                                                        container
-                                                                        justifyContent="space-between"
+                                                            <Grid container spacing={2}>
+                                                                <Titulos component="h1">
+                                                                    Editar Carrera
+                                                                </Titulos>
+                                                                <Grid item xs={12}>
+                                                                    <StandardInput
+                                                                        label="Nombre de la Carrera"
+                                                                        name="nombre_carrera"
+                                                                        value={carreraSeleccionada && carreraSeleccionada.nombre_carrera}
+                                                                        onChange={handleChange}
+                                                                    />
+                                                                </Grid>
+                                                                <Grid item xs={12}>
+                                                                    <StandardInput
+                                                                        label="Nombre del Instituto"
+                                                                        name="nombre_instituto"
+                                                                        value={
+                                                                            carreraSeleccionada && carreraSeleccionada.nombre_instituto
+                                                                        }
+                                                                        onChange={handleChange}
+                                                                    />
+                                                                </Grid>
+                                                                <Grid item
+                                                                    container
+                                                                    justifyContent="space-between"
 
-                                                                        xs={12}
+                                                                    xs={12}
+                                                                >
+                                                                    <Button
+                                                                        variant="contained"
+                                                                        color="success"
+                                                                        type="submit"
+                                                                        onClick={handleUpdate}
                                                                     >
-                                                                        <Button
-                                                                            variant="contained"
-                                                                            color="success"
-                                                                            type="submit"
-                                                                            onClick={handleUpdate}
-                                                                        >
-                                                                            Agregar
-                                                                        </Button>
+                                                                        Editar
+                                                                    </Button>
 
-                                                                        <Button
-                                                                            variant="contained"
-                                                                            color="error"
-                                                                            onClick={handleCloseEditar}
-                                                                        >
-                                                                            Cancelar
-                                                                        </Button>
-
-                                                                    </Grid>
+                                                                    <Button
+                                                                        variant="contained"
+                                                                        color="error"
+                                                                        onClick={handleCloseEditar}
+                                                                    >
+                                                                        Cancelar
+                                                                    </Button>
 
                                                                 </Grid>
+
+                                                            </Grid>
                                                         </Box>
                                                     </Modal>
 
-                                                    <IconButton aria-label="delete" onClick={()=>seleccionarCarrera(row, 'Eliminar')}>
+                                                    <IconButton aria-label="delete" onClick={() => seleccionarCarrera(row, 'Eliminar')}>
                                                         <DeleteIcon />
                                                     </IconButton>
                                                     <Modal
@@ -452,41 +448,41 @@ const PageCRUDCarreras = () => {
                                                                 transform: 'translate(-50%, -50%)',
                                                                 width: 400,
                                                                 bgcolor: 'background.paper',
-                                                                border: '2px solid #000',
                                                                 boxShadow: 24,
-                                                                p: 4
+                                                                p: 4,
+                                                                borderRadius: 2,
                                                             }}
                                                         >
-                                                                <Grid container spacing={2}>
-                                                                    <Titulos component="h2">
-                                                                        Eliminar Carrera
-                                                                    </Titulos>
-                                                                    <Grid item
-                                                                        container
-                                                                        justifyContent="space-between"
+                                                            <Grid container spacing={2}>
+                                                                <Titulos component="h1">
+                                                                    Eliminar Carrera
+                                                                </Titulos>
+                                                                <Grid item
+                                                                    container
+                                                                    justifyContent="space-between"
 
-                                                                        xs={12}
+                                                                    xs={12}
+                                                                >
+                                                                    <Button
+                                                                        variant="contained"
+                                                                        color="success"
+                                                                        type="submit"
+                                                                        onClick={handleDelete}
                                                                     >
-                                                                        <Button
-                                                                            variant="contained"
-                                                                            color="success"
-                                                                            type="submit"
-                                                                            onClick={handleDelete}
-                                                                        >
-                                                                            Aceptar
-                                                                        </Button>
+                                                                        Aceptar
+                                                                    </Button>
 
-                                                                        <Button
-                                                                            variant="contained"
-                                                                            color="error"
-                                                                            onClick={handleCloseEliminar}
-                                                                        >
-                                                                            Cancelar
-                                                                        </Button>
-
-                                                                    </Grid>
+                                                                    <Button
+                                                                        variant="contained"
+                                                                        color="error"
+                                                                        onClick={handleCloseEliminar}
+                                                                    >
+                                                                        Cancelar
+                                                                    </Button>
 
                                                                 </Grid>
+
+                                                            </Grid>
                                                         </Box>
                                                     </Modal>
                                                 </TableCell>
