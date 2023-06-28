@@ -38,6 +38,17 @@ const PageCRUDCarreras = () => {
         nombre_instituto: ''
     });
 
+    const [carreraSeleccionada, setCarreraSeleccionada]=useState({
+        nombre_carrera: '',
+        nombre_instituto:'',
+        id:''
+      })
+
+    const seleccionarCarrera=(carrera, caso)=>{
+        setCarreraSeleccionada(carrera);
+        (caso==='Editar')?handleOpenEditar():handleOpenEliminar()
+    }
+
     const [carreras, setCarreras] = useState([]);
 
     const columns = [
@@ -93,16 +104,14 @@ const PageCRUDCarreras = () => {
         fetchCarreras();
     }, []);
 
-    const handleChange = (event) => {
-        try {
-            setformValue((formValue) => ({
-                ...formValue,
-                [event.target.name]: event.target.value
-            }));
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    const handleChange=e=>{
+        const {name, value}=e.target;
+        setCarreraSeleccionada(prevState=>({
+          ...prevState,
+          [name]: value
+        }))
+        console.log(carreraSeleccionada);
+    }
 
     function createData(id, nombre_carrera, nombre_instituto, updatedAt) {
         return { id, nombre_carrera, nombre_instituto, updatedAt };
@@ -145,9 +154,9 @@ const PageCRUDCarreras = () => {
     const handleUpdate = (e) => {
         e.preventDefault();
         let objCarrera = {
-            id: formValue.id,
-            nombre_carrera: formValue.nombre_carrera,
-            nombre_instituto: formValue.nombre_instituto
+            id: carreraSeleccionada.id,
+            nombre_carrera: carreraSeleccionada.nombre_carrera,
+            nombre_instituto: carreraSeleccionada.nombre_instituto
         };
         console.log(objCarrera);
         setOpenEditar(false)
@@ -350,7 +359,7 @@ const PageCRUDCarreras = () => {
                                                 })}
                                                 <TableCell>
 
-                                                    <IconButton onClick={handleOpenEditar} aria-label="edit">
+                                                    <IconButton onClick={()=>seleccionarCarrera(row, 'Editar')} aria-label="edit">
                                                         <EditIcon 
                                                         />
                                                     </IconButton>
@@ -381,7 +390,7 @@ const PageCRUDCarreras = () => {
                                                                         <StandardInput
                                                                             label="Nombre de la Carrera"
                                                                             name="nombre_carrera"
-                                                                            value={formValue.nombre_carrera}
+                                                                            value={carreraSeleccionada && carreraSeleccionada.nombre_carrera}
                                                                             onChange={handleChange}
                                                                         />
                                                                     </Grid>
@@ -390,7 +399,7 @@ const PageCRUDCarreras = () => {
                                                                             label="Nombre del Instituto"
                                                                             name="nombre_instituto"
                                                                             value={
-                                                                                formValue.nombre_instituto
+                                                                                carreraSeleccionada && carreraSeleccionada.nombre_instituto
                                                                             }
                                                                             onChange={handleChange}
                                                                         />
