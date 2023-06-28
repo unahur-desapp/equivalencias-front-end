@@ -30,7 +30,7 @@ import {
 import { GridTop } from '../GridTop';
 import { Titulos } from './atoms/Title/Titulos';
 import { HeaderSuperUsuario } from './HeaderSuperUsuario';
-import { getCarreras, createCarrera, updateCarrera} from '../services/carrera_service';
+import { getCarreras, createCarrera, updateCarrera, deleteCarrera} from '../services/carrera_service';
 
 const PageCRUDCarreras = () => {
     const [formValue, setformValue] = useState({
@@ -164,20 +164,22 @@ const PageCRUDCarreras = () => {
         updateCarrera(objCarrera).then((rpta) => {
             console.log(rpta);
             setCarreras('');
-        }); 
+        });
+        window.location.reload(false)  
     };
 
     const handleDelete = (e) => {
         e.preventDefault();
         let objCarrera = {
-            id: formValue.id
+            id: carreraSeleccionada.id
         };
         console.log(objCarrera);
-        /*
+        setOpenEliminar(false)
         deleteCarrera(objCarrera).then((rpta) => {
             console.log(rpta);
             setCarreras('');
-        }); */
+        });
+        window.location.reload(false)  
     };
 
 
@@ -433,9 +435,60 @@ const PageCRUDCarreras = () => {
                                                         </Box>
                                                     </Modal>
 
-                                                    <IconButton aria-label="delete">
+                                                    <IconButton aria-label="delete" onClick={()=>seleccionarCarrera(row, 'Eliminar')}>
                                                         <DeleteIcon />
                                                     </IconButton>
+                                                    <Modal
+                                                        open={openEliminar}
+                                                        onClose={handleCloseEliminar}
+                                                        aria-labelledby="modal-modal-title"
+                                                        aria-describedby="modal-modal-description"
+                                                    >
+                                                        <Box
+                                                            sx={{
+                                                                position: 'absolute',
+                                                                top: '50%',
+                                                                left: '50%',
+                                                                transform: 'translate(-50%, -50%)',
+                                                                width: 400,
+                                                                bgcolor: 'background.paper',
+                                                                border: '2px solid #000',
+                                                                boxShadow: 24,
+                                                                p: 4
+                                                            }}
+                                                        >
+                                                                <Grid container spacing={2}>
+                                                                    <Titulos component="h2">
+                                                                        Eliminar Carrera
+                                                                    </Titulos>
+                                                                    <Grid item
+                                                                        container
+                                                                        justifyContent="space-between"
+
+                                                                        xs={12}
+                                                                    >
+                                                                        <Button
+                                                                            variant="contained"
+                                                                            color="success"
+                                                                            type="submit"
+                                                                            onClick={handleDelete}
+                                                                        >
+                                                                            Aceptar
+                                                                        </Button>
+
+                                                                        <Button
+                                                                            variant="contained"
+                                                                            color="error"
+                                                                            onClick={handleCloseEliminar}
+                                                                        >
+                                                                            Cancelar
+                                                                        </Button>
+
+                                                                    </Grid>
+
+                                                                </Grid>
+                                                        </Box>
+                                                    </Modal>
                                                 </TableCell>
                                             </TableRow>
                                         );

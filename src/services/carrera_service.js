@@ -28,3 +28,10 @@ export async function updateCarrera(carrera) {
     });
     return apiResponse.data;
 }
+
+export async function deleteCarrera(carrera) {
+    const apiResponse = await axios.delete(
+        `${config.apiUrl}/carreras/` + carrera.id
+    );
+    return apiResponse.data;
+}
