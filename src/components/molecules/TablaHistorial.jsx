@@ -27,20 +27,18 @@ export default function TablaEquivalencias({ searchQuery }) {
     //console.log(rol);
     const getColumns = () => {
         if (rol === 'directivo' || rol === 'superusuario') {
-            return [ // falta modificar los datos para los directivos y superusuarios
-                { id: 'dni', label: 'DNI' },
-                { id: 'solicitante', label: 'Solicitante' },
-                { id: 'materia', label: 'Materias Solicitadas' },
-                { id: 'dateTime', label: 'Fecha' },
-                { id: 'estado', label: 'Estado' },
-                { id: 'actions', label: 'Acciones' }
+            return [ 
+                { id: 'UnviersidadOrigen', label: 'Universidad', minWidth: 170 }, 
+                { id: 'Materia_aprobada', label: 'Materia Aprobada', minWidth: 170 }, 
+                { id: 'Materia_solicitada', label: 'Materia equivalente UNAHUR', minWidth: 170 },
+                { id: 'updatedAt', label: 'Fecha ultima incorporación', minWidth: 100 }, 
             ];
         } else {
             return [ //rol alumno, falta modificar ids y pensar si el formato es el que queremos mostrar
-                { id: 'carrera', label: 'Universidad', minWidth: 170 }, // Mostrar universidad de donde proviene el alumno
-                { id: 'materia', label: 'Materia Aprobada', minWidth: 170 }, // Materia que aprobo el alumno en su universidad anterior
-                { id: 'materia', label: 'Materia equivalente UNAHUR', minWidth: 170 }, //Materia unahur con la que ya se realizo equivalencia previa
-                { id: 'dateTime', label: 'Fecha ultima incorporación', minWidth: 100 }, // Fecha de la ultima vez que se realizo esta equivalencia para algun alumno
+                { id: 'UnviersidadOrigen', label: 'Universidad', minWidth: 170 }, // Mostrar universidad de donde proviene el alumno
+                { id: 'Materia_aprobada', label: 'Materia Aprobada', minWidth: 170 }, // Materia que aprobo el alumno en su universidad anterior
+                { id: 'Materia_solicitada', label: 'Materia equivalente UNAHUR', minWidth: 170 }, //Materia unahur con la que ya se realizo equivalencia previa
+                { id: 'updatedAt', label: 'Fecha ultima incorporación', minWidth: 100 }, // Fecha de la ultima vez que se realizo esta equivalencia para algun alumno
             ];
         }
     };
@@ -51,26 +49,20 @@ export default function TablaEquivalencias({ searchQuery }) {
     };
 
     const createData = (
-        materia,
-        dateTime,
-        estado,
-        solicitante,
-        dni,
-        actions,
-        carrera
+        UnviersidadOrigen,
+        Materia_aprobada,
+        Materia_solicitada,
+        updatedAt,
     ) => {
         if (rol === 'directivo' || rol === 'superusuario') {
             return {
-                solicitante,
-                dni,
-                materia,
-                dateTime,
-                actions,
-                estado,
-                carrera
+                UnviersidadOrigen,
+                Materia_aprobada,
+                Materia_solicitada,
+                updatedAt,
             };
         } else {
-            return { carrera, materia, dateTime, estado, actions };
+            return { UnviersidadOrigen, Materia_aprobada, Materia_solicitada, updatedAt, };
         }
     };
 
@@ -79,142 +71,48 @@ export default function TablaEquivalencias({ searchQuery }) {
         setPage(0);
     };
 
-    const filterNameMat = (materias) => {
-        let stringSalida = '';
-        let cant = materias.length;
-        if (cant == 1) {
-            stringSalida = materias[0].nombre;
-        } else if (cant == 2) {
-            stringSalida = materias[0].nombre + ', ' + materias[1].nombre;
-        } else {
-            stringSalida = `Cantidad de materias: ${cant}`;
-        }
-        return stringSalida;
-    };
 
-    const defineActions = (id, materias) => {
-        const color = materias.length > 3 ? 'error' : 'info';
-        const actions = (
-            <Grid
-                container
-                item
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-            >
-                {rol === 'directivo' || rol === 'superusuario' ? (
-                    <Link
-                        to={'/direccion/revision/' + id}
-                        style={{ textDecoration: 'none' }}
-                    >
-                        <ActionButtons color={color} />
-                    </Link>
-                ) : (
-                    <Link
-                        to={'/usuario/visualizar/' + id}
-                        style={{ textDecoration: 'none' }}
-                    >
-                        <ActionButtons color={color} />
-                    </Link>
-                )}
-            </Grid>
-        );
-        return actions;
-    };
-
-    const renderNotify = (materias) => {
-        let salida = '';
-        if (materias.length > 3) {
-            salida = <NotificationsActiveTwoToneIcon color="error" />;
-        }
-        return salida;
-    };
-
-    const renderState = (estado, materias) => {
-        let color = 'success';
-        switch (estado) {
-            case 'CERRADO':
-                color = 'error';
-                break;
-            case 'RECHAZADO':
-                color = 'error';
-                break;
-            case 'PENDIENTE':
-                color = 'info';
-                break;
-            case 'FALTA COMPLETAR':
-                color = 'warning';
-                break;
-            default:
-                color = 'success';
-        }
-        return (
-            <Button
-                color={color}
-                variant="outlined"
-                fullWidth
-                endIcon={renderNotify(materias)}
-                sx={{
-                    pointerEvents: 'none',
-                    borderRadius: 3,
-                    borderWidth: 2
-                }}
-            >
-                {estado}
-            </Button>
-        );
-    };
     const carre = [];
+
     const fetchCarrerasData = async () => {
-        if (rol === 'directivo') {
+        //if (rol === 'directivo') {
             carre.push(
                 await getUsuario_carrera(JSON.parse(localStorage.getItem('id')))
             );
-        }
+        //} No necesitariamos especificar por rol ya que en primera instancia todos tendran acceso a la misma información 
     };
     fetchCarrerasData();
 
     useEffect(() => {
         const fetchEquivalenciaData = async () => {
+
             let obtainedEquivalenciaData = [];
+
+            //Siguen los roles por separado para facilitar las modificaciones a futuro
             if (rol === 'directivo') {
-                obtainedEquivalenciaData = await getEquivalencia();
+                obtainedEquivalenciaData = await getEquivalencia(); //Seguramente el get sea distinto
             } else if (rol === 'superusuario') {
                 obtainedEquivalenciaData = await getEquivalencia();
             } else {
-                const usuarioId = parseInt(
-                    JSON.parse(localStorage.getItem('id'))
-                );
-                obtainedEquivalenciaData = await getEquivalenciaUsuario(
-                    usuarioId
-                );
+                obtainedEquivalenciaData = await getEquivalencia();
             }
 
             let array = [];
 
             obtainedEquivalenciaData.forEach(function (arrayItem) {
                 let d = new Date(arrayItem.Materia_solicitadas[0].createdAt);
-                let dateTime =
-                    d.getDate() +
-                    '/' +
-                    (d.getMonth() + 1) +
-                    '/' +
-                    d.getFullYear();
+                
+                
                 let carrera = arrayItem.Materia_solicitadas[0].carrera;
-                let status = renderState(
-                    arrayItem.estado.toUpperCase(),
-                    arrayItem.Materia_solicitadas
-                );
-                let actions = defineActions(
-                    arrayItem.id,
-                    arrayItem.Materia_solicitadas
-                );
+
+                
+                
                 let array2 = [];
+
                 array.push(
                     createData(
                         filterNameMat(arrayItem.Materia_solicitadas),
                         dateTime,
-                        status,
                         arrayItem.Usuario.nombre +
                             ' ' +
                             arrayItem.Usuario.apellido,
@@ -232,24 +130,31 @@ export default function TablaEquivalencias({ searchQuery }) {
                         carreras.includes(usuario.carrera)
                     );
                     switch (searchQuery.column) {
-                        case 'dni':
+                        case 'Unviersidad':
                             dataFilter = array2.filter((d) =>
-                                d.dni
+                                d.UnviersidadOrigen
                                     .toString()
                                     .toLowerCase()
                                     .includes(searchQuery.value.toLowerCase())
                             );
                             break;
-                        case 'solicitante':
+                        case 'Materia Aprobada':
                             dataFilter = array2.filter((d) =>
-                                d.solicitante
+                                d.Materia_aprobada
                                     .toLowerCase()
                                     .includes(searchQuery.value.toLowerCase())
                             );
                             break;
-                        case 'estado':
+                        case 'Materia UNAHUR':
                             dataFilter = array2.filter((d) =>
-                                d.estado.props.children
+                                d.Materia_solicitada
+                                    .toLowerCase()
+                                    .includes(searchQuery.value.toLowerCase())
+                            );
+                            break;
+                            case 'Fecha ultima incorporacion':
+                            dataFilter = array2.filter((d) =>
+                                d.updatedAt
                                     .toLowerCase()
                                     .includes(searchQuery.value.toLowerCase())
                             );
@@ -267,24 +172,31 @@ export default function TablaEquivalencias({ searchQuery }) {
                 } else if (rol == 'superusuario') {
                     let dataFilter = [];
                     switch (searchQuery.column) {
-                        case 'dni':
-                            dataFilter = array.filter((d) =>
-                                d.dni
+                        case 'Unviersidad':
+                            dataFilter = array2.filter((d) =>
+                                d.UnviersidadOrigen
                                     .toString()
                                     .toLowerCase()
                                     .includes(searchQuery.value.toLowerCase())
                             );
                             break;
-                        case 'solicitante':
-                            dataFilter = array.filter((d) =>
-                                d.solicitante
+                        case 'Materia Aprobada':
+                            dataFilter = array2.filter((d) =>
+                                d.Materia_aprobada
                                     .toLowerCase()
                                     .includes(searchQuery.value.toLowerCase())
                             );
                             break;
-                        case 'estado':
-                            dataFilter = array.filter((d) =>
-                                d.estado.props.children
+                        case 'Materia UNAHUR':
+                            dataFilter = array2.filter((d) =>
+                                d.Materia_solicitada
+                                    .toLowerCase()
+                                    .includes(searchQuery.value.toLowerCase())
+                            );
+                            break;
+                            case 'Fecha ultima incorporacion':
+                            dataFilter = array2.filter((d) =>
+                                d.updatedAt
                                     .toLowerCase()
                                     .includes(searchQuery.value.toLowerCase())
                             );
