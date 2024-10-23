@@ -207,7 +207,7 @@ const PageDireccion = () => {
                             )}
                         />
 
-                        <Button
+                       <Button
                             id="boton-busqueda-equivalencias"
                             sx={{ width: 120 }}
                             onClick={handleBuscar}

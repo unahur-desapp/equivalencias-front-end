@@ -17,6 +17,7 @@ import PageSuperUsuario from './components/PageSuperUsuario';
 import PageResetPassword from './components/organisms/PageResetPassword';
 import socketIO from 'socket.io-client';
 import { PageHistorial } from './components/molecules/PageHistorial';
+import { PageEquivalenciaDireccion } from './components/organisms/Direccion/PageEquivalenciaDireccion'; 
 
 const socket = socketIO.connect('http://localhost:3000');
 
@@ -34,9 +35,9 @@ function App() {
                         <Route path='/usuario/historial' element={<PageHistorial />} />
                     </>
                 )}
-                {rol === 'directivo' && (
+                {rol === 'directivo' && (  //el primero era originalmente PageDireccion
                     <>
-                        <Route path="/direccion/solicitudes" element={<PageDireccion />} />
+                        <Route path="/direccion/solicitudes" element={<PageEquivalenciaDireccion />} /> 
                         <Route path="/direccion/revision/:id" element={<PageRevision socket={socket} />} />
                         <Route path="/instituciones/todas" element={<PageInstituciones />} />
                         <Route path="/instituciones/crear" element={<PageCrearInstituciones />} />
