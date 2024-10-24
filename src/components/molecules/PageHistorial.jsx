@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 
 
 const PageHistorial = () => {
+    const rol = JSON.parse(localStorage.getItem('rol'));
     return (
         <Grid container direction="column">
             <Grid item container xs={12}>
@@ -41,7 +42,14 @@ const PageHistorial = () => {
                     alignItems="center"
                 >
                     <Grid item>
-                        <Link to="/usuario/equivalencias">
+                        <Link to= 
+                            {
+                                rol === 'alumno' ? "/usuario/equivalencias" :
+                                rol === 'directivo' ? "/direccion/solicitudes" : 
+                                rol === 'superusuario' && "/direccionDashboard" 
+
+                            }
+                        >
                             <IconButton sx={{ padding: 0 }}>
                                 <ArrowBackIcon />
                             </IconButton>

@@ -44,6 +44,7 @@ function App() {
                         <Route path="/instituciones/editarInstitucion/:id" element={<PageEditarInstituciones />} />
                         <Route path="/direccion/instituciones" element={<PageInstitucionDashboard />} />
                         <Route path="/direccionDashboard" element={<PageDireccionDashboard />} />
+                        <Route path='/direccion/historial' element={<PageHistorial />} />
                     </>
                 )}
                 {rol === 'superusuario' && (
@@ -57,6 +58,7 @@ function App() {
                         <Route path="/instituciones/editarInstitucion/:id" element={<PageEditarInstituciones />} />
                         <Route path="/direccion/instituciones" element={<PageInstitucionDashboard />} />
                         <Route path="/direccionDashboard" element={<PageDireccionDashboard />} />
+                        <Route path='/superusuario/historial' element={<PageHistorial />} />
                     </>
                 )}
                 <Route path="/" element={<PageIniciarSesion />} />

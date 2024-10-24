@@ -77,6 +77,22 @@ const DireccionDashboard = () => {
                                     link={'/direccion/instituciones'}
                                 />
                             </Grid>
+
+                            <Grid sx={{ padding: '0.5rem' }}>
+                                <div
+                                    style={{
+                                        display:
+                                            rol == 'directivo' ? 'none' : 'true'
+                                    }}
+                                >
+                                    <DashboardCard
+                                        tituloCard="Historial"
+                                        cuerpoCard="Equivalencias aprobadas"
+                                        imgSrc="https://res.cloudinary.com/dvdv35kwy/image/upload/v1729801247/pngwing.com_4_jbduzf.ico"
+                                        link={'/superusuario/historial'}
+                                    />
+                                </div>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>

@@ -21,6 +21,7 @@ import { Header } from '../../molecules/Header';
 import { getInstitucionesHabilitadas } from '../../../services/institucionService';
 import { getMateriaAprobadasPorUniversidad } from '../../../services/materias_aprobadas_services';
 import BusquedaMateriasModal from '../Direccion/busquedaMateriasModal';
+import { BotonMUI } from '../../atoms/Button/BotonMUI';
 
 const PageDireccion = () => {
     const [searchQuery, setSearchQuery] = useState({
@@ -142,6 +143,20 @@ const PageDireccion = () => {
                         <Titulos component="h2" titulogrande>
                             Solicitudes de equivalencias
                         </Titulos>
+                        <Link
+                            to="/usuario/historial"
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <BotonMUI
+                                buttoncontainedsmall
+                                sx={{
+                                    width: '100%',
+                                    marginRight: '20px'
+                                }}
+                            >
+                                Ver Historial
+                            </BotonMUI>
+                        </Link>
                     </Grid>
                 </GridTop>
 

@@ -21,6 +21,7 @@ import { Header } from '../../molecules/Header';
 import { getInstitucionesHabilitadas } from '../../../services/institucionService';
 import { getMateriaAprobadasPorUniversidad } from '../../../services/materias_aprobadas_services';
 import BusquedaMateriasModal from '../Direccion/busquedaMateriasModal';
+import { BotonMUI } from '../../atoms/Button/BotonMUI';
 
 const PageEquivalenciaDireccion = () => {
     const [searchQuery, setSearchQuery] = useState({
@@ -28,6 +29,7 @@ const PageEquivalenciaDireccion = () => {
         column: 'dni'
     });
 
+    
     const iconSearch = React.createRef();
     const inputSearch = React.createRef();
 
@@ -139,9 +141,25 @@ const PageEquivalenciaDireccion = () => {
                   <ArrowBackIcon />
                 </IconButton>
             </Link>
-            <Titulos component="h2" titulogrande>
-                Solicitudes de equivalencias
-            </Titulos>
+            <Grid container justifyContent="space-between" alignItems="center">
+                <Titulos component="h2" titulogrande>
+                    Solicitudes de equivalencias
+                </Titulos>
+                <Link
+                    to="/direccion/historial"
+                    style={{ textDecoration: 'none' }}
+                >
+                    <BotonMUI
+                        buttoncontainedsmall
+                        sx={{
+                            width: 'auto',
+                            marginLeft: '20px'
+                        }}
+                    >
+                        Ver Historial
+                    </BotonMUI>
+                </Link>
+            </Grid>
         </Grid>
     </GridTop>
 
@@ -168,3 +186,4 @@ const PageEquivalenciaDireccion = () => {
 };
 
 export { PageEquivalenciaDireccion };
+
